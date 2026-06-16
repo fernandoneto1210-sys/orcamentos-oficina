@@ -14,897 +14,796 @@
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
     body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cinza);color:#444;}
     a{text-decoration:none;color:inherit;}
+    input,textarea,select{font-family:inherit;}
 
-    /* ── HEADER ── */
+    /* HEADER */
     .adm-header{
       background:linear-gradient(135deg,var(--azul),var(--verde));
-      padding:14px 28px;display:flex;align-items:center;
-      justify-content:space-between;flex-wrap:wrap;gap:12px;
-      box-shadow:0 3px 16px rgba(0,0,0,.25);position:sticky;top:0;z-index:100;
+      padding:12px 24px;display:flex;align-items:center;
+      justify-content:space-between;flex-wrap:wrap;gap:10px;
+      box-shadow:0 3px 16px rgba(0,0,0,.25);
+      position:sticky;top:0;z-index:100;
     }
-    .adm-logo{display:flex;align-items:center;gap:14px;}
-    .adm-logo img{height:50px;object-fit:contain;}
-    .adm-titulo{color:#fff;font-size:1.1rem;font-weight:700;opacity:.9;}
+    .adm-logo{display:flex;align-items:center;gap:12px;}
+    .adm-logo img.lp{height:52px;object-fit:contain;}
+    .adm-logo img.l30{height:44px;object-fit:contain;}
+    .adm-info{display:flex;flex-direction:column;}
+    .adm-info span:first-child{color:#fff;font-size:1rem;font-weight:700;}
     .adm-badge{
-      background:var(--dourado);color:#fff;font-size:.72rem;
-      font-weight:700;padding:3px 12px;border-radius:20px;letter-spacing:1px;
+      background:var(--dourado);color:#fff;font-size:.68rem;
+      font-weight:700;padding:2px 10px;border-radius:10px;
+      letter-spacing:1px;width:fit-content;margin-top:2px;
     }
 
-    /* ── LAYOUT ── */
-    .adm-layout{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 78px);}
+    /* LAYOUT */
+    .layout{display:flex;min-height:calc(100vh - 76px);}
 
-    /* ── SIDEBAR ── */
+    /* SIDEBAR */
     .sidebar{
-      background:#fff;border-right:1px solid #e8e8e8;
-      padding:20px 0;overflow-y:auto;max-height:calc(100vh - 78px);
-      position:sticky;top:78px;
+      width:290px;min-width:290px;background:#fff;
+      border-right:1px solid #e8e8e8;
+      display:flex;flex-direction:column;
+      position:sticky;top:76px;height:calc(100vh - 76px);overflow-y:auto;
     }
-    .sidebar-titulo{
-      font-size:.75rem;font-weight:700;color:#999;
-      letter-spacing:1.5px;text-transform:uppercase;
-      padding:0 20px 12px;border-bottom:1px solid #f0f0f0;margin-bottom:12px;
-    }
+    .sb-topo{padding:16px;}
     .btn-novo{
-      display:flex;align-items:center;gap:8px;
+      width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
       background:linear-gradient(135deg,var(--azul),var(--azul2));
-      color:#fff;border:none;cursor:pointer;
-      width:calc(100% - 24px);margin:0 12px 16px;
-      padding:12px 16px;border-radius:var(--radius);
-      font-size:.95rem;font-weight:700;transition:all .3s;
+      color:#fff;border:none;cursor:pointer;padding:12px;
+      border-radius:var(--radius);font-size:.95rem;font-weight:700;
+      transition:all .3s;
     }
-    .btn-novo:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(27,58,107,.35);}
-
-    /* Lista de orçamentos */
-    .orc-lista{padding:0 12px;}
+    .btn-novo:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(27,58,107,.4);}
+    .sb-label{
+      font-size:.72rem;font-weight:700;color:#aaa;
+      letter-spacing:1.5px;text-transform:uppercase;
+      padding:12px 16px 6px;
+    }
+    .orc-lista{padding:0 8px 16px;}
     .orc-item{
-      padding:14px 16px;border-radius:var(--radius);
-      cursor:pointer;margin-bottom:8px;
-      border:2px solid transparent;background:var(--cinza);
-      transition:all .2s;
+      padding:12px 14px;border-radius:10px;cursor:pointer;
+      margin-bottom:6px;border:2px solid transparent;
+      background:var(--cinza);transition:all .2s;
     }
     .orc-item:hover{border-color:var(--azul2);background:#fff;}
-    .orc-item.ativo{border-color:var(--azul);background:#fff;box-shadow:var(--sombra);}
-    .orc-item-titulo{font-weight:700;font-size:.92rem;color:var(--azul);margin-bottom:4px;}
-    .orc-item-info{font-size:.78rem;color:#888;display:flex;gap:8px;flex-wrap:wrap;}
-    .orc-item-info span{display:flex;align-items:center;gap:4px;}
-    .status-badge{
-      font-size:.68rem;font-weight:700;padding:2px 8px;
-      border-radius:10px;margin-left:auto;
+    .orc-item.on{border-color:var(--azul);background:#fff;box-shadow:var(--sombra);}
+    .orc-titulo{font-weight:700;font-size:.9rem;color:var(--azul);margin-bottom:3px;
+      display:flex;align-items:center;justify-content:space-between;}
+    .orc-meta{font-size:.76rem;color:#999;display:flex;gap:6px;flex-wrap:wrap;}
+    .sbadge{
+      font-size:.65rem;font-weight:700;padding:2px 7px;
+      border-radius:8px;white-space:nowrap;
     }
-    .status-ativo{background:#dcfce7;color:#166534;}
-    .status-rascunho{background:#fef9c3;color:#854d0e;}
-    .status-expirado{background:#fee2e2;color:#991b1b;}
-    .orc-vazio{text-align:center;padding:40px 20px;color:#bbb;font-size:.88rem;}
-    .orc-vazio i{font-size:2.5rem;display:block;margin-bottom:10px;}
+    .s-ativo{background:#dcfce7;color:#166534;}
+    .s-rascunho{background:#fef9c3;color:#854d0e;}
+    .s-expirado{background:#fee2e2;color:#991b1b;}
+    .sb-vazio{text-align:center;padding:32px 16px;color:#ccc;font-size:.85rem;}
+    .sb-vazio i{font-size:2.2rem;display:block;margin-bottom:8px;}
 
-    /* ── FORMULÁRIO ── */
-    .form-area{padding:28px;overflow-y:auto;}
-    .form-vazio{
+    /* MAIN */
+    .main{flex:1;padding:24px;overflow-y:auto;}
+    .tela-inicial{
       display:flex;flex-direction:column;align-items:center;
-      justify-content:center;min-height:400px;color:#bbb;text-align:center;
+      justify-content:center;min-height:60vh;text-align:center;color:#ccc;
     }
-    .form-vazio i{font-size:4rem;margin-bottom:16px;color:var(--dourado);}
-    .form-vazio h3{color:#999;margin-bottom:8px;}
+    .tela-inicial i{font-size:5rem;color:var(--dourado);opacity:.6;margin-bottom:20px;}
+    .tela-inicial h2{color:#aaa;font-size:1.3rem;margin-bottom:8px;}
 
-    .form-card{
-      background:#fff;border-radius:var(--radius);
-      box-shadow:var(--sombra);overflow:hidden;
-    }
+    /* CARD FORM */
+    .form-card{background:#fff;border-radius:var(--radius);box-shadow:var(--sombra);overflow:hidden;}
     .form-topo{
       background:linear-gradient(135deg,var(--azul),var(--azul2));
-      padding:20px 28px;display:flex;align-items:center;
-      justify-content:space-between;flex-wrap:wrap;gap:12px;
+      padding:18px 24px;display:flex;align-items:center;
+      justify-content:space-between;flex-wrap:wrap;gap:10px;
     }
-    .form-topo h2{color:#fff;font-size:1.15rem;display:flex;align-items:center;gap:10px;}
-    .form-topo-btns{display:flex;gap:10px;flex-wrap:wrap;}
-
+    .form-topo h2{color:#fff;font-size:1.05rem;display:flex;align-items:center;gap:8px;}
+    .topo-btns{display:flex;gap:8px;flex-wrap:wrap;}
     .btn{
-      display:inline-flex;align-items:center;gap:7px;
-      padding:9px 20px;border-radius:30px;font-size:.87rem;
+      display:inline-flex;align-items:center;gap:6px;
+      padding:8px 18px;border-radius:25px;font-size:.84rem;
       font-weight:700;border:none;cursor:pointer;transition:all .3s;
     }
-    .btn-salvar{background:var(--dourado);color:#fff;}
-    .btn-salvar:hover{background:#b8941f;transform:translateY(-1px);}
-    .btn-link{background:#25D366;color:#fff;}
-    .btn-link:hover{background:#1ebe5d;}
-    .btn-pdf{background:#e74c3c;color:#fff;}
-    .btn-pdf:hover{background:#c0392b;}
-    .btn-excluir{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);}
-    .btn-excluir:hover{background:rgba(255,0,0,.3);}
-    .btn-ghost{background:var(--cinza);color:var(--azul);border:1px solid #ddd;}
-    .btn-ghost:hover{background:#e8e8e8;}
+    .b-salvar{background:var(--dourado);color:#fff;}
+    .b-salvar:hover{background:#b8941f;}
+    .b-ver{background:#25D366;color:#fff;}
+    .b-ver:hover{background:#1ebe5d;}
+    .b-del{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);}
+    .b-del:hover{background:rgba(231,76,60,.4);}
 
-    /* Abas do formulário */
-    .form-abas{
+    /* ABAS */
+    .abas{
       display:flex;border-bottom:2px solid #f0f0f0;
-      padding:0 28px;overflow-x:auto;background:#fafafa;
+      background:#fafafa;padding:0 20px;overflow-x:auto;
     }
     .aba{
-      padding:14px 20px;font-size:.87rem;font-weight:600;
-      color:#999;cursor:pointer;border-bottom:3px solid transparent;
-      margin-bottom:-2px;white-space:nowrap;transition:all .2s;display:flex;align-items:center;gap:6px;
+      padding:13px 18px;font-size:.84rem;font-weight:600;color:#aaa;
+      cursor:pointer;border-bottom:3px solid transparent;
+      margin-bottom:-2px;white-space:nowrap;transition:all .2s;
+      display:flex;align-items:center;gap:5px;
     }
     .aba.on{color:var(--azul);border-color:var(--azul);}
     .aba:hover{color:var(--azul2);}
+    .painel{display:none;padding:24px;}
+    .painel.on{display:block;}
 
-    .form-corpo{padding:28px;}
-    .aba-painel{display:none;}
-    .aba-painel.on{display:block;}
-
-    /* Campos */
-    .campo-grupo{margin-bottom:20px;}
-    .campo-grupo label{
-      display:block;font-size:.82rem;font-weight:700;
-      color:var(--azul);margin-bottom:6px;letter-spacing:.3px;
+    /* CAMPOS */
+    .cg{margin-bottom:18px;}
+    .cg label{
+      display:block;font-size:.8rem;font-weight:700;
+      color:var(--azul);margin-bottom:5px;
     }
-    .campo-grupo input,
-    .campo-grupo textarea,
-    .campo-grupo select{
-      width:100%;padding:10px 14px;
+    .cg input,.cg textarea,.cg select{
+      width:100%;padding:9px 13px;
       border:2px solid #e8e8e8;border-radius:8px;
-      font-size:.92rem;font-family:inherit;
-      transition:border-color .2s;background:#fff;
+      font-size:.9rem;transition:border-color .2s;
     }
-    .campo-grupo input:focus,
-    .campo-grupo textarea:focus,
-    .campo-grupo select:focus{
+    .cg input:focus,.cg textarea:focus,.cg select:focus{
       outline:none;border-color:var(--azul2);
     }
-    .campo-grupo textarea{resize:vertical;min-height:100px;}
-    .campo-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-    .campo-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+    .cg textarea{resize:vertical;min-height:90px;}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
 
-    /* Lista dinâmica */
-    .lista-dinamica{border:2px solid #e8e8e8;border-radius:8px;overflow:hidden;}
-    .lista-item{
-      display:flex;align-items:center;gap:10px;
-      padding:10px 14px;border-bottom:1px solid #f0f0f0;background:#fff;
+    /* AVISO */
+    .aviso{
+      background:#fef3c7;border:1px solid #fcd34d;border-radius:8px;
+      padding:11px 14px;font-size:.82rem;color:#92400e;
+      display:flex;gap:8px;margin-bottom:18px;
     }
-    .lista-item:last-child{border-bottom:none;}
-    .lista-item input{
-      flex:1;border:none;font-size:.92rem;font-family:inherit;
-      padding:4px 0;outline:none;
-    }
-    .btn-rem{
-      background:none;border:none;cursor:pointer;
-      color:#e74c3c;font-size:1rem;padding:4px;
-      border-radius:4px;transition:all .2s;flex-shrink:0;
-    }
-    .btn-rem:hover{background:#fee2e2;}
-    .btn-add{
-      display:flex;align-items:center;gap:7px;
-      background:none;border:2px dashed #ddd;
-      color:#999;cursor:pointer;padding:10px 14px;
-      font-size:.87rem;font-weight:600;
-      border-radius:8px;margin-top:8px;width:100%;
-      transition:all .2s;
-    }
-    .btn-add:hover{border-color:var(--azul2);color:var(--azul2);}
+    .aviso i{flex-shrink:0;margin-top:2px;}
 
-    /* Roteiro */
-    .roteiro-bloco{
-      border:2px solid #e8e8e8;border-radius:var(--radius);
-      margin-bottom:16px;overflow:hidden;
+    /* LISTA DINÂMICA */
+    .ldyn{border:2px solid #e8e8e8;border-radius:8px;overflow:hidden;}
+    .litem{
+      display:flex;align-items:center;gap:8px;
+      padding:9px 12px;border-bottom:1px solid #f5f5f5;
     }
-    .roteiro-header{
-      background:#f8f9fa;padding:12px 16px;
-      display:flex;align-items:center;gap:10px;
-      font-weight:700;font-size:.9rem;color:var(--azul);
-      border-bottom:1px solid #e8e8e8;
+    .litem:last-child{border-bottom:none;}
+    .litem input{flex:1;border:none;font-size:.9rem;outline:none;padding:3px 0;}
+    .brem{background:none;border:none;cursor:pointer;color:#e74c3c;padding:4px;border-radius:4px;}
+    .brem:hover{background:#fee2e2;}
+    .badd{
+      display:flex;align-items:center;gap:6px;width:100%;
+      background:none;border:2px dashed #ddd;color:#aaa;
+      cursor:pointer;padding:9px 12px;font-size:.85rem;font-weight:600;
+      border-radius:8px;margin-top:7px;transition:all .2s;
     }
-    .roteiro-num{
+    .badd:hover{border-color:var(--azul2);color:var(--azul2);}
+
+    /* ROTEIRO */
+    .rot-bloco{border:2px solid #e8e8e8;border-radius:var(--radius);margin-bottom:14px;overflow:hidden;}
+    .rot-head{
+      background:#f5f6fa;padding:11px 16px;display:flex;
+      align-items:center;gap:10px;font-weight:700;
+      font-size:.88rem;color:var(--azul);border-bottom:1px solid #eee;
+    }
+    .rot-num{
       background:linear-gradient(135deg,var(--azul),var(--azul2));
-      color:#fff;width:28px;height:28px;border-radius:50%;
+      color:#fff;width:26px;height:26px;border-radius:50%;
       display:flex;align-items:center;justify-content:center;
-      font-size:.82rem;font-weight:800;flex-shrink:0;
+      font-size:.78rem;font-weight:800;flex-shrink:0;
     }
-    .roteiro-campos{padding:16px;}
-    .btn-rem-rot{margin-left:auto;background:none;border:none;cursor:pointer;color:#e74c3c;font-size:.95rem;}
-    .btn-rem-rot:hover{color:#c0392b;}
+    .rot-del{margin-left:auto;background:none;border:none;cursor:pointer;color:#e74c3c;font-size:.9rem;}
+    .rot-campos{padding:14px;}
 
-    /* Valores */
-    .valor-bloco{
+    /* VALORES */
+    .val-bloco{
       border:2px solid #e8e8e8;border-radius:var(--radius);
-      padding:16px;margin-bottom:12px;background:#fafafa;
+      padding:14px;margin-bottom:12px;background:#fafafa;
     }
+    .val-head{
+      display:flex;align-items:center;justify-content:space-between;
+      margin-bottom:10px;
+    }
+    .val-head strong{color:var(--azul);font-size:.88rem;}
 
-    /* Link gerado */
+    /* LINK BOX */
     .link-box{
       background:linear-gradient(135deg,var(--azul),var(--verde));
-      border-radius:var(--radius);padding:20px 24px;
-      display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+      border-radius:var(--radius);padding:18px 22px;
+      display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+      margin-bottom:16px;
     }
-    .link-box i{font-size:1.8rem;color:var(--dourado);}
+    .link-box i{font-size:1.6rem;color:var(--dourado);}
     .link-url{
       flex:1;background:rgba(255,255,255,.15);
-      border:1px solid rgba(255,255,255,.3);
-      color:#fff;padding:10px 16px;border-radius:8px;
-      font-family:monospace;font-size:.85rem;word-break:break-all;
+      border:1px solid rgba(255,255,255,.3);color:#fff;
+      padding:9px 14px;border-radius:8px;
+      font-family:monospace;font-size:.82rem;word-break:break-all;
     }
-    .btn-copiar{
+    .bcopiar{
       background:var(--dourado);color:#fff;border:none;
-      padding:10px 20px;border-radius:8px;cursor:pointer;
-      font-weight:700;font-size:.87rem;display:flex;align-items:center;gap:6px;
-      transition:all .3s;white-space:nowrap;
+      padding:9px 18px;border-radius:8px;cursor:pointer;
+      font-weight:700;font-size:.84rem;display:flex;
+      align-items:center;gap:5px;transition:all .3s;white-space:nowrap;
     }
-    .btn-copiar:hover{background:#b8941f;}
+    .bcopiar:hover{background:#b8941f;}
 
-    /* Toast */
+    /* INSTRUÇÃO GITHUB */
+    .git-box{
+      background:#f8f9fa;border:2px solid #e8e8e8;
+      border-radius:var(--radius);padding:20px;margin-top:20px;
+    }
+    .git-box h3{color:var(--azul);font-size:.95rem;margin-bottom:12px;
+      display:flex;align-items:center;gap:8px;}
+    .git-box ol{padding-left:18px;font-size:.88rem;line-height:2.2;}
+    .git-box ol li strong{color:var(--azul);}
+
+    /* TOAST */
     .toast{
-      position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(100px);
-      background:#1B3A6B;color:#fff;padding:12px 28px;border-radius:30px;
-      font-weight:600;font-size:.92rem;z-index:9999;
-      transition:transform .4s cubic-bezier(.34,1.56,.64,1);
-      display:flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(0,0,0,.25);
+      position:fixed;bottom:24px;left:50%;
+      transform:translateX(-50%) translateY(100px);
+      background:var(--azul);color:#fff;padding:11px 26px;
+      border-radius:28px;font-weight:600;font-size:.9rem;
+      z-index:9999;transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+      display:flex;align-items:center;gap:8px;
+      box-shadow:0 8px 24px rgba(0,0,0,.25);
     }
     .toast.on{transform:translateX(-50%) translateY(0);}
-    .toast.sucesso{background:#166534;}
-    .toast.erro{background:#991b1b;}
+    .toast.ok{background:#166534;}
+    .toast.err{background:#991b1b;}
 
-    /* Aviso save */
-    .aviso-save{
-      background:#fef3c7;border:1px solid #fcd34d;
-      border-radius:8px;padding:12px 16px;
-      font-size:.85rem;color:#92400e;
-      display:flex;align-items:flex-start;gap:8px;margin-bottom:20px;
-    }
-    .aviso-save i{flex-shrink:0;margin-top:2px;}
+    /* BOTÕES AÇÃO LINK */
+    .acoes-link{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+    .bl{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;
+      border-radius:25px;font-size:.87rem;font-weight:700;border:none;
+      cursor:pointer;transition:all .3s;}
+    .bl-ver{background:#25D366;color:#fff;}
+    .bl-ver:hover{background:#1ebe5d;transform:translateY(-1px);}
+    .bl-wpp{background:#128C7E;color:#fff;}
+    .bl-wpp:hover{background:#0e7065;transform:translateY(-1px);}
+    .bl-pdf{background:#e74c3c;color:#fff;}
+    .bl-pdf:hover{background:#c0392b;transform:translateY(-1px);}
 
-    /* Responsivo */
-    @media(max-width:900px){
-      .adm-layout{grid-template-columns:1fr;}
-      .sidebar{position:static;max-height:none;border-right:none;border-bottom:1px solid #e8e8e8;}
-      .campo-row,.campo-row-3{grid-template-columns:1fr;}
+    /* RESPONSIVE */
+    @media(max-width:860px){
+      .layout{flex-direction:column;}
+      .sidebar{width:100%;min-width:unset;position:static;height:auto;}
+      .row2,.row3{grid-template-columns:1fr;}
+      .adm-logo img.l30{display:none;}
     }
   </style>
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- ══ HEADER ══ -->
 <header class="adm-header">
   <div class="adm-logo">
-    <img src="assets/images/logo.png"   alt="Oficina de Turismo"/>
-    <img src="assets/images/logo30.png" alt="30 Anos"/>
-    <div>
-      <div class="adm-titulo">Painel de Orçamentos</div>
-      <span class="adm-badge">ADMIN</span>
+    <img src="assets/images/logo.png"   class="lp"  alt="Oficina de Turismo"/>
+    <img src="assets/images/logo30.png" class="l30" alt="30 Anos"/>
+    <div class="adm-info">
+      <span>Painel de Orçamentos</span>
+      <span class="adm-badge">✦ ADMIN</span>
     </div>
   </div>
-  <a href="https://www.oficinatur.com.br" target="_blank" style="color:rgba(255,255,255,.7);font-size:.85rem;">
+  <a href="https://www.oficinatur.com.br" target="_blank"
+     style="color:rgba(255,255,255,.7);font-size:.82rem;display:flex;align-items:center;gap:5px;">
     <i class="fas fa-globe"></i> oficinatur.com.br
   </a>
 </header>
 
-<!-- LAYOUT -->
-<div class="adm-layout">
+<!-- ══ LAYOUT ══ -->
+<div class="layout">
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <div class="sidebar-titulo">Orçamentos</div>
-    <button class="btn-novo" onclick="novoOrcamento()">
-      <i class="fas fa-plus-circle"></i> Novo Orçamento
-    </button>
+    <div class="sb-topo">
+      <button class="btn-novo" onclick="novoOrc()">
+        <i class="fas fa-plus-circle"></i> Novo Orçamento
+      </button>
+    </div>
+    <div class="sb-label">Orçamentos Salvos</div>
     <div class="orc-lista" id="orc-lista">
-      <div class="orc-vazio">
+      <div class="sb-vazio">
         <i class="fas fa-folder-open"></i>
-        <p>Nenhum orçamento ainda.<br>Clique em "Novo Orçamento"!</p>
+        <p>Nenhum orçamento.<br>Crie o primeiro!</p>
       </div>
     </div>
   </aside>
 
-  <!-- ÁREA DO FORMULÁRIO -->
-  <main class="form-area" id="form-area">
-    <div class="form-vazio" id="form-vazio">
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- Tela inicial -->
+    <div class="tela-inicial" id="tela-ini">
       <i class="fas fa-file-invoice"></i>
-      <h3>Selecione ou crie um orçamento</h3>
-      <p>Use o painel à esquerda para começar</p>
+      <h2>Bem-vindo ao Painel!</h2>
+      <p>Crie ou selecione um orçamento no menu lateral</p>
     </div>
 
-    <!-- CARD DO FORMULÁRIO -->
+    <!-- Form card -->
     <div class="form-card" id="form-card" style="display:none;">
 
-      <!-- Topo -->
       <div class="form-topo">
-        <h2><i class="fas fa-edit"></i> <span id="form-titulo-topo">Novo Orçamento</span></h2>
-        <div class="form-topo-btns">
-          <button class="btn btn-excluir" onclick="excluirOrcamento()">
-            <i class="fas fa-trash"></i> Excluir
-          </button>
-          <button class="btn btn-salvar" onclick="salvarOrcamento()">
-            <i class="fas fa-save"></i> Salvar JSON
-          </button>
-          <button class="btn btn-link" onclick="verOrcamento()">
-            <i class="fas fa-eye"></i> Ver
-          </button>
+        <h2><i class="fas fa-edit"></i> <span id="f-topo-txt">Novo Orçamento</span></h2>
+        <div class="topo-btns">
+          <button class="btn b-del"    onclick="delOrc()"><i class="fas fa-trash"></i> Excluir</button>
+          <button class="btn b-salvar" onclick="salvarOrc()"><i class="fas fa-download"></i> Salvar JSON</button>
+          <button class="btn b-ver"    onclick="verOrc()"><i class="fas fa-eye"></i> Ver</button>
         </div>
       </div>
 
-      <!-- Abas -->
-      <div class="form-abas">
-        <div class="aba on" onclick="trocarAba('basico')">
-          <i class="fas fa-info-circle"></i> Básico
+      <!-- ABAS -->
+      <div class="abas">
+        <div class="aba on" onclick="aba('basico')"><i class="fas fa-info-circle"></i> Básico</div>
+        <div class="aba"    onclick="aba('inc')"><i class="fas fa-list-check"></i> Incluídos</div>
+        <div class="aba"    onclick="aba('rot')"><i class="fas fa-map-marked-alt"></i> Roteiro</div>
+        <div class="aba"    onclick="aba('val')"><i class="fas fa-tag"></i> Valores</div>
+        <div class="aba"    onclick="aba('lnk')"><i class="fas fa-link"></i> Link & PDF</div>
+      </div>
+
+      <!-- ── ABA BÁSICO ── -->
+      <div class="painel on" id="p-basico">
+        <div class="aviso">
+          <i class="fas fa-lightbulb"></i>
+          <span>Preencha os dados e clique em <strong>"Salvar JSON"</strong>. O arquivo será baixado — suba-o no GitHub para publicar.</span>
         </div>
-        <div class="aba" onclick="trocarAba('incluidos')">
-          <i class="fas fa-list-check"></i> Incluídos
+        <div class="row2">
+          <div class="cg">
+            <label><i class="fas fa-hashtag"></i> ID do Orçamento *</label>
+            <input id="f-id" type="text" placeholder="ex: atacama-2026-joao" oninput="updLink()"/>
+          </div>
+          <div class="cg">
+            <label><i class="fas fa-user"></i> Nome do Cliente</label>
+            <input id="f-cli" type="text" placeholder="ex: João Silva"/>
+          </div>
         </div>
-        <div class="aba" onclick="trocarAba('roteiro')">
-          <i class="fas fa-map-marked-alt"></i> Roteiro
+        <div class="cg">
+          <label><i class="fas fa-plane-departure"></i> Título da Viagem *</label>
+          <input id="f-tit" type="text" placeholder="ex: Maravilhas do Atacama"/>
         </div>
-        <div class="aba" onclick="trocarAba('valores')">
-          <i class="fas fa-tag"></i> Valores
+        <div class="cg">
+          <label><i class="fas fa-align-left"></i> Subtítulo</label>
+          <input id="f-sub" type="text" placeholder="ex: O deserto mais árido do mundo com a Oficina de Turismo"/>
         </div>
-        <div class="aba" onclick="trocarAba('link')">
-          <i class="fas fa-link"></i> Link & PDF
+        <div class="row2">
+          <div class="cg">
+            <label><i class="fas fa-map-marker-alt"></i> Destino (com emoji)</label>
+            <input id="f-dst" type="text" placeholder="ex: 🇨🇱 Chile — Atacama"/>
+          </div>
+          <div class="cg">
+            <label><i class="fas fa-signal"></i> Status</label>
+            <select id="f-sts">
+              <option value="ativo">✅ Ativo</option>
+              <option value="rascunho">📝 Rascunho</option>
+              <option value="expirado">❌ Expirado</option>
+            </select>
+          </div>
+        </div>
+        <div class="row3">
+          <div class="cg">
+            <label><i class="fas fa-calendar-alt"></i> Período *</label>
+            <input id="f-per" type="text" placeholder="ex: 10 a 16 Out/2026"/>
+          </div>
+          <div class="cg">
+            <label><i class="fas fa-clock"></i> Duração</label>
+            <input id="f-dur" type="text" placeholder="ex: 7 dias · 6 noites"/>
+          </div>
+          <div class="cg">
+            <label><i class="fas fa-users"></i> Grupo</label>
+            <input id="f-grp" type="text" placeholder="ex: Máx. 20 pessoas"/>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="cg">
+            <label><i class="fas fa-calendar"></i> Data de Geração</label>
+            <input id="f-dtg" type="date"/>
+          </div>
+          <div class="cg">
+            <label><i class="fas fa-hourglass-half"></i> Validade (dias)</label>
+            <input id="f-vld" type="number" value="10"/>
+          </div>
+        </div>
+        <div class="cg">
+          <label><i class="fas fa-images"></i> Fotos do Destino — URLs (uma por linha) *</label>
+          <textarea id="f-gal" rows="6"
+            placeholder="Cole as URLs das fotos do destino — a primeira será a capa:&#10;https://images.unsplash.com/...&#10;https://images.unsplash.com/..."></textarea>
         </div>
       </div>
 
-      <!-- Corpo do formulário -->
-      <div class="form-corpo">
-
-        <!-- ABA: BÁSICO -->
-        <div class="aba-painel on" id="aba-basico">
-
-          <div class="aviso-save">
-            <i class="fas fa-info-circle"></i>
-            <span>Após preencher, clique em <strong>"Salvar JSON"</strong> e siga as instruções para atualizar o GitHub.</span>
-          </div>
-
-          <div class="campo-row">
-            <div class="campo-grupo">
-              <label><i class="fas fa-hashtag"></i> ID do Orçamento *</label>
-              <input type="text" id="f-id" placeholder="ex: atacama-2026-joao" oninput="atualizarLinkPreview()"/>
-            </div>
-            <div class="campo-grupo">
-              <label><i class="fas fa-user"></i> Nome do Cliente</label>
-              <input type="text" id="f-cliente" placeholder="ex: João Silva"/>
-            </div>
-          </div>
-
-          <div class="campo-grupo">
-            <label><i class="fas fa-plane"></i> Título da Viagem *</label>
-            <input type="text" id="f-titulo" placeholder="ex: Maravilhas do Atacama"/>
-          </div>
-
-          <div class="campo-grupo">
-            <label><i class="fas fa-align-left"></i> Subtítulo / Descrição curta</label>
-            <input type="text" id="f-subtitulo" placeholder="ex: O deserto mais árido do mundo com a Oficina de Turismo"/>
-          </div>
-
-          <div class="campo-row">
-            <div class="campo-grupo">
-              <label><i class="fas fa-map-marker-alt"></i> Destino (com emoji)</label>
-              <input type="text" id="f-destino" placeholder="ex: 🇨🇱 Chile — Atacama"/>
-            </div>
-            <div class="campo-grupo">
-              <label><i class="fas fa-signal"></i> Status</label>
-              <select id="f-status">
-                <option value="ativo">✅ Ativo</option>
-                <option value="rascunho">📝 Rascunho</option>
-                <option value="expirado">❌ Expirado</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="campo-row-3">
-            <div class="campo-grupo">
-              <label><i class="fas fa-calendar-alt"></i> Período *</label>
-              <input type="text" id="f-periodo" placeholder="ex: 10 a 16 de Out/2026"/>
-            </div>
-            <div class="campo-grupo">
-              <label><i class="fas fa-clock"></i> Duração</label>
-              <input type="text" id="f-duracao" placeholder="ex: 7 dias · 6 noites"/>
-            </div>
-            <div class="campo-grupo">
-              <label><i class="fas fa-users"></i> Grupo</label>
-              <input type="text" id="f-grupo" placeholder="ex: Máx. 20 pessoas"/>
-            </div>
-          </div>
-
-          <div class="campo-row">
-            <div class="campo-grupo">
-              <label><i class="fas fa-calendar"></i> Data de Geração</label>
-              <input type="date" id="f-dataGeracao"/>
-            </div>
-            <div class="campo-grupo">
-              <label><i class="fas fa-hourglass"></i> Validade (dias)</label>
-              <input type="number" id="f-validadeDias" placeholder="ex: 10" value="10"/>
-            </div>
-          </div>
-
-          <div class="campo-grupo">
-            <label><i class="fas fa-image"></i> URL da Imagem Capa (principal)</label>
-            <input type="url" id="f-imgCapa" placeholder="https://..."/>
-          </div>
-
-          <div class="campo-grupo">
-            <label><i class="fas fa-images"></i> Galeria — URLs das fotos (uma por linha)</label>
-            <textarea id="f-galeria" rows="5" placeholder="https://foto1.jpg&#10;https://foto2.jpg&#10;https://foto3.jpg"></textarea>
-          </div>
-
-        </div><!-- /aba-basico -->
-
-        <!-- ABA: INCLUÍDOS -->
-        <div class="aba-painel" id="aba-incluidos">
-
-          <div class="campo-grupo">
-            <label><i class="fas fa-check-circle" style="color:#166534"></i> O que está INCLUÍDO</label>
-            <div class="lista-dinamica" id="lista-inc"></div>
-            <button class="btn-add" onclick="addItem('lista-inc','incluido')">
-              <i class="fas fa-plus"></i> Adicionar item incluído
-            </button>
-          </div>
-
-          <div class="campo-grupo" style="margin-top:24px;">
-            <label><i class="fas fa-times-circle" style="color:#991b1b"></i> O que NÃO está incluído</label>
-            <div class="lista-dinamica" id="lista-nao"></div>
-            <button class="btn-add" onclick="addItem('lista-nao','naoIncluido')">
-              <i class="fas fa-plus"></i> Adicionar item não incluído
-            </button>
-          </div>
-
-        </div><!-- /aba-incluidos -->
-
-        <!-- ABA: ROTEIRO -->
-        <div class="aba-painel" id="aba-roteiro">
-          <div id="roteiro-blocos"></div>
-          <button class="btn-add" onclick="addDia()">
-            <i class="fas fa-plus"></i> Adicionar dia ao roteiro
-          </button>
+      <!-- ── ABA INCLUÍDOS ── -->
+      <div class="painel" id="p-inc">
+        <div class="cg">
+          <label><i class="fas fa-check-circle" style="color:#166534"></i> O que está INCLUÍDO</label>
+          <div class="ldyn" id="li-inc"></div>
+          <button class="badd" onclick="addItem('li-inc')"><i class="fas fa-plus"></i> Adicionar item incluído</button>
         </div>
+        <div class="cg" style="margin-top:20px;">
+          <label><i class="fas fa-times-circle" style="color:#991b1b"></i> O que NÃO está incluído</label>
+          <div class="ldyn" id="li-nao"></div>
+          <button class="badd" onclick="addItem('li-nao')"><i class="fas fa-plus"></i> Adicionar item não incluído</button>
+        </div>
+      </div>
 
-        <!-- ABA: VALORES -->
-        <div class="aba-painel" id="aba-valores">
+      <!-- ── ABA ROTEIRO ── -->
+      <div class="painel" id="p-rot">
+        <div id="rot-wrap"></div>
+        <button class="badd" onclick="addDia()"><i class="fas fa-plus"></i> Adicionar dia ao roteiro</button>
+      </div>
 
-          <div id="valores-blocos"></div>
-          <button class="btn-add" onclick="addValor()">
-            <i class="fas fa-plus"></i> Adicionar opção de valor
-          </button>
+      <!-- ── ABA VALORES ── -->
+      <div class="painel" id="p-val">
+        <div id="val-wrap"></div>
+        <button class="badd" onclick="addValor()"><i class="fas fa-plus"></i> Adicionar opção de valor</button>
+        <div class="cg" style="margin-top:20px;">
+          <label><i class="fas fa-credit-card"></i> Parcelamento</label>
+          <textarea id="f-par" rows="3" placeholder="ex: Até 12x no cartão ou PIX com 5% de desconto"></textarea>
+        </div>
+        <div class="cg">
+          <label><i class="fas fa-file-invoice-dollar"></i> Condições de Pagamento</label>
+          <textarea id="f-con" rows="5" placeholder="ex: 30% na confirmação&#10;40% até 60 dias antes&#10;30% até 30 dias antes"></textarea>
+        </div>
+        <div class="cg">
+          <label><i class="fas fa-info-circle"></i> Observações Importantes</label>
+          <textarea id="f-obs" rows="5" placeholder="ex: Válido por 10 dias. Mínimo 15 passageiros..."></textarea>
+        </div>
+      </div>
 
-          <div class="campo-grupo" style="margin-top:24px;">
-            <label><i class="fas fa-credit-card"></i> Parcelamento</label>
-            <textarea id="f-parcelamento" rows="3" placeholder="ex: Até 12x no cartão ou PIX com 5% de desconto"></textarea>
+      <!-- ── ABA LINK ── -->
+      <div class="painel" id="p-lnk">
+        <div class="cg">
+          <label><i class="fas fa-link"></i> Link para enviar ao cliente</label>
+          <div class="link-box">
+            <i class="fas fa-share-alt"></i>
+            <span class="link-url" id="link-prev">Preencha o ID na aba "Básico"...</span>
+            <button class="bcopiar" onclick="copiarLink()"><i class="fas fa-copy"></i> Copiar</button>
           </div>
+        </div>
+        <div class="acoes-link">
+          <button class="bl bl-ver" onclick="verOrc()"><i class="fas fa-eye"></i> Abrir orçamento</button>
+          <button class="bl bl-wpp" onclick="envWpp()"><i class="fab fa-whatsapp"></i> Enviar por WhatsApp</button>
+          <button class="bl bl-pdf" onclick="verOrc()"><i class="fas fa-file-pdf"></i> Ver / PDF</button>
+        </div>
+        <div class="git-box">
+          <h3><i class="fab fa-github"></i> Como publicar no GitHub</h3>
+          <ol>
+            <li>Clique em <strong>"Salvar JSON"</strong> — um arquivo será baixado</li>
+            <li>Abra o arquivo e <strong>copie todo o conteúdo</strong></li>
+            <li>Acesse <strong>github.com/fernandoneto1210-sys/orcamentos-oficina</strong></li>
+            <li>Clique em <strong>data → orcamentos.json</strong></li>
+            <li>Clique no <strong>lápis ✏️</strong> para editar</li>
+            <li><strong>Selecione tudo</strong> (Ctrl+A) e cole o novo conteúdo</li>
+            <li>Clique em <strong>"Commit changes"</strong></li>
+            <li>Aguarde <strong>2-3 minutos</strong> e teste o link!</li>
+          </ol>
+        </div>
+      </div>
 
-          <div class="campo-grupo">
-            <label><i class="fas fa-file-invoice-dollar"></i> Condições de Pagamento</label>
-            <textarea id="f-condicoes" rows="6" placeholder="ex: 30% na confirmação&#10;40% até 60 dias antes&#10;30% até 30 dias antes"></textarea>
-          </div>
-
-          <div class="campo-grupo">
-            <label><i class="fas fa-info-circle"></i> Observações</label>
-            <textarea id="f-observacoes" rows="6" placeholder="ex: Orçamento válido por 10 dias..."></textarea>
-          </div>
-
-        </div><!-- /aba-valores -->
-
-        <!-- ABA: LINK & PDF -->
-        <div class="aba-painel" id="aba-link">
-
-          <div class="campo-grupo">
-            <label><i class="fas fa-link"></i> Link do Orçamento (para enviar ao cliente)</label>
-            <div class="link-box">
-              <i class="fas fa-share-alt"></i>
-              <span class="link-url" id="link-preview">
-                Preencha o ID na aba "Básico" para gerar o link...
-              </span>
-              <button class="btn-copiar" onclick="copiarLink()">
-                <i class="fas fa-copy"></i> Copiar
-              </button>
-            </div>
-          </div>
-
-          <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;">
-            <button class="btn btn-link" onclick="verOrcamento()">
-              <i class="fas fa-eye"></i> Abrir orçamento
-            </button>
-            <button class="btn btn-link" style="background:#128C7E;" onclick="enviarWhatsApp()">
-              <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
-            </button>
-            <button class="btn btn-pdf" onclick="abrirPDFOrcamento()">
-              <i class="fas fa-file-pdf"></i> Ver PDF do cliente
-            </button>
-          </div>
-
-          <div style="margin-top:32px;background:#f8f9fa;border-radius:var(--radius);padding:24px;border:2px solid #e8e8e8;">
-            <h3 style="color:var(--azul);margin-bottom:16px;font-size:1rem;">
-              <i class="fas fa-save"></i> Como salvar o orçamento no GitHub
-            </h3>
-            <ol style="padding-left:20px;font-size:.9rem;line-height:2;">
-              <li>Clique em <strong>"Salvar JSON"</strong> acima — um arquivo será baixado</li>
-              <li>Abra o arquivo baixado e <strong>copie todo o conteúdo</strong></li>
-              <li>Acesse <strong>github.com/fernandoneto1210-sys/orcamentos-oficina</strong></li>
-              <li>Clique em <strong>data/orcamentos.json</strong></li>
-              <li>Clique no <strong>lápis ✏️</strong> para editar</li>
-              <li><strong>Substitua todo o conteúdo</strong> pelo copiado</li>
-              <li>Clique em <strong>"Commit changes"</strong></li>
-              <li>Aguarde 2 minutos e <strong>teste o link!</strong></li>
-            </ol>
-          </div>
-
-        </div><!-- /aba-link -->
-
-      </div><!-- /form-corpo -->
     </div><!-- /form-card -->
   </main>
 </div>
 
 <!-- TOAST -->
-<div class="toast" id="toast"><i class="fas fa-check"></i> <span id="toast-msg"></span></div>
+<div class="toast" id="toast"><span id="t-msg"></span></div>
 
 <script>
-/* ═══════════════════════════════════════════
+/* ═══════════════════════════════════════
    PAINEL ADMIN — Oficina de Turismo
-   ═══════════════════════════════════════════ */
+   ═══════════════════════════════════════ */
 
-const BASE_URL = 'https://fernandoneto1210-sys.github.io/orcamentos-oficina/orcamento.html';
-let orcamentos = [];
-let idxAtivo   = -1;
+const BASE = 'https://fernandoneto1210-sys.github.io/orcamentos-oficina/orcamento.html';
+let orcs   = [];
+let idx    = -1;
+let diaN   = 0;
+let valN   = 0;
 
-// ── INIT ────────────────────────────────────
+/* ── INIT ─────────────────────────────── */
 window.addEventListener('DOMContentLoaded', async () => {
-  // Data padrão hoje
-  document.getElementById('f-dataGeracao').value = hoje();
-  await carregarJSON();
-  renderSidebar();
+  fld('f-dtg').value = hoje();
+  try {
+    const r = await fetch('data/orcamentos.json?_=' + Date.now());
+    orcs = await r.json();
+  } catch(e) { orcs = []; }
+  renderSB();
 });
 
-async function carregarJSON(){
-  try{
-    const r = await fetch('data/orcamentos.json?_='+Date.now());
-    orcamentos = await r.json();
-  } catch(e){
-    orcamentos = [];
-  }
-}
-
-// ── SIDEBAR ──────────────────────────────────
-function renderSidebar(){
+/* ── SIDEBAR ──────────────────────────── */
+function renderSB() {
   const el = document.getElementById('orc-lista');
-  if(!orcamentos.length){
-    el.innerHTML=`<div class="orc-vazio"><i class="fas fa-folder-open"></i><p>Nenhum orçamento ainda.<br>Clique em "Novo Orçamento"!</p></div>`;
+  if (!orcs.length) {
+    el.innerHTML = `<div class="sb-vazio"><i class="fas fa-folder-open"></i><p>Nenhum orçamento.<br>Crie o primeiro!</p></div>`;
     return;
   }
-  el.innerHTML = orcamentos.map((o,i)=>`
-    <div class="orc-item ${i===idxAtivo?'ativo':''}" onclick="abrirOrcamento(${i})">
-      <div style="display:flex;align-items:center;gap:8px;">
-        <div class="orc-item-titulo">${o.titulo||'Sem título'}</div>
-        <span class="status-badge status-${o.status||'rascunho'}">${o.status||'rascunho'}</span>
+  el.innerHTML = orcs.map((o, i) => `
+    <div class="orc-item ${i===idx?'on':''}" onclick="abrirOrc(${i})">
+      <div class="orc-titulo">
+        <span>${o.titulo || 'Sem título'}</span>
+        <span class="sbadge s-${o.status||'rascunho'}">${o.status||'rascunho'}</span>
       </div>
-      <div class="orc-item-info">
-        <span><i class="fas fa-user"></i>${o.cliente||'—'}</span>
-        <span><i class="fas fa-calendar"></i>${o.periodo||'—'}</span>
+      <div class="orc-meta">
+        <span><i class="fas fa-user"></i> ${o.cliente||'—'}</span>
+        <span><i class="fas fa-calendar"></i> ${o.periodo||'—'}</span>
       </div>
     </div>
   `).join('');
 }
 
-// ── NOVO ─────────────────────────────────────
-function novoOrcamento(){
-  idxAtivo = -1;
-  limparForm();
-  document.getElementById('f-dataGeracao').value = hoje();
-  document.getElementById('f-validadeDias').value = '10';
-  mostrarForm();
-  trocarAba('basico');
-  renderSidebar();
+/* ── NOVO ─────────────────────────────── */
+function novoOrc() {
+  idx = -1; diaN = 0; valN = 0;
+  limpar();
+  fld('f-dtg').value = hoje();
+  fld('f-vld').value = '10';
+  mostrarForm('Novo Orçamento');
+  aba('basico');
+  renderSB();
 }
 
-// ── ABRIR ────────────────────────────────────
-function abrirOrcamento(idx){
-  idxAtivo = idx;
-  const o  = orcamentos[idx];
-  limparForm();
-  preencherForm(o);
-  mostrarForm();
-  trocarAba('basico');
-  renderSidebar();
+/* ── ABRIR ────────────────────────────── */
+function abrirOrc(i) {
+  idx = i; diaN = 0; valN = 0;
+  limpar();
+  preencher(orcs[i]);
+  mostrarForm(orcs[i].titulo || 'Orçamento');
+  aba('basico');
+  renderSB();
 }
 
-// ── PREENCHER FORM ───────────────────────────
-function preencherForm(o){
-  v('f-id',          o.id||'');
-  v('f-cliente',     o.cliente||'');
-  v('f-titulo',      o.titulo||'');
-  v('f-subtitulo',   o.subtitulo||'');
-  v('f-destino',     o.destino||'');
-  v('f-status',      o.status||'ativo');
-  v('f-periodo',     o.periodo||'');
-  v('f-duracao',     o.duracao||'');
-  v('f-grupo',       o.grupo||'');
-  v('f-dataGeracao', o.dataGeracao||hoje());
-  v('f-validadeDias',o.validadeDias||'10');
-  v('f-imgCapa',     o.imgCapa||'');
-  v('f-galeria',     (o.galeria||[]).join('\n'));
-  v('f-parcelamento',o.parcelamento||'');
-  v('f-condicoes',   o.condicoes||'');
-  v('f-observacoes', o.observacoes||'');
-
-  // Listas
-  renderListaAdmin('lista-inc', o.incluido||[],    'incluido');
-  renderListaAdmin('lista-nao', o.naoIncluido||[], 'naoIncluido');
-
-  // Roteiro
+/* ── PREENCHER ────────────────────────── */
+function preencher(o) {
+  sv('f-id',  o.id||'');
+  sv('f-cli', o.cliente||'');
+  sv('f-tit', o.titulo||'');
+  sv('f-sub', o.subtitulo||'');
+  sv('f-dst', o.destino||'');
+  sv('f-sts', o.status||'ativo');
+  sv('f-per', o.periodo||'');
+  sv('f-dur', o.duracao||'');
+  sv('f-grp', o.grupo||'');
+  sv('f-dtg', o.dataGeracao||hoje());
+  sv('f-vld', o.validadeDias||'10');
+  sv('f-gal', (o.galeria||[]).join('\n'));
+  sv('f-par', o.parcelamento||'');
+  sv('f-con', o.condicoes||'');
+  sv('f-obs', o.observacoes||'');
+  renderLD('li-inc', o.incluido||[]);
+  renderLD('li-nao', o.naoIncluido||[]);
   (o.roteiro||[]).forEach(d => addDia(d));
-
-  // Valores
-  (o.valores||[]).forEach(val => addValor(val));
-
-  atualizarLinkPreview();
-  document.getElementById('form-titulo-topo').textContent = o.titulo||'Orçamento';
+  (o.valores||[]).forEach(v => addValor(v));
+  updLink();
 }
 
-// ── COLETAR FORM ─────────────────────────────
-function coletarForm(){
-  const galeria = gv('f-galeria').split('\n').map(s=>s.trim()).filter(Boolean);
-  const incluido    = coletarLista('lista-inc');
-  const naoIncluido = coletarLista('lista-nao');
-  const roteiro     = coletarRoteiro();
-  const valores     = coletarValores();
-
+/* ── COLETAR ──────────────────────────── */
+function coletar() {
+  const gal = gv('f-gal').split('\n').map(s=>s.trim()).filter(Boolean);
   return {
-    id:           gv('f-id').trim().replace(/\s+/g,'-').toLowerCase(),
-    status:       gv('f-status'),
-    cliente:      gv('f-cliente'),
-    titulo:       gv('f-titulo'),
-    subtitulo:    gv('f-subtitulo'),
-    destino:      gv('f-destino'),
-    periodo:      gv('f-periodo'),
-    duracao:      gv('f-duracao'),
-    grupo:        gv('f-grupo'),
-    dataGeracao:  gv('f-dataGeracao'),
-    validadeDias: gv('f-validadeDias'),
-    imgCapa:      galeria[0]||gv('f-imgCapa'),
-    galeria:      galeria,
-    incluido, naoIncluido, roteiro, valores,
-    parcelamento: gv('f-parcelamento'),
-    condicoes:    gv('f-condicoes'),
-    observacoes:  gv('f-observacoes'),
+    id:          gv('f-id').trim().toLowerCase().replace(/\s+/g,'-'),
+    status:      gv('f-sts'),
+    cliente:     gv('f-cli'),
+    titulo:      gv('f-tit'),
+    subtitulo:   gv('f-sub'),
+    destino:     gv('f-dst'),
+    periodo:     gv('f-per'),
+    duracao:     gv('f-dur'),
+    grupo:       gv('f-grp'),
+    dataGeracao: gv('f-dtg'),
+    validadeDias:gv('f-vld'),
+    imgCapa:     gal[0]||'',
+    galeria:     gal,
+    incluido:    coletarLD('li-inc'),
+    naoIncluido: coletarLD('li-nao'),
+    roteiro:     coletarRot(),
+    valores:     coletarVal(),
+    parcelamento:gv('f-par'),
+    condicoes:   gv('f-con'),
+    observacoes: gv('f-obs'),
   };
 }
 
-// ── SALVAR ───────────────────────────────────
-function salvarOrcamento(){
-  const orc = coletarForm();
-  if(!orc.id){  showToast('Preencha o ID do orçamento!','erro'); return; }
-  if(!orc.titulo){ showToast('Preencha o título!','erro'); return; }
-
-  if(idxAtivo >= 0) orcamentos[idxAtivo] = orc;
-  else              orcamentos.push(orc);
-
-  idxAtivo = orcamentos.findIndex(o => o.id === orc.id);
-
-  // Download do JSON atualizado
-  const blob = new Blob([JSON.stringify(orcamentos, null, 2)], {type:'application/json'});
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement('a');
-  a.href     = url;
-  a.download = 'orcamentos.json';
-  a.click();
-  URL.revokeObjectURL(url);
-
-  renderSidebar();
-  atualizarLinkPreview();
-  document.getElementById('form-titulo-topo').textContent = orc.titulo;
-  showToast('JSON baixado! Agora suba no GitHub ✅','sucesso');
+/* ── SALVAR ───────────────────────────── */
+function salvarOrc() {
+  const o = coletar();
+  if (!o.id)    { toast('Preencha o ID!','err'); return; }
+  if (!o.titulo){ toast('Preencha o Título!','err'); return; }
+  if (idx >= 0) orcs[idx] = o;
+  else { orcs.push(o); idx = orcs.length - 1; }
+  idx = orcs.findIndex(x => x.id === o.id);
+  const blob = new Blob([JSON.stringify(orcs, null, 2)], {type:'application/json'});
+  const a    = Object.assign(document.createElement('a'), {
+    href: URL.createObjectURL(blob), download: 'orcamentos.json'
+  });
+  a.click(); URL.revokeObjectURL(a.href);
+  renderSB();
+  updLink();
+  document.getElementById('f-topo-txt').textContent = o.titulo;
+  toast('JSON baixado! Suba no GitHub ✅','ok');
 }
 
-// ── EXCLUIR ──────────────────────────────────
-function excluirOrcamento(){
-  if(idxAtivo < 0) return;
-  const titulo = orcamentos[idxAtivo].titulo;
-  if(!confirm(`Excluir "${titulo}"?\nIsso removerá do JSON local. Lembre de salvar e subir no GitHub.`)) return;
-  orcamentos.splice(idxAtivo,1);
-  idxAtivo = -1;
-  renderSidebar();
-  document.getElementById('form-card').style.display='none';
-  document.getElementById('form-vazio').style.display='flex';
-  showToast('Removido! Salve o JSON e atualize no GitHub.','sucesso');
+/* ── EXCLUIR ──────────────────────────── */
+function delOrc() {
+  if (idx < 0) return;
+  if (!confirm(`Excluir "${orcs[idx].titulo}"?\nLembre de salvar e subir no GitHub.`)) return;
+  orcs.splice(idx, 1);
+  idx = -1;
+  renderSB();
+  document.getElementById('form-card').style.display = 'none';
+  document.getElementById('tela-ini').style.display  = 'flex';
+  toast('Removido! Salve o JSON e atualize no GitHub.','ok');
 }
 
-// ── VER / LINK ───────────────────────────────
-function verOrcamento(){
+/* ── VER / WPP ────────────────────────── */
+function verOrc() {
   const id = gv('f-id').trim();
-  if(!id){ showToast('Preencha o ID primeiro!','erro'); return; }
-  window.open(`${BASE_URL}?id=${id}`,'_blank');
+  if (!id) { toast('Preencha o ID primeiro!','err'); return; }
+  window.open(`${BASE}?id=${id}`, '_blank');
 }
 
-function abrirPDFOrcamento(){
-  verOrcamento();
-}
-
-function enviarWhatsApp(){
-  const id    = gv('f-id').trim();
-  const titulo= gv('f-titulo').trim();
-  const cliente= gv('f-cliente').trim();
-  if(!id){ showToast('Preencha o ID primeiro!','erro'); return; }
-  const link  = `${BASE_URL}?id=${id}`;
-  const msg   = encodeURIComponent(
-    `Olá${cliente?' '+cliente:''}! 🌍✈️\n\nSegue seu orçamento personalizado da *Oficina de Turismo*:\n\n*${titulo}*\n\n👉 ${link}\n\nQualquer dúvida estou à disposição!`
-  );
-  window.open(`https://wa.me/?text=${msg}`,'_blank');
-}
-
-function atualizarLinkPreview(){
+function envWpp() {
   const id  = gv('f-id').trim();
-  const url = id ? `${BASE_URL}?id=${id}` : 'Preencha o ID na aba "Básico" para gerar o link...';
-  document.getElementById('link-preview').textContent = url;
+  const tit = gv('f-tit').trim();
+  const cli = gv('f-cli').trim();
+  if (!id) { toast('Preencha o ID primeiro!','err'); return; }
+  const msg = encodeURIComponent(
+    `Olá${cli?' '+cli:''}! 🌍✈️\n\nSegue seu orçamento personalizado da *Oficina de Turismo*:\n\n*${tit}*\n\n👉 ${BASE}?id=${id}\n\nQualquer dúvida estou à disposição! 😊`
+  );
+  window.open(`https://wa.me/?text=${msg}`, '_blank');
 }
 
-function copiarLink(){
+function updLink() {
+  const id  = gv('f-id').trim();
+  document.getElementById('link-prev').textContent =
+    id ? `${BASE}?id=${id}` : 'Preencha o ID na aba "Básico"...';
+}
+
+function copiarLink() {
   const id = gv('f-id').trim();
-  if(!id){ showToast('Preencha o ID primeiro!','erro'); return; }
-  const url = `${BASE_URL}?id=${id}`;
+  if (!id) { toast('Preencha o ID primeiro!','err'); return; }
+  const url = `${BASE}?id=${id}`;
   navigator.clipboard.writeText(url)
-    .then(()=> showToast('Link copiado! ✅','sucesso'))
-    .catch(()=>{
-      const ta = document.createElement('textarea');
-      ta.value = url; document.body.appendChild(ta);
-      ta.select(); document.execCommand('copy');
-      document.body.removeChild(ta);
-      showToast('Link copiado! ✅','sucesso');
+    .then(() => toast('Link copiado! ✅','ok'))
+    .catch(() => {
+      const t = Object.assign(document.createElement('textarea'), {value: url});
+      document.body.appendChild(t); t.select();
+      document.execCommand('copy');
+      document.body.removeChild(t);
+      toast('Link copiado! ✅','ok');
     });
 }
 
-// ── ABAS ─────────────────────────────────────
-function trocarAba(id){
-  document.querySelectorAll('.aba').forEach((a,i)=>{
-    const ids=['basico','incluidos','roteiro','valores','link'];
-    a.classList.toggle('on', ids[i]===id);
-  });
-  document.querySelectorAll('.aba-painel').forEach(p=>{
-    p.classList.toggle('on', p.id==='aba-'+id);
-  });
-  if(id==='link') atualizarLinkPreview();
+/* ── ABAS ─────────────────────────────── */
+function aba(id) {
+  const ids = ['basico','inc','rot','val','lnk'];
+  document.querySelectorAll('.aba').forEach((a,i) => a.classList.toggle('on', ids[i]===id));
+  document.querySelectorAll('.painel').forEach(p => p.classList.toggle('on', p.id==='p-'+id));
+  if (id==='lnk') updLink();
 }
 
-// ── LISTAS DINÂMICAS ──────────────────────────
-function renderListaAdmin(containerId, arr, tipo){
-  const el = document.getElementById(containerId);
-  el.innerHTML='';
-  arr.forEach(item => addItemComValor(containerId, tipo, item));
+/* ── LISTAS DINÂMICAS ─────────────────── */
+function renderLD(cid, arr) {
+  document.getElementById(cid).innerHTML = '';
+  arr.forEach(v => addItemVal(cid, v));
 }
-
-function addItem(containerId, tipo){
-  addItemComValor(containerId, tipo, '');
-  const inputs = document.getElementById(containerId).querySelectorAll('input');
-  inputs[inputs.length-1]?.focus();
+function addItem(cid) {
+  addItemVal(cid, '');
+  const ins = document.getElementById(cid).querySelectorAll('input');
+  ins[ins.length-1]?.focus();
 }
-
-function addItemComValor(containerId, tipo, valor){
-  const el  = document.getElementById(containerId);
+function addItemVal(cid, val) {
+  const el  = document.getElementById(cid);
   const div = document.createElement('div');
-  div.className='lista-item';
-  div.innerHTML=`
-    <input type="text" value="${esc(valor)}" placeholder="Digite aqui..." data-tipo="${tipo}"/>
-    <button class="btn-rem" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
+  div.className = 'litem';
+  div.innerHTML = `
+    <input type="text" value="${esc(val)}" placeholder="Digite aqui..."/>
+    <button class="brem" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>
   `;
   el.appendChild(div);
 }
-
-function coletarLista(containerId){
-  return [...document.getElementById(containerId).querySelectorAll('input')]
-    .map(i=>i.value.trim()).filter(Boolean);
+function coletarLD(cid) {
+  return [...document.getElementById(cid).querySelectorAll('input')]
+    .map(i => i.value.trim()).filter(Boolean);
 }
 
-// ── ROTEIRO ──────────────────────────────────
-let diaCount = 0;
-function addDia(dados=null){
-  diaCount++;
-  const idx = diaCount;
-  const el  = document.getElementById('roteiro-blocos');
+/* ── ROTEIRO ──────────────────────────── */
+function addDia(d = null) {
+  diaB++;
+  const n   = diaB;
+  const el  = document.getElementById('rot-wrap');
   const div = document.createElement('div');
-  div.className='roteiro-bloco';
-  div.dataset.dia = idx;
-  div.innerHTML=`
-    <div class="roteiro-header">
-      <div class="roteiro-num">${idx}</div>
-      DIA ${idx} — ${dados?.titulo||'Novo dia'}
-      <button class="btn-rem-rot" onclick="this.closest('.roteiro-bloco').remove()">
-        <i class="fas fa-trash"></i>
+  div.className = 'rot-bloco';
+  div.innerHTML = `
+    <div class="rot-head">
+      <div class="rot-num">${n}</div>
+      DIA ${n}
+      <button class="rot-del" onclick="this.closest('.rot-bloco').remove()">
+        <i class="fas fa-trash"></i> Remover
       </button>
     </div>
-    <div class="roteiro-campos">
-      <div class="campo-grupo">
+    <div class="rot-campos">
+      <div class="cg">
         <label>Título do dia</label>
-        <input type="text" class="rot-titulo" value="${esc(dados?.titulo||'')}"
-          placeholder="ex: São Paulo → Calama → San Pedro"
-          oninput="this.closest('.roteiro-bloco').querySelector('.roteiro-header div:nth-child(2)') && atualizarTituloDia(this)"/>
+        <input type="text" class="rd-tit" value="${esc(d?.titulo||'')}" placeholder="ex: São Paulo → San Pedro de Atacama"/>
       </div>
-      <div class="campo-grupo">
+      <div class="cg">
         <label>Descrição</label>
-        <textarea class="rot-desc" rows="3" placeholder="Descreva as atividades do dia...">${esc(dados?.descricao||'')}</textarea>
+        <textarea class="rd-des" rows="3" placeholder="Atividades do dia...">${esc(d?.descricao||'')}</textarea>
       </div>
-      <div class="campo-grupo">
-        <label>URL da Foto do dia (opcional)</label>
-        <input type="url" class="rot-img" value="${esc(dados?.imagem||'')}" placeholder="https://..."/>
+      <div class="cg">
+        <label>URL da foto do dia (opcional)</label>
+        <input type="url" class="rd-img" value="${esc(d?.imagem||'')}" placeholder="https://..."/>
       </div>
     </div>
   `;
   el.appendChild(div);
 }
-
-function coletarRoteiro(){
-  return [...document.querySelectorAll('.roteiro-bloco')].map(b=>({
-    titulo:    b.querySelector('.rot-titulo')?.value.trim()||'',
-    descricao: b.querySelector('.rot-desc')?.value.trim()||'',
-    imagem:    b.querySelector('.rot-img')?.value.trim()||'',
+function coletarRot() {
+  return [...document.querySelectorAll('.rot-bloco')].map(b => ({
+    titulo:    b.querySelector('.rd-tit')?.value.trim()||'',
+    descricao: b.querySelector('.rd-des')?.value.trim()||'',
+    imagem:    b.querySelector('.rd-img')?.value.trim()||'',
   }));
 }
 
-// ── VALORES ──────────────────────────────────
-let valCount=0;
-function addValor(dados=null){
-  valCount++;
-  const el  = document.getElementById('valores-blocos');
+/* ── VALORES ──────────────────────────── */
+function addValor(d = null) {
+  valN++;
+  const n   = valN;
+  const el  = document.getElementById('val-wrap');
   const div = document.createElement('div');
-  div.className='valor-bloco';
-  div.innerHTML=`
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
-      <strong style="color:var(--azul);font-size:.9rem;"><i class="fas fa-tag"></i> Opção ${valCount}</strong>
-      <button class="btn-rem" onclick="this.closest('.valor-bloco').remove()">
+  div.className = 'val-bloco';
+  div.innerHTML = `
+    <div class="val-head">
+      <strong><i class="fas fa-tag"></i> Opção ${n}</strong>
+      <button class="brem" onclick="this.closest('.val-bloco').remove()">
         <i class="fas fa-times"></i> Remover
       </button>
     </div>
-    <div class="campo-row-3">
-      <div class="campo-grupo">
+    <div class="row3">
+      <div class="cg">
         <label>Label</label>
-        <input type="text" class="val-label" value="${esc(dados?.label||'')}" placeholder="ex: Por pessoa em duplo"/>
+        <input type="text" class="vl-lab" value="${esc(d?.label||'')}" placeholder="ex: Por pessoa em duplo"/>
       </div>
-      <div class="campo-grupo">
+      <div class="cg">
         <label>Preço</label>
-        <input type="text" class="val-preco" value="${esc(dados?.preco||'')}" placeholder="ex: R$ 18.000"/>
+        <input type="text" class="vl-pre" value="${esc(d?.preco||'')}" placeholder="ex: R$ 18.000"/>
       </div>
-      <div class="campo-grupo">
+      <div class="cg">
         <label>Descrição</label>
-        <input type="text" class="val-desc" value="${esc(dados?.desc||'')}" placeholder="ex: Acomodação dupla"/>
+        <input type="text" class="vl-des" value="${esc(d?.desc||'')}" placeholder="ex: Acomodação dupla"/>
       </div>
     </div>
   `;
   el.appendChild(div);
 }
-
-function coletarValores(){
-  return [...document.querySelectorAll('.valor-bloco')].map(b=>({
-    label: b.querySelector('.val-label')?.value.trim()||'',
-    preco: b.querySelector('.val-preco')?.value.trim()||'',
-    desc:  b.querySelector('.val-desc')?.value.trim()||'',
-  })).filter(v=>v.label||v.preco);
+function coletarVal() {
+  return [...document.querySelectorAll('.val-bloco')].map(b => ({
+    label: b.querySelector('.vl-lab')?.value.trim()||'',
+    preco: b.querySelector('.vl-pre')?.value.trim()||'',
+    desc:  b.querySelector('.vl-des')?.value.trim()||'',
+  })).filter(v => v.label || v.preco);
 }
 
-// ── HELPERS ───────────────────────────────────
-function v(id, val){ const e=document.getElementById(id); if(e) e.value=val; }
-function gv(id){ return document.getElementById(id)?.value||''; }
+/* ── HELPERS ──────────────────────────── */
+function sv(id, val){ const e=fld(id); if(e) e.value=val; }
+function gv(id){ return fld(id)?.value||''; }
+function fld(id){ return document.getElementById(id); }
 function esc(s){ return (s||'').replace(/"/g,'&quot;').replace(/</g,'<'); }
 function hoje(){ return new Date().toISOString().slice(0,10); }
 
-function mostrarForm(){
-  document.getElementById('form-vazio').style.display='none';
-  document.getElementById('form-card').style.display='block';
+function mostrarForm(titulo) {
+  document.getElementById('tela-ini').style.display  = 'none';
+  document.getElementById('form-card').style.display = 'block';
+  document.getElementById('f-topo-txt').textContent  = titulo;
 }
 
-function limparForm(){
-  // Campos simples
-  ['f-id','f-cliente','f-titulo','f-subtitulo','f-destino','f-periodo',
-   'f-duracao','f-grupo','f-imgCapa','f-galeria','f-parcelamento',
-   'f-condicoes','f-observacoes'].forEach(id=>v(id,''));
-  v('f-status','ativo');
-  // Listas
-  document.getElementById('lista-inc').innerHTML='';
-  document.getElementById('lista-nao').innerHTML='';
-  // Roteiro e valores
-  document.getElementById('roteiro-blocos').innerHTML='';
-  document.getElementById('valores-blocos').innerHTML='';
-  diaCount=0; valCount=0;
+function limpar() {
+  ['f-id','f-cli','f-tit','f-sub','f-dst','f-per','f-dur',
+   'f-grp','f-gal','f-par','f-con','f-obs'].forEach(id => sv(id,''));
+  sv('f-sts','ativo');
+  document.getElementById('li-inc').innerHTML  = '';
+  document.getElementById('li-nao').innerHTML  = '';
+  document.getElementById('rot-wrap').innerHTML = '';
+  document.getElementById('val-wrap').innerHTML = '';
+  diaB = 0; valN = 0;
 }
 
-function showToast(msg, tipo=''){
-  const t = document.getElementById('toast');
-  const m = document.getElementById('toast-msg');
-  m.textContent = msg;
-  t.className   = `toast ${tipo} on`;
-  setTimeout(()=>{ t.className=`toast ${tipo}`; }, 3200);
+let diaB = 0;
+
+function toast(msg, tipo='') {
+  const el = document.getElementById('toast');
+  document.getElementById('t-msg').textContent = msg;
+  el.className = `toast ${tipo} on`;
+  setTimeout(() => { el.className = `toast ${tipo}`; }, 3000);
 }
 </script>
-
 </body>
 </html>
