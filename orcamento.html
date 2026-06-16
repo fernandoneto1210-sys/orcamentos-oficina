@@ -32,7 +32,7 @@
       font-size:1.8rem;font-weight:700;text-align:center;
       margin-bottom:30px;display:flex;align-items:center;justify-content:center;gap:12px;}
     .sec-titulo i{color:var(--dourado);font-size:1.5em;}
-    /* ★ AJUSTE DE COR DO TÍTULO DA SEÇÃO VALORES ★ */
+    /* ★ AJUSTE DE COR DO TÍTULO DA SEÇÃO VALORES - MAIS ESCURO ★ */
     .sec-titulo.light{color:#fff;} /* Mantido branco para o título principal */
     .sec-titulo.light i{color:var(--dourado2);}
 
@@ -182,17 +182,17 @@
       background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
       border-radius:var(--radius);padding:25px;text-align:center;
       width:100%;max-width:320px;box-shadow:var(--sombra);
-      color:#fff;transition:transform .3s,box-shadow .3s;}
+      transition:transform .3s,box-shadow .3s;} /* Removido 'color:#fff;' daqui */
     .val-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.3);}
-    /* ★ AJUSTES DE COR E OPACIDADE DOS TEXTOS NO CARD DE VALORES ★ */
-    .v-label{font-size:.85rem;font-weight:600;letter-spacing:1.5px;color:rgba(255,255,255,.8);margin-bottom:10px;} /* Mais visível */
-    .v-preco{font-size:2.1rem;font-weight:800;color:#fff;line-height:1.1;}
-    .v-desc{font-size:.82rem;color:rgba(255,255,255,.7);margin-top:8px;} /* Mais visível */
+    /* ★ AJUSTES DE COR E OPACIDADE DOS TEXTOS NO CARD DE VALORES - MAIS ESCURO ★ */
+    .v-label{font-size:.85rem;font-weight:600;letter-spacing:1.5px;color:rgba(255,255,255,.9);margin-bottom:10px;} /* Mais visível */
+    .v-preco{font-size:2.1rem;font-weight:800;color:#fff;line-height:1.1;} /* Mantido branco para o preço principal */
+    .v-desc{font-size:.82rem;color:rgba(255,255,255,.8);margin-top:8px;} /* Mais visível */
     .parc-box{
       background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);
       border-radius:var(--radius);padding:20px 32px;
-      /* ★ AJUSTE DE COR DO TEXTO NO PARCELAMENTO ★ */
-      color:rgba(255,255,255,.92); /* Mais visível */
+      /* ★ AJUSTE DE COR DO TEXTO NO PARCELAMENTO - MAIS ESCURO ★ */
+      color:rgba(255,255,255,.95); /* Mais visível, quase branco puro */
       display:flex;
       align-items:flex-start;gap:14px;font-size:.95rem;}
     .parc-box i{font-size:1.4rem;color:var(--dourado2);flex-shrink:0;margin-top:2px;}
@@ -236,7 +236,6 @@
       font-size:.84rem;color:rgba(255,255,255,.75);
       display:flex;align-items:center;gap:6px;transition:all .3s;}
     .footer-links a:hover{color:var(--dourado);}
-    /* ★ ADICIONANDO LINKS DE REDES SOCIAIS E SITE NO FOOTER ★ */
     .footer-links a.social-link{font-size:.9rem;color:#fff;margin-left:10px;}
     .footer-links a.social-link:hover{color:var(--dourado);}
     .footer-copy{
@@ -470,7 +469,7 @@
           <p class="footer-slogan">Oficina de Turismo — Sua viagem começa aqui!</p>
           <div class="footer-links">
             <a href="tel:+5535988622943"><i class="fas fa-phone"></i> (35) 98862-2943</a>
-            <a href="mailto:contato@oficinaturismo.com.br"><i class="fas fa-envelope"></i> contato@oficinaturismo.com.br</a>
+            <a href="mailto:contato@oficinadeturismo.com.br"><i class="fas fa-envelope"></i> contato@oficinadeturismo.com.br</a>
             <a href="https://www.instagram.com/oficinadeturismo" target="_blank" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
             <a href="https://www.oficinatur.com.br" target="_blank" class="social-link"><i class="fas fa-globe"></i> Site</a>
           </div>
