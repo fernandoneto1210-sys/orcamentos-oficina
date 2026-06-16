@@ -793,7 +793,7 @@ function renderizarLista(idUl, itens) {
   if (itens && itens.length > 0) {
     itens.forEach(item => {
       const li = document.createElement('li');
-      li.textContent = item;
+      li.textContent = item; // <--- USE textContent AO INVÉS DE innerHTML AQUI
       ul.appendChild(li);
     });
   } else {
@@ -813,17 +813,17 @@ function renderizarRoteiro(idTimeline, roteiro) {
     roteiro.forEach((dia, i) => {
       const divDia = document.createElement('div');
       divDia.classList.add('dia');
-      divDia.style.transitionDelay = `${i * 0.1}s`; // Atraso para animação em cascata
+      divDia.style.transitionDelay = `${i * 0.1}s`;
       divDia.innerHTML = `
         <div class="dia-num">
           <small>DIA</small>
           ${i + 1}
         </div>
         <div class="dia-corpo">
-          ${dia.imagem ? `
+          ${dia.imagem ? ` // <--- VERIFICA SE EXISTE IMAGEM
             <div class="dia-foto-wrap">
               <img class="dia-foto"
-                   src="${dia.imagem}"
+                   src="${dia.imagem}" // <--- USA A URL DA IMAGEM AQUI
                    alt="Dia ${i+1}"
                    onerror="this.closest('.dia-foto-wrap').style.display='none'"/>
             </div>` : ''}
@@ -839,7 +839,6 @@ function renderizarRoteiro(idTimeline, roteiro) {
     timeline.innerHTML = '<p style="text-align:center;color:#888;">Nenhum roteiro detalhado disponível.</p>';
   }
 }
-
 /* ════════════════════════════════════════════
    RENDERIZAR VALORES
    ════════════════════════════════════════════ */
