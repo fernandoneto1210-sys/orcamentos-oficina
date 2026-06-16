@@ -33,7 +33,7 @@
       margin-bottom:30px;display:flex;align-items:center;justify-content:center;gap:12px;}
     .sec-titulo i{color:var(--dourado);font-size:1.5em;}
     /* ★ AJUSTE DE COR DO TÍTULO DA SEÇÃO VALORES - MAIS ESCURO ★ */
-    .sec-titulo.light{color:#fff;} /* Mantido branco para o título principal */
+    .sec-titulo.light{color:#333;} /* Alterado para cinza escuro */
     .sec-titulo.light i{color:var(--dourado2);}
 
     /* ══ ANIMAÇÕES ══ */
@@ -182,17 +182,17 @@
       background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
       border-radius:var(--radius);padding:25px;text-align:center;
       width:100%;max-width:320px;box-shadow:var(--sombra);
-      transition:transform .3s,box-shadow .3s;} /* Removido 'color:#fff;' daqui */
+      transition:transform .3s,box-shadow .3s;}
     .val-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.3);}
     /* ★ AJUSTES DE COR E OPACIDADE DOS TEXTOS NO CARD DE VALORES - MAIS ESCURO ★ */
-    .v-label{font-size:.85rem;font-weight:600;letter-spacing:1.5px;color:rgba(255,255,255,.9);margin-bottom:10px;} /* Mais visível */
-    .v-preco{font-size:2.1rem;font-weight:800;color:#fff;line-height:1.1;} /* Mantido branco para o preço principal */
-    .v-desc{font-size:.82rem;color:rgba(255,255,255,.8);margin-top:8px;} /* Mais visível */
+    .v-label{font-size:.85rem;font-weight:600;letter-spacing:1.5px;color:var(--dourado);margin-bottom:10px;} /* Dourado */
+    .v-preco{font-size:2.1rem;font-weight:800;color:#333;line-height:1.1;} /* Cinza escuro */
+    .v-desc{font-size:.82rem;color:#333;margin-top:8px;} /* Cinza escuro */
     .parc-box{
       background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);
       border-radius:var(--radius);padding:20px 32px;
       /* ★ AJUSTE DE COR DO TEXTO NO PARCELAMENTO - MAIS ESCURO ★ */
-      color:rgba(255,255,255,.95); /* Mais visível, quase branco puro */
+      color:var(--dourado); /* Dourado */
       display:flex;
       align-items:flex-start;gap:14px;font-size:.95rem;}
     .parc-box i{font-size:1.4rem;color:var(--dourado2);flex-shrink:0;margin-top:2px;}
@@ -356,16 +356,14 @@
           </div>
           <button id="car-prev" class="car-btn car-prev"><i class="fas fa-chevron-left"></i></button>
           <button id="car-next" class="car-btn car-next"><i class="fas fa-chevron-right"></i></button>
-          <div id="car-dots" class="car-dots">
-            <!-- Dots do carrossel aqui -->
-          </div>
+          <div id="car-dots" class="car-dots"></div>
         </div>
         <div class="hero-ov"></div>
         <div class="hero-info">
           <div class="hero-in">
-            <span id="hero-badge" class="badge">DESTINO</span>
-            <h1 id="hero-titulo">Título da Viagem</h1>
-            <p id="hero-subtitulo" class="hero-sub">Subtítulo ou descrição breve da viagem.</p>
+            <span id="hero-badge" class="badge"></span>
+            <h1 id="hero-titulo"></h1>
+            <p id="hero-subtitulo" class="hero-sub"></p>
             <div class="chips">
               <span id="chip-periodo" class="chip"><i class="fas fa-calendar-alt"></i> Período</span>
               <span id="chip-duracao" class="chip"><i class="fas fa-clock"></i> Duração</span>
