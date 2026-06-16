@@ -816,11 +816,12 @@ function addItemVal(cid, val) {
   const div = document.createElement('div');
   div.className = 'litem';
   div.innerHTML = `
-    <input type="text" value="${esc(val)}" placeholder="Digite aqui..."/>
+    <input type="text" value="${esc(val)}" placeholder="Digite aqui..."/> // <--- GARANTA QUE TEM O esc(val) AQUI
     <button class="brem" onclick="this.parentElement.remove()">
       <i class="fas fa-times"></i>
     </button>`;
   el.appendChild(div);
+}
 }
 function coletarLD(cid) {
   return [...fld(cid).querySelectorAll('input')]
