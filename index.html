@@ -30,8 +30,14 @@
       background:rgba(255,255,255,.12);padding:6px 16px;
       border-radius:10px;border:1px solid rgba(255,255,255,.2);
     }
-    .adm-logo img.lp{height:68px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .adm-logo img.l30{height:58px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
+    .adm-logo img.lp{
+      height:68px;width:auto;object-fit:contain;
+      filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));
+    }
+    .adm-logo img.l30{
+      height:58px;width:auto;object-fit:contain;
+      filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));
+    }
     .logo-sep{width:1px;height:54px;background:rgba(255,255,255,.30);}
     .adm-info{display:flex;flex-direction:column;gap:3px;}
     .adm-info .titulo{color:#fff;font-size:1rem;font-weight:700;}
@@ -47,7 +53,7 @@
     }
     .adm-header-right a:hover{color:var(--dourado);}
 
-    /* ══ STATUS JSONBIN ══ */
+    /* ══ STATUS BAR ══ */
     .jb-status-bar{
       display:flex;align-items:center;justify-content:center;gap:8px;
       padding:7px 16px;font-size:.82rem;font-weight:600;
@@ -185,29 +191,21 @@
     }
     .badd:hover{border-color:var(--azul2);color:var(--azul2);}
 
-    /* ══ UPLOAD ÁREA ══ */
+    /* ══ UPLOAD ══ */
     .upload-box{
       border:2px dashed #ddd;border-radius:10px;
-      padding:20px;text-align:center;cursor:pointer;
-      transition:all .3s;background:#fafafa;
-      position:relative;overflow:hidden;
+      padding:22px;text-align:center;cursor:pointer;
+      transition:all .3s;background:#fafafa;position:relative;
     }
     .upload-box:hover{border-color:var(--azul2);background:#f0f4ff;}
-    .upload-box input[type=file]{
-      position:absolute;inset:0;opacity:0;
-      cursor:pointer;width:100%;height:100%;
-    }
+    .upload-box input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
     .upload-box i{font-size:2rem;color:#ccc;display:block;margin-bottom:8px;}
-    .upload-box p{font-size:.85rem;color:#aaa;line-height:1.5;}
-    .upload-box.uploading{border-color:var(--dourado);background:#fffbf0;}
+    .upload-box p{font-size:.85rem;color:#aaa;line-height:1.5;pointer-events:none;}
+    .upload-box.sending{border-color:var(--dourado);background:#fffbf0;}
 
-    /* Preview imagens galeria */
+    /* Preview galeria */
     .prev-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
-    .prev-item{
-      position:relative;width:90px;height:70px;
-      border-radius:8px;overflow:hidden;
-      border:2px solid #e8e8e8;
-    }
+    .prev-item{position:relative;width:90px;height:70px;border-radius:8px;overflow:hidden;border:2px solid #e8e8e8;}
     .prev-item img{width:100%;height:100%;object-fit:cover;}
     .prev-item .del-prev{
       position:absolute;top:3px;right:3px;
@@ -215,20 +213,17 @@
       border:none;border-radius:50%;width:20px;height:20px;
       font-size:.65rem;cursor:pointer;
       display:flex;align-items:center;justify-content:center;
-      transition:all .2s;
     }
-    .prev-item .del-prev:hover{background:#dc2626;transform:scale(1.1);}
-    .prev-item .img-status{
+    .capa-tag{
       position:absolute;bottom:0;left:0;right:0;
-      background:rgba(0,0,0,.6);color:#fff;
-      font-size:.6rem;text-align:center;padding:2px;
+      background:rgba(201,168,76,.9);color:#fff;
+      font-size:.6rem;text-align:center;padding:2px;font-weight:700;
     }
 
     /* ══ ROTEIRO ══ */
     .rot-bloco{
       border:2px solid #e8e8e8;border-radius:10px;
-      margin-bottom:14px;overflow:hidden;
-      transition:border-color .2s;
+      margin-bottom:14px;overflow:hidden;transition:border-color .2s;
     }
     .rot-bloco:hover{border-color:var(--azul2);}
     .rot-head{
@@ -248,111 +243,90 @@
       border:1px solid rgba(255,255,255,.3);
       padding:5px 12px;border-radius:20px;
       font-size:.78rem;cursor:pointer;transition:all .2s;
-      display:flex;align-items:center;gap:5px;
     }
-    .rot-del:hover{background:rgba(231,76,60,.4);}
+    .rot-del:hover{background:rgba(231,76,60,.5);}
     .rot-campos{padding:16px;}
 
-    /* Upload foto do dia */
-    .foto-dia-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;}
+    /* Foto do dia */
+    .foto-dia-row{display:flex;gap:12px;align-items:flex-start;}
+    .foto-dia-row .rd-img-wrap{flex:1;}
+    .foto-dia-row .rd-img-wrap input{width:100%;}
     .upload-mini{
+      position:relative;width:110px;min-width:110px;height:76px;
       border:2px dashed #ddd;border-radius:8px;
-      padding:14px;text-align:center;cursor:pointer;
-      transition:all .3s;background:#fafafa;
-      position:relative;min-height:80px;
-      display:flex;flex-direction:column;
-      align-items:center;justify-content:center;gap:6px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      cursor:pointer;background:#fafafa;transition:all .3s;overflow:hidden;
+      text-align:center;
     }
     .upload-mini:hover{border-color:var(--azul2);background:#f0f4ff;}
-    .upload-mini input[type=file]{
-      position:absolute;inset:0;opacity:0;
-      cursor:pointer;width:100%;height:100%;
-    }
-    .upload-mini i{font-size:1.4rem;color:#ccc;}
-    .upload-mini p{font-size:.75rem;color:#aaa;line-height:1.4;}
-    .upload-mini.tem-foto{border-color:var(--verde);background:#f0fdf4;}
+    .upload-mini input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+    .upload-mini i{font-size:1.4rem;color:#ccc;pointer-events:none;}
+    .upload-mini p{font-size:.65rem;color:#aaa;margin-top:4px;pointer-events:none;line-height:1.3;}
+    .upload-mini.tem-foto{border-color:var(--verde);background:#f0fff4;}
     .foto-preview{
-      width:100%;height:80px;object-fit:cover;
-      border-radius:6px;display:none;
+      width:100%;height:100%;object-fit:cover;
+      position:absolute;inset:0;display:none;border-radius:6px;
     }
     .btn-rm-foto{
-      font-size:.7rem;color:#e74c3c;background:none;border:none;
-      cursor:pointer;display:none;margin-top:4px;
+      position:absolute;top:3px;right:3px;
+      background:rgba(220,38,38,.85);color:#fff;
+      border:none;border-radius:50%;width:18px;height:18px;
+      font-size:.6rem;cursor:pointer;z-index:2;
+      display:none;align-items:center;justify-content:center;
     }
 
     /* ══ VALORES ══ */
-    .val-bloco{
-      border:2px solid #e8e8e8;border-radius:10px;
-      margin-bottom:14px;overflow:hidden;
-    }
-    .val-head{
-      display:flex;align-items:center;justify-content:space-between;
-      background:#f8f9fa;padding:12px 16px;
-      border-bottom:1px solid #e8e8e8;
-    }
-    .val-head strong{color:var(--azul);display:flex;align-items:center;gap:6px;}
-    .val-bloco .row3{padding:14px;}
+    .val-bloco{border:2px solid #e8e8e8;border-radius:10px;padding:16px;margin-bottom:12px;}
+    .val-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #f0f0f0;}
+    .val-head strong{color:var(--azul);font-size:.9rem;}
 
-    /* ══ LINK ══ */
+    /* ══ LINK PREVIEW ══ */
     .link-box{
-      background:linear-gradient(135deg,#f8f9ff,#f0f4ff);
-      border:2px solid #dde4ff;border-radius:12px;
-      padding:20px;margin-bottom:20px;
+      background:#f8f9ff;border:2px solid #e8e8e8;border-radius:10px;
+      padding:16px 20px;margin-bottom:20px;
     }
-    .link-label{font-size:.78rem;font-weight:700;color:var(--azul);margin-bottom:8px;display:block;}
-    .link-prev{
-      font-family:monospace;font-size:.82rem;
-      color:var(--azul2);word-break:break-all;
-      background:#fff;padding:10px 14px;border-radius:8px;
-      border:1px solid #dde4ff;margin-bottom:10px;line-height:1.6;
+    .link-url{
+      font-family:monospace;font-size:.84rem;color:var(--azul2);
+      word-break:break-all;margin-bottom:10px;
     }
-    .link-acoes{display:flex;gap:8px;flex-wrap:wrap;}
-    .b-link-acao{
-      display:flex;align-items:center;gap:6px;
-      padding:8px 18px;border-radius:20px;font-size:.84rem;font-weight:700;
-      border:none;cursor:pointer;transition:all .3s;
+    .link-btns{display:flex;gap:8px;flex-wrap:wrap;}
+    .lbtn{
+      display:inline-flex;align-items:center;gap:5px;
+      padding:7px 16px;border-radius:20px;font-size:.82rem;
+      font-weight:700;border:none;cursor:pointer;transition:all .3s;
     }
-    .b-copiar{background:var(--azul);color:#fff;}
-    .b-copiar:hover{background:var(--azul2);}
-    .b-abrir{background:#f0f4ff;color:var(--azul);border:2px solid #dde4ff;}
-    .b-abrir:hover{background:#dde4ff;}
-    .b-wpp-link{background:#25D366;color:#fff;}
-    .b-wpp-link:hover{background:#1ebe5d;}
+    .lbtn-cpy{background:var(--azul);color:#fff;}
+    .lbtn-cpy:hover{background:var(--azul2);}
+    .lbtn-opn{background:var(--verde);color:#fff;}
+    .lbtn-opn:hover{background:var(--verde2);}
+    .lbtn-wpp{background:#25D366;color:#fff;}
+    .lbtn-wpp:hover{background:#1ebe5d;}
 
     /* ══ TOAST ══ */
     .toast{
-      position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);
-      background:#1a1a2e;color:#fff;
-      padding:12px 24px;border-radius:30px;
-      font-size:.88rem;font-weight:600;
+      position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(100px);
+      background:#1e293b;color:#fff;padding:12px 24px;border-radius:30px;
+      font-size:.88rem;font-weight:600;z-index:9999;
+      box-shadow:0 4px 20px rgba(0,0,0,.3);transition:transform .35s cubic-bezier(.34,1.56,.64,1);
       display:flex;align-items:center;gap:8px;
-      opacity:0;transition:all .35s;z-index:9999;
-      box-shadow:0 4px 20px rgba(0,0,0,.3);
-      pointer-events:none;white-space:nowrap;
     }
-    .toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+    .toast.on{transform:translateX(-50%) translateY(0);}
     .toast.ok{background:#166534;}
     .toast.err{background:#991b1b;}
-    .toast.info{background:#1e3a5f;}
     .toast.warn{background:#854d0e;}
+    .toast.info{background:var(--azul2);}
 
     /* ══ RESPONSIVO ══ */
     @media(max-width:768px){
-      .layout{flex-direction:column;}
-      .sidebar{width:100%;min-width:unset;position:static;height:auto;max-height:280px;}
+      .sidebar{display:none;}
+      .main{padding:16px;}
       .row2,.row3{grid-template-columns:1fr;}
-      .foto-dia-wrap{grid-template-columns:1fr;}
     }
   </style>
 </head>
 <body>
 
-<!-- STATUS JSONBIN -->
-<div class="jb-status-bar ok" id="jb-bar">
-  <span id="jb-bar-txt"><i class="fas fa-circle-notch fa-spin"></i> Conectando ao JSONBin...</span>
-</div>
-
-<!-- HEADER -->
+<!-- ══ HEADER ══ -->
 <header class="adm-header">
   <div class="adm-logo">
     <img class="lp" src="assets/images/logo.png" alt="Oficina de Turismo"
@@ -362,7 +336,7 @@
          onerror="this.style.display='none'"/>
     <div class="adm-info">
       <span class="titulo">Painel Administrativo</span>
-      <span class="adm-badge">✈️ Oficina de Turismo</span>
+      <span class="adm-badge">⚡ OFICINA DE TURISMO</span>
     </div>
   </div>
   <div class="adm-header-right">
@@ -372,7 +346,12 @@
   </div>
 </header>
 
-<!-- LAYOUT -->
+<!-- ══ STATUS JSONBIN ══ -->
+<div class="jb-status-bar off" id="jb-bar">
+  <span id="jb-bar-txt"><i class="fas fa-circle-notch fa-spin"></i> Conectando ao JSONBin...</span>
+</div>
+
+<!-- ══ LAYOUT ══ -->
 <div class="layout">
 
   <!-- SIDEBAR -->
@@ -398,15 +377,16 @@
     <div class="tela-ini" id="tela-ini">
       <i class="fas fa-globe-americas"></i>
       <h2>Selecione ou crie um orçamento</h2>
-      <p>Use o painel à esquerda para começar</p>
+      <p>Use a barra lateral para navegar entre os orçamentos existentes<br>
+         ou clique em <strong>"Novo Orçamento"</strong> para começar.</p>
     </div>
 
     <!-- Form Card -->
     <div class="form-card" id="form-card" style="display:none;">
 
-      <!-- Topo -->
+      <!-- Topo do form -->
       <div class="form-topo">
-        <h2><i class="fas fa-file-invoice"></i> <span id="f-topo-txt">Orçamento</span></h2>
+        <h2><i class="fas fa-edit"></i> <span id="f-topo-txt">Orçamento</span></h2>
         <div class="topo-btns">
           <button class="btn b-salvar" onclick="salvarOrc()">
             <i class="fas fa-save"></i> Salvar
@@ -426,24 +406,24 @@
         </div>
       </div>
 
-      <!-- ABAS -->
+      <!-- Abas -->
       <div class="abas">
         <div class="aba on"  onclick="aba('basico')"><i class="fas fa-info-circle"></i> Básico</div>
         <div class="aba"     onclick="aba('inc')">   <i class="fas fa-list-check"></i> Incluídos</div>
         <div class="aba"     onclick="aba('rot')">   <i class="fas fa-route"></i> Roteiro</div>
-        <div class="aba"     onclick="aba('val')">   <i class="fas fa-tag"></i> Valores</div>
-        <div class="aba"     onclick="aba('img')">   <i class="fas fa-images"></i> Fotos Capa</div>
+        <div class="aba"     onclick="aba('val')">   <i class="fas fa-dollar-sign"></i> Valores</div>
+        <div class="aba"     onclick="aba('img')">   <i class="fas fa-images"></i> Fotos</div>
         <div class="aba"     onclick="aba('lnk')">   <i class="fas fa-link"></i> Link</div>
       </div>
 
-      <!-- ══ ABA: BÁSICO ══ -->
+      <!-- ══ ABA BÁSICO ══ -->
       <div class="painel on" id="p-basico">
         <div class="row2">
           <div class="cg">
-            <label><i class="fas fa-fingerprint"></i> ID do orçamento *</label>
-            <input type="text" id="f-id" placeholder="ex: atacama-2026-joao"
-                   oninput="updLink()"/>
-            <div class="hint">Sem espaços ou acentos. Será usado na URL do link.</div>
+            <label><i class="fas fa-key"></i> ID do Orçamento *</label>
+            <input type="text" id="f-id" placeholder="ex: atacama-2025"
+                   oninput="this.value=this.value.toLowerCase().replace(/\s+/g,'-')"/>
+            <div class="hint">Usado na URL. Só letras, números e hífen.</div>
           </div>
           <div class="cg">
             <label><i class="fas fa-toggle-on"></i> Status</label>
@@ -454,83 +434,71 @@
             </select>
           </div>
         </div>
+        <div class="cg">
+          <label><i class="fas fa-user"></i> Nome do Cliente</label>
+          <input type="text" id="f-cli" placeholder="ex: João Silva"/>
+        </div>
+        <div class="cg">
+          <label><i class="fas fa-heading"></i> Título da Viagem *</label>
+          <input type="text" id="f-tit" placeholder="ex: Atacama Mágico 2025"/>
+        </div>
+        <div class="cg">
+          <label><i class="fas fa-align-left"></i> Subtítulo / Slogan</label>
+          <input type="text" id="f-sub" placeholder="ex: Uma experiência inesquecível no deserto mais árido do mundo"/>
+        </div>
         <div class="row2">
           <div class="cg">
-            <label><i class="fas fa-user"></i> Nome do cliente</label>
-            <input type="text" id="f-cli" placeholder="ex: João Silva"/>
+            <label><i class="fas fa-map-marker-alt"></i> Destino</label>
+            <input type="text" id="f-dst" placeholder="ex: San Pedro de Atacama, Chile"/>
           </div>
           <div class="cg">
-            <label><i class="fas fa-map-marker-alt"></i> Destino</label>
-            <input type="text" id="f-dst" placeholder="ex: Atacama, Chile"/>
+            <label><i class="fas fa-calendar-alt"></i> Período</label>
+            <input type="text" id="f-per" placeholder="ex: 12 a 20 de Outubro de 2025"/>
           </div>
-        </div>
-        <div class="cg">
-          <label><i class="fas fa-heading"></i> Título da viagem *</label>
-          <input type="text" id="f-tit" placeholder="ex: Deserto do Atacama — Aventura Extrema"/>
-        </div>
-        <div class="cg">
-          <label><i class="fas fa-align-left"></i> Subtítulo</label>
-          <input type="text" id="f-sub" placeholder="ex: Uma experiência única no deserto mais árido do mundo"/>
         </div>
         <div class="row3">
           <div class="cg">
-            <label><i class="fas fa-calendar-alt"></i> Período</label>
-            <input type="text" id="f-per" placeholder="ex: 15 a 25 Mar 2026"/>
-          </div>
-          <div class="cg">
             <label><i class="fas fa-moon"></i> Duração</label>
-            <input type="text" id="f-dur" placeholder="ex: 10 dias / 9 noites"/>
+            <input type="text" id="f-dur" placeholder="ex: 8 dias / 7 noites"/>
           </div>
           <div class="cg">
             <label><i class="fas fa-users"></i> Grupo</label>
-            <input type="text" id="f-grp" placeholder="ex: 20 pessoas"/>
+            <input type="text" id="f-grp" placeholder="ex: 15 pessoas"/>
+          </div>
+          <div class="cg">
+            <label><i class="fas fa-calendar-check"></i> Data geração</label>
+            <input type="date" id="f-dtg"/>
           </div>
         </div>
         <div class="row2">
           <div class="cg">
-            <label><i class="fas fa-calendar-check"></i> Data de emissão</label>
-            <input type="date" id="f-dtg"/>
-          </div>
-          <div class="cg">
-            <label><i class="fas fa-hourglass-half"></i> Validade (dias)</label>
+            <label><i class="fas fa-clock"></i> Validade (dias)</label>
             <input type="number" id="f-vld" value="10" min="1" max="365"/>
           </div>
         </div>
-        <div class="cg">
-          <label><i class="fas fa-credit-card"></i> Parcelamento</label>
-          <input type="text" id="f-par" placeholder="ex: Em até 12x no cartão ou 5% à vista no PIX"/>
-        </div>
-        <div class="cg">
-          <label><i class="fas fa-handshake"></i> Condições de pagamento</label>
-          <textarea id="f-con" rows="4" placeholder="Detalhe as condições..."></textarea>
-        </div>
-        <div class="cg">
-          <label><i class="fas fa-info-circle"></i> Observações</label>
-          <textarea id="f-obs" rows="4" placeholder="Informações importantes para o cliente..."></textarea>
-        </div>
       </div>
 
-      <!-- ══ ABA: INCLUÍDOS ══ -->
+      <!-- ══ ABA INCLUÍDOS ══ -->
       <div class="painel" id="p-inc">
         <div class="row2">
           <div class="cg">
-            <label><i class="fas fa-check-circle" style="color:var(--verde)"></i> O que está incluído</label>
+            <label><i class="fas fa-check-circle" style="color:#166534"></i> O que está incluído</label>
             <div class="ldyn" id="li-inc"></div>
             <button class="badd" onclick="addItem('li-inc')">
-              <i class="fas fa-plus"></i> Adicionar item incluído
+              <i class="fas fa-plus"></i> Adicionar item
             </button>
           </div>
           <div class="cg">
-            <label><i class="fas fa-times-circle" style="color:#e74c3c"></i> O que NÃO está incluído</label>
+            <label><i class="fas fa-times-circle" style="color:#991b1b"></i> O que NÃO está incluído</label>
             <div class="ldyn" id="li-nao"></div>
             <button class="badd" onclick="addItem('li-nao')">
-              <i class="fas fa-plus"></i> Adicionar item não incluído
+              <i class="fas fa-plus"></i> Adicionar item
             </button>
           </div>
         </div>
       </div>
 
-      <!-- ══ ABA: ROTEIRO ══ -->
+      <!-- ══ ABA ROTEIRO ══ -->
       <div class="painel" id="p-rot">
         <div id="rot-wrap"></div>
         <button class="badd" onclick="addDia()">
@@ -538,66 +506,81 @@
         </button>
       </div>
 
-      <!-- ══ ABA: VALORES ══ -->
+      <!-- ══ ABA VALORES ══ -->
       <div class="painel" id="p-val">
         <div id="val-wrap"></div>
         <button class="badd" onclick="addValor()">
-          <i class="fas fa-plus"></i> Adicionar opção de valor
+          <i class="fas fa-plus"></i> Adicionar opção de preço
         </button>
+        <div style="height:20px;"></div>
+        <div class="cg">
+          <label><i class="fas fa-credit-card"></i> Parcelamento</label>
+          <textarea id="f-par" rows="3"
+            placeholder="ex: Parcelamento em até 12x no cartão&#10;PIX com 5% de desconto"></textarea>
+        </div>
+        <div class="cg">
+          <label><i class="fas fa-file-contract"></i> Condições de Pagamento</label>
+          <textarea id="f-con" rows="4"
+            placeholder="ex: 30% na reserva, 40% 60 dias antes..."></textarea>
+        </div>
+        <div class="cg">
+          <label><i class="fas fa-sticky-note"></i> Observações Gerais</label>
+          <textarea id="f-obs" rows="4"
+            placeholder="ex: Orçamento válido por 10 dias..."></textarea>
+        </div>
       </div>
 
-      <!-- ══ ABA: FOTOS CAPA ══ -->
+      <!-- ══ ABA FOTOS ══ -->
       <div class="painel" id="p-img">
         <div class="cg">
-          <label><i class="fas fa-link"></i> Fotos por URL (uma por linha)</label>
-          <textarea id="f-gal" rows="5"
-            placeholder="https://images.unsplash.com/photo-XXXXX?w=1200&q=80
-https://images.unsplash.com/photo-YYYYY?w=1200&q=80"></textarea>
-          <div class="hint">💡 Use <strong>unsplash.com</strong> — pesquise o destino e copie a URL</div>
+          <label><i class="fas fa-images"></i> Fotos da Galeria</label>
+          <p class="hint" style="margin-bottom:10px;">
+            📌 Cole URLs (Unsplash etc.) <strong>ou</strong> faça upload do computador.
+            As fotos viram o carrossel do orçamento.
+          </p>
+
+          <!-- Upload desktop -->
+          <div class="upload-box" id="upload-box-gal">
+            <input type="file" accept="image/*" multiple
+                   onchange="uploadImagens(this)"/>
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Clique ou arraste fotos aqui<br>
+               <small>JPG, PNG, WEBP — múltiplas aceitas</small></p>
+          </div>
+          <!-- Preview -->
+          <div class="prev-grid" id="prev-gal"></div>
         </div>
 
         <div class="cg">
-          <label><i class="fas fa-upload"></i> Ou faça upload do seu computador</label>
-          <div class="upload-box" id="upload-box-gal">
-            <input type="file" accept="image/*" multiple
-                   onchange="uploadImagens(this, 'gal')"/>
-            <i class="fas fa-cloud-upload-alt"></i>
-            <p>Clique ou arraste as fotos aqui<br>
-               <small>JPG, PNG, WEBP — múltiplas fotos aceitas</small></p>
-          </div>
-          <div class="prev-grid" id="prev-gal"></div>
+          <label><i class="fas fa-link"></i> URLs externas (uma por linha)</label>
+          <textarea id="f-gal" rows="5"
+            placeholder="https://images.unsplash.com/photo-XXXXX?w=1200&#10;https://..."></textarea>
+          <div class="hint">💡 Use unsplash.com — pesquise o destino e copie a URL</div>
         </div>
       </div>
 
-      <!-- ══ ABA: LINK ══ -->
+      <!-- ══ ABA LINK ══ -->
       <div class="painel" id="p-lnk">
+        <h3 style="color:var(--azul);margin-bottom:16px;">
+          <i class="fas fa-share-alt"></i> Compartilhar Orçamento
+        </h3>
         <div class="link-box">
-          <span class="link-label"><i class="fas fa-link"></i> Link do orçamento para o cliente:</span>
-          <div class="link-prev" id="link-prev">Preencha o ID na aba "Básico"...</div>
-          <div class="link-acoes">
-            <button class="b-link-acao b-copiar" onclick="copiarLink()">
+          <div class="link-url" id="link-prev">Preencha o ID na aba "Básico"...</div>
+          <div class="link-btns">
+            <button class="lbtn lbtn-cpy" onclick="copiarLink()">
               <i class="fas fa-copy"></i> Copiar link
             </button>
-            <button class="b-link-acao b-abrir" onclick="verOrc()">
+            <button class="lbtn lbtn-opn" onclick="verOrc()">
               <i class="fas fa-external-link-alt"></i> Abrir
             </button>
-            <button class="b-link-acao b-wpp-link" onclick="envWpp()">
+            <button class="lbtn lbtn-wpp" onclick="envWpp()">
               <i class="fab fa-whatsapp"></i> Enviar WhatsApp
             </button>
           </div>
         </div>
-
-        <div style="background:#f8f9fa;border-radius:10px;padding:20px;">
-          <h4 style="color:var(--azul);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
-            <i class="fas fa-info-circle"></i> Como funciona
-          </h4>
-          <div style="font-size:.88rem;color:#666;line-height:1.9;">
-            <p>1️⃣ Preencha as abas <strong>Básico</strong>, <strong>Incluídos</strong>,
-               <strong>Roteiro</strong>, <strong>Valores</strong> e <strong>Fotos Capa</strong></p>
-            <p>2️⃣ Clique em <strong>Salvar</strong> — o link fica ativo na hora! ⚡</p>
-            <p>3️⃣ Copie o link e envie pelo <strong>WhatsApp</strong> para o cliente</p>
-            <p>4️⃣ O cliente abre sem precisar de login 🎉</p>
-          </div>
+        <div class="hint">
+          <i class="fas fa-info-circle"></i>
+          Compartilhe este link com o cliente — ele abrirá o orçamento personalizado!
         </div>
       </div>
 
@@ -605,9 +588,8 @@ https://images.unsplash.com/photo-YYYYY?w=1200&q=80"></textarea>
   </main>
 </div><!-- /layout -->
 
-<!-- TOAST -->
+<!-- ══ TOAST ══ -->
 <div class="toast" id="toast">
-  <i class="fas fa-check-circle"></i>
   <span id="t-msg"></span>
 </div>
 
@@ -618,9 +600,7 @@ https://images.unsplash.com/photo-YYYYY?w=1200&q=80"></textarea>
 const JSONBIN_ID  = '6a318e1eda38895dfecb475a';
 const JSONBIN_KEY = '$2a$10$HTy/puCq6iupLHos/RV5DejOrnyU5.Pz18WDA4.dpmLOWJ09Rdqj.';
 const BASE_URL    = 'https://fernandoneto1210-sys.github.io/orcamentos-oficina/orcamento.html';
-
-// Imgur Client ID gratuito para upload de imagens
-const IMGUR_CLIENT_ID = '546c25a59c58ad7';
+const IMGUR_ID    = 'a1b886a8c51eb3d'; /* Client-ID Imgur gratuito */
 
 /* ════════════════════════════════════════════
    ESTADO GLOBAL
@@ -629,8 +609,7 @@ let orcs   = [];
 let idx    = -1;
 let diaB   = 0;
 let valN   = 0;
-// URLs das fotos da galeria principal (mix de URLs + imgur)
-let galUrls = [];
+let galUrls = []; /* URLs da galeria (upload + externas) */
 
 /* ════════════════════════════════════════════
    INICIALIZAÇÃO
@@ -641,38 +620,42 @@ window.addEventListener('DOMContentLoaded', () => {
   carregarDados();
 });
 
-/* ── CARREGAR JSONBin ───────────────────────── */
+/* ════════════════════════════════════════════
+   JSONBIN — CARREGAR
+   ════════════════════════════════════════════ */
 async function carregarDados() {
   try {
     const r = await fetch(
       `https://api.jsonbin.io/v3/b/${JSONBIN_ID}/latest`,
       { headers: { 'X-Master-Key': JSONBIN_KEY } }
     );
-    if (!r.ok) throw new Error('Erro JSONBin');
+    if (!r.ok) throw new Error('Falhou');
     const d = await r.json();
     orcs = Array.isArray(d.record) ? d.record : [];
-    setStatusJB(true);
+    setJBStatus(true);
   } catch(e) {
-    console.warn('JSONBin falhou:', e);
+    console.warn('JSONBin offline, tentando local...', e);
     try {
       const r = await fetch('data/orcamentos.json?_=' + Date.now());
       orcs = await r.json();
     } catch { orcs = []; }
-    setStatusJB(false);
+    setJBStatus(false);
   }
   renderSB();
 }
 
-function setStatusJB(ok) {
+function setJBStatus(ok) {
   const bar = fld('jb-bar');
   const txt = fld('jb-bar-txt');
   bar.className = `jb-status-bar ${ok ? 'ok' : 'off'}`;
   txt.innerHTML = ok
-    ? '<i class="fas fa-check-circle"></i> ⚡ JSONBin conectado — salvamento instantâneo!'
-    : '<i class="fas fa-exclamation-triangle"></i> JSONBin offline — dados locais';
+    ? '<i class="fas fa-check-circle"></i> ⚡ JSONBin conectado — salvamento instantâneo ativo!'
+    : '<i class="fas fa-exclamation-triangle"></i> JSONBin offline — usando dados locais';
 }
 
-/* ── RENDER SIDEBAR ─────────────────────────── */
+/* ════════════════════════════════════════════
+   RENDER SIDEBAR
+   ════════════════════════════════════════════ */
 function renderSB() {
   const el = fld('orc-lista');
   if (!orcs.length) {
@@ -700,7 +683,9 @@ function renderSB() {
     </div>`).join('');
 }
 
-/* ── NOVO ───────────────────────────────────── */
+/* ════════════════════════════════════════════
+   NOVO / ABRIR / DUPLICAR
+   ════════════════════════════════════════════ */
 function novoOrc() {
   idx = -1; diaB = 0; valN = 0; galUrls = [];
   limpar();
@@ -711,7 +696,6 @@ function novoOrc() {
   renderSB();
 }
 
-/* ── ABRIR ──────────────────────────────────── */
 function abrirOrc(i) {
   idx = i; diaB = 0; valN = 0; galUrls = [];
   limpar();
@@ -721,7 +705,6 @@ function abrirOrc(i) {
   renderSB();
 }
 
-/* ── DUPLICAR ───────────────────────────────── */
 function duplicarOrc() {
   if (idx < 0) return;
   const orig    = JSON.parse(JSON.stringify(orcs[idx]));
@@ -735,7 +718,9 @@ function duplicarOrc() {
   toast('Orçamento duplicado como rascunho ✅', 'ok');
 }
 
-/* ── PREENCHER ──────────────────────────────── */
+/* ════════════════════════════════════════════
+   PREENCHER FORMULÁRIO
+   ════════════════════════════════════════════ */
 function preencher(o) {
   sv('f-id',  o.id           || '');
   sv('f-cli', o.cliente      || '');
@@ -752,28 +737,29 @@ function preencher(o) {
   sv('f-con', o.condicoes    || '');
   sv('f-obs', o.observacoes  || '');
 
-  // Galeria — separa URLs normais de base64 antigas
-  const gal = o.galeria || [];
-  // Aceita URLs normais (http/https) e URLs do imgur
-  galUrls = gal.filter(g => g && (g.startsWith('http') || g.startsWith('https')));
-  // URLs digitadas no textarea
-  sv('f-gal', galUrls.join('\n'));
+  /* Galeria — separa URLs externas de base64 */
+  const gal  = o.galeria || [];
+  galUrls    = gal.filter(u => u && u.startsWith('http'));
+  const urlsExt = gal.filter(u => u && u.startsWith('http'));
+  sv('f-gal', urlsExt.join('\n'));
   renderGalPrev();
 
+  /* Listas */
   renderLD('li-inc', o.incluido    || []);
   renderLD('li-nao', o.naoIncluido || []);
 
+  /* Roteiro e valores */
   (o.roteiro || []).forEach(d => addDia(d));
   (o.valores || []).forEach(v => addValor(v));
   updLink();
 }
 
-/* ── COLETAR ────────────────────────────────── */
+/* ════════════════════════════════════════════
+   COLETAR FORMULÁRIO
+   ════════════════════════════════════════════ */
 function coletar() {
-  // URLs do textarea + URLs do imgur (galUrls)
   const urlsTexto = gv('f-gal').split('\n').map(s => s.trim()).filter(Boolean);
-  // Merge sem duplicar
-  const todasUrls = [...new Set([...urlsTexto, ...galUrls])];
+  const todasUrls = [...new Set([...galUrls, ...urlsTexto])];
 
   return {
     id:           gv('f-id').trim().toLowerCase().replace(/\s+/g,'-'),
@@ -799,41 +785,45 @@ function coletar() {
   };
 }
 
-/* ── SALVAR ─────────────────────────────────── */
+/* ════════════════════════════════════════════
+   SALVAR
+   ════════════════════════════════════════════ */
 async function salvarOrc() {
   const o = coletar();
   if (!o.id)     { toast('Preencha o ID do orçamento!', 'err'); return; }
   if (!o.titulo) { toast('Preencha o Título da viagem!', 'err'); return; }
 
-  const existente = orcs.findIndex(x => x.id === o.id);
-  if (existente >= 0)  orcs[existente] = o;
-  else if (idx >= 0)   orcs[idx] = o;
-  else                 orcs.push(o);
+  const existe = orcs.findIndex(x => x.id === o.id);
+  if (existe >= 0)    orcs[existe] = o;
+  else if (idx >= 0)  orcs[idx]   = o;
+  else                orcs.push(o);
   idx = orcs.findIndex(x => x.id === o.id);
 
   try {
     toast('Salvando...', 'info');
     const r = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}`, {
-      method:  'PUT',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         'X-Master-Key': JSONBIN_KEY
       },
       body: JSON.stringify(orcs)
     });
-    if (!r.ok) throw new Error('Erro ao salvar');
+    if (!r.ok) throw new Error('Erro');
     renderSB();
     updLink();
     fld('f-topo-txt').textContent = o.titulo;
-    toast('✅ Salvo! Link já ativo!', 'ok');
+    toast('✅ Salvo! Link já está ativo!', 'ok');
   } catch(e) {
     console.error(e);
     downloadJSON();
-    toast('Salvo localmente. Suba o JSON.', 'warn');
+    toast('Salvo localmente. Suba o JSON no GitHub.', 'warn');
   }
 }
 
-/* ── EXCLUIR ────────────────────────────────── */
+/* ════════════════════════════════════════════
+   EXCLUIR
+   ════════════════════════════════════════════ */
 async function delOrc() {
   if (idx < 0) { toast('Selecione um orçamento!', 'err'); return; }
   const titulo = orcs[idx]?.titulo || 'este orçamento';
@@ -859,7 +849,9 @@ async function delOrc() {
   fld('tela-ini').style.display  = 'flex';
 }
 
-/* ── DOWNLOAD JSON (fallback) ───────────────── */
+/* ════════════════════════════════════════════
+   DOWNLOAD JSON (fallback)
+   ════════════════════════════════════════════ */
 function downloadJSON() {
   const blob = new Blob([JSON.stringify(orcs, null, 2)], { type: 'application/json' });
   const a = Object.assign(document.createElement('a'), {
@@ -871,17 +863,15 @@ function downloadJSON() {
 }
 
 /* ════════════════════════════════════════════
-   UPLOAD IMGUR — Galeria Principal
+   UPLOAD IMGUR — Galeria
    ════════════════════════════════════════════ */
-async function uploadImagens(input, tipo) {
+async function uploadImagens(input) {
   const files = [...input.files];
   if (!files.length) return;
-
   const box = fld('upload-box-gal');
-  box.classList.add('uploading');
+  box.classList.add('sending');
   box.querySelector('p').textContent = `Enviando ${files.length} foto(s)...`;
 
-  let ok = 0;
   for (const file of files) {
     if (file.size > 10 * 1024 * 1024) {
       toast(`"${file.name}" muito grande! Máx: 10MB`, 'err');
@@ -889,10 +879,9 @@ async function uploadImagens(input, tipo) {
     }
     try {
       toast(`📤 Enviando "${file.name}"...`, 'info');
-      const url = await uploadImgur(file);
+      const url = await imgurUpload(file);
       galUrls.push(url);
       renderGalPrev();
-      ok++;
       toast(`✅ "${file.name}" enviada!`, 'ok');
     } catch(e) {
       console.error(e);
@@ -900,29 +889,73 @@ async function uploadImagens(input, tipo) {
     }
   }
 
-  box.classList.remove('uploading');
+  box.classList.remove('sending');
   box.querySelector('p').innerHTML =
-    `Clique ou arraste as fotos aqui<br><small>JPG, PNG, WEBP — múltiplas fotos aceitas</small>`;
+    'Clique ou arraste fotos aqui<br><small>JPG, PNG, WEBP — múltiplas aceitas</small>';
   input.value = '';
-
-  if (ok > 0) toast(`✅ ${ok} foto(s) enviada(s) com sucesso!`, 'ok');
 }
 
-/* ── UPLOAD IMGUR API ───────────────────────── */
-async function uploadImgur(file) {
-  const formData = new FormData();
-  formData.append('image', file);
+/* ════════════════════════════════════════════
+   UPLOAD IMGUR — Foto do dia
+   ════════════════════════════════════════════ */
+async function uploadFotoDia(input, n) {
+  const file = input.files[0];
+  if (!file) return;
+  const bloco  = input.closest('.rot-bloco');
+  const urlInp = bloco.querySelector('.rd-img');
+  const mini   = bloco.querySelector('.upload-mini');
+  const prev   = bloco.querySelector('.foto-preview');
+  const btnRm  = bloco.querySelector('.btn-rm-foto');
 
+  mini.querySelector('p').textContent = 'Enviando...';
+  mini.style.pointerEvents = 'none';
+
+  try {
+    toast(`📤 Enviando foto do dia ${n}...`, 'info');
+    const url   = await imgurUpload(file);
+    urlInp.value = url;
+    prev.src            = url;
+    prev.style.display  = 'block';
+    btnRm.style.display = 'flex';
+    mini.classList.add('tem-foto');
+    mini.querySelector('p').textContent = '✅ Foto enviada!';
+    toast(`✅ Foto do dia ${n} enviada!`, 'ok');
+  } catch(e) {
+    console.error(e);
+    mini.querySelector('p').textContent = 'Erro. Tente novamente.';
+    toast(`❌ Erro ao enviar foto do dia ${n}`, 'err');
+  }
+
+  mini.style.pointerEvents = '';
+  input.value = '';
+}
+
+function removerFotoDia(btn) {
+  const bloco  = btn.closest('.rot-bloco');
+  const urlInp = bloco.querySelector('.rd-img');
+  const mini   = bloco.querySelector('.upload-mini');
+  const prev   = bloco.querySelector('.foto-preview');
+  urlInp.value       = '';
+  prev.src            = '';
+  prev.style.display  = 'none';
+  btn.style.display   = 'none';
+  mini.classList.remove('tem-foto');
+  mini.querySelector('p').textContent = 'Clique para foto\ndo dia';
+}
+
+/* ── IMGUR API ──────────────────────────────── */
+async function imgurUpload(file) {
+  const fd = new FormData();
+  fd.append('image', file);
   const r = await fetch('https://api.imgur.com/3/image', {
     method:  'POST',
-    headers: { 'Authorization': `Client-ID ${IMGUR_CLIENT_ID}` },
-    body:    formData
+    headers: { 'Authorization': `Client-ID ${IMGUR_ID}` },
+    body:    fd
   });
-
-  if (!r.ok) throw new Error('Imgur upload falhou');
-  const data = await r.json();
-  if (!data.success) throw new Error('Imgur: ' + data.data?.error);
-  return data.data.link; // URL pública permanente
+  if (!r.ok) throw new Error('Imgur falhou');
+  const d = await r.json();
+  if (!d.success) throw new Error(d.data?.error || 'Erro imgur');
+  return d.data.link;
 }
 
 /* ── RENDER PREVIEW GALERIA ─────────────────── */
@@ -939,7 +972,7 @@ function renderGalPrev() {
       <button class="del-prev" onclick="removerGalUrl(${i})" title="Remover">
         <i class="fas fa-times"></i>
       </button>
-      <div class="img-status">${i===0?'🌟 Capa':''}</div>`;
+      ${i===0 ? '<div class="capa-tag">★ CAPA</div>' : ''}`;
     el.appendChild(div);
   });
 }
@@ -947,64 +980,6 @@ function renderGalPrev() {
 function removerGalUrl(i) {
   galUrls.splice(i, 1);
   renderGalPrev();
-}
-
-/* ════════════════════════════════════════════
-   UPLOAD IMGUR — Foto do dia (roteiro)
-   ════════════════════════════════════════════ */
-async function uploadFotoDia(input, diaIdx) {
-  const file = input.files[0];
-  if (!file) return;
-
-  const wrap   = input.closest('.rot-bloco');
-  const urlInp = wrap.querySelector('.rd-img');
-  const prev   = wrap.querySelector('.foto-preview');
-  const btnRm  = wrap.querySelector('.btn-rm-foto');
-  const mini   = wrap.querySelector('.upload-mini');
-
-  mini.querySelector('p').textContent = 'Enviando...';
-  mini.style.pointerEvents = 'none';
-
-  try {
-    toast(`📤 Enviando foto do dia ${diaIdx}...`, 'info');
-    const url = await uploadImgur(file);
-
-    // Atualiza o campo URL oculto
-    urlInp.value = url;
-
-    // Mostra preview
-    prev.src     = url;
-    prev.style.display  = 'block';
-    btnRm.style.display = 'block';
-    mini.querySelector('i').style.display = 'none';
-    mini.querySelector('p').textContent   = '✅ Foto enviada!';
-    mini.classList.add('tem-foto');
-
-    toast(`✅ Foto do dia ${diaIdx} enviada!`, 'ok');
-  } catch(e) {
-    console.error(e);
-    mini.querySelector('p').textContent = 'Erro. Tente novamente.';
-    toast(`❌ Erro ao enviar foto do dia ${diaIdx}`, 'err');
-  }
-
-  mini.style.pointerEvents = '';
-  input.value = '';
-}
-
-function removerFotoDia(btn) {
-  const wrap   = btn.closest('.rot-bloco');
-  const urlInp = wrap.querySelector('.rd-img');
-  const prev   = wrap.querySelector('.foto-preview');
-  const mini   = wrap.querySelector('.upload-mini');
-
-  urlInp.value       = '';
-  prev.src            = '';
-  prev.style.display  = 'none';
-  btn.style.display   = 'none';
-  mini.querySelector('i').style.display = '';
-  mini.querySelector('p').textContent   =
-    'Clique para enviar\nfoto do dia';
-  mini.classList.remove('tem-foto');
 }
 
 /* ════════════════════════════════════════════
@@ -1096,16 +1071,15 @@ function coletarLD(cid) {
 }
 
 /* ════════════════════════════════════════════
-   ROTEIRO — Com upload de foto do dia
+   ROTEIRO — com upload foto do dia via Imgur
    ════════════════════════════════════════════ */
 function addDia(d = null) {
   diaB++;
-  const n   = diaB;
-  const el  = fld('rot-wrap');
-  const div = document.createElement('div');
-  div.className = 'rot-bloco';
-
-  const temFoto = d?.imagem && d.imagem.startsWith('http');
+  const n        = diaB;
+  const el       = fld('rot-wrap');
+  const div      = document.createElement('div');
+  div.className  = 'rot-bloco';
+  const temFoto  = d?.imagem ? true : false;
 
   div.innerHTML = `
     <div class="rot-head">
@@ -1127,9 +1101,491 @@ function addDia(d = null) {
         <textarea class="rd-des" rows="3"
           placeholder="Descreva as atividades do dia...">${esc(d?.descricao||'')}</textarea>
       </div>
-
-      <!-- Foto do dia — URL + Upload -->
       <div class="cg">
         <label><i class="fas fa-camera"></i> Foto do dia</label>
-        <div class="foto-dia-wrap
+        <div class="foto-dia-row">
+          <div class="rd-img-wrap">
+            <input type="url" class="rd-img"
+                   value="${esc(d?.imagem||'')}"
+                   placeholder="URL da foto (preenchido automaticamente ao fazer upload)"/>
+          </div>
+          <div class="upload-mini ${temFoto ? 'tem-foto' : ''}" title="Upload foto do dia">
+            <input type="file" accept="image/*" onchange="uploadFotoDia(this,${n})"/>
+            <img class="foto-preview"
+                 src="${esc(d?.imagem||'')}"
+                 style="${temFoto ? 'display:block' : 'display:none'}"/>
+            <button class="btn-rm-foto"
+                    style="${temFoto ? 'display:flex' : 'display:none'}"
+                    onclick="removerFotoDia(this)" type="button">
+              <i class="fas fa-times"></i>
+            </button>
+            <i class="fas fa-camera" style="${temFoto ? 'display:none' : ''}"></i>
+            <p>${temFoto ? '✅ Foto ok' : 'Clique para\nfoto do dia'}</p>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  el.appendChild(div);
+}
+
+function coletarRot() {
+  return [...document.querySelectorAll('.rot-bloco')].map(b => ({
+    titulo:    b.querySelector('.rd-tit')?.value.trim() || '',
+    descricao: b.querySelector('.rd-des')?.value.trim() || '',
+    imagem:    b.querySelector('.rd-img')?.value.trim() || '',
+  }));
+}
+
+/* ════════════════════════════════════════════
+   VALORES
+   ════════════════════════════════════════════ */
+function addValor(d = null) {
+  valN++;
+  const n   = valN;
+    el.appendChild(div);
+}
+
+function coletarVal() {
+  return [...document.querySelectorAll('.val-bloco')].map(b => ({
+    label: b.querySelector('.vl-lab')?.value.trim() || '',
+    preco: b.querySelector('.vl-pre')?.value.trim() || '',
+    desc:  b.querySelector('.vl-des')?.value.trim() || '',
+  })).filter(v => v.label || v.preco);
+}
+
+/* ════════════════════════════════════════════
+   HELPERS
+   ════════════════════════════════════════════ */
+function sv(id, val)  { const e = fld(id); if (e) e.value = val; }
+function gv(id)       { return fld(id)?.value || ''; }
+function fld(id)      { return document.getElementById(id); }
+function esc(s)       { return (s||'').replace(/"/g,'&quot;').replace(/</g,'<'); }
+function hoje()       { return new Date().toISOString().slice(0,10); }
+
+function mostrarForm(titulo) {
+  fld('tela-ini').style.display  = 'none';
+  fld('form-card').style.display = 'block';
+  fld('f-topo-txt').textContent  = titulo;
+}
+
+function limpar() {
+  ['f-id','f-cli','f-tit','f-sub','f-dst',
+   'f-per','f-dur','f-grp','f-par','f-con','f-obs']
+    .forEach(id => sv(id,''));
+  sv('f-sts','ativo');
+  sv('f-dtg', hoje());
+  sv('f-vld','10');
+  fld('li-inc').innerHTML   = '';
+  fld('li-nao').innerHTML   = '';
+  fld('rot-wrap').innerHTML = '';
+  fld('val-wrap').innerHTML = '';
+  galUrls = [];
+  renderGalPrev();
+  diaB = 0; valN = 0;
+}
+
+function toast(msg, tipo = '') {
+  const el = fld('toast');
+  fld('t-msg').textContent = msg;
+  el.className = `toast ${tipo} on`;
+  setTimeout(() => { el.className = `toast ${tipo}`; }, 3200);
+}
+
+/* ════════════════════════════════════════════
+   SIDEBAR — RENDERIZAR LISTA
+   ════════════════════════════════════════════ */
+function renderSB() {
+  const el = fld('orc-lista');
+  if (!orcs.length) {
+    el.innerHTML = `
+      <div class="sb-vazio">
+        <i class="fas fa-folder-open"></i>
+        Nenhum orçamento ainda.<br>Crie o primeiro!
+      </div>`;
+    return;
+  }
+  el.innerHTML = orcs.map((o, i) => `
+    <div class="orc-item ${i===idx?'on':''}" onclick="abrirOrc(${i})">
+      <div class="orc-top">
+        <div class="orc-titulo">${o.titulo||'(sem título)'}</div>
+        <span class="sbadge s-${o.status||'ativo'}">${
+          o.status==='rascunho' ? '📝 Rascunho' :
+          o.status==='expirado' ? '❌ Expirado' : '✅ Ativo'
+        }</span>
+      </div>
+      <div class="orc-meta">
+        ${o.cliente ? `<span><i class="fas fa-user"></i>${o.cliente}</span>` : ''}
+        ${o.destino ? `<span><i class="fas fa-map-marker-alt"></i>${o.destino}</span>` : ''}
+        ${o.periodo ? `<span><i class="fas fa-calendar"></i>${o.periodo}</span>` : ''}
+      </div>
+    </div>`).join('');
+}
+
+/* ════════════════════════════════════════════
+   NOVO / ABRIR / DUPLICAR
+   ════════════════════════════════════════════ */
+function novoOrc() {
+  idx = -1; diaB = 0; valN = 0; galUrls = [];
+  limpar();
+  mostrarForm('Novo Orçamento');
+  aba('basico');
+  renderSB();
+}
+
+function abrirOrc(i) {
+  idx = i; diaB = 0; valN = 0; galUrls = [];
+  limpar();
+  preencher(orcs[i]);
+  mostrarForm(orcs[i].titulo || 'Orçamento');
+  aba('basico');
+  renderSB();
+}
+
+function duplicarOrc() {
+  if (idx < 0) return;
+  const orig    = JSON.parse(JSON.stringify(orcs[idx]));
+  orig.id       = orig.id + '-copia';
+  orig.titulo   = orig.titulo + ' (cópia)';
+  orig.status   = 'rascunho';
+  orcs.push(orig);
+  idx = orcs.length - 1;
+  renderSB();
+  abrirOrc(idx);
+  toast('Orçamento duplicado como rascunho ✅','ok');
+}
+
+/* ════════════════════════════════════════════
+   PREENCHER FORMULÁRIO
+   ════════════════════════════════════════════ */
+function preencher(o) {
+  sv('f-id',  o.id           || '');
+  sv('f-cli', o.cliente      || '');
+  sv('f-tit', o.titulo       || '');
+  sv('f-sub', o.subtitulo    || '');
+  sv('f-dst', o.destino      || '');
+  sv('f-sts', o.status       || 'ativo');
+  sv('f-per', o.periodo      || '');
+  sv('f-dur', o.duracao      || '');
+  sv('f-grp', o.grupo        || '');
+  sv('f-dtg', o.dataGeracao  || hoje());
+  sv('f-vld', o.validadeDias || '10');
+  sv('f-par', o.parcelamento || '');
+  sv('f-con', o.condicoes    || '');
+  sv('f-obs', o.observacoes  || '');
+
+  // Galeria
+  galUrls = Array.isArray(o.galeria) ? [...o.galeria] : [];
+  renderGalPrev();
+
+  // Listas
+  renderLD('li-inc', o.incluido    || []);
+  renderLD('li-nao', o.naoIncluido || []);
+
+  // Roteiro e valores
+  (o.roteiro || []).forEach(d  => addDia(d));
+  (o.valores || []).forEach(v  => addValor(v));
+  updLink();
+}
+
+/* ════════════════════════════════════════════
+   COLETAR DADOS DO FORMULÁRIO
+   ════════════════════════════════════════════ */
+function coletar() {
+  return {
+    id:           gv('f-id').trim().toLowerCase().replace(/\s+/g,'-'),
+    status:       gv('f-sts'),
+    cliente:      gv('f-cli'),
+    titulo:       gv('f-tit'),
+    subtitulo:    gv('f-sub'),
+    destino:      gv('f-dst'),
+    periodo:      gv('f-per'),
+    duracao:      gv('f-dur'),
+    grupo:        gv('f-grp'),
+    dataGeracao:  gv('f-dtg'),
+    validadeDias: gv('f-vld'),
+    imgCapa:      galUrls[0] || '',
+    galeria:      galUrls.filter(Boolean),
+    incluido:     coletarLD('li-inc'),
+    naoIncluido:  coletarLD('li-nao'),
+    roteiro:      coletarRot(),
+    valores:      coletarVal(),
+    parcelamento: gv('f-par'),
+    condicoes:    gv('f-con'),
+    observacoes:  gv('f-obs'),
+  };
+}
+
+/* ════════════════════════════════════════════
+   SALVAR — JSONBin
+   ════════════════════════════════════════════ */
+async function salvarOrc() {
+  const o = coletar();
+  if (!o.id)     { toast('Preencha o ID do orçamento!','err'); return; }
+  if (!o.titulo) { toast('Preencha o Título da viagem!','err'); return; }
+
+  const exist = orcs.findIndex(x => x.id === o.id);
+  if (exist >= 0)  orcs[exist] = o;
+  else if (idx>=0) orcs[idx]   = o;
+  else             orcs.push(o);
+  idx = orcs.findIndex(x => x.id === o.id);
+
+  try {
+    toast('Salvando...','info');
+    const r = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}`, {
+      method:  'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN_KEY
+      },
+      body: JSON.stringify(orcs)
+    });
+    if (!r.ok) throw new Error('Erro ao salvar');
+    renderSB();
+    updLink();
+    fld('f-topo-txt').textContent = o.titulo;
+    toast('✅ Salvo! Link já está ativo!','ok');
+  } catch(e) {
+    console.error(e);
+    downloadJSON();
+    toast('Salvo localmente. Suba o JSON no GitHub.','warn');
+  }
+}
+
+/* ════════════════════════════════════════════
+   EXCLUIR
+   ════════════════════════════════════════════ */
+async function delOrc() {
+  if (idx < 0) { toast('Selecione um orçamento!','err'); return; }
+  const titulo = orcs[idx]?.titulo || 'este orçamento';
+  if (!confirm(`Excluir "${titulo}"?\nEsta ação não pode ser desfeita.`)) return;
+
+  orcs.splice(idx, 1);
+  idx = -1;
+
+  try {
+    await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}`, {
+      method:  'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN_KEY
+      },
+      body: JSON.stringify(orcs)
+    });
+    toast('Excluído com sucesso! ✅','ok');
+  } catch {
+    downloadJSON();
+    toast('Excluído. Suba o JSON.','warn');
+  }
+
+  renderSB();
+  fld('form-card').style.display = 'none';
+  fld('tela-ini').style.display  = 'flex';
+}
+
+/* ════════════════════════════════════════════
+   DOWNLOAD JSON (fallback)
+   ════════════════════════════════════════════ */
+function downloadJSON() {
+  const blob = new Blob([JSON.stringify(orcs,null,2)],{type:'application/json'});
+  const a = Object.assign(document.createElement('a'),{
+    href: URL.createObjectURL(blob), download:'orcamentos.json'
+  });
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+
+/* ════════════════════════════════════════════
+   IMGUR UPLOAD
+   ════════════════════════════════════════════ */
+async function imgurUpload(file) {
+  const fd = new FormData();
+  fd.append('image', file);
+  const r = await fetch('https://api.imgur.com/3/image',{
+    method:  'POST',
+    headers: {'Authorization': `Client-ID ${IMGUR_ID}`},
+    body:    fd
+  });
+  if (!r.ok) throw new Error('Imgur falhou');
+  const d = await r.json();
+  if (!d.success) throw new Error(d.data?.error||'Erro imgur');
+  return d.data.link;
+}
+
+/* ── GALERIA PRINCIPAL ───────────────────────── */
+async function uploadImagens(input) {
+  const files = [...input.files];
+  if (!files.length) return;
+  const box = fld('upload-box-gal');
+  box.classList.add('sending');
+  box.querySelector('p').textContent = `Enviando ${files.length} foto(s)...`;
+
+  for (const file of files) {
+    if (file.size > 10*1024*1024) {
+      toast(`"${file.name}" muito grande! Máx: 10MB`,'err');
+      continue;
+    }
+    try {
+      toast(`📤 Enviando "${file.name}"...`,'info');
+      const url = await imgurUpload(file);
+      galUrls.push(url);
+      renderGalPrev();
+      toast(`✅ "${file.name}" enviada!`,'ok');
+    } catch(e) {
+      console.error(e);
+      toast(`❌ Erro ao enviar "${file.name}"`,'err');
+    }
+  }
+
+  box.classList.remove('sending');
+  box.querySelector('p').innerHTML =
+    'Clique ou arraste fotos aqui<br><small>JPG, PNG, WEBP — múltiplas aceitas</small>';
+  input.value = '';
+}
+
+function renderGalPrev() {
+  const el = fld('prev-gal');
+  if (!el) return;
+  el.innerHTML = '';
+  galUrls.filter(Boolean).forEach((url,i) => {
+    const div = document.createElement('div');
+    div.className = 'prev-item';
+    div.innerHTML = `
+      <img src="${url}" alt="foto ${i+1}"
+           onerror="this.src='https://via.placeholder.com/90x70/e8e8e8/aaa?text=Erro'"/>
+      <button class="del-prev" onclick="removerGalUrl(${i})" title="Remover">
+        <i class="fas fa-times"></i>
+      </button>
+      ${i===0?'<div class="capa-tag">★ CAPA</div>':''}`;
+    el.appendChild(div);
+  });
+}
+
+function removerGalUrl(i) {
+  galUrls.splice(i,1);
+  renderGalPrev();
+}
+
+/* ── FOTO DO DIA ─────────────────────────────── */
+async function uploadFotoDia(input, n) {
+  const file  = input.files[0];
+  if (!file)  return;
+  const bloco  = input.closest('.rot-bloco');
+  const urlInp = bloco.querySelector('.rd-img');
+  const mini   = bloco.querySelector('.upload-mini');
+  const prev   = bloco.querySelector('.foto-preview');
+  const btnRm  = bloco.querySelector('.btn-rm-foto');
+
+  mini.querySelector('p').textContent = 'Enviando...';
+  mini.style.pointerEvents = 'none';
+
+  try {
+    toast(`📤 Enviando foto do dia ${n}...`,'info');
+    const url     = await imgurUpload(file);
+    urlInp.value   = url;
+    prev.src              = url;
+    prev.style.display    = 'block';
+    btnRm.style.display   = 'flex';
+    mini.classList.add('tem-foto');
+    mini.querySelector('p').textContent = '✅ Foto enviada!';
+    toast(`✅ Foto do dia ${n} enviada!`,'ok');
+  } catch(e) {
+    console.error(e);
+    mini.querySelector('p').textContent = 'Erro. Tente novamente.';
+    toast(`❌ Erro ao enviar foto do dia ${n}`,'err');
+  }
+
+  mini.style.pointerEvents = '';
+  input.value = '';
+}
+
+function removerFotoDia(btn) {
+  const bloco  = btn.closest('.rot-bloco');
+  const urlInp = bloco.querySelector('.rd-img');
+  const mini   = bloco.querySelector('.upload-mini');
+  const prev   = bloco.querySelector('.foto-preview');
+  urlInp.value        = '';
+  prev.src             = '';
+  prev.style.display   = 'none';
+  btn.style.display    = 'none';
+  mini.classList.remove('tem-foto');
+  mini.querySelector('p').textContent = 'Clique para\nfoto do dia';
+}
+
+/* ════════════════════════════════════════════
+   VER / WHATSAPP / LINK
+   ════════════════════════════════════════════ */
+function verOrc() {
+  const id = gv('f-id').trim();
+  if (!id) { toast('Preencha o ID primeiro!','err'); return; }
+  window.open(`${BASE_URL}?id=${id}`,'_blank');
+}
+
+function envWpp() {
+  const id  = gv('f-id').trim();
+  const tit = gv('f-tit').trim();
+  const cli = gv('f-cli').trim();
+  if (!id) { toast('Preencha o ID primeiro!','err'); return; }
+  const link = `${BASE_URL}?id=${id}`;
+  const msg  = encodeURIComponent(
+    `Olá${cli?' '+cli:''}! 🌍✈️\n\n` +
+    `Segue seu orçamento personalizado da *Oficina de Turismo*:\n\n` +
+    `✈️ *${tit}*\n\n` +
+    `👉 ${link}\n\n` +
+    `Qualquer dúvida estou à disposição! 😊\n\n` +
+    `_Oficina de Turismo — (35) 98862-2943_`
+  );
+  window.open(`https://wa.me/?text=${msg}`,'_blank');
+}
+
+function updLink() {
+  const id = gv('f-id').trim();
+  fld('link-prev').textContent = id
+    ? `${BASE_URL}?id=${id}`
+    : 'Preencha o ID na aba "Básico"...';
+}
+
+function copiarLink() {
+  const id = gv('f-id').trim();
+  if (!id) { toast('Preencha o ID primeiro!','err'); return; }
+  const url = `${BASE_URL}?id=${id}`;
+  navigator.clipboard.writeText(url)
+    .then(() => toast('✅ Link copiado!','ok'))
+    .catch(() => {
+      const ta = Object.assign(document.createElement('textarea'),{value:url});
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      toast('✅ Link copiado!','ok');
+    });
+}
+
+/* ════════════════════════════════════════════
+   INIT
+   ════════════════════════════════════════════ */
+async function init() {
+  try {
+    const r = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}/latest`,{
+      headers:{'X-Master-Key': JSONBIN_KEY}
+    });
+    const d = await r.json();
+    orcs = Array.isArray(d.record) ? d.record : [];
+    fld('jb-status').className = 'jb-status-bar ok';
+    fld('jb-status').innerHTML =
+      '<i class="fas fa-circle" style="font-size:.6rem"></i> JSONBin conectado — salvamento automático ativo';
+  } catch(e) {
+    console.error(e);
+    orcs = [];
+    fld('jb-status').className = 'jb-status-bar off';
+    fld('jb-status').innerHTML =
+      '<i class="fas fa-exclamation-triangle"></i> JSONBin offline — usando fallback local';
+  }
+  renderSB();
+}
+
+init();
+</script>
+</body>
+</html>
+  const
 
