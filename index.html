@@ -25,17 +25,13 @@
       box-shadow:0 3px 16px rgba(0,0,0,.28);
       position:sticky;top:0;z-index:100;
     }
-    .adm-logo{display:flex;align-items:center;gap:14px;
+    .adm-logo{
+      display:flex;align-items:center;gap:14px;
       background:rgba(255,255,255,.12);padding:6px 16px;
-      border-radius:10px;border:1px solid rgba(255,255,255,.2);}
-    .adm-logo img.lp{
-      height:68px;width:auto;object-fit:contain;
-      filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));
+      border-radius:10px;border:1px solid rgba(255,255,255,.2);
     }
-    .adm-logo img.l30{
-      height:58px;width:auto;object-fit:contain;
-      filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));
-    }
+    .adm-logo img.lp{height:68px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
+    .adm-logo img.l30{height:58px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
     .logo-sep{width:1px;height:54px;background:rgba(255,255,255,.30);}
     .adm-info{display:flex;flex-direction:column;gap:3px;}
     .adm-info .titulo{color:#fff;font-size:1rem;font-weight:700;}
@@ -189,169 +185,204 @@
     }
     .badd:hover{border-color:var(--azul2);color:var(--azul2);}
 
-    /* ══ UPLOAD IMAGEM ══ */
-    .img-opcoes{display:flex;gap:8px;margin-bottom:10px;}
-    .img-tab{
-      padding:6px 16px;border-radius:20px;font-size:.82rem;font-weight:600;
-      border:2px solid #e8e8e8;background:#fff;cursor:pointer;color:#aaa;transition:all .2s;
+    /* ══ UPLOAD ÁREA ══ */
+    .upload-box{
+      border:2px dashed #ddd;border-radius:10px;
+      padding:20px;text-align:center;cursor:pointer;
+      transition:all .3s;background:#fafafa;
+      position:relative;overflow:hidden;
     }
-    .img-tab.on{border-color:var(--azul2);color:var(--azul2);background:#f0f4ff;}
-    .upload-area{
-      border:2px dashed #ddd;border-radius:8px;padding:24px;
-      text-align:center;cursor:pointer;transition:all .3s;background:#fafafa;
-      position:relative;
+    .upload-box:hover{border-color:var(--azul2);background:#f0f4ff;}
+    .upload-box input[type=file]{
+      position:absolute;inset:0;opacity:0;
+      cursor:pointer;width:100%;height:100%;
     }
-    .upload-area:hover{border-color:var(--azul2);background:#f0f4ff;}
-    .upload-area input[type=file]{
-      position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;
-    }
-    .upload-area i{font-size:2rem;color:#ccc;display:block;margin-bottom:8px;}
-    .upload-area p{font-size:.85rem;color:#aaa;}
-    .preview-imgs{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
-    .preview-img{
-      position:relative;width:90px;height:68px;border-radius:6px;overflow:hidden;
+    .upload-box i{font-size:2rem;color:#ccc;display:block;margin-bottom:8px;}
+    .upload-box p{font-size:.85rem;color:#aaa;line-height:1.5;}
+    .upload-box.uploading{border-color:var(--dourado);background:#fffbf0;}
+
+    /* Preview imagens galeria */
+    .prev-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+    .prev-item{
+      position:relative;width:90px;height:70px;
+      border-radius:8px;overflow:hidden;
       border:2px solid #e8e8e8;
     }
-    .preview-img img{width:100%;height:100%;object-fit:cover;}
-    .preview-img .del-img{
-      position:absolute;top:2px;right:2px;background:rgba(231,76,60,.85);
-      color:#fff;border:none;border-radius:50%;width:18px;height:18px;
-      font-size:.65rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    .prev-item img{width:100%;height:100%;object-fit:cover;}
+    .prev-item .del-prev{
+      position:absolute;top:3px;right:3px;
+      background:rgba(220,38,38,.85);color:#fff;
+      border:none;border-radius:50%;width:20px;height:20px;
+      font-size:.65rem;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      transition:all .2s;
+    }
+    .prev-item .del-prev:hover{background:#dc2626;transform:scale(1.1);}
+    .prev-item .img-status{
+      position:absolute;bottom:0;left:0;right:0;
+      background:rgba(0,0,0,.6);color:#fff;
+      font-size:.6rem;text-align:center;padding:2px;
     }
 
     /* ══ ROTEIRO ══ */
-    .rot-bloco{border:2px solid #e8e8e8;border-radius:var(--radius);margin-bottom:14px;overflow:hidden;}
+    .rot-bloco{
+      border:2px solid #e8e8e8;border-radius:10px;
+      margin-bottom:14px;overflow:hidden;
+      transition:border-color .2s;
+    }
+    .rot-bloco:hover{border-color:var(--azul2);}
     .rot-head{
-      background:#f5f6fa;padding:11px 16px;
       display:flex;align-items:center;gap:10px;
-      font-weight:700;font-size:.88rem;color:var(--azul);
-      border-bottom:1px solid #eee;
+      background:linear-gradient(135deg,var(--azul),var(--azul2));
+      padding:12px 16px;
     }
     .rot-num{
-      background:linear-gradient(135deg,var(--azul),var(--azul2));
-      color:#fff;width:28px;height:28px;border-radius:50%;
+      width:32px;height:32px;border-radius:50%;
+      background:var(--dourado);color:#fff;
       display:flex;align-items:center;justify-content:center;
-      font-size:.80rem;font-weight:800;flex-shrink:0;
+      font-weight:800;font-size:.9rem;flex-shrink:0;
     }
+    .rot-head span{color:#fff;font-weight:700;flex:1;font-size:.9rem;}
     .rot-del{
-      margin-left:auto;background:none;border:none;cursor:pointer;
-      color:#e74c3c;font-size:.88rem;
-      display:flex;align-items:center;gap:4px;
-      padding:4px 8px;border-radius:6px;transition:all .2s;
+      background:rgba(255,255,255,.15);color:#fff;
+      border:1px solid rgba(255,255,255,.3);
+      padding:5px 12px;border-radius:20px;
+      font-size:.78rem;cursor:pointer;transition:all .2s;
+      display:flex;align-items:center;gap:5px;
     }
-    .rot-del:hover{background:#fee2e2;}
+    .rot-del:hover{background:rgba(231,76,60,.4);}
     .rot-campos{padding:16px;}
+
+    /* Upload foto do dia */
+    .foto-dia-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;}
+    .upload-mini{
+      border:2px dashed #ddd;border-radius:8px;
+      padding:14px;text-align:center;cursor:pointer;
+      transition:all .3s;background:#fafafa;
+      position:relative;min-height:80px;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:6px;
+    }
+    .upload-mini:hover{border-color:var(--azul2);background:#f0f4ff;}
+    .upload-mini input[type=file]{
+      position:absolute;inset:0;opacity:0;
+      cursor:pointer;width:100%;height:100%;
+    }
+    .upload-mini i{font-size:1.4rem;color:#ccc;}
+    .upload-mini p{font-size:.75rem;color:#aaa;line-height:1.4;}
+    .upload-mini.tem-foto{border-color:var(--verde);background:#f0fdf4;}
+    .foto-preview{
+      width:100%;height:80px;object-fit:cover;
+      border-radius:6px;display:none;
+    }
+    .btn-rm-foto{
+      font-size:.7rem;color:#e74c3c;background:none;border:none;
+      cursor:pointer;display:none;margin-top:4px;
+    }
 
     /* ══ VALORES ══ */
     .val-bloco{
-      border:2px solid #e8e8e8;border-radius:var(--radius);
-      padding:16px;margin-bottom:12px;background:#fafafa;
+      border:2px solid #e8e8e8;border-radius:10px;
+      margin-bottom:14px;overflow:hidden;
     }
-    .val-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-    .val-head strong{color:var(--azul);font-size:.88rem;display:flex;align-items:center;gap:6px;}
+    .val-head{
+      display:flex;align-items:center;justify-content:space-between;
+      background:#f8f9fa;padding:12px 16px;
+      border-bottom:1px solid #e8e8e8;
+    }
+    .val-head strong{color:var(--azul);display:flex;align-items:center;gap:6px;}
+    .val-bloco .row3{padding:14px;}
 
-    /* ══ LINK BOX ══ */
+    /* ══ LINK ══ */
     .link-box{
-      background:linear-gradient(135deg,var(--azul),var(--verde));
-      border-radius:var(--radius);padding:18px 22px;
-      display:flex;align-items:center;gap:12px;flex-wrap:wrap;
-      margin-bottom:16px;
+      background:linear-gradient(135deg,#f8f9ff,#f0f4ff);
+      border:2px solid #dde4ff;border-radius:12px;
+      padding:20px;margin-bottom:20px;
     }
-    .link-box i{font-size:1.6rem;color:var(--dourado);}
-    .link-url{
-      flex:1;background:rgba(255,255,255,.12);
-      border:1px solid rgba(255,255,255,.25);
-      color:#fff;padding:10px 14px;border-radius:8px;
-      font-size:.88rem;word-break:break-all;min-width:200px;
+    .link-label{font-size:.78rem;font-weight:700;color:var(--azul);margin-bottom:8px;display:block;}
+    .link-prev{
+      font-family:monospace;font-size:.82rem;
+      color:var(--azul2);word-break:break-all;
+      background:#fff;padding:10px 14px;border-radius:8px;
+      border:1px solid #dde4ff;margin-bottom:10px;line-height:1.6;
     }
-    .b-copiar{
-      background:var(--dourado);color:#fff;border:none;
-      padding:10px 20px;border-radius:8px;cursor:pointer;
-      font-weight:700;font-size:.88rem;
-      display:flex;align-items:center;gap:6px;transition:all .3s;flex-shrink:0;
-    }
-    .b-copiar:hover{background:#b8941f;}
-    .link-acoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+    .link-acoes{display:flex;gap:8px;flex-wrap:wrap;}
     .b-link-acao{
-      flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
-      padding:11px 16px;border-radius:8px;font-size:.88rem;font-weight:700;
+      display:flex;align-items:center;gap:6px;
+      padding:8px 18px;border-radius:20px;font-size:.84rem;font-weight:700;
       border:none;cursor:pointer;transition:all .3s;
     }
-    .b-abrir{background:#f0f4ff;color:var(--azul);}
-    .b-abrir:hover{background:#dce5ff;}
-    .b-wpp-link{background:#dcfce7;color:#166534;}
-    .b-wpp-link:hover{background:#bbf7d0;}
+    .b-copiar{background:var(--azul);color:#fff;}
+    .b-copiar:hover{background:var(--azul2);}
+    .b-abrir{background:#f0f4ff;color:var(--azul);border:2px solid #dde4ff;}
+    .b-abrir:hover{background:#dde4ff;}
+    .b-wpp-link{background:#25D366;color:#fff;}
+    .b-wpp-link:hover{background:#1ebe5d;}
 
     /* ══ TOAST ══ */
     .toast{
-      position:fixed;bottom:28px;right:28px;z-index:9999;
-      background:#333;color:#fff;
-      padding:12px 22px;border-radius:10px;
+      position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);
+      background:#1a1a2e;color:#fff;
+      padding:12px 24px;border-radius:30px;
       font-size:.88rem;font-weight:600;
-      box-shadow:0 4px 20px rgba(0,0,0,.28);
       display:flex;align-items:center;gap:8px;
-      opacity:0;transform:translateY(16px);
-      transition:all .35s;pointer-events:none;
+      opacity:0;transition:all .35s;z-index:9999;
+      box-shadow:0 4px 20px rgba(0,0,0,.3);
+      pointer-events:none;white-space:nowrap;
     }
-    .toast.on{opacity:1;transform:translateY(0);}
+    .toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
     .toast.ok{background:#166534;}
     .toast.err{background:#991b1b;}
-    .toast.info{background:var(--azul);}
+    .toast.info{background:#1e3a5f;}
+    .toast.warn{background:#854d0e;}
 
     /* ══ RESPONSIVO ══ */
     @media(max-width:768px){
       .layout{flex-direction:column;}
       .sidebar{width:100%;min-width:unset;position:static;height:auto;max-height:280px;}
       .row2,.row3{grid-template-columns:1fr;}
-      .adm-header{padding:8px 14px;}
+      .foto-dia-wrap{grid-template-columns:1fr;}
     }
   </style>
 </head>
 <body>
 
-<!-- ══ HEADER ══ -->
+<!-- STATUS JSONBIN -->
+<div class="jb-status-bar ok" id="jb-bar">
+  <span id="jb-bar-txt"><i class="fas fa-circle-notch fa-spin"></i> Conectando ao JSONBin...</span>
+</div>
+
+<!-- HEADER -->
 <header class="adm-header">
   <div class="adm-logo">
-    <img class="lp"  src="assets/images/logo.png"   alt="Oficina de Turismo"
-         onerror="this.style.display='none'"/>
+    <img class="lp" src="assets/images/logo.png" alt="Oficina de Turismo"
+         onerror="this.src='https://via.placeholder.com/160x68/1B3A6B/fff?text=Oficina'"/>
     <div class="logo-sep"></div>
     <img class="l30" src="assets/images/logo30.png" alt="30 Anos"
          onerror="this.style.display='none'"/>
-  </div>
-  <div class="adm-info">
-    <span class="titulo"><i class="fas fa-cog"></i> Painel Administrativo</span>
-    <span class="adm-badge">⚡ OFICINA DE TURISMO</span>
+    <div class="adm-info">
+      <span class="titulo">Painel Administrativo</span>
+      <span class="adm-badge">✈️ Oficina de Turismo</span>
+    </div>
   </div>
   <div class="adm-header-right">
-    <a href="https://wa.me/5535988622943" target="_blank">
-      <i class="fab fa-whatsapp"></i> WhatsApp
-    </a>
-    <a href="https://www.instagram.com/oficinadeturismo" target="_blank">
-      <i class="fab fa-instagram"></i> Instagram
-    </a>
-    <a href="https://www.oficinatur.com.br" target="_blank">
-      <i class="fas fa-globe"></i> Site
+    <a href="orcamento.html" target="_blank">
+      <i class="fas fa-eye"></i> Ver site
     </a>
   </div>
 </header>
 
-<!-- ══ STATUS JSONBIN ══ -->
-<div id="jb-bar" class="jb-status-bar off">
-  <i class="fas fa-circle-notch fa-spin"></i>
-  <span id="jb-bar-txt">Conectando ao banco de dados...</span>
-</div>
-
-<!-- ══ LAYOUT ══ -->
+<!-- LAYOUT -->
 <div class="layout">
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sb-topo">
       <button class="btn-novo" onclick="novoOrc()">
-        <i class="fas fa-plus"></i> Novo Orçamento
+        <i class="fas fa-plus-circle"></i> Novo Orçamento
       </button>
     </div>
-    <div class="sb-label">Orçamentos Salvos</div>
+    <div class="sb-label">Orçamentos</div>
     <div class="orc-lista" id="orc-lista">
       <div class="sb-vazio">
         <i class="fas fa-circle-notch fa-spin"></i>
@@ -365,17 +396,17 @@
 
     <!-- Tela inicial -->
     <div class="tela-ini" id="tela-ini">
-      <i class="fas fa-paper-plane"></i>
-      <h2>Bem-vindo ao Painel da Oficina de Turismo!</h2>
-      <p>Selecione um orçamento na lista ou crie um novo.</p>
+      <i class="fas fa-globe-americas"></i>
+      <h2>Selecione ou crie um orçamento</h2>
+      <p>Use o painel à esquerda para começar</p>
     </div>
 
-    <!-- Formulário -->
+    <!-- Form Card -->
     <div class="form-card" id="form-card" style="display:none;">
 
-      <!-- Topo do form -->
+      <!-- Topo -->
       <div class="form-topo">
-        <h2><i class="fas fa-file-alt"></i> <span id="f-topo-txt">Novo Orçamento</span></h2>
+        <h2><i class="fas fa-file-invoice"></i> <span id="f-topo-txt">Orçamento</span></h2>
         <div class="topo-btns">
           <button class="btn b-salvar" onclick="salvarOrc()">
             <i class="fas fa-save"></i> Salvar
@@ -384,7 +415,7 @@
             <i class="fas fa-eye"></i> Ver
           </button>
           <button class="btn b-wpp" onclick="envWpp()">
-            <i class="fab fa-whatsapp"></i> Enviar
+            <i class="fab fa-whatsapp"></i> WhatsApp
           </button>
           <button class="btn b-dup" onclick="duplicarOrc()">
             <i class="fas fa-copy"></i> Duplicar
@@ -395,56 +426,24 @@
         </div>
       </div>
 
-      <!-- Abas -->
+      <!-- ABAS -->
       <div class="abas">
         <div class="aba on"  onclick="aba('basico')"><i class="fas fa-info-circle"></i> Básico</div>
-        <div class="aba"     onclick="aba('inc')"   ><i class="fas fa-list-check"></i> Incluídos</div>
-        <div class="aba"     onclick="aba('rot')"   ><i class="fas fa-map-marked-alt"></i> Roteiro</div>
-        <div class="aba"     onclick="aba('val')"   ><i class="fas fa-dollar-sign"></i> Valores</div>
-        <div class="aba"     onclick="aba('img')"   ><i class="fas fa-images"></i> Fotos</div>
-        <div class="aba"     onclick="aba('lnk')"   ><i class="fas fa-link"></i> Link</div>
+        <div class="aba"     onclick="aba('inc')">   <i class="fas fa-list-check"></i> Incluídos</div>
+        <div class="aba"     onclick="aba('rot')">   <i class="fas fa-route"></i> Roteiro</div>
+        <div class="aba"     onclick="aba('val')">   <i class="fas fa-tag"></i> Valores</div>
+        <div class="aba"     onclick="aba('img')">   <i class="fas fa-images"></i> Fotos Capa</div>
+        <div class="aba"     onclick="aba('lnk')">   <i class="fas fa-link"></i> Link</div>
       </div>
 
-      <!-- ── ABA BÁSICO ── -->
+      <!-- ══ ABA: BÁSICO ══ -->
       <div class="painel on" id="p-basico">
         <div class="row2">
           <div class="cg">
-            <label><i class="fas fa-hashtag"></i> ID do Orçamento *</label>
-            <input type="text" id="f-id" placeholder="ex: atacama-2026-01"
-                   oninput="this.value=this.value.toLowerCase().replace(/\s+/g,'-')"/>
-            <p class="hint">Usado na URL do link. Sem espaços, sem acentos.</p>
-          </div>
-          <div class="cg">
-            <label><i class="fas fa-user"></i> Nome do Cliente</label>
-            <input type="text" id="f-cli" placeholder="ex: João Silva"/>
-          </div>
-        </div>
-        <div class="cg">
-          <label><i class="fas fa-heading"></i> Título da Viagem *</label>
-          <input type="text" id="f-tit" placeholder="ex: Deserto do Atacama — Chile 2026"/>
-        </div>
-        <div class="cg">
-          <label><i class="fas fa-align-left"></i> Subtítulo</label>
-          <input type="text" id="f-sub" placeholder="ex: Uma experiência única no deserto mais árido do mundo"/>
-        </div>
-        <div class="row2">
-          <div class="cg">
-            <label><i class="fas fa-map-marker-alt"></i> Destino</label>
-            <input type="text" id="f-dst" placeholder="ex: 🇨🇱 Chile — San Pedro de Atacama"/>
-          </div>
-          <div class="cg">
-            <label><i class="fas fa-calendar-alt"></i> Período</label>
-            <input type="text" id="f-per" placeholder="ex: 10 a 16 de Outubro de 2026"/>
-          </div>
-        </div>
-        <div class="row3">
-          <div class="cg">
-            <label><i class="fas fa-clock"></i> Duração</label>
-            <input type="text" id="f-dur" placeholder="ex: 7 dias · 6 noites"/>
-          </div>
-          <div class="cg">
-            <label><i class="fas fa-users"></i> Grupo</label>
-            <input type="text" id="f-grp" placeholder="ex: Máx. 20 pessoas"/>
+            <label><i class="fas fa-fingerprint"></i> ID do orçamento *</label>
+            <input type="text" id="f-id" placeholder="ex: atacama-2026-joao"
+                   oninput="updLink()"/>
+            <div class="hint">Sem espaços ou acentos. Será usado na URL do link.</div>
           </div>
           <div class="cg">
             <label><i class="fas fa-toggle-on"></i> Status</label>
@@ -457,35 +456,81 @@
         </div>
         <div class="row2">
           <div class="cg">
-            <label><i class="fas fa-calendar-day"></i> Data de Geração</label>
+            <label><i class="fas fa-user"></i> Nome do cliente</label>
+            <input type="text" id="f-cli" placeholder="ex: João Silva"/>
+          </div>
+          <div class="cg">
+            <label><i class="fas fa-map-marker-alt"></i> Destino</label>
+            <input type="text" id="f-dst" placeholder="ex: Atacama, Chile"/>
+          </div>
+        </div>
+        <div class="cg">
+          <label><i class="fas fa-heading"></i> Título da viagem *</label>
+          <input type="text" id="f-tit" placeholder="ex: Deserto do Atacama — Aventura Extrema"/>
+        </div>
+        <div class="cg">
+          <label><i class="fas fa-align-left"></i> Subtítulo</label>
+          <input type="text" id="f-sub" placeholder="ex: Uma experiência única no deserto mais árido do mundo"/>
+        </div>
+        <div class="row3">
+          <div class="cg">
+            <label><i class="fas fa-calendar-alt"></i> Período</label>
+            <input type="text" id="f-per" placeholder="ex: 15 a 25 Mar 2026"/>
+          </div>
+          <div class="cg">
+            <label><i class="fas fa-moon"></i> Duração</label>
+            <input type="text" id="f-dur" placeholder="ex: 10 dias / 9 noites"/>
+          </div>
+          <div class="cg">
+            <label><i class="fas fa-users"></i> Grupo</label>
+            <input type="text" id="f-grp" placeholder="ex: 20 pessoas"/>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="cg">
+            <label><i class="fas fa-calendar-check"></i> Data de emissão</label>
             <input type="date" id="f-dtg"/>
           </div>
           <div class="cg">
             <label><i class="fas fa-hourglass-half"></i> Validade (dias)</label>
-            <input type="number" id="f-vld" placeholder="ex: 10" min="1" max="365"/>
+            <input type="number" id="f-vld" value="10" min="1" max="365"/>
+          </div>
+        </div>
+        <div class="cg">
+          <label><i class="fas fa-credit-card"></i> Parcelamento</label>
+          <input type="text" id="f-par" placeholder="ex: Em até 12x no cartão ou 5% à vista no PIX"/>
+        </div>
+        <div class="cg">
+          <label><i class="fas fa-handshake"></i> Condições de pagamento</label>
+          <textarea id="f-con" rows="4" placeholder="Detalhe as condições..."></textarea>
+        </div>
+        <div class="cg">
+          <label><i class="fas fa-info-circle"></i> Observações</label>
+          <textarea id="f-obs" rows="4" placeholder="Informações importantes para o cliente..."></textarea>
+        </div>
+      </div>
+
+      <!-- ══ ABA: INCLUÍDOS ══ -->
+      <div class="painel" id="p-inc">
+        <div class="row2">
+          <div class="cg">
+            <label><i class="fas fa-check-circle" style="color:var(--verde)"></i> O que está incluído</label>
+            <div class="ldyn" id="li-inc"></div>
+            <button class="badd" onclick="addItem('li-inc')">
+              <i class="fas fa-plus"></i> Adicionar item incluído
+            </button>
+          </div>
+          <div class="cg">
+            <label><i class="fas fa-times-circle" style="color:#e74c3c"></i> O que NÃO está incluído</label>
+            <div class="ldyn" id="li-nao"></div>
+            <button class="badd" onclick="addItem('li-nao')">
+              <i class="fas fa-plus"></i> Adicionar item não incluído
+            </button>
           </div>
         </div>
       </div>
 
-      <!-- ── ABA INCLUÍDOS ── -->
-      <div class="painel" id="p-inc">
-        <div class="cg">
-          <label><i class="fas fa-check-circle" style="color:#2D6A4F"></i> O que está INCLUÍDO</label>
-          <div class="ldyn" id="li-inc"></div>
-          <button class="badd" onclick="addItem('li-inc')">
-            <i class="fas fa-plus"></i> Adicionar item incluído
-          </button>
-        </div>
-        <div class="cg">
-          <label><i class="fas fa-times-circle" style="color:#c0392b"></i> O que NÃO está incluído</label>
-          <div class="ldyn" id="li-nao"></div>
-          <button class="badd" onclick="addItem('li-nao')">
-            <i class="fas fa-plus"></i> Adicionar item não incluído
-          </button>
-        </div>
-      </div>
-
-      <!-- ── ABA ROTEIRO ── -->
+      <!-- ══ ABA: ROTEIRO ══ -->
       <div class="painel" id="p-rot">
         <div id="rot-wrap"></div>
         <button class="badd" onclick="addDia()">
@@ -493,88 +538,63 @@
         </button>
       </div>
 
-      <!-- ── ABA VALORES ── -->
+      <!-- ══ ABA: VALORES ══ -->
       <div class="painel" id="p-val">
         <div id="val-wrap"></div>
-        <button class="badd" onclick="addValor()" style="margin-bottom:20px;">
-          <i class="fas fa-plus"></i> Adicionar opção de preço
+        <button class="badd" onclick="addValor()">
+          <i class="fas fa-plus"></i> Adicionar opção de valor
         </button>
-        <div class="cg">
-          <label><i class="fas fa-credit-card"></i> Parcelamento</label>
-          <textarea id="f-par" rows="3"
-            placeholder="ex: Até 12x no cartão&#10;PIX com 5% de desconto"></textarea>
-        </div>
-        <div class="cg">
-          <label><i class="fas fa-file-contract"></i> Condições de Pagamento</label>
-          <textarea id="f-con" rows="4"
-            placeholder="ex: 30% na confirmação&#10;40% até 60 dias antes&#10;30% até 30 dias antes"></textarea>
-        </div>
-        <div class="cg">
-          <label><i class="fas fa-exclamation-circle"></i> Observações Gerais</label>
-          <textarea id="f-obs" rows="4"
-            placeholder="ex: Válido por 10 dias&#10;Mínimo 15 passageiros"></textarea>
-        </div>
       </div>
 
-      <!-- ── ABA FOTOS ── -->
+      <!-- ══ ABA: FOTOS CAPA ══ -->
       <div class="painel" id="p-img">
-
-        <!-- Modo URL -->
         <div class="cg">
           <label><i class="fas fa-link"></i> Fotos por URL (uma por linha)</label>
-          <textarea id="f-gal" rows="6"
-            placeholder="https://images.unsplash.com/photo-XXXXX?w=1200&q=80&#10;https://images.unsplash.com/photo-YYYYY?w=1200&q=80"></textarea>
-          <p class="hint">💡 Use <strong>unsplash.com</strong> — pesquise o destino e copie a URL da foto</p>
+          <textarea id="f-gal" rows="5"
+            placeholder="https://images.unsplash.com/photo-XXXXX?w=1200&q=80
+https://images.unsplash.com/photo-YYYYY?w=1200&q=80"></textarea>
+          <div class="hint">💡 Use <strong>unsplash.com</strong> — pesquise o destino e copie a URL</div>
         </div>
 
-        <!-- Separador -->
-        <div style="display:flex;align-items:center;gap:12px;margin:8px 0 20px;">
-          <div style="flex:1;height:1px;background:#e8e8e8;"></div>
-          <span style="color:#aaa;font-size:.82rem;font-weight:600;">OU</span>
-          <div style="flex:1;height:1px;background:#e8e8e8;"></div>
-        </div>
-
-        <!-- Upload -->
         <div class="cg">
-          <label><i class="fas fa-upload"></i> Upload do Computador</label>
-          <div class="upload-area" id="upload-area">
-            <input type="file" accept="image/*" multiple onchange="processarUpload(this)"/>
+          <label><i class="fas fa-upload"></i> Ou faça upload do seu computador</label>
+          <div class="upload-box" id="upload-box-gal">
+            <input type="file" accept="image/*" multiple
+                   onchange="uploadImagens(this, 'gal')"/>
             <i class="fas fa-cloud-upload-alt"></i>
-            <p>Clique ou arraste fotos aqui<br>
-               <small>JPG, PNG, WEBP — máx. 2MB por foto</small></p>
+            <p>Clique ou arraste as fotos aqui<br>
+               <small>JPG, PNG, WEBP — múltiplas fotos aceitas</small></p>
           </div>
-          <div class="preview-imgs" id="preview-imgs"></div>
-          <p class="hint">💡 Imagens salvas direto no JSONBin — sem precisar de servidor!</p>
+          <div class="prev-grid" id="prev-gal"></div>
         </div>
       </div>
 
-      <!-- ── ABA LINK ── -->
+      <!-- ══ ABA: LINK ══ -->
       <div class="painel" id="p-lnk">
         <div class="link-box">
-          <i class="fas fa-link"></i>
-          <div class="link-url" id="link-prev">Preencha o ID na aba "Básico"...</div>
-          <button class="b-copiar" onclick="copiarLink()">
-            <i class="fas fa-copy"></i> Copiar
-          </button>
-        </div>
-        <div class="link-acoes">
-          <button class="b-link-acao b-abrir" onclick="verOrc()">
-            <i class="fas fa-external-link-alt"></i> Abrir no navegador
-          </button>
-          <button class="b-link-acao b-wpp-link" onclick="envWpp()">
-            <i class="fab fa-whatsapp"></i> Enviar pelo WhatsApp
-          </button>
+          <span class="link-label"><i class="fas fa-link"></i> Link do orçamento para o cliente:</span>
+          <div class="link-prev" id="link-prev">Preencha o ID na aba "Básico"...</div>
+          <div class="link-acoes">
+            <button class="b-link-acao b-copiar" onclick="copiarLink()">
+              <i class="fas fa-copy"></i> Copiar link
+            </button>
+            <button class="b-link-acao b-abrir" onclick="verOrc()">
+              <i class="fas fa-external-link-alt"></i> Abrir
+            </button>
+            <button class="b-link-acao b-wpp-link" onclick="envWpp()">
+              <i class="fab fa-whatsapp"></i> Enviar WhatsApp
+            </button>
+          </div>
         </div>
 
-        <!-- Instruções -->
-        <div style="margin-top:24px;background:#f8f9fa;border-radius:10px;padding:20px;">
+        <div style="background:#f8f9fa;border-radius:10px;padding:20px;">
           <h4 style="color:var(--azul);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
             <i class="fas fa-info-circle"></i> Como funciona
           </h4>
-          <div style="font-size:.88rem;color:#666;line-height:1.8;">
+          <div style="font-size:.88rem;color:#666;line-height:1.9;">
             <p>1️⃣ Preencha as abas <strong>Básico</strong>, <strong>Incluídos</strong>,
-               <strong>Roteiro</strong>, <strong>Valores</strong> e <strong>Fotos</strong></p>
-            <p>2️⃣ Clique em <strong>Salvar</strong> — o link já fica ativo na hora! ⚡</p>
+               <strong>Roteiro</strong>, <strong>Valores</strong> e <strong>Fotos Capa</strong></p>
+            <p>2️⃣ Clique em <strong>Salvar</strong> — o link fica ativo na hora! ⚡</p>
             <p>3️⃣ Copie o link e envie pelo <strong>WhatsApp</strong> para o cliente</p>
             <p>4️⃣ O cliente abre sem precisar de login 🎉</p>
           </div>
@@ -585,7 +605,7 @@
   </main>
 </div><!-- /layout -->
 
-<!-- ══ TOAST ══ -->
+<!-- TOAST -->
 <div class="toast" id="toast">
   <i class="fas fa-check-circle"></i>
   <span id="t-msg"></span>
@@ -593,20 +613,24 @@
 
 <script>
 /* ════════════════════════════════════════════
-   CONFIGURAÇÃO — JSONBin.io
+   CONFIGURAÇÃO
    ════════════════════════════════════════════ */
 const JSONBIN_ID  = '6a318e1eda38895dfecb475a';
 const JSONBIN_KEY = '$2a$10$HTy/puCq6iupLHos/RV5DejOrnyU5.Pz18WDA4.dpmLOWJ09Rdqj.';
 const BASE_URL    = 'https://fernandoneto1210-sys.github.io/orcamentos-oficina/orcamento.html';
 
+// Imgur Client ID gratuito para upload de imagens
+const IMGUR_CLIENT_ID = '546c25a59c58ad7';
+
 /* ════════════════════════════════════════════
    ESTADO GLOBAL
    ════════════════════════════════════════════ */
-let orcs     = [];
-let idx      = -1;
-let diaB     = 0;
-let valN     = 0;
-let imgB64   = [];
+let orcs   = [];
+let idx    = -1;
+let diaB   = 0;
+let valN   = 0;
+// URLs das fotos da galeria principal (mix de URLs + imgur)
+let galUrls = [];
 
 /* ════════════════════════════════════════════
    INICIALIZAÇÃO
@@ -617,27 +641,24 @@ window.addEventListener('DOMContentLoaded', () => {
   carregarDados();
 });
 
-/* ── CARREGAR DO JSONBIN ────────────────────── */
+/* ── CARREGAR JSONBin ───────────────────────── */
 async function carregarDados() {
   try {
     const r = await fetch(
       `https://api.jsonbin.io/v3/b/${JSONBIN_ID}/latest`,
       { headers: { 'X-Master-Key': JSONBIN_KEY } }
     );
-    if (!r.ok) throw new Error('Erro ao carregar');
+    if (!r.ok) throw new Error('Erro JSONBin');
     const d = await r.json();
     orcs = Array.isArray(d.record) ? d.record : [];
     setStatusJB(true);
   } catch(e) {
-    console.warn('JSONBin falhou, tentando JSON local...', e);
+    console.warn('JSONBin falhou:', e);
     try {
       const r = await fetch('data/orcamentos.json?_=' + Date.now());
       orcs = await r.json();
-      setStatusJB(false);
-    } catch {
-      orcs = [];
-      setStatusJB(false);
-    }
+    } catch { orcs = []; }
+    setStatusJB(false);
   }
   renderSB();
 }
@@ -645,13 +666,10 @@ async function carregarDados() {
 function setStatusJB(ok) {
   const bar = fld('jb-bar');
   const txt = fld('jb-bar-txt');
-  if (ok) {
-    bar.className = 'jb-status-bar ok';
-    txt.innerHTML = '<i class="fas fa-check-circle"></i> ⚡ JSONBin conectado — salvamento instantâneo ativo!';
-  } else {
-    bar.className = 'jb-status-bar off';
-    txt.innerHTML = '<i class="fas fa-exclamation-triangle"></i> JSONBin offline — usando dados locais';
-  }
+  bar.className = `jb-status-bar ${ok ? 'ok' : 'off'}`;
+  txt.innerHTML = ok
+    ? '<i class="fas fa-check-circle"></i> ⚡ JSONBin conectado — salvamento instantâneo!'
+    : '<i class="fas fa-exclamation-triangle"></i> JSONBin offline — dados locais';
 }
 
 /* ── RENDER SIDEBAR ─────────────────────────── */
@@ -684,7 +702,7 @@ function renderSB() {
 
 /* ── NOVO ───────────────────────────────────── */
 function novoOrc() {
-  idx = -1; diaB = 0; valN = 0; imgB64 = [];
+  idx = -1; diaB = 0; valN = 0; galUrls = [];
   limpar();
   fld('f-dtg').value = hoje();
   fld('f-vld').value = '10';
@@ -695,7 +713,7 @@ function novoOrc() {
 
 /* ── ABRIR ──────────────────────────────────── */
 function abrirOrc(i) {
-  idx = i; diaB = 0; valN = 0; imgB64 = [];
+  idx = i; diaB = 0; valN = 0; galUrls = [];
   limpar();
   preencher(orcs[i]);
   mostrarForm(orcs[i].titulo || 'Orçamento');
@@ -706,10 +724,10 @@ function abrirOrc(i) {
 /* ── DUPLICAR ───────────────────────────────── */
 function duplicarOrc() {
   if (idx < 0) return;
-  const orig = JSON.parse(JSON.stringify(orcs[idx]));
-  orig.id    = orig.id + '-copia';
-  orig.titulo = orig.titulo + ' (cópia)';
-  orig.status = 'rascunho';
+  const orig    = JSON.parse(JSON.stringify(orcs[idx]));
+  orig.id       = orig.id + '-copia';
+  orig.titulo   = orig.titulo + ' (cópia)';
+  orig.status   = 'rascunho';
   orcs.push(orig);
   idx = orcs.length - 1;
   renderSB();
@@ -734,19 +752,17 @@ function preencher(o) {
   sv('f-con', o.condicoes    || '');
   sv('f-obs', o.observacoes  || '');
 
-  // Galeria URLs
-  const gal = (o.galeria || []).filter(g => !g.startsWith('data:'));
-  sv('f-gal', gal.join('\n'));
+  // Galeria — separa URLs normais de base64 antigas
+  const gal = o.galeria || [];
+  // Aceita URLs normais (http/https) e URLs do imgur
+  galUrls = gal.filter(g => g && (g.startsWith('http') || g.startsWith('https')));
+  // URLs digitadas no textarea
+  sv('f-gal', galUrls.join('\n'));
+  renderGalPrev();
 
-  // Imagens base64 do upload
-  imgB64 = (o.galeria || []).filter(g => g.startsWith('data:'));
-  renderPreviews();
-
-  // Listas
   renderLD('li-inc', o.incluido    || []);
   renderLD('li-nao', o.naoIncluido || []);
 
-  // Roteiro e valores
   (o.roteiro || []).forEach(d => addDia(d));
   (o.valores || []).forEach(v => addValor(v));
   updLink();
@@ -754,9 +770,11 @@ function preencher(o) {
 
 /* ── COLETAR ────────────────────────────────── */
 function coletar() {
-  const urls = gv('f-gal').split('\n').map(s => s.trim()).filter(Boolean);
-  const b64  = imgB64.filter(Boolean);
-  const gal  = [...urls, ...b64];
+  // URLs do textarea + URLs do imgur (galUrls)
+  const urlsTexto = gv('f-gal').split('\n').map(s => s.trim()).filter(Boolean);
+  // Merge sem duplicar
+  const todasUrls = [...new Set([...urlsTexto, ...galUrls])];
+
   return {
     id:           gv('f-id').trim().toLowerCase().replace(/\s+/g,'-'),
     status:       gv('f-sts'),
@@ -769,8 +787,8 @@ function coletar() {
     grupo:        gv('f-grp'),
     dataGeracao:  gv('f-dtg'),
     validadeDias: gv('f-vld'),
-    imgCapa:      gal[0] || '',
-    galeria:      gal,
+    imgCapa:      todasUrls[0] || '',
+    galeria:      todasUrls,
     incluido:     coletarLD('li-inc'),
     naoIncluido:  coletarLD('li-nao'),
     roteiro:      coletarRot(),
@@ -788,9 +806,9 @@ async function salvarOrc() {
   if (!o.titulo) { toast('Preencha o Título da viagem!', 'err'); return; }
 
   const existente = orcs.findIndex(x => x.id === o.id);
-  if (existente >= 0)       orcs[existente] = o;
-  else if (idx >= 0)        orcs[idx] = o;
-  else                      orcs.push(o);
+  if (existente >= 0)  orcs[existente] = o;
+  else if (idx >= 0)   orcs[idx] = o;
+  else                 orcs.push(o);
   idx = orcs.findIndex(x => x.id === o.id);
 
   try {
@@ -807,18 +825,17 @@ async function salvarOrc() {
     renderSB();
     updLink();
     fld('f-topo-txt').textContent = o.titulo;
-    toast('✅ Salvo! Link já está ativo!', 'ok');
+    toast('✅ Salvo! Link já ativo!', 'ok');
   } catch(e) {
     console.error(e);
-    // Fallback: download JSON
     downloadJSON();
-    toast('Salvo localmente. Suba o JSON no GitHub.', 'info');
+    toast('Salvo localmente. Suba o JSON.', 'warn');
   }
 }
 
 /* ── EXCLUIR ────────────────────────────────── */
 async function delOrc() {
-  if (idx < 0) { toast('Selecione um orçamento primeiro!', 'err'); return; }
+  if (idx < 0) { toast('Selecione um orçamento!', 'err'); return; }
   const titulo = orcs[idx]?.titulo || 'este orçamento';
   if (!confirm(`Excluir "${titulo}"?\nEsta ação não pode ser desfeita.`)) return;
 
@@ -834,7 +851,7 @@ async function delOrc() {
     toast('Excluído com sucesso! ✅', 'ok');
   } catch {
     downloadJSON();
-    toast('Excluído. Suba o JSON no GitHub.', 'info');
+    toast('Excluído. Suba o JSON.', 'warn');
   }
 
   renderSB();
@@ -848,13 +865,151 @@ function downloadJSON() {
   const a = Object.assign(document.createElement('a'), {
     href: URL.createObjectURL(blob), download: 'orcamentos.json'
   });
-  document.body.appendChild(a);
-  a.click();
+  document.body.appendChild(a); a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(a.href);
 }
 
-/* ── VER / WHATSAPP ─────────────────────────── */
+/* ════════════════════════════════════════════
+   UPLOAD IMGUR — Galeria Principal
+   ════════════════════════════════════════════ */
+async function uploadImagens(input, tipo) {
+  const files = [...input.files];
+  if (!files.length) return;
+
+  const box = fld('upload-box-gal');
+  box.classList.add('uploading');
+  box.querySelector('p').textContent = `Enviando ${files.length} foto(s)...`;
+
+  let ok = 0;
+  for (const file of files) {
+    if (file.size > 10 * 1024 * 1024) {
+      toast(`"${file.name}" muito grande! Máx: 10MB`, 'err');
+      continue;
+    }
+    try {
+      toast(`📤 Enviando "${file.name}"...`, 'info');
+      const url = await uploadImgur(file);
+      galUrls.push(url);
+      renderGalPrev();
+      ok++;
+      toast(`✅ "${file.name}" enviada!`, 'ok');
+    } catch(e) {
+      console.error(e);
+      toast(`❌ Erro ao enviar "${file.name}"`, 'err');
+    }
+  }
+
+  box.classList.remove('uploading');
+  box.querySelector('p').innerHTML =
+    `Clique ou arraste as fotos aqui<br><small>JPG, PNG, WEBP — múltiplas fotos aceitas</small>`;
+  input.value = '';
+
+  if (ok > 0) toast(`✅ ${ok} foto(s) enviada(s) com sucesso!`, 'ok');
+}
+
+/* ── UPLOAD IMGUR API ───────────────────────── */
+async function uploadImgur(file) {
+  const formData = new FormData();
+  formData.append('image', file);
+
+  const r = await fetch('https://api.imgur.com/3/image', {
+    method:  'POST',
+    headers: { 'Authorization': `Client-ID ${IMGUR_CLIENT_ID}` },
+    body:    formData
+  });
+
+  if (!r.ok) throw new Error('Imgur upload falhou');
+  const data = await r.json();
+  if (!data.success) throw new Error('Imgur: ' + data.data?.error);
+  return data.data.link; // URL pública permanente
+}
+
+/* ── RENDER PREVIEW GALERIA ─────────────────── */
+function renderGalPrev() {
+  const el = fld('prev-gal');
+  if (!el) return;
+  el.innerHTML = '';
+  galUrls.filter(Boolean).forEach((url, i) => {
+    const div = document.createElement('div');
+    div.className = 'prev-item';
+    div.innerHTML = `
+      <img src="${url}" alt="foto ${i+1}"
+           onerror="this.src='https://via.placeholder.com/90x70/e8e8e8/aaa?text=Erro'"/>
+      <button class="del-prev" onclick="removerGalUrl(${i})" title="Remover">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="img-status">${i===0?'🌟 Capa':''}</div>`;
+    el.appendChild(div);
+  });
+}
+
+function removerGalUrl(i) {
+  galUrls.splice(i, 1);
+  renderGalPrev();
+}
+
+/* ════════════════════════════════════════════
+   UPLOAD IMGUR — Foto do dia (roteiro)
+   ════════════════════════════════════════════ */
+async function uploadFotoDia(input, diaIdx) {
+  const file = input.files[0];
+  if (!file) return;
+
+  const wrap   = input.closest('.rot-bloco');
+  const urlInp = wrap.querySelector('.rd-img');
+  const prev   = wrap.querySelector('.foto-preview');
+  const btnRm  = wrap.querySelector('.btn-rm-foto');
+  const mini   = wrap.querySelector('.upload-mini');
+
+  mini.querySelector('p').textContent = 'Enviando...';
+  mini.style.pointerEvents = 'none';
+
+  try {
+    toast(`📤 Enviando foto do dia ${diaIdx}...`, 'info');
+    const url = await uploadImgur(file);
+
+    // Atualiza o campo URL oculto
+    urlInp.value = url;
+
+    // Mostra preview
+    prev.src     = url;
+    prev.style.display  = 'block';
+    btnRm.style.display = 'block';
+    mini.querySelector('i').style.display = 'none';
+    mini.querySelector('p').textContent   = '✅ Foto enviada!';
+    mini.classList.add('tem-foto');
+
+    toast(`✅ Foto do dia ${diaIdx} enviada!`, 'ok');
+  } catch(e) {
+    console.error(e);
+    mini.querySelector('p').textContent = 'Erro. Tente novamente.';
+    toast(`❌ Erro ao enviar foto do dia ${diaIdx}`, 'err');
+  }
+
+  mini.style.pointerEvents = '';
+  input.value = '';
+}
+
+function removerFotoDia(btn) {
+  const wrap   = btn.closest('.rot-bloco');
+  const urlInp = wrap.querySelector('.rd-img');
+  const prev   = wrap.querySelector('.foto-preview');
+  const mini   = wrap.querySelector('.upload-mini');
+
+  urlInp.value       = '';
+  prev.src            = '';
+  prev.style.display  = 'none';
+  btn.style.display   = 'none';
+  mini.querySelector('i').style.display = '';
+  mini.querySelector('p').textContent   =
+    'Clique para enviar\nfoto do dia';
+  mini.classList.remove('tem-foto');
+}
+
+/* ════════════════════════════════════════════
+   VER / WHATSAPP / LINK
+   ════════════════════════════════════════════ */
 function verOrc() {
   const id = gv('f-id').trim();
   if (!id) { toast('Preencha o ID primeiro!', 'err'); return; }
@@ -900,7 +1055,9 @@ function copiarLink() {
     });
 }
 
-/* ── ABAS ───────────────────────────────────── */
+/* ════════════════════════════════════════════
+   ABAS
+   ════════════════════════════════════════════ */
 function aba(id) {
   const ids = ['basico','inc','rot','val','img','lnk'];
   document.querySelectorAll('.aba').forEach((a, i) =>
@@ -910,7 +1067,9 @@ function aba(id) {
   if (id === 'lnk') updLink();
 }
 
-/* ── LISTAS DINÂMICAS ───────────────────────── */
+/* ════════════════════════════════════════════
+   LISTAS DINÂMICAS
+   ════════════════════════════════════════════ */
 function renderLD(cid, arr) {
   fld(cid).innerHTML = '';
   arr.forEach(v => addItemVal(cid, v));
@@ -936,13 +1095,18 @@ function coletarLD(cid) {
     .map(i => i.value.trim()).filter(Boolean);
 }
 
-/* ── ROTEIRO ────────────────────────────────── */
+/* ════════════════════════════════════════════
+   ROTEIRO — Com upload de foto do dia
+   ════════════════════════════════════════════ */
 function addDia(d = null) {
   diaB++;
   const n   = diaB;
   const el  = fld('rot-wrap');
   const div = document.createElement('div');
   div.className = 'rot-bloco';
+
+  const temFoto = d?.imagem && d.imagem.startsWith('http');
+
   div.innerHTML = `
     <div class="rot-head">
       <div class="rot-num">${n}</div>
@@ -963,143 +1127,9 @@ function addDia(d = null) {
         <textarea class="rd-des" rows="3"
           placeholder="Descreva as atividades do dia...">${esc(d?.descricao||'')}</textarea>
       </div>
+
+      <!-- Foto do dia — URL + Upload -->
       <div class="cg">
-        <label>URL da foto do dia (opcional)</label>
-        <input type="url" class="rd-img"
-               value="${esc(d?.imagem||'')}"
-               placeholder="https://images.unsplash.com/..."/>
-      </div>
-    </div>`;
-  el.appendChild(div);
-}
+        <label><i class="fas fa-camera"></i> Foto do dia</label>
+        <div class="foto-dia-wrap
 
-function coletarRot() {
-  return [...document.querySelectorAll('.rot-bloco')].map(b => ({
-    titulo:    b.querySelector('.rd-tit')?.value.trim() || '',
-    descricao: b.querySelector('.rd-des')?.value.trim() || '',
-    imagem:    b.querySelector('.rd-img')?.value.trim() || '',
-  }));
-}
-
-/* ── VALORES ────────────────────────────────── */
-function addValor(d = null) {
-  valN++;
-  const n   = valN;
-  const el  = fld('val-wrap');
-  const div = document.createElement('div');
-  div.className = 'val-bloco';
-  div.innerHTML = `
-    <div class="val-head">
-      <strong><i class="fas fa-tag"></i> Opção ${n}</strong>
-      <button class="brem" onclick="this.closest('.val-bloco').remove()">
-        <i class="fas fa-times"></i> Remover
-      </button>
-    </div>
-    <div class="row3">
-      <div class="cg">
-        <label>Label</label>
-        <input type="text" class="vl-lab"
-               value="${esc(d?.label||'')}"
-               placeholder="ex: Por pessoa em duplo"/>
-      </div>
-      <div class="cg">
-        <label>Preço</label>
-        <input type="text" class="vl-pre"
-               value="${esc(d?.preco||'')}"
-               placeholder="ex: R$ 18.000"/>
-      </div>
-      <div class="cg">
-        <label>Descrição</label>
-        <input type="text" class="vl-des"
-               value="${esc(d?.desc||'')}"
-               placeholder="ex: Acomodação dupla"/>
-      </div>
-    </div>`;
-  el.appendChild(div);
-}
-
-function coletarVal() {
-  return [...document.querySelectorAll('.val-bloco')].map(b => ({
-    label: b.querySelector('.vl-lab')?.value.trim() || '',
-    preco: b.querySelector('.vl-pre')?.value.trim() || '',
-    desc:  b.querySelector('.vl-des')?.value.trim() || '',
-  })).filter(v => v.label || v.preco);
-}
-
-/* ── UPLOAD IMAGENS ─────────────────────────── */
-function processarUpload(input) {
-  const files = [...input.files];
-  files.forEach(file => {
-    if (file.size > 2 * 1024 * 1024) {
-      toast(`"${file.name}" muito grande! Máx: 2MB`, 'err');
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      imgB64.push(e.target.result);
-      renderPreviews();
-      toast(`✅ "${file.name}" adicionada!`, 'ok');
-    };
-    reader.readAsDataURL(file);
-  });
-  input.value = '';
-}
-
-function renderPreviews() {
-  const prev = fld('preview-imgs');
-  if (!prev) return;
-  prev.innerHTML = '';
-  imgB64.filter(Boolean).forEach((b64, i) => {
-    const div = document.createElement('div');
-    div.className = 'preview-img';
-    div.innerHTML = `
-      <img src="${b64}" alt="foto ${i+1}"/>
-      <button class="del-img" onclick="removerImg(${i})" title="Remover">
-        <i class="fas fa-times"></i>
-      </button>`;
-    prev.appendChild(div);
-  });
-}
-
-function removerImg(i) {
-  imgB64[i] = null;
-  imgB64 = imgB64.filter(Boolean);
-  renderPreviews();
-}
-
-/* ── HELPERS ────────────────────────────────── */
-function sv(id, val)  { const e = fld(id); if (e) e.value = val; }
-function gv(id)       { return fld(id)?.value || ''; }
-function fld(id)      { return document.getElementById(id); }
-function esc(s)       { return (s||'').replace(/"/g,'&quot;').replace(/</g,'<'); }
-function hoje()       { return new Date().toISOString().slice(0, 10); }
-
-function mostrarForm(titulo) {
-  fld('tela-ini').style.display  = 'none';
-  fld('form-card').style.display = 'block';
-  fld('f-topo-txt').textContent  = titulo;
-}
-
-function limpar() {
-  ['f-id','f-cli','f-tit','f-sub','f-dst',
-   'f-per','f-dur','f-grp','f-gal',
-   'f-par','f-con','f-obs'].forEach(id => sv(id, ''));
-  sv('f-sts', 'ativo');
-  fld('li-inc').innerHTML    = '';
-  fld('li-nao').innerHTML    = '';
-  fld('rot-wrap').innerHTML  = '';
-  fld('val-wrap').innerHTML  = '';
-  if (fld('preview-imgs')) fld('preview-imgs').innerHTML = '';
-  imgB64 = [];
-  diaB = 0; valN = 0;
-}
-
-function toast(msg, tipo = '') {
-  const el = fld('toast');
-  fld('t-msg').textContent = msg;
-  el.className = `toast ${tipo} on`;
-  setTimeout(() => { el.className = `toast ${tipo}`; }, 3200);
-}
-</script>
-</body>
-</html>
