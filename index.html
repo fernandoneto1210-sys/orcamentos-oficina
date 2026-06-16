@@ -404,7 +404,7 @@
             </div>
             <div class="cg">
               <label for="f-sts"><i class="fas fa-check-circle"></i> Status</label>
-              <select id="f-sts">
+              <select type="text" id="f-sts">
                 <option value="ativo">Ativo</option>
                 <option value="rascunho">Rascunho</option>
                 <option value="expirado">Expirado</option>
@@ -438,7 +438,7 @@
             </div>
             <div class="cg">
               <label for="f-grp"><i class="fas fa-users"></i> Grupo</label>
-              <input type="text" id="f-grp" placeholder="ex: Grupo pequeno (máx. 12 pessoas)"/>
+              <input type="text" id="f-grp" placeholder="ex: Grupo exclusivo"/>
             </div>
           </div>
           <div class="row2">
@@ -453,74 +453,85 @@
           </div>
           <div class="cg">
             <label for="f-par"><i class="fas fa-credit-card"></i> Parcelamento</label>
-            <textarea id="f-par" rows="3" placeholder="ex: Entrada + 9x sem juros no cartão"></textarea>
+            <textarea id="f-par" rows="3" placeholder="ex: Entrada de R$ 1.000 + 10x sem juros"></textarea>
           </div>
           <div class="cg">
             <label for="f-con"><i class="fas fa-file-contract"></i> Condições Gerais</label>
-            <textarea id="f-con" rows="4" placeholder="Condições de pagamento, cancelamento, etc."></textarea>
+            <textarea id="f-con" rows="5" placeholder="Condições de cancelamento, alterações, etc."></textarea>
           </div>
           <div class="cg">
-            <label for="f-obs"><i class="fas fa-comment-dots"></i> Observações</label>
-            <textarea id="f-obs" rows="3" placeholder="Informações adicionais importantes"></textarea>
+            <label for="f-obs"><i class="fas fa-comment-dots"></i> Observações Importantes</label>
+            <textarea id="f-obs" rows="5" placeholder="Informações adicionais relevantes."></textarea>
           </div>
         </div>
 
         <div id="p-inc" class="painel">
           <div class="cg">
-            <label><i class="fas fa-check-circle"></i> Incluído no Pacote</label>
-            <div id="li-inc" class="ldyn"></div>
-            <button class="badd" onclick="addItem('li-inc')"><i class="fas fa-plus"></i> Adicionar Item</button>
+            <label><i class="fas fa-check-circle"></i> Itens Incluídos</label>
+            <div id="li-inc" class="ldyn">
+              <!-- Itens incluídos aqui -->
+            </div>
+            <button class="badd" onclick="addItem('li-inc')">
+              <i class="fas fa-plus"></i> Adicionar Item
+            </button>
           </div>
           <div class="cg">
-            <label><i class="fas fa-times-circle"></i> Não Incluído no Pacote</label>
-            <div id="li-nao" class="ldyn"></div>
-            <button class="badd" onclick="addItem('li-nao')"><i class="fas fa-plus"></i> Adicionar Item</button>
+            <label><i class="fas fa-times-circle"></i> Itens Não Incluídos</label>
+            <div id="li-nao" class="ldyn">
+              <!-- Itens não incluídos aqui -->
+            </div>
+            <button class="badd" onclick="addItem('li-nao')">
+              <i class="fas fa-plus"></i> Adicionar Item
+            </button>
           </div>
         </div>
 
         <div id="p-rot" class="painel">
           <div id="rot-wrap">
-            <!-- Dias do roteiro serão adicionados aqui -->
+            <!-- Roteiro dia a dia aqui -->
           </div>
-          <button class="badd" onclick="addDia()"><i class="fas fa-plus"></i> Adicionar Dia</button>
+          <button class="badd" onclick="addDia()">
+            <i class="fas fa-plus"></i> Adicionar Dia
+          </button>
         </div>
 
         <div id="p-val" class="painel">
           <div id="val-wrap">
-            <!-- Opções de valores serão adicionadas aqui -->
+            <!-- Opções de valores aqui -->
           </div>
-          <button class="badd" onclick="addValor()"><i class="fas fa-plus"></i> Adicionar Opção de Valor</button>
+          <button class="badd" onclick="addValor()">
+            <i class="fas fa-plus"></i> Adicionar Opção de Valor
+          </button>
         </div>
 
         <div id="p-img" class="painel">
           <div class="cg">
-            <label><i class="fas fa-images"></i> Galeria de Fotos do Destino</label>
-            <div id="upload-box-gal" class="upload-box">
-              <input type="file" accept="image/*" multiple onchange="uploadImagens(this)"/>
+            <label><i class="fas fa-images"></i> Galeria de Fotos</label>
+            <div class="upload-box">
+              <input type="file" accept="image/*" multiple onchange="processarUpload(this)"/>
               <i class="fas fa-cloud-upload-alt"></i>
-              <p>Clique ou arraste fotos aqui<br><small>JPG, PNG, WEBP — múltiplas fotos aceitas</small></p>
+              <p>Arraste e solte suas fotos aqui ou clique para selecionar.<br>Máx. 2MB por imagem.</p>
             </div>
             <div id="prev-gal" class="prev-grid">
-              <!-- Previews das imagens serão renderizadas aqui -->
+              <!-- Previews das fotos aqui -->
             </div>
-            <p class="hint" style="margin-top:10px;">
-              💡 As fotos são enviadas para o Imgur e suas URLs salvas no orçamento.
-              A primeira foto será a capa.
-            </p>
+            <p class="hint" style="margin-top:10px;">A primeira imagem será a capa do orçamento.</p>
+          </div>
+          <div class="cg">
+            <label for="f-gal"><i class="fas fa-link"></i> URLs de Imagens Externas (uma por linha)</label>
+            <textarea id="f-gal" rows="5" placeholder="https://unsplash.com/photos/exemplo1.jpg&#10;https://unsplash.com/photos/exemplo2.jpg"></textarea>
+            <p class="hint">Imagens enviadas pelo desktop são automaticamente convertidas em URLs.</p>
           </div>
         </div>
 
         <div id="p-lnk" class="painel">
           <div class="cg">
-            <label><i class="fas fa-link"></i> Link do Orçamento</label>
-            <input type="text" id="link-prev" readonly/>
-            <button class="badd" style="margin-top:10px;" onclick="copiarLink()">
+            <label><i class="fas fa-share-alt"></i> Link do Orçamento</label>
+            <p id="link-prev" style="word-break: break-all; background:#f0f0f0; padding:10px; border-radius:8px;"></p>
+            <button class="btn b-salvar" style="margin-top:10px;" onclick="copiarLink()">
               <i class="fas fa-copy"></i> Copiar Link
             </button>
           </div>
-          <p class="hint">
-            Este é o link público do orçamento. Compartilhe com o cliente!
-          </p>
         </div>
 
       </div>
@@ -528,27 +539,64 @@
   </div>
 
   <div id="toast" class="toast">
-    <span id="t-msg">Mensagem de teste</span>
+    <span id="t-msg">Mensagem do Toast</span>
   </div>
 
   <script>
 /* ════════════════════════════════════════════
-   CONFIGURAÇÃO JSONBin e Imgur — Substitua aqui!
+   CONFIGURAÇÕES GLOBAIS — Substitua aqui!
    ════════════════════════════════════════════ */
 const JSONBIN_ID  = '6a318e1eda38895dfecb475a'; // Seu BIN ID do JSONBin.io
 const JSONBIN_KEY = '$2a$10$HTy/puCq6iupLHos/RV5DejOrnyU5.Pz18WDA4.dpmLOWJ09Rdqj.'; // Sua API Key do JSONBin.io
-const IMGUR_ID    = 'd70305e7c3ac5c6'; // Seu Client ID do Imgur API
-const BASE_URL    = 'https://fernandoneto1210-sys.github.io/orcamentos-oficina/orcamento.html';
+const IMGUR_ID    = 'SEU_CLIENT_ID_AQUI'; // <--- COLOQUE SEU CLIENT ID DO IMGUR AQUI!
+const BASE_URL    = 'https://fernandoneto1210-sys.github.io/orcamentos-oficina'; // URL base do seu GitHub Pages
 /* ════════════════════════════════════════════ */
 
-let orcs = [];
-let idx  = -1; // Índice do orçamento atualmente editado
-let diaB = 0;   // Contador para os dias do roteiro
-let valN = 0;   // Contador para as opções de valores
-let galUrls = []; // Armazena as URLs da galeria principal
+let orcs = []; // Array de orçamentos
+let idx  = -1; // Índice do orçamento selecionado
+let diaB = 0;   // Contador para dias do roteiro
+let valN = 0;   // Contador para opções de valores
+let galUrls = []; // URLs da galeria principal
 
 /* ════════════════════════════════════════════
-   SALVAR / EXCLUIR / DOWNLOAD JSON
+   COLETAR DADOS DO FORMULÁRIO
+   ════════════════════════════════════════════ */
+function coletar() {
+  // URLs digitadas na textarea
+  const urlsDigitadas = gv('f-gal')
+    .split('\n')
+    .map(s => s.trim())
+    .filter(s => s.startsWith('http'));
+
+  // Galeria final: URLs digitadas + URLs do Imgur (galUrls)
+  const galeriaFinal = [...urlsDigitadas, ...galUrls];
+
+  return {
+    id:           gv('f-id'),
+    cliente:      gv('f-cli'),
+    titulo:       gv('f-tit'),
+    subtitulo:    gv('f-sub'),
+    status:       gv('f-sts'),
+    destino:      gv('f-dst'),
+    periodo:      gv('f-per'),
+    duracao:      gv('f-dur'),
+    grupo:        gv('f-grp'),
+    dataGeracao:  gv('f-dtg'),
+    validadeDias: gv('f-vld'),
+    imgCapa:      galeriaFinal[0] || '', // A primeira imagem da galeria é a capa
+    galeria:      galeriaFinal,
+    incluido:     coletarLD('li-inc'),
+    naoIncluido:  coletarLD('li-nao'),
+    roteiro:      coletarRot(),
+    valores:      coletarVal(),
+    parcelamento: gv('f-par'),
+    condicoes:    gv('f-con'),
+    observacoes:  gv('f-obs'),
+  };
+}
+
+/* ════════════════════════════════════════════
+   SALVAR / EXCLUIR ORÇAMENTO
    ════════════════════════════════════════════ */
 async function salvarOrc() {
   const o = coletar();
@@ -573,16 +621,16 @@ async function salvarOrc() {
     });
     if (!r.ok) throw new Error('Erro ao salvar');
     renderSB();
-    updLink(); // <--- GARANTA QUE updLink() ESTÁ SENDO CHAMADA AQUI
+    updLink(); // Atualiza o link após salvar
     fld('f-topo-txt').textContent = o.titulo;
     toast('✅ Salvo! Link já está ativo!', 'ok');
   } catch(e) {
     console.error(e);
-    // Fallback: download JSON
-    downloadJSON();
+    downloadJSON(); // Fallback
     toast('Salvo localmente. Suba o JSON no GitHub.', 'info');
   }
 }
+
 async function delOrc() {
   if (idx < 0) { toast('Selecione um orçamento primeiro!', 'err'); return; }
   const titulo = orcs[idx]?.titulo || 'este orçamento';
@@ -599,7 +647,7 @@ async function delOrc() {
     });
     toast('Excluído com sucesso! ✅', 'ok');
   } catch {
-    downloadJSON();
+    downloadJSON(); // Fallback
     toast('Excluído. Suba o JSON no GitHub.', 'info');
   }
 
@@ -608,55 +656,48 @@ async function delOrc() {
   fld('tela-ini').style.display  = 'flex';
 }
 
-function downloadJSON() {
-  const blob = new Blob([JSON.stringify(orcs, null, 2)], { type: 'application/json' });
-  const a = Object.assign(document.createElement('a'), {
-    href: URL.createObjectURL(blob), download: 'orcamentos.json'
-  });
-  document.body.appendChild(a); a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(a.href);
-}
-
 /* ════════════════════════════════════════════
-   UPLOAD IMGUR — Galeria
+   UPLOAD IMGUR — Galeria Principal
    ════════════════════════════════════════════ */
-async function uploadImagens(input) {
+async function processarUpload(input) {
   const files = [...input.files];
-  if (!files.length) return;
-  const box = fld('upload-box-gal');
-  box.classList.add('sending');
-  box.querySelector('p').textContent = `Enviando ${files.length} foto(s)...`;
+  const uploadBox = input.closest('.upload-box');
+  let ok = 0;
+
+  uploadBox.classList.add('sending');
+  uploadBox.querySelector('p').textContent = 'Enviando...';
 
   for (const file of files) {
-    if (file.size > 10 * 1024 * 1024) { // Limite de 10MB por foto
-      toast(`"${file.name}" muito grande! Máx: 10MB`, 'err');
+    if (file.size > 2 * 1024 * 1024) {
+      toast(`"${file.name}" muito grande! Máx: 2MB`, 'err');
       continue;
     }
     try {
       toast(`📤 Enviando "${file.name}"...`, 'info');
       const url = await imgurUpload(file);
       galUrls.push(url);
-      renderGalPrev();
-      toast(`✅ "${file.name}" enviada!`, 'ok');
+      ok++;
     } catch(e) {
       console.error(e);
-      toast(`❌ Erro ao enviar "${file.name}"`, 'err');
+      toast(`❌ Erro ao enviar "${file.name}": ${e.message}`, 'err');
     }
   }
-
-  box.classList.remove('sending');
-  box.querySelector('p').innerHTML =
-    'Clique ou arraste fotos aqui<br><small>JPG, PNG, WEBP — múltiplas aceitas</small>';
+  renderGalPrev();
+  uploadBox.classList.remove('sending');
+  uploadBox.querySelector('p').textContent =
+    'Arraste e solte suas fotos aqui ou clique para selecionar.\nMáx. 2MB por imagem.';
   input.value = '';
+
+  if (ok > 0) toast(`✅ ${ok} foto(s) enviada(s) com sucesso!`, 'ok');
 }
 
 /* ════════════════════════════════════════════
-   UPLOAD IMGUR — Foto do dia
+   UPLOAD IMGUR — Foto do dia (roteiro)
    ════════════════════════════════════════════ */
 async function uploadFotoDia(input, n) {
   const file = input.files[0];
   if (!file) return;
+
   const bloco  = input.closest('.rot-bloco');
   const urlInp = bloco.querySelector('.rd-img');
   const mini   = bloco.querySelector('.upload-mini');
@@ -664,22 +705,22 @@ async function uploadFotoDia(input, n) {
   const btnRm  = bloco.querySelector('.btn-rm-foto');
 
   mini.querySelector('p').textContent = 'Enviando...';
-  mini.style.pointerEvents = 'none'; // Desabilita clique durante upload
+  mini.style.pointerEvents = 'none'; // Desabilita clique enquanto envia
 
   try {
     toast(`📤 Enviando foto do dia ${n}...`, 'info');
     const url   = await imgurUpload(file);
-    urlInp.value = url; // Salva a URL retornada pelo Imgur no campo oculto
+    urlInp.value = url; // Salva a URL no campo oculto
     prev.src            = url;
     prev.style.display  = 'block';
     btnRm.style.display = 'flex';
     mini.classList.add('tem-foto');
-    mini.querySelector('p').innerHTML = '✅ Foto enviada!';
+    mini.querySelector('p').textContent = '✅ Foto enviada!';
     toast(`✅ Foto do dia ${n} enviada!`, 'ok');
   } catch(e) {
     console.error(e);
-    mini.querySelector('p').innerHTML = 'Erro. Tente novamente.';
-    toast(`❌ Erro ao enviar foto do dia ${n}`, 'err');
+    mini.querySelector('p').textContent = 'Erro. Tente novamente.';
+    toast(`❌ Erro ao enviar foto do dia ${n}: ${e.message}`, 'err');
   }
 
   mini.style.pointerEvents = ''; // Reabilita clique
@@ -696,10 +737,12 @@ function removerFotoDia(btn) {
   prev.style.display  = 'none';
   btn.style.display   = 'none';
   mini.classList.remove('tem-foto');
-  mini.querySelector('p').innerHTML = 'Clique para\nfoto do dia';
+  mini.querySelector('p').textContent = 'Clique para foto\ndo dia';
 }
 
-/* ── IMGUR API ──────────────────────────────── */
+/* ════════════════════════════════════════════
+   IMGUR API HELPER
+   ════════════════════════════════════════════ */
 async function imgurUpload(file) {
   const fd = new FormData();
   fd.append('image', file);
@@ -708,13 +751,18 @@ async function imgurUpload(file) {
     headers: { 'Authorization': `Client-ID ${IMGUR_ID}` },
     body:    fd
   });
-  if (!r.ok) throw new Error('Imgur upload falhou');
+  if (!r.ok) {
+    const errorData = await r.json();
+    throw new Error(errorData.data?.error || `Erro HTTP: ${r.status}`);
+  }
   const d = await r.json();
-  if (!d.success) throw new Error(d.data?.error || 'Erro Imgur desconhecido');
-  return d.data.link; // Retorna a URL pública permanente da imagem
+  if (!d.success) throw new Error(d.data?.error || 'Erro imgur desconhecido');
+  return d.data.link;
 }
 
-/* ── RENDER PREVIEW GALERIA ─────────────────── */
+/* ════════════════════════════════════════════
+   RENDER PREVIEW GALERIA
+   ════════════════════════════════════════════ */
 function renderGalPrev() {
   const el = fld('prev-gal');
   if (!el) return;
@@ -743,46 +791,46 @@ function removerGalUrl(i) {
    ════════════════════════════════════════════ */
 function verOrc() {
   const id = gv('f-id').trim();
-  if (!id) { toast('Preencha o ID primeiro!','err'); return; }
-  window.open(`${BASE_URL}?id=${id}`,'_blank');
+  if (!id) { toast('Preencha o ID primeiro!', 'err'); return; }
+  window.open(`${BASE_URL}?id=${id}`, '_blank');
 }
 
 function envWpp() {
   const id  = gv('f-id').trim();
   const tit = gv('f-tit').trim();
   const cli = gv('f-cli').trim();
-  if (!id) { toast('Preencha o ID primeiro!','err'); return; }
+  if (!id) { toast('Preencha o ID primeiro!', 'err'); return; }
   const link = `${BASE_URL}?id=${id}`;
   const msg  = encodeURIComponent(
-    `Olá${cli?' '+cli:''}! 🌍✈️\n\n` +
+    `Olá${cli ? ' ' + cli : ''}! 🌍✈️\n\n` +
     `Segue seu orçamento personalizado da *Oficina de Turismo*:\n\n` +
     `✈️ *${tit}*\n\n` +
     `👉 ${link}\n\n` +
     `Qualquer dúvida estou à disposição! 😊\n\n` +
     `_Oficina de Turismo — (35) 98862-2943_`
   );
-  window.open(`https://wa.me/?text=${msg}`,'_blank');
+  window.open(`https://wa.me/?text=${msg}`, '_blank');
 }
 
 function updLink() {
   const id = gv('f-id').trim();
   fld('link-prev').textContent = id
-    ? `${BASE_URL}?id=${id}` // <--- BASE_URL DEVE ESTAR DEFINIDA NO TOPO DO SCRIPT
+    ? `${BASE_URL}?id=${id}`
     : 'Preencha o ID na aba "Básico"...';
 }
 
 function copiarLink() {
   const id = gv('f-id').trim();
-  if (!id) { toast('Preencha o ID primeiro!','err'); return; }
+  if (!id) { toast('Preencha o ID primeiro!', 'err'); return; }
   const url = `${BASE_URL}?id=${id}`;
   navigator.clipboard.writeText(url)
-    .then(() => toast('✅ Link copiado!','ok'))
+    .then(() => toast('✅ Link copiado!', 'ok'))
     .catch(() => {
-      const ta = Object.assign(document.createElement('textarea'),{value:url});
+      const ta = Object.assign(document.createElement('textarea'), { value: url });
       document.body.appendChild(ta); ta.select();
       document.execCommand('copy');
       document.body.removeChild(ta);
-      toast('✅ Link copiado!','ok');
+      toast('✅ Link copiado!', 'ok');
     });
 }
 
@@ -815,12 +863,11 @@ function addItemVal(cid, val) {
   const div = document.createElement('div');
   div.className = 'litem';
   div.innerHTML = `
-    <input type="text" value="${esc(val)}" placeholder="Digite aqui..."/> // <--- GARANTA QUE TEM O esc(val) AQUI
+    <input type="text" value="${esc(val)}" placeholder="Digite aqui..."/>
     <button class="brem" onclick="this.parentElement.remove()">
       <i class="fas fa-times"></i>
     </button>`;
   el.appendChild(div);
-}
 }
 function coletarLD(cid) {
   return [...fld(cid).querySelectorAll('input')]
@@ -1061,7 +1108,8 @@ function preencher(o) {
   sv('f-obs', o.observacoes  || '');
 
   // Galeria principal
-  galUrls = o.galeria || [];
+  galUrls = o.galeria.filter(url => url.startsWith('http')) || []; // Filtra apenas URLs válidas
+  fld('f-gal').value = o.galeria.filter(url => !url.startsWith('http')).join('\n'); // Coloca URLs não-imgur na textarea
   renderGalPrev();
 
   // Listas
@@ -1072,6 +1120,20 @@ function preencher(o) {
   (o.roteiro || []).forEach(d => addDia(d));
   (o.valores || []).forEach(v => addValor(v));
   updLink();
+}
+
+/* ════════════════════════════════════════════
+   DOWNLOAD JSON (fallback)
+   ════════════════════════════════════════════ */
+function downloadJSON() {
+  const blob = new Blob([JSON.stringify(orcs, null, 2)], { type: 'application/json' });
+  const a = Object.assign(document.createElement('a'), {
+    href: URL.createObjectURL(blob), download: 'orcamentos.json'
+  });
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
 }
 
 /* ════════════════════════════════════════════
