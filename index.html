@@ -25,7 +25,9 @@
       box-shadow:0 3px 16px rgba(0,0,0,.28);
       position:sticky;top:0;z-index:100;
     }
-    .adm-logo{display:flex;align-items:center;gap:14px;}
+    .adm-logo{display:flex;align-items:center;gap:14px;
+      background:rgba(255,255,255,.12);padding:6px 16px;
+      border-radius:10px;border:1px solid rgba(255,255,255,.2);}
     .adm-logo img.lp{
       height:68px;width:auto;object-fit:contain;
       filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));
@@ -48,6 +50,14 @@
       display:flex;align-items:center;gap:5px;transition:all .3s;
     }
     .adm-header-right a:hover{color:var(--dourado);}
+
+    /* ══ STATUS JSONBIN ══ */
+    .jb-status-bar{
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      padding:7px 16px;font-size:.82rem;font-weight:600;
+    }
+    .jb-status-bar.ok{background:#dcfce7;color:#166534;}
+    .jb-status-bar.off{background:#fef9c3;color:#854d0e;}
 
     /* ══ LAYOUT ══ */
     .layout{display:flex;min-height:calc(100vh - 88px);}
@@ -104,16 +114,6 @@
     .tela-ini h2{color:#bbb;font-size:1.3rem;margin-bottom:8px;}
     .tela-ini p{font-size:.9rem;}
 
-    /* Aviso JSONBin ativo */
-    .jb-banner{
-      background:linear-gradient(135deg,#dcfce7,#bbf7d0);
-      border:1px solid #86efac;border-radius:10px;
-      padding:12px 18px;margin-bottom:20px;
-      display:flex;align-items:center;gap:10px;
-      font-size:.85rem;color:#166534;font-weight:600;
-    }
-    .jb-banner i{font-size:1.2rem;}
-
     /* ══ FORM CARD ══ */
     .form-card{background:#fff;border-radius:var(--radius);box-shadow:var(--sombra);overflow:hidden;}
     .form-topo{
@@ -138,6 +138,8 @@
     .b-wpp:hover{background:#0e7065;}
     .b-del{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);}
     .b-del:hover{background:rgba(231,76,60,.4);}
+    .b-dup{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);}
+    .b-dup:hover{background:rgba(255,255,255,.28);}
 
     /* ══ ABAS ══ */
     .abas{
@@ -170,14 +172,7 @@
     .cg textarea{resize:vertical;min-height:90px;line-height:1.6;}
     .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
     .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
-
-    /* ══ AVISO ══ */
-    .aviso{
-      background:#fef3c7;border:1px solid #fcd34d;border-radius:8px;
-      padding:11px 16px;font-size:.82rem;color:#92400e;
-      display:flex;align-items:flex-start;gap:8px;margin-bottom:20px;
-    }
-    .aviso i{flex-shrink:0;margin-top:2px;}
+    .hint{font-size:.75rem;color:#aaa;margin-top:4px;}
 
     /* ══ LISTA DINÂMICA ══ */
     .ldyn{border:2px solid #e8e8e8;border-radius:8px;overflow:hidden;background:#fff;}
@@ -193,6 +188,36 @@
       border-radius:8px;margin-top:7px;transition:all .2s;
     }
     .badd:hover{border-color:var(--azul2);color:var(--azul2);}
+
+    /* ══ UPLOAD IMAGEM ══ */
+    .img-opcoes{display:flex;gap:8px;margin-bottom:10px;}
+    .img-tab{
+      padding:6px 16px;border-radius:20px;font-size:.82rem;font-weight:600;
+      border:2px solid #e8e8e8;background:#fff;cursor:pointer;color:#aaa;transition:all .2s;
+    }
+    .img-tab.on{border-color:var(--azul2);color:var(--azul2);background:#f0f4ff;}
+    .upload-area{
+      border:2px dashed #ddd;border-radius:8px;padding:24px;
+      text-align:center;cursor:pointer;transition:all .3s;background:#fafafa;
+      position:relative;
+    }
+    .upload-area:hover{border-color:var(--azul2);background:#f0f4ff;}
+    .upload-area input[type=file]{
+      position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;
+    }
+    .upload-area i{font-size:2rem;color:#ccc;display:block;margin-bottom:8px;}
+    .upload-area p{font-size:.85rem;color:#aaa;}
+    .preview-imgs{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+    .preview-img{
+      position:relative;width:90px;height:68px;border-radius:6px;overflow:hidden;
+      border:2px solid #e8e8e8;
+    }
+    .preview-img img{width:100%;height:100%;object-fit:cover;}
+    .preview-img .del-img{
+      position:absolute;top:2px;right:2px;background:rgba(231,76,60,.85);
+      color:#fff;border:none;border-radius:50%;width:18px;height:18px;
+      font-size:.65rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    }
 
     /* ══ ROTEIRO ══ */
     .rot-bloco{border:2px solid #e8e8e8;border-radius:var(--radius);margin-bottom:14px;overflow:hidden;}
@@ -218,7 +243,10 @@
     .rot-campos{padding:16px;}
 
     /* ══ VALORES ══ */
-    .val-bloco{border:2px solid #e8e8e8;border-radius:var(--radius);padding:16px;margin-bottom:12px;background:#fafafa;}
+    .val-bloco{
+      border:2px solid #e8e8e8;border-radius:var(--radius);
+      padding:16px;margin-bottom:12px;background:#fafafa;
+    }
     .val-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
     .val-head strong{color:var(--azul);font-size:.88rem;display:flex;align-items:center;gap:6px;}
 
@@ -231,53 +259,51 @@
     }
     .link-box i{font-size:1.6rem;color:var(--dourado);}
     .link-url{
-      flex:1;background:rgba(255,255,255,.15);
-      border:1px solid rgba(255,255,255,.30);color:#fff;
-      padding:9px 14px;border-radius:8px;
-      font-family:monospace;font-size:.82rem;word-break:break-all;
+      flex:1;background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.25);
+      color:#fff;padding:10px 14px;border-radius:8px;
+      font-size:.88rem;word-break:break-all;min-width:200px;
     }
-    .bcopiar{
+    .b-copiar{
       background:var(--dourado);color:#fff;border:none;
-      padding:9px 18px;border-radius:8px;cursor:pointer;
-      font-weight:700;font-size:.84rem;
-      display:flex;align-items:center;gap:5px;transition:all .3s;white-space:nowrap;
+      padding:10px 20px;border-radius:8px;cursor:pointer;
+      font-weight:700;font-size:.88rem;
+      display:flex;align-items:center;gap:6px;transition:all .3s;flex-shrink:0;
     }
-    .bcopiar:hover{background:#b8941f;}
-
-    /* ══ ACOES LINK ══ */
-    .acoes-link{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;}
-    .bl{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:25px;font-size:.87rem;font-weight:700;border:none;cursor:pointer;transition:all .3s;}
-    .bl:hover{transform:translateY(-2px);}
-    .bl-ver{background:#25D366;color:#fff;}
-    .bl-wpp{background:#128C7E;color:#fff;}
-    .bl-pdf{background:#e74c3c;color:#fff;}
-
-    /* ══ SEP ══ */
-    .sep{border:none;border-top:2px solid #f0f0f0;margin:20px 0;}
+    .b-copiar:hover{background:#b8941f;}
+    .link-acoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+    .b-link-acao{
+      flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
+      padding:11px 16px;border-radius:8px;font-size:.88rem;font-weight:700;
+      border:none;cursor:pointer;transition:all .3s;
+    }
+    .b-abrir{background:#f0f4ff;color:var(--azul);}
+    .b-abrir:hover{background:#dce5ff;}
+    .b-wpp-link{background:#dcfce7;color:#166534;}
+    .b-wpp-link:hover{background:#bbf7d0;}
 
     /* ══ TOAST ══ */
     .toast{
-      position:fixed;bottom:24px;left:50%;
-      transform:translateX(-50%) translateY(120px);
-      background:var(--azul);color:#fff;
-      padding:11px 28px;border-radius:30px;
-      font-weight:600;font-size:.90rem;z-index:9999;
-      transition:transform .4s cubic-bezier(.34,1.56,.64,1);
+      position:fixed;bottom:28px;right:28px;z-index:9999;
+      background:#333;color:#fff;
+      padding:12px 22px;border-radius:10px;
+      font-size:.88rem;font-weight:600;
+      box-shadow:0 4px 20px rgba(0,0,0,.28);
       display:flex;align-items:center;gap:8px;
-      box-shadow:0 8px 28px rgba(0,0,0,.28);white-space:nowrap;
+      opacity:0;transform:translateY(16px);
+      transition:all .35s;pointer-events:none;
     }
-    .toast.on{transform:translateX(-50%) translateY(0);}
+    .toast.on{opacity:1;transform:translateY(0);}
     .toast.ok{background:#166534;}
     .toast.err{background:#991b1b;}
-    .toast.info{background:var(--azul2);}
+    .toast.info{background:var(--azul);}
 
     /* ══ RESPONSIVO ══ */
-    @media(max-width:860px){
+    @media(max-width:768px){
       .layout{flex-direction:column;}
-      .sidebar{width:100%;min-width:unset;position:static;height:auto;border-right:none;border-bottom:1px solid #e8e8e8;}
+      .sidebar{width:100%;min-width:unset;position:static;height:auto;max-height:280px;}
       .row2,.row3{grid-template-columns:1fr;}
-      .adm-logo img.l30{display:none;}
-      .adm-logo img.lp{height:52px;}
+      .adm-header{padding:8px 14px;}
     }
   </style>
 </head>
@@ -286,19 +312,34 @@
 <!-- ══ HEADER ══ -->
 <header class="adm-header">
   <div class="adm-logo">
-    <img src="assets/images/logo.png"   class="lp"  alt="Oficina de Turismo" onerror="this.style.display='none'"/>
+    <img class="lp"  src="assets/images/logo.png"   alt="Oficina de Turismo"
+         onerror="this.style.display='none'"/>
     <div class="logo-sep"></div>
-    <img src="assets/images/logo30.png" class="l30" alt="30 Anos"            onerror="this.style.display='none'"/>
-    <div class="adm-info">
-      <span class="titulo">Painel de Orçamentos</span>
-      <span class="adm-badge">✦ ADMIN</span>
-    </div>
+    <img class="l30" src="assets/images/logo30.png" alt="30 Anos"
+         onerror="this.style.display='none'"/>
+  </div>
+  <div class="adm-info">
+    <span class="titulo"><i class="fas fa-cog"></i> Painel Administrativo</span>
+    <span class="adm-badge">⚡ OFICINA DE TURISMO</span>
   </div>
   <div class="adm-header-right">
-    <a href="https://www.oficinatur.com.br" target="_blank"><i class="fas fa-globe"></i> oficinatur.com.br</a>
-    <a href="https://wa.me/5535988622943"   target="_blank"><i class="fab fa-whatsapp"></i> Suporte</a>
+    <a href="https://wa.me/5535988622943" target="_blank">
+      <i class="fab fa-whatsapp"></i> WhatsApp
+    </a>
+    <a href="https://www.instagram.com/oficinadeturismo" target="_blank">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
+    <a href="https://www.oficinatur.com.br" target="_blank">
+      <i class="fas fa-globe"></i> Site
+    </a>
   </div>
 </header>
+
+<!-- ══ STATUS JSONBIN ══ -->
+<div id="jb-bar" class="jb-status-bar off">
+  <i class="fas fa-circle-notch fa-spin"></i>
+  <span id="jb-bar-txt">Conectando ao banco de dados...</span>
+</div>
 
 <!-- ══ LAYOUT ══ -->
 <div class="layout">
@@ -307,14 +348,14 @@
   <aside class="sidebar">
     <div class="sb-topo">
       <button class="btn-novo" onclick="novoOrc()">
-        <i class="fas fa-plus-circle"></i> Novo Orçamento
+        <i class="fas fa-plus"></i> Novo Orçamento
       </button>
     </div>
     <div class="sb-label">Orçamentos Salvos</div>
     <div class="orc-lista" id="orc-lista">
       <div class="sb-vazio">
-        <i class="fas fa-folder-open"></i>
-        <p>Carregando...</p>
+        <i class="fas fa-circle-notch fa-spin"></i>
+        Carregando...
       </div>
     </div>
   </aside>
@@ -324,76 +365,89 @@
 
     <!-- Tela inicial -->
     <div class="tela-ini" id="tela-ini">
-
-      <!-- Banner JSONBin ativo -->
-      <div class="jb-banner" style="max-width:560px;margin-bottom:32px;">
-        <i class="fas fa-bolt"></i>
-        <span>⚡ JSONBin conectado! Salvamento <strong>instantâneo</strong> ativo.
-        Crie um orçamento e o link já funciona na hora!</span>
-      </div>
-
-      <i class="fas fa-file-invoice"></i>
-      <h2>Bem-vindo ao Painel!</h2>
-      <p>Crie ou selecione um orçamento no menu lateral</p>
+      <i class="fas fa-paper-plane"></i>
+      <h2>Bem-vindo ao Painel da Oficina de Turismo!</h2>
+      <p>Selecione um orçamento na lista ou crie um novo.</p>
     </div>
 
-    <!-- Form Card -->
+    <!-- Formulário -->
     <div class="form-card" id="form-card" style="display:none;">
 
+      <!-- Topo do form -->
       <div class="form-topo">
-        <h2><i class="fas fa-edit"></i> <span id="f-topo-txt">Novo Orçamento</span></h2>
+        <h2><i class="fas fa-file-alt"></i> <span id="f-topo-txt">Novo Orçamento</span></h2>
         <div class="topo-btns">
-          <button class="btn b-del"    onclick="delOrc()"><i class="fas fa-trash"></i> Excluir</button>
-          <button class="btn b-ver"    onclick="verOrc()"><i class="fas fa-eye"></i> Ver</button>
-          <button class="btn b-wpp"    onclick="envWpp()"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-          <button class="btn b-salvar" onclick="salvarOrc()"><i class="fas fa-save"></i> Salvar</button>
+          <button class="btn b-salvar" onclick="salvarOrc()">
+            <i class="fas fa-save"></i> Salvar
+          </button>
+          <button class="btn b-ver" onclick="verOrc()">
+            <i class="fas fa-eye"></i> Ver
+          </button>
+          <button class="btn b-wpp" onclick="envWpp()">
+            <i class="fab fa-whatsapp"></i> Enviar
+          </button>
+          <button class="btn b-dup" onclick="duplicarOrc()">
+            <i class="fas fa-copy"></i> Duplicar
+          </button>
+          <button class="btn b-del" onclick="delOrc()">
+            <i class="fas fa-trash"></i> Excluir
+          </button>
         </div>
       </div>
 
-      <!-- ABAS -->
+      <!-- Abas -->
       <div class="abas">
-        <div class="aba on" onclick="aba('basico')"><i class="fas fa-info-circle"></i> Básico</div>
-        <div class="aba"    onclick="aba('inc')">   <i class="fas fa-list-check"></i> Incluídos</div>
-        <div class="aba"    onclick="aba('rot')">   <i class="fas fa-map-marked-alt"></i> Roteiro</div>
-        <div class="aba"    onclick="aba('val')">   <i class="fas fa-tag"></i> Valores</div>
-        <div class="aba"    onclick="aba('lnk')">   <i class="fas fa-link"></i> Link & PDF</div>
+        <div class="aba on"  onclick="aba('basico')"><i class="fas fa-info-circle"></i> Básico</div>
+        <div class="aba"     onclick="aba('inc')"   ><i class="fas fa-list-check"></i> Incluídos</div>
+        <div class="aba"     onclick="aba('rot')"   ><i class="fas fa-map-marked-alt"></i> Roteiro</div>
+        <div class="aba"     onclick="aba('val')"   ><i class="fas fa-dollar-sign"></i> Valores</div>
+        <div class="aba"     onclick="aba('img')"   ><i class="fas fa-images"></i> Fotos</div>
+        <div class="aba"     onclick="aba('lnk')"   ><i class="fas fa-link"></i> Link</div>
       </div>
 
-      <!-- ════ ABA: BÁSICO ════ -->
+      <!-- ── ABA BÁSICO ── -->
       <div class="painel on" id="p-basico">
-        <div class="jb-banner">
-          <i class="fas fa-bolt"></i>
-          <span>JSONBin ativo — ao clicar em <strong>"Salvar"</strong> o link fica disponível <strong>instantaneamente!</strong></span>
-        </div>
-
         <div class="row2">
           <div class="cg">
             <label><i class="fas fa-hashtag"></i> ID do Orçamento *</label>
-            <input id="f-id" type="text" placeholder="ex: atacama-2026-joao" oninput="updLink()"/>
+            <input type="text" id="f-id" placeholder="ex: atacama-2026-01"
+                   oninput="this.value=this.value.toLowerCase().replace(/\s+/g,'-')"/>
+            <p class="hint">Usado na URL do link. Sem espaços, sem acentos.</p>
           </div>
           <div class="cg">
             <label><i class="fas fa-user"></i> Nome do Cliente</label>
-            <input id="f-cli" type="text" placeholder="ex: João Silva"/>
+            <input type="text" id="f-cli" placeholder="ex: João Silva"/>
           </div>
         </div>
-
         <div class="cg">
-          <label><i class="fas fa-plane-departure"></i> Título da Viagem *</label>
-          <input id="f-tit" type="text" placeholder="ex: Maravilhas do Atacama"/>
+          <label><i class="fas fa-heading"></i> Título da Viagem *</label>
+          <input type="text" id="f-tit" placeholder="ex: Deserto do Atacama — Chile 2026"/>
         </div>
-
         <div class="cg">
-          <label><i class="fas fa-align-left"></i> Subtítulo / Descrição curta</label>
-          <input id="f-sub" type="text" placeholder="ex: O deserto mais árido do mundo com a Oficina de Turismo"/>
+          <label><i class="fas fa-align-left"></i> Subtítulo</label>
+          <input type="text" id="f-sub" placeholder="ex: Uma experiência única no deserto mais árido do mundo"/>
         </div>
-
         <div class="row2">
           <div class="cg">
-            <label><i class="fas fa-map-marker-alt"></i> Destino (com emoji)</label>
-            <input id="f-dst" type="text" placeholder="ex: 🇨🇱 Chile — Atacama"/>
+            <label><i class="fas fa-map-marker-alt"></i> Destino</label>
+            <input type="text" id="f-dst" placeholder="ex: 🇨🇱 Chile — San Pedro de Atacama"/>
           </div>
           <div class="cg">
-            <label><i class="fas fa-signal"></i> Status</label>
+            <label><i class="fas fa-calendar-alt"></i> Período</label>
+            <input type="text" id="f-per" placeholder="ex: 10 a 16 de Outubro de 2026"/>
+          </div>
+        </div>
+        <div class="row3">
+          <div class="cg">
+            <label><i class="fas fa-clock"></i> Duração</label>
+            <input type="text" id="f-dur" placeholder="ex: 7 dias · 6 noites"/>
+          </div>
+          <div class="cg">
+            <label><i class="fas fa-users"></i> Grupo</label>
+            <input type="text" id="f-grp" placeholder="ex: Máx. 20 pessoas"/>
+          </div>
+          <div class="cg">
+            <label><i class="fas fa-toggle-on"></i> Status</label>
             <select id="f-sts">
               <option value="ativo">✅ Ativo</option>
               <option value="rascunho">📝 Rascunho</option>
@@ -401,272 +455,236 @@
             </select>
           </div>
         </div>
-
-        <div class="row3">
-          <div class="cg">
-            <label><i class="fas fa-calendar-alt"></i> Período *</label>
-            <input id="f-per" type="text" placeholder="ex: 10 a 16 Out/2026"/>
-          </div>
-          <div class="cg">
-            <label><i class="fas fa-clock"></i> Duração</label>
-            <input id="f-dur" type="text" placeholder="ex: 7 dias · 6 noites"/>
-          </div>
-          <div class="cg">
-            <label><i class="fas fa-users"></i> Grupo</label>
-            <input id="f-grp" type="text" placeholder="ex: Máx. 20 pessoas"/>
-          </div>
-        </div>
-
         <div class="row2">
           <div class="cg">
-            <label><i class="fas fa-calendar"></i> Data de Geração</label>
-            <input id="f-dtg" type="date"/>
+            <label><i class="fas fa-calendar-day"></i> Data de Geração</label>
+            <input type="date" id="f-dtg"/>
           </div>
           <div class="cg">
             <label><i class="fas fa-hourglass-half"></i> Validade (dias)</label>
-            <input id="f-vld" type="number" value="10" min="1"/>
+            <input type="number" id="f-vld" placeholder="ex: 10" min="1" max="365"/>
           </div>
-        </div>
-
-        <div class="cg">
-          <label><i class="fas fa-images"></i> Fotos do Destino — URLs (uma por linha) *</label>
-          <textarea id="f-gal" rows="6"
-            placeholder="Cole as URLs das fotos — a primeira será a capa:
-https://images.unsplash.com/photo-XXXXX?w=1200&q=80
-https://images.unsplash.com/photo-XXXXX?w=1200&q=80"></textarea>
-          <small style="color:#aaa;font-size:.75rem;margin-top:4px;display:block;">
-            💡 Use fotos do <strong>unsplash.com</strong> — pesquise o destino e copie a URL
-          </small>
         </div>
       </div>
 
-      <!-- ════ ABA: INCLUÍDOS ════ -->
+      <!-- ── ABA INCLUÍDOS ── -->
       <div class="painel" id="p-inc">
         <div class="cg">
-          <label><i class="fas fa-check-circle" style="color:#166534"></i> O que está INCLUÍDO</label>
+          <label><i class="fas fa-check-circle" style="color:#2D6A4F"></i> O que está INCLUÍDO</label>
           <div class="ldyn" id="li-inc"></div>
-          <button class="badd" onclick="addItem('li-inc')"><i class="fas fa-plus"></i> Adicionar item incluído</button>
+          <button class="badd" onclick="addItem('li-inc')">
+            <i class="fas fa-plus"></i> Adicionar item incluído
+          </button>
         </div>
-        <hr class="sep"/>
         <div class="cg">
-          <label><i class="fas fa-times-circle" style="color:#991b1b"></i> O que NÃO está incluído</label>
+          <label><i class="fas fa-times-circle" style="color:#c0392b"></i> O que NÃO está incluído</label>
           <div class="ldyn" id="li-nao"></div>
-          <button class="badd" onclick="addItem('li-nao')"><i class="fas fa-plus"></i> Adicionar item não incluído</button>
+          <button class="badd" onclick="addItem('li-nao')">
+            <i class="fas fa-plus"></i> Adicionar item não incluído
+          </button>
         </div>
       </div>
 
-      <!-- ════ ABA: ROTEIRO ════ -->
+      <!-- ── ABA ROTEIRO ── -->
       <div class="painel" id="p-rot">
         <div id="rot-wrap"></div>
-        <button class="badd" onclick="addDia()"><i class="fas fa-plus"></i> Adicionar dia ao roteiro</button>
+        <button class="badd" onclick="addDia()">
+          <i class="fas fa-plus"></i> Adicionar dia ao roteiro
+        </button>
       </div>
 
-      <!-- ════ ABA: VALORES ════ -->
+      <!-- ── ABA VALORES ── -->
       <div class="painel" id="p-val">
         <div id="val-wrap"></div>
-        <button class="badd" onclick="addValor()"><i class="fas fa-plus"></i> Adicionar opção de valor</button>
-        <hr class="sep"/>
+        <button class="badd" onclick="addValor()" style="margin-bottom:20px;">
+          <i class="fas fa-plus"></i> Adicionar opção de preço
+        </button>
         <div class="cg">
           <label><i class="fas fa-credit-card"></i> Parcelamento</label>
-          <textarea id="f-par" rows="3" placeholder="ex: Até 12x no cartão ou PIX com 5% de desconto"></textarea>
+          <textarea id="f-par" rows="3"
+            placeholder="ex: Até 12x no cartão&#10;PIX com 5% de desconto"></textarea>
         </div>
         <div class="cg">
-          <label><i class="fas fa-file-invoice-dollar"></i> Condições de Pagamento</label>
-          <textarea id="f-con" rows="6" placeholder="ex: 30% na confirmação&#10;40% até 60 dias antes&#10;30% até 30 dias antes"></textarea>
+          <label><i class="fas fa-file-contract"></i> Condições de Pagamento</label>
+          <textarea id="f-con" rows="4"
+            placeholder="ex: 30% na confirmação&#10;40% até 60 dias antes&#10;30% até 30 dias antes"></textarea>
         </div>
         <div class="cg">
-          <label><i class="fas fa-info-circle"></i> Observações Importantes</label>
-          <textarea id="f-obs" rows="6" placeholder="ex: Válido por 10 dias. Mínimo 15 passageiros..."></textarea>
+          <label><i class="fas fa-exclamation-circle"></i> Observações Gerais</label>
+          <textarea id="f-obs" rows="4"
+            placeholder="ex: Válido por 10 dias&#10;Mínimo 15 passageiros"></textarea>
         </div>
       </div>
 
-      <!-- ════ ABA: LINK & PDF ════ -->
-      <div class="painel" id="p-lnk">
+      <!-- ── ABA FOTOS ── -->
+      <div class="painel" id="p-img">
 
-        <div class="jb-banner" style="margin-bottom:20px;">
-          <i class="fas fa-bolt"></i>
-          <span>⚡ JSONBin ativo — link já está publicado após salvar!</span>
+        <!-- Modo URL -->
+        <div class="cg">
+          <label><i class="fas fa-link"></i> Fotos por URL (uma por linha)</label>
+          <textarea id="f-gal" rows="6"
+            placeholder="https://images.unsplash.com/photo-XXXXX?w=1200&q=80&#10;https://images.unsplash.com/photo-YYYYY?w=1200&q=80"></textarea>
+          <p class="hint">💡 Use <strong>unsplash.com</strong> — pesquise o destino e copie a URL da foto</p>
         </div>
 
+        <!-- Separador -->
+        <div style="display:flex;align-items:center;gap:12px;margin:8px 0 20px;">
+          <div style="flex:1;height:1px;background:#e8e8e8;"></div>
+          <span style="color:#aaa;font-size:.82rem;font-weight:600;">OU</span>
+          <div style="flex:1;height:1px;background:#e8e8e8;"></div>
+        </div>
+
+        <!-- Upload -->
         <div class="cg">
-          <label><i class="fas fa-link"></i> Link para enviar ao cliente</label>
-          <div class="link-box">
-            <i class="fas fa-share-alt"></i>
-            <span class="link-url" id="link-prev">Preencha o ID na aba "Básico"...</span>
-            <button class="bcopiar" onclick="copiarLink()"><i class="fas fa-copy"></i> Copiar</button>
+          <label><i class="fas fa-upload"></i> Upload do Computador</label>
+          <div class="upload-area" id="upload-area">
+            <input type="file" accept="image/*" multiple onchange="processarUpload(this)"/>
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Clique ou arraste fotos aqui<br>
+               <small>JPG, PNG, WEBP — máx. 2MB por foto</small></p>
+          </div>
+          <div class="preview-imgs" id="preview-imgs"></div>
+          <p class="hint">💡 Imagens salvas direto no JSONBin — sem precisar de servidor!</p>
+        </div>
+      </div>
+
+      <!-- ── ABA LINK ── -->
+      <div class="painel" id="p-lnk">
+        <div class="link-box">
+          <i class="fas fa-link"></i>
+          <div class="link-url" id="link-prev">Preencha o ID na aba "Básico"...</div>
+          <button class="b-copiar" onclick="copiarLink()">
+            <i class="fas fa-copy"></i> Copiar
+          </button>
+        </div>
+        <div class="link-acoes">
+          <button class="b-link-acao b-abrir" onclick="verOrc()">
+            <i class="fas fa-external-link-alt"></i> Abrir no navegador
+          </button>
+          <button class="b-link-acao b-wpp-link" onclick="envWpp()">
+            <i class="fab fa-whatsapp"></i> Enviar pelo WhatsApp
+          </button>
+        </div>
+
+        <!-- Instruções -->
+        <div style="margin-top:24px;background:#f8f9fa;border-radius:10px;padding:20px;">
+          <h4 style="color:var(--azul);margin-bottom:12px;display:flex;align-items:center;gap:8px;">
+            <i class="fas fa-info-circle"></i> Como funciona
+          </h4>
+          <div style="font-size:.88rem;color:#666;line-height:1.8;">
+            <p>1️⃣ Preencha as abas <strong>Básico</strong>, <strong>Incluídos</strong>,
+               <strong>Roteiro</strong>, <strong>Valores</strong> e <strong>Fotos</strong></p>
+            <p>2️⃣ Clique em <strong>Salvar</strong> — o link já fica ativo na hora! ⚡</p>
+            <p>3️⃣ Copie o link e envie pelo <strong>WhatsApp</strong> para o cliente</p>
+            <p>4️⃣ O cliente abre sem precisar de login 🎉</p>
           </div>
         </div>
-
-        <div class="acoes-link">
-          <button class="bl bl-ver" onclick="verOrc()"><i class="fas fa-eye"></i> Abrir orçamento</button>
-          <button class="bl bl-wpp" onclick="envWpp()"><i class="fab fa-whatsapp"></i> Enviar por WhatsApp</button>
-          <button class="bl bl-pdf" onclick="verOrc()"><i class="fas fa-file-pdf"></i> Ver / PDF</button>
-        </div>
-
-        <div style="background:#f8f9fa;border:2px solid #e8e8e8;border-radius:var(--radius);padding:20px 24px;">
-          <h3 style="color:var(--azul);font-size:.95rem;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
-            <i class="fas fa-share-alt"></i> Como compartilhar o orçamento
-          </h3>
-          <ol style="padding-left:20px;font-size:.88rem;line-height:2.2;color:#555;">
-            <li>Preencha todos os dados do orçamento</li>
-            <li>Clique em <strong style="color:var(--azul);">"Salvar"</strong></li>
-            <li>O link acima já estará <strong style="color:#166534;">ativo imediatamente!</strong></li>
-            <li>Copie o link e envie para o cliente via <strong>WhatsApp</strong> ou <strong>E-mail</strong></li>
-            <li>O cliente abre o link e pode <strong>baixar o PDF</strong> diretamente!</li>
-          </ol>
-        </div>
-
       </div>
 
     </div><!-- /form-card -->
   </main>
+</div><!-- /layout -->
+
+<!-- ══ TOAST ══ -->
+<div class="toast" id="toast">
+  <i class="fas fa-check-circle"></i>
+  <span id="t-msg"></span>
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast"><span id="t-msg"></span></div>
-
-<!-- ══════════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════════ -->
 <script>
-/* ══════════════════════════════════════════════
-   OFICINA DE TURISMO — Painel Admin v2.1
-   JSONBin: 6a318e1eda38895dfecb475a
-══════════════════════════════════════════════ */
-
-/* ── Configuração JSONBin (já configurado!) ── */
+/* ════════════════════════════════════════════
+   CONFIGURAÇÃO — JSONBin.io
+   ════════════════════════════════════════════ */
 const JSONBIN_ID  = '6a318e1eda38895dfecb475a';
 const JSONBIN_KEY = '$2a$10$HTy/puCq6iupLHos/RV5DejOrnyU5.Pz18WDA4.dpmLOWJ09Rdqj.';
 const BASE_URL    = 'https://fernandoneto1210-sys.github.io/orcamentos-oficina/orcamento.html';
-const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_ID}`;
 
-/* ── Estado ─────────────────────────────── */
-let orcs = [];
-let idx  = -1;
-let diaB = 0;
-let valN = 0;
+/* ════════════════════════════════════════════
+   ESTADO GLOBAL
+   ════════════════════════════════════════════ */
+let orcs     = [];
+let idx      = -1;
+let diaB     = 0;
+let valN     = 0;
+let imgB64   = [];
 
-/* ── INIT ───────────────────────────────── */
-window.addEventListener('DOMContentLoaded', async () => {
+/* ════════════════════════════════════════════
+   INICIALIZAÇÃO
+   ════════════════════════════════════════════ */
+window.addEventListener('DOMContentLoaded', () => {
   fld('f-dtg').value = hoje();
   fld('f-vld').value = '10';
-  await carregarDados();
+  carregarDados();
 });
 
-/* ── CARREGAR DO JSONBIN ─────────────────── */
+/* ── CARREGAR DO JSONBIN ────────────────────── */
 async function carregarDados() {
   try {
-    toast('Carregando orçamentos...', 'info');
-    const r = await fetch(`${JSONBIN_URL}/latest`, {
-      headers: { 'X-Master-Key': JSONBIN_KEY }
-    });
-    if (!r.ok) throw new Error('Erro JSONBin: ' + r.status);
+    const r = await fetch(
+      `https://api.jsonbin.io/v3/b/${JSONBIN_ID}/latest`,
+      { headers: { 'X-Master-Key': JSONBIN_KEY } }
+    );
+    if (!r.ok) throw new Error('Erro ao carregar');
     const d = await r.json();
     orcs = Array.isArray(d.record) ? d.record : [];
-    renderSB();
-    toast('✅ Dados carregados!', 'ok');
+    setStatusJB(true);
   } catch(e) {
-    console.warn('Erro ao carregar JSONBin:', e);
-    /* Fallback: JSON local */
+    console.warn('JSONBin falhou, tentando JSON local...', e);
     try {
       const r = await fetch('data/orcamentos.json?_=' + Date.now());
       orcs = await r.json();
-      renderSB();
-      toast('⚠️ Usando dados locais (JSONBin offline)', 'err');
-    } catch(e2) {
+      setStatusJB(false);
+    } catch {
       orcs = [];
-      renderSB();
+      setStatusJB(false);
     }
   }
-}
-
-/* ── SALVAR NO JSONBIN ───────────────────── */
-async function salvarOrc() {
-  const o = coletar();
-  if (!o.id)     { toast('Preencha o ID do orçamento!', 'err'); return; }
-  if (!o.titulo) { toast('Preencha o Título da viagem!', 'err'); return; }
-
-  /* Atualiza array local */
-  const existente = orcs.findIndex(x => x.id === o.id);
-  if      (existente >= 0) orcs[existente] = o;
-  else if (idx >= 0)       orcs[idx] = o;
-  else                     orcs.push(o);
-  idx = orcs.findIndex(x => x.id === o.id);
-
-  /* Salva no JSONBin */
-  try {
-    toast('Salvando...', 'info');
-    const r = await fetch(JSONBIN_URL, {
-      method:  'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Master-Key': JSONBIN_KEY
-      },
-      body: JSON.stringify(orcs)
-    });
-    if (!r.ok) throw new Error('Erro: ' + r.status);
-    renderSB();
-    updLink();
-    fld('f-topo-txt').textContent = o.titulo;
-    toast('✅ Salvo! Link ativo instantaneamente!', 'ok');
-  } catch(e) {
-    console.error(e);
-    toast('❌ Erro ao salvar. Verifique a conexão.', 'err');
-  }
-}
-
-/* ── EXCLUIR ────────────────────────────── */
-async function delOrc() {
-  if (idx < 0) return;
-  const titulo = orcs[idx]?.titulo || 'este orçamento';
-  if (!confirm(`Excluir "${titulo}"?\nEsta ação não pode ser desfeita.`)) return;
-
-  orcs.splice(idx, 1);
-  idx = -1;
-
-  try {
-    await fetch(JSONBIN_URL, {
-      method:  'PUT',
-      headers: { 'Content-Type':'application/json','X-Master-Key': JSONBIN_KEY },
-      body:    JSON.stringify(orcs)
-    });
-    toast('✅ Excluído com sucesso!', 'ok');
-  } catch(e) {
-    toast('⚠️ Erro ao excluir no servidor.', 'err');
-  }
-
   renderSB();
-  fld('form-card').style.display = 'none';
-  fld('tela-ini').style.display  = 'flex';
 }
 
-/* ── SIDEBAR ────────────────────────────── */
+function setStatusJB(ok) {
+  const bar = fld('jb-bar');
+  const txt = fld('jb-bar-txt');
+  if (ok) {
+    bar.className = 'jb-status-bar ok';
+    txt.innerHTML = '<i class="fas fa-check-circle"></i> ⚡ JSONBin conectado — salvamento instantâneo ativo!';
+  } else {
+    bar.className = 'jb-status-bar off';
+    txt.innerHTML = '<i class="fas fa-exclamation-triangle"></i> JSONBin offline — usando dados locais';
+  }
+}
+
+/* ── RENDER SIDEBAR ─────────────────────────── */
 function renderSB() {
   const el = fld('orc-lista');
   if (!orcs.length) {
     el.innerHTML = `
       <div class="sb-vazio">
         <i class="fas fa-folder-open"></i>
-        <p>Nenhum orçamento.<br>Crie o primeiro!</p>
+        Nenhum orçamento ainda.<br>Crie o primeiro!
       </div>`;
     return;
   }
   el.innerHTML = orcs.map((o, i) => `
-    <div class="orc-item ${i===idx?'on':''}" onclick="abrirOrc(${i})">
+    <div class="orc-item ${i === idx ? 'on' : ''}" onclick="abrirOrc(${i})">
       <div class="orc-top">
-        <span class="orc-titulo">${o.titulo||'Sem título'}</span>
-        <span class="sbadge s-${o.status||'rascunho'}">${o.status||'rascunho'}</span>
+        <div class="orc-titulo">${o.titulo || '(sem título)'}</div>
+        <span class="sbadge s-${o.status||'ativo'}">${
+          o.status === 'rascunho' ? '📝 Rascunho' :
+          o.status === 'expirado' ? '❌ Expirado' : '✅ Ativo'
+        }</span>
       </div>
       <div class="orc-meta">
-        <span><i class="fas fa-user"></i>${o.cliente||'—'}</span>
-        <span><i class="fas fa-calendar"></i>${o.periodo||'—'}</span>
+        ${o.cliente ? `<span><i class="fas fa-user"></i>${o.cliente}</span>` : ''}
+        ${o.destino ? `<span><i class="fas fa-map-marker-alt"></i>${o.destino}</span>` : ''}
+        ${o.periodo ? `<span><i class="fas fa-calendar"></i>${o.periodo}</span>` : ''}
       </div>
     </div>`).join('');
 }
 
-/* ── NOVO ───────────────────────────────── */
+/* ── NOVO ───────────────────────────────────── */
 function novoOrc() {
-  idx = -1; diaB = 0; valN = 0;
+  idx = -1; diaB = 0; valN = 0; imgB64 = [];
   limpar();
   fld('f-dtg').value = hoje();
   fld('f-vld').value = '10';
@@ -675,9 +693,9 @@ function novoOrc() {
   renderSB();
 }
 
-/* ── ABRIR ──────────────────────────────── */
+/* ── ABRIR ──────────────────────────────────── */
 function abrirOrc(i) {
-  idx = i; diaB = 0; valN = 0;
+  idx = i; diaB = 0; valN = 0; imgB64 = [];
   limpar();
   preencher(orcs[i]);
   mostrarForm(orcs[i].titulo || 'Orçamento');
@@ -685,33 +703,60 @@ function abrirOrc(i) {
   renderSB();
 }
 
-/* ── PREENCHER ──────────────────────────── */
+/* ── DUPLICAR ───────────────────────────────── */
+function duplicarOrc() {
+  if (idx < 0) return;
+  const orig = JSON.parse(JSON.stringify(orcs[idx]));
+  orig.id    = orig.id + '-copia';
+  orig.titulo = orig.titulo + ' (cópia)';
+  orig.status = 'rascunho';
+  orcs.push(orig);
+  idx = orcs.length - 1;
+  renderSB();
+  abrirOrc(idx);
+  toast('Orçamento duplicado como rascunho ✅', 'ok');
+}
+
+/* ── PREENCHER ──────────────────────────────── */
 function preencher(o) {
-  sv('f-id',  o.id          || '');
-  sv('f-cli', o.cliente     || '');
-  sv('f-tit', o.titulo      || '');
-  sv('f-sub', o.subtitulo   || '');
-  sv('f-dst', o.destino     || '');
-  sv('f-sts', o.status      || 'ativo');
-  sv('f-per', o.periodo     || '');
-  sv('f-dur', o.duracao     || '');
-  sv('f-grp', o.grupo       || '');
-  sv('f-dtg', o.dataGeracao || hoje());
-  sv('f-vld', o.validadeDias|| '10');
-  sv('f-gal', (o.galeria    || []).join('\n'));
-  sv('f-par', o.parcelamento|| '');
-  sv('f-con', o.condicoes   || '');
-  sv('f-obs', o.observacoes || '');
+  sv('f-id',  o.id           || '');
+  sv('f-cli', o.cliente      || '');
+  sv('f-tit', o.titulo       || '');
+  sv('f-sub', o.subtitulo    || '');
+  sv('f-dst', o.destino      || '');
+  sv('f-sts', o.status       || 'ativo');
+  sv('f-per', o.periodo      || '');
+  sv('f-dur', o.duracao      || '');
+  sv('f-grp', o.grupo        || '');
+  sv('f-dtg', o.dataGeracao  || hoje());
+  sv('f-vld', o.validadeDias || '10');
+  sv('f-par', o.parcelamento || '');
+  sv('f-con', o.condicoes    || '');
+  sv('f-obs', o.observacoes  || '');
+
+  // Galeria URLs
+  const gal = (o.galeria || []).filter(g => !g.startsWith('data:'));
+  sv('f-gal', gal.join('\n'));
+
+  // Imagens base64 do upload
+  imgB64 = (o.galeria || []).filter(g => g.startsWith('data:'));
+  renderPreviews();
+
+  // Listas
   renderLD('li-inc', o.incluido    || []);
   renderLD('li-nao', o.naoIncluido || []);
+
+  // Roteiro e valores
   (o.roteiro || []).forEach(d => addDia(d));
   (o.valores || []).forEach(v => addValor(v));
   updLink();
 }
 
-/* ── COLETAR ────────────────────────────── */
+/* ── COLETAR ────────────────────────────────── */
 function coletar() {
-  const gal = gv('f-gal').split('\n').map(s => s.trim()).filter(Boolean);
+  const urls = gv('f-gal').split('\n').map(s => s.trim()).filter(Boolean);
+  const b64  = imgB64.filter(Boolean);
+  const gal  = [...urls, ...b64];
   return {
     id:           gv('f-id').trim().toLowerCase().replace(/\s+/g,'-'),
     status:       gv('f-sts'),
@@ -736,7 +781,80 @@ function coletar() {
   };
 }
 
-/* ── VER / WHATSAPP ─────────────────────── */
+/* ── SALVAR ─────────────────────────────────── */
+async function salvarOrc() {
+  const o = coletar();
+  if (!o.id)     { toast('Preencha o ID do orçamento!', 'err'); return; }
+  if (!o.titulo) { toast('Preencha o Título da viagem!', 'err'); return; }
+
+  const existente = orcs.findIndex(x => x.id === o.id);
+  if (existente >= 0)       orcs[existente] = o;
+  else if (idx >= 0)        orcs[idx] = o;
+  else                      orcs.push(o);
+  idx = orcs.findIndex(x => x.id === o.id);
+
+  try {
+    toast('Salvando...', 'info');
+    const r = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}`, {
+      method:  'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN_KEY
+      },
+      body: JSON.stringify(orcs)
+    });
+    if (!r.ok) throw new Error('Erro ao salvar');
+    renderSB();
+    updLink();
+    fld('f-topo-txt').textContent = o.titulo;
+    toast('✅ Salvo! Link já está ativo!', 'ok');
+  } catch(e) {
+    console.error(e);
+    // Fallback: download JSON
+    downloadJSON();
+    toast('Salvo localmente. Suba o JSON no GitHub.', 'info');
+  }
+}
+
+/* ── EXCLUIR ────────────────────────────────── */
+async function delOrc() {
+  if (idx < 0) { toast('Selecione um orçamento primeiro!', 'err'); return; }
+  const titulo = orcs[idx]?.titulo || 'este orçamento';
+  if (!confirm(`Excluir "${titulo}"?\nEsta ação não pode ser desfeita.`)) return;
+
+  orcs.splice(idx, 1);
+  idx = -1;
+
+  try {
+    await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}`, {
+      method:  'PUT',
+      headers: { 'Content-Type':'application/json', 'X-Master-Key': JSONBIN_KEY },
+      body:    JSON.stringify(orcs)
+    });
+    toast('Excluído com sucesso! ✅', 'ok');
+  } catch {
+    downloadJSON();
+    toast('Excluído. Suba o JSON no GitHub.', 'info');
+  }
+
+  renderSB();
+  fld('form-card').style.display = 'none';
+  fld('tela-ini').style.display  = 'flex';
+}
+
+/* ── DOWNLOAD JSON (fallback) ───────────────── */
+function downloadJSON() {
+  const blob = new Blob([JSON.stringify(orcs, null, 2)], { type: 'application/json' });
+  const a = Object.assign(document.createElement('a'), {
+    href: URL.createObjectURL(blob), download: 'orcamentos.json'
+  });
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+
+/* ── VER / WHATSAPP ─────────────────────────── */
 function verOrc() {
   const id = gv('f-id').trim();
   if (!id) { toast('Preencha o ID primeiro!', 'err'); return; }
@@ -750,9 +868,10 @@ function envWpp() {
   if (!id) { toast('Preencha o ID primeiro!', 'err'); return; }
   const link = `${BASE_URL}?id=${id}`;
   const msg  = encodeURIComponent(
-    `Olá${cli?' '+cli:''}! 🌍✈️\n\n` +
+    `Olá${cli ? ' ' + cli : ''}! 🌍✈️\n\n` +
     `Segue seu orçamento personalizado da *Oficina de Turismo*:\n\n` +
-    `✈️ *${tit}*\n\n👉 ${link}\n\n` +
+    `✈️ *${tit}*\n\n` +
+    `👉 ${link}\n\n` +
     `Qualquer dúvida estou à disposição! 😊\n\n` +
     `_Oficina de Turismo — (35) 98862-2943_`
   );
@@ -773,7 +892,7 @@ function copiarLink() {
   navigator.clipboard.writeText(url)
     .then(() => toast('✅ Link copiado!', 'ok'))
     .catch(() => {
-      const ta = Object.assign(document.createElement('textarea'), {value: url});
+      const ta = Object.assign(document.createElement('textarea'), { value: url });
       document.body.appendChild(ta); ta.select();
       document.execCommand('copy');
       document.body.removeChild(ta);
@@ -781,9 +900,9 @@ function copiarLink() {
     });
 }
 
-/* ── ABAS ───────────────────────────────── */
+/* ── ABAS ───────────────────────────────────── */
 function aba(id) {
-  const ids = ['basico','inc','rot','val','lnk'];
+  const ids = ['basico','inc','rot','val','img','lnk'];
   document.querySelectorAll('.aba').forEach((a, i) =>
     a.classList.toggle('on', ids[i] === id));
   document.querySelectorAll('.painel').forEach(p =>
@@ -791,7 +910,7 @@ function aba(id) {
   if (id === 'lnk') updLink();
 }
 
-/* ── LISTAS DINÂMICAS ───────────────────── */
+/* ── LISTAS DINÂMICAS ───────────────────────── */
 function renderLD(cid, arr) {
   fld(cid).innerHTML = '';
   arr.forEach(v => addItemVal(cid, v));
@@ -817,11 +936,11 @@ function coletarLD(cid) {
     .map(i => i.value.trim()).filter(Boolean);
 }
 
-/* ── ROTEIRO ────────────────────────────── */
+/* ── ROTEIRO ────────────────────────────────── */
 function addDia(d = null) {
   diaB++;
-  const n  = diaB;
-  const el = fld('rot-wrap');
+  const n   = diaB;
+  const el  = fld('rot-wrap');
   const div = document.createElement('div');
   div.className = 'rot-bloco';
   div.innerHTML = `
@@ -837,7 +956,7 @@ function addDia(d = null) {
         <label>Título do dia</label>
         <input type="text" class="rd-tit"
                value="${esc(d?.titulo||'')}"
-               placeholder="ex: São Paulo → Calama → San Pedro"/>
+               placeholder="ex: São Paulo → Calama → San Pedro de Atacama"/>
       </div>
       <div class="cg">
         <label>Descrição / Atividades</label>
@@ -853,19 +972,20 @@ function addDia(d = null) {
     </div>`;
   el.appendChild(div);
 }
+
 function coletarRot() {
   return [...document.querySelectorAll('.rot-bloco')].map(b => ({
     titulo:    b.querySelector('.rd-tit')?.value.trim() || '',
     descricao: b.querySelector('.rd-des')?.value.trim() || '',
-    imagem:    b.querySelector('.rd-img')?.value.trim()  || '',
+    imagem:    b.querySelector('.rd-img')?.value.trim() || '',
   }));
 }
 
-/* ── VALORES ────────────────────────────── */
+/* ── VALORES ────────────────────────────────── */
 function addValor(d = null) {
   valN++;
-  const n  = valN;
-  const el = fld('val-wrap');
+  const n   = valN;
+  const el  = fld('val-wrap');
   const div = document.createElement('div');
   div.className = 'val-bloco';
   div.innerHTML = `
@@ -897,6 +1017,7 @@ function addValor(d = null) {
     </div>`;
   el.appendChild(div);
 }
+
 function coletarVal() {
   return [...document.querySelectorAll('.val-bloco')].map(b => ({
     label: b.querySelector('.vl-lab')?.value.trim() || '',
@@ -905,12 +1026,53 @@ function coletarVal() {
   })).filter(v => v.label || v.preco);
 }
 
-/* ── HELPERS ────────────────────────────── */
-function sv(id, val) { const e = fld(id); if(e) e.value = val; }
-function gv(id)      { return fld(id)?.value || ''; }
-function fld(id)     { return document.getElementById(id); }
-function esc(s)      { return (s||'').replace(/"/g,'&quot;').replace(/</g,'<'); }
-function hoje()      { return new Date().toISOString().slice(0,10); }
+/* ── UPLOAD IMAGENS ─────────────────────────── */
+function processarUpload(input) {
+  const files = [...input.files];
+  files.forEach(file => {
+    if (file.size > 2 * 1024 * 1024) {
+      toast(`"${file.name}" muito grande! Máx: 2MB`, 'err');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      imgB64.push(e.target.result);
+      renderPreviews();
+      toast(`✅ "${file.name}" adicionada!`, 'ok');
+    };
+    reader.readAsDataURL(file);
+  });
+  input.value = '';
+}
+
+function renderPreviews() {
+  const prev = fld('preview-imgs');
+  if (!prev) return;
+  prev.innerHTML = '';
+  imgB64.filter(Boolean).forEach((b64, i) => {
+    const div = document.createElement('div');
+    div.className = 'preview-img';
+    div.innerHTML = `
+      <img src="${b64}" alt="foto ${i+1}"/>
+      <button class="del-img" onclick="removerImg(${i})" title="Remover">
+        <i class="fas fa-times"></i>
+      </button>`;
+    prev.appendChild(div);
+  });
+}
+
+function removerImg(i) {
+  imgB64[i] = null;
+  imgB64 = imgB64.filter(Boolean);
+  renderPreviews();
+}
+
+/* ── HELPERS ────────────────────────────────── */
+function sv(id, val)  { const e = fld(id); if (e) e.value = val; }
+function gv(id)       { return fld(id)?.value || ''; }
+function fld(id)      { return document.getElementById(id); }
+function esc(s)       { return (s||'').replace(/"/g,'&quot;').replace(/</g,'<'); }
+function hoje()       { return new Date().toISOString().slice(0, 10); }
 
 function mostrarForm(titulo) {
   fld('tela-ini').style.display  = 'none';
@@ -921,12 +1083,14 @@ function mostrarForm(titulo) {
 function limpar() {
   ['f-id','f-cli','f-tit','f-sub','f-dst',
    'f-per','f-dur','f-grp','f-gal',
-   'f-par','f-con','f-obs'].forEach(id => sv(id,''));
-  sv('f-sts','ativo');
-  fld('li-inc').innerHTML   = '';
-  fld('li-nao').innerHTML   = '';
-  fld('rot-wrap').innerHTML = '';
-  fld('val-wrap').innerHTML = '';
+   'f-par','f-con','f-obs'].forEach(id => sv(id, ''));
+  sv('f-sts', 'ativo');
+  fld('li-inc').innerHTML    = '';
+  fld('li-nao').innerHTML    = '';
+  fld('rot-wrap').innerHTML  = '';
+  fld('val-wrap').innerHTML  = '';
+  if (fld('preview-imgs')) fld('preview-imgs').innerHTML = '';
+  imgB64 = [];
   diaB = 0; valN = 0;
 }
 
