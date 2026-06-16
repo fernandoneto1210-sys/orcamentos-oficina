@@ -573,7 +573,7 @@ async function salvarOrc() {
     });
     if (!r.ok) throw new Error('Erro ao salvar');
     renderSB();
-    updLink();
+    updLink(); // <--- GARANTA QUE updLink() ESTÁ SENDO CHAMADA AQUI
     fld('f-topo-txt').textContent = o.titulo;
     toast('✅ Salvo! Link já está ativo!', 'ok');
   } catch(e) {
@@ -583,7 +583,6 @@ async function salvarOrc() {
     toast('Salvo localmente. Suba o JSON no GitHub.', 'info');
   }
 }
-
 async function delOrc() {
   if (idx < 0) { toast('Selecione um orçamento primeiro!', 'err'); return; }
   const titulo = orcs[idx]?.titulo || 'este orçamento';
@@ -768,7 +767,7 @@ function envWpp() {
 function updLink() {
   const id = gv('f-id').trim();
   fld('link-prev').textContent = id
-    ? `${BASE_URL}?id=${id}`
+    ? `${BASE_URL}?id=${id}` // <--- BASE_URL DEVE ESTAR DEFINIDA NO TOPO DO SCRIPT
     : 'Preencha o ID na aba "Básico"...';
 }
 
