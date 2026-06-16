@@ -2,158 +2,146 @@
   {
     "id": "exemplo-01",
     "status": "ativo",
-    "cliente": "Cliente Demonstração",
+    "cliente": "Demonstração",
     "titulo": "Deserto do Atacama",
     "subtitulo": "Uma experiência única no deserto mais árido do mundo",
     "destino": "🇨🇱 Chile — San Pedro de Atacama",
     "periodo": "10 a 16 de Outubro de 2026",
     "duracao": "7 dias · 6 noites",
-    "grupo": "Grupo reduzido — máx. 20 pessoas",
+    "grupo": "Máx. 20 pessoas",
     "dataGeracao": "2026-06-16",
     "validadeDias": "10",
-    "imgCapa": "https://images.unsplash.com/photo-1547470943-bc2b1e9fffff?w=1400&q=80",
+    "imgCapa": "https://images.unsplash.com/photo-1547470943-bc2b1e9fffff?w=1200&q=80",
     "galeria": [
       "https://images.unsplash.com/photo-1547470943-bc2b1e9fffff?w=1200&q=80",
       "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=1200&q=80",
       "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=80",
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80",
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=80"
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80"
     ],
     "incluido": [
-      "Passagem aérea São Paulo ↔ Calama (econômica)",
+      "Passagem aérea São Paulo ↔ Calama",
       "Traslados aeroporto/hotel/aeroporto",
-      "06 noites em hotel 4★ em San Pedro",
+      "06 noites em hotel 4★",
       "Café da manhã diário",
       "Passeio: Geysers del Tatio",
       "Passeio: Valle de la Luna",
-      "Passeio: Valle de la Muerte",
-      "Passeio: Lagunas Altiplânicas",
-      "Guia acompanhante desde São Lourenço",
-      "Seguro viagem completo"
+      "Guia acompanhante",
+      "Seguro viagem"
     ],
     "naoIncluido": [
-      "Passagem aérea São Lourenço ↔ São Paulo",
-      "Almoços e jantares (exceto mencionados)",
+      "Passagem São Lourenço ↔ São Paulo",
+      "Almoços e jantares",
       "Despesas pessoais",
-      "Gorjetas",
-      "Passeios opcionais não listados"
+      "Gorjetas"
     ],
     "roteiro": [
       {
-        "titulo": "São Lourenço → São Paulo → Calama → San Pedro",
-        "descricao": "Embarque em São Lourenço com destino ao aeroporto de Guarulhos. Voo noturno para Calama. Chegada e traslado para San Pedro de Atacama (1h30). Acomodação e descanso para adaptação à altitude.",
+        "titulo": "São Lourenço → Calama → San Pedro",
+        "descricao": "Embarque e voo para o Chile. Chegada e traslado para San Pedro de Atacama.",
         "imagem": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80"
       },
       {
-        "titulo": "Geysers del Tatio + Aldeia de Machuca",
-        "descricao": "Saída às 4h para os famosos Geysers del Tatio a 4.320m de altitude. Amanhecer entre colunas de vapor. Visita à aldeia indígena de Machuca. Retorno ao hotel para café da manhã reforçado.",
+        "titulo": "Geysers del Tatio",
+        "descricao": "Saída às 4h para os Geysers del Tatio a 4.320m. Amanhecer mágico entre vapor.",
         "imagem": "https://images.unsplash.com/photo-1547470943-bc2b1e9fffff?w=800&q=80"
-      },
-      {
-        "titulo": "Valle de la Luna + Valle de la Muerte",
-        "descricao": "Tarde mágica no Valle de la Luna, uma das paisagens mais surreais do planeta. Pôr do sol inesquecível sobre as dunas. Visita à Laguna Cejar com suas águas altamente salinas.",
-        "imagem": "https://images.unsplash.com/photo-1596402184320-417e7178b2cd?w=800&q=80"
-      },
-      {
-        "titulo": "Lagunas Altiplânicas + Laguna Miscanti",
-        "descricao": "Expedição pelas alturas do Atacama. Laguna Miscanti e Miñiques a 4.200m. Avistamento de flamingos andinos em habitat natural. Paisagens que parecem de outro planeta.",
-        "imagem": "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80"
-      },
-      {
-        "titulo": "San Pedro Livre + Pukará de Quitor",
-        "descricao": "Manhã livre para explorar o charmoso centro de San Pedro de Atacama. Tarde no Oásis de Quitor e ruínas arqueológicas do Pukará. Jantar de confraternização do grupo.",
-        "imagem": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
-      },
-      {
-        "titulo": "Salar de Atacama + Laguna Chaxa",
-        "descricao": "Visita ao maior salar do Chile. Laguna Chaxa com colônia permanente de flamingos. Pôr do sol sobre o espelho d'água — um dos cenários mais fotogênicos do mundo.",
-        "imagem": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
-      },
-      {
-        "titulo": "Calama → São Paulo → São Lourenço",
-        "descricao": "Café da manhã, check-out e traslado ao aeroporto de Calama. Embarque de retorno ao Brasil. Chegada e reencontro com as famílias. Memórias para a vida toda!",
-        "imagem": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80"
       }
     ],
     "valores": [
-      {
-        "label": "Por pessoa em duplo",
-        "preco": "R$ 18.000",
-        "desc": "Acomodação dupla ou twin"
-      },
-      {
-        "label": "Suplemento single",
-        "preco": "+ R$ 2.800",
-        "desc": "Quarto individual"
-      },
-      {
-        "label": "Criança até 11 anos",
-        "preco": "Consulte",
-        "desc": "Condições especiais"
-      }
+      { "label": "Por pessoa em duplo", "preco": "R$ 18.000", "desc": "Acomodação dupla" },
+      { "label": "Suplemento single",   "preco": "+ R$ 2.800", "desc": "Quarto individual" }
     ],
-    "parcelamento": "💳 Parcelamento em até 12x no cartão de crédito (sujeito a juros da operadora)\n💰 PIX ou transferência com 5% de desconto à vista",
-    "condicoes": "• 30% de entrada na confirmação da reserva\n• 40% até 60 dias antes da viagem\n• 30% restante até 30 dias antes da viagem\n\nFormas de pagamento aceitas:\n→ PIX: oficinadeturismo@oficinatur.com.br\n→ Transferência bancária (solicitar dados)\n→ Cartão de crédito Visa / Mastercard",
-    "observacoes": "• Orçamento válido por 10 dias a partir da data de emissão\n• Valores sujeitos a disponibilidade de passagens e tarifas hoteleiras\n• Mínimo de 15 passageiros para saída garantida\n• Documentação: passaporte ou RG válido para entrada no Chile\n• Recomendamos seguro viagem premium para altitude elevada\n• A Oficina de Turismo se reserva o direito de adequar roteiros em caso de força maior"
+    "parcelamento": "💳 Até 12x no cartão\n💰 PIX com 5% de desconto",
+    "condicoes": "• 30% na confirmação\n• 40% até 60 dias antes\n• 30% até 30 dias antes",
+    "observacoes": "• Válido por 10 dias\n• Mínimo 15 passageiros\n• RG válido para o Chile"
   },
   {
     "id": "aventura-amazonia-2027",
     "status": "ativo",
-    "cliente": "Fernando Neto ",
-    "titulo": "Experiência Amazonia ",
-    "subtitulo": "Viver uma experiencia de um Navio 5 estrelas e descubrir as maravilhas da Amazonia",
-    "destino": "Cruzeiro pela Amazonia  (Manaus com Cruzeiro pelo Rio Negro Grand Amazon All Inclusive)",
-    "periodo": "05 a 11/06/2027",
-    "duracao": "7 Dias - 6 noites",
-    "grupo": "",
+    "cliente": "Cliente Teste",
+    "titulo": "Aventura na Amazônia",
+    "subtitulo": "A maior floresta tropical do mundo te espera!",
+    "destino": "🇧🇷 Brasil — Amazônia",
+    "periodo": "15 a 22 de Janeiro de 2027",
+    "duracao": "8 dias · 7 noites",
+    "grupo": "Máx. 16 pessoas",
     "dataGeracao": "2026-06-16",
     "validadeDias": "10",
-    "imgCapa": "",
-    "galeria": [],
-    "incluido": [
-      "Passagem aérea (classe econômica) GRU/MAO/GRU com bagagem despachada 2 noites de hospedagem em Manaus com café da manhã City tour em Manaus Traslados aeroporto / hotel / porto / aeroporto em Manaus Cruzeiro Grand Amazon Expedition com 4 noites de hospedagem Todas as refeições a bordo (café da manhã, almoço, jantar) Todas as bebidas a bordo (Tudo Incluído) Todas as expedições diurnas e noturnas mencionadas no roteiro Shows de animação profissionais a bordo Acesso à piscina, ginásio e área de shopping a bordo Serviço médico a bordo Serviço de quarto"
+    "imgCapa": "https://images.unsplash.com/photo-1588392382834-a891154bca4d?w=1200&q=80",
+    "galeria": [
+      "https://images.unsplash.com/photo-1588392382834-a891154bca4d?w=1200&q=80",
+      "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1200&q=80",
+      "https://images.unsplash.com/photo-1564419320461-6870880221ad?w=1200&q=80",
+      "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=1200&q=80"
     ],
-    "naoIncluido": [],
+    "incluido": [
+      "Passagem aérea São Paulo ↔ Manaus",
+      "Traslados aeroporto/lodge/aeroporto",
+      "07 noites em lodge na floresta",
+      "Todas as refeições incluídas",
+      "Passeio de barco pelo Rio Negro",
+      "Caminhada noturna na floresta",
+      "Pesca de tucunaré",
+      "Encontro das águas",
+      "Visita a comunidade ribeirinha",
+      "Guia especializado em fauna/flora",
+      "Seguro viagem completo"
+    ],
+    "naoIncluido": [
+      "Passagem São Lourenço ↔ São Paulo",
+      "Bebidas alcoólicas",
+      "Despesas pessoais",
+      "Gorjetas",
+      "Equipamentos fotográficos"
+    ],
     "roteiro": [
       {
-        "titulo": "DIA 05 DE JUNHO - SABADO - GURULHOS -MANAUS",
-        "descricao": "Inicio de nossa viagem . Vôo com detino a Manaua . Chegada em Manaus traslado ao hotel , hospedagem",
-        "imagem": "https://pixabay.com/photos/body-of-water-nature-tree-river-3228741/"
+        "titulo": "São Lourenço → São Paulo → Manaus",
+        "descricao": "Embarque em São Lourenço. Conexão em Guarulhos. Chegada a Manaus e traslado para o lodge. Jantar de boas-vindas e apresentação do roteiro.",
+        "imagem": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80"
       },
       {
-        "titulo": "DIA 06 DE JUNHO - DOMINGO - MANAUS",
-        "descricao": "Apos o cafe da manhã , sairemos em nosso city tour para conhecer os principais pontos\nturísticos de Manaus . Retorno ao hotel . Restante do dia livre",
-        "imagem": "https://pixabay.com/photos/macaw-blue-yellow-bird-beak-1416386/"
+        "titulo": "Encontro das Águas + Rio Negro",
+        "descricao": "Após café da manhã, visita ao famoso Encontro das Águas — fenômeno onde o Rio Negro e o Solimões correm lado a lado sem se misturar por quilômetros.",
+        "imagem": "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=800&q=80"
       },
       {
-        "titulo": "DIA 07 DE JUNHO - SEGUNDA - GRAND AMAZON",
-        "descricao": "Após o cafe da manhã , traslado para o Porto de Manaus .\nPartida. Navegação pelo Rio Negro. Pôr do Sol no terraço com música ambiente .\nCoquetel de boas-vindas oferecido pelo capitão , com apresentação da tripulação, dos\nequipamentos a bordo e dos procedimentos de segurança.\nJantar .",
-        "imagem": "https://pixabay.com/photos/amazons-sunset-amazon-river-brazil-295891/"
+        "titulo": "Floresta Amazônica — Trilha Diurna",
+        "descricao": "Imersão total na maior biodiversidade do planeta. Observação de macacos, araras, preguiças e inúmeras espécies de pássaros com guia especializado.",
+        "imagem": "https://images.unsplash.com/photo-1588392382834-a891154bca4d?w=800&q=80"
       },
       {
-        "titulo": "DIA 08 DE jUNHO - TERÇA - GRAND AMAZON",
-        "descricao": "Café da manhã continental no terraço - Excursão matutina - Caminhada em trilhas na região dos\nIgarapés de Jaraqui, com observação da fauna e flora local ou Passeios em lanchas pela região\ndos Igarapés de Jaraqui. Palestra “Introdução à Amazônia” . Visita à ponte de comando -\nAlmoço . Entretenimento com a equipe de expedição . Palestra “Boto do Amazonas”. Passeios\nem lanchas entre as ilhas da região de Três Bocas, que fazem parte do segundo maior\narquipélago do mundo. Jantar .Entretenimento com a equipe de expedição .",
-        "imagem": "https://cdn.pixabay.com/photo/2019/11/22/13/37/rio-negro-4644907_1280.jpg"
+        "titulo": "Pesca de Tucunaré + Caminhada Noturna",
+        "descricao": "Manhã de pesca esportiva de tucunaré e piranha no Rio Negro. À noite, caminhada com lanterna para avistar a vida selvagem noturna da Amazônia.",
+        "imagem": "https://images.unsplash.com/photo-1564419320461-6870880221ad?w=800&q=80"
       },
       {
-        "titulo": "DIA 09 DE JUNHO - QUARTA - GRAND AMAZON",
-        "descricao": "Café da manhã .Excursão Matutina - Visita a uma comunidade local do Rio Cuieiras para\nconhecer seu modo de vida, costumes e cultivos produzidos. Oportunidade para adquirir\nartesanato local. Palestra “Peixes da Amazônia”. Almoço . Excursão Diurna - Passeios em\nlanchas e visita à casa do Caboclo (população local) na região do Ariaú ou Pesca de piranha na\nregião do Ariaú. Excursão Noturna na região do Ariaú. Jantar .",
-        "imagem": "https://pixabay.com/photos/aquatica-plant-pond-amazonia-brazil-101626/"
+        "titulo": "Visita à Comunidade Ribeirinha",
+        "descricao": "Vivência com moradores locais. Aprendizado sobre medicina natural, artesanato e culinária amazônica. Tarde livre para explorar as redondezas do lodge.",
+        "imagem": "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&q=80"
       },
       {
-        "titulo": "DIA 10 DE JUNHO - QUINTA - GRAND AMAZON",
-        "descricao": "Café da manhã. Excursão Matutina - Despertar da Amazônia. Passeio matinal em lanchas na\nregião do Rio Ariaú, onde podem ser avistadas aves e uma bela paisagem iluminada pelo nascer\ndo sol. . Excursão Matutina - Passeio com observação de botos cor-de-rosa e visita à praia.\nPalestra “Pássaros da Amazônia” . Almoço . Entretenimento com a equipe de expedição no\nterraço. Excursão Diurna - Visita ao Museu do Seringueiro. Jantar de gala . Show folclórico .",
-        "imagem": "https://pixabay.com/photos/amazonia-monkey-beautiful-4774256/"
+        "titulo": "Lago do Janauari + Vitória Régia",
+        "descricao": "Passeio ao Lago do Janauari para ver as gigantescas vitórias-régias. Observação de botos-cor-de-rosa e jacarés. Pôr do sol inesquecível no rio.",
+        "imagem": "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=800&q=80"
       },
       {
-        "titulo": "DIA 11 DE JUNHO -SEXTA-FEIRA",
-        "descricao": "Café da manhã . 08:00 Chegada ao Porto de Manaus.\nCheck-out e desembarque. Traslado ao aeroporto de Manaus para pegarmos nosso voo com\ndestino a Guarulhos.",
-        "imagem": "https://pixabay.com/photos/dawn-amazonia-sun-2060151/"
+        "titulo": "Dia Livre + Mercado Municipal de Manaus",
+        "descricao": "Manhã livre no lodge. À tarde, visita ao histórico Mercado Municipal de Manaus e ao Teatro Amazonas — uma das joias arquitetônicas do Brasil.",
+        "imagem": "https://images.unsplash.com/photo-1588392382834-a891154bca4d?w=800&q=80"
+      },
+      {
+        "titulo": "Manaus → São Paulo → São Lourenço",
+        "descricao": "Café da manhã, check-out e traslado ao aeroporto de Manaus. Embarque de retorno ao Brasil Central. Chegada e reencontro com as famílias.",
+        "imagem": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80"
       }
     ],
-    "valores": [],
-    "parcelamento": "Em até 10 x s/ juros no cartão de credito ",
-    "condicoes": "Entrada: R$ 2897,00 + 10x R$ 1475,00(cartão de crédito)",
-    "observacoes": "Todos os valores sujeitos a alterações.\nSujeito a disponibilidade de lugares. \nRoteiro sujeito a alterações. "
+    "valores": [
+      { "label": "Por pessoa em duplo", "preco": "R$ 12.500", "desc": "Acomodação dupla no lodge" },
+      { "label": "Suplemento single",   "preco": "+ R$ 1.800", "desc": "Quarto individual" },
+      { "label": "Criança até 10 anos", "preco": "Consulte",   "desc": "Condições especiais" }
+    ],
+    "parcelamento": "💳 Parcelamento em até 12x no cartão de crédito\n💰 PIX ou transferência com 5% de desconto à vista",
+    "condicoes": "• 30% de entrada na confirmação da reserva\n• 40% até 60 dias antes da viagem\n• 30% restante até 30 dias antes\n\nFormas de pagamento:\n→ PIX: oficinadeturismo@oficinatur.com.br\n→ Cartão Visa / Mastercard",
+    "observacoes": "• Orçamento válido por 10 dias\n• Mínimo de 12 passageiros para saída garantida\n• Recomendamos vacina contra febre amarela\n• Levar repelente de alta proteção\n• Documentação: RG ou passaporte válido\n• Clima quente e úmido — roupas leves e impermeável"
   }
 ]
