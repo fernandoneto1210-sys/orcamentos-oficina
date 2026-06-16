@@ -1,1 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Orçamento — Oficina de Turismo</title>
+  <link rel="stylesheet" href="assets/css/orcamento.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
 
+<!-- ══════════════════════════════════════
+     HEADER FIXO
+══════════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <img src="assets/images/logo.png"   alt="Oficina de Turismo" class="logo-principal"/>
+      <img src="assets/images/logo30.png" alt="30 Anos de Experiência" class="logo-30"/>
+    </div>
+    <nav class="header-contatos">
+      <a href="https://wa.me/5535988622943" target="_blank" class="contato-link whatsapp">
+        <i class="fab fa-whatsapp"></i><span>(35) 98862-2943</span>
+      </a>
+      <a href="mailto:oficinadeturismo@oficinatur.com.br" class="contato-link email">
+        <i class="fas fa-envelope"></i><span class="hide-sm">oficinadeturismo@oficinatur.com.br</span>
+      </a>
+      <a href="https://instagram.com/oficinadeturismo" target="_blank" class="contato-link insta">
+        <i class="fab fa-instagram"></i><span>@oficinadeturismo</span>
+      </a>
+      <a href="https://www.oficinatur.com.br" target="_blank" class="contato-link site">
+        <i class="fas fa-globe"></i><span class="hide-sm">oficinatur.com.br</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════
+     CONTEÚDO PRINCIPAL
+══════════════════════════════════════ -->
+<main id="pagina-orcamento">
+
+  <!-- ERRO -->
+  <div id="bloco-erro" class="bloco-erro escondido">
+    <div class="erro-inner">
+      <i class="fas fa-map-signs"></i>
+      <h2>Orçamento não encontrado</h2>
+      <p>O link pode estar incorreto ou expirado.</p>
+      <a href="https://wa.me/5535988622943" class="btn-wpp">
+        <i class="fab fa-whatsapp"></i> Falar com a Oficina de Turismo
+      </a>
+    </div>
+  </div>
+
+  <!-- ── HERO + CARROSSEL ── -->
+  <section id="sec-hero" class="hero-section escondido">
+    <div class="carrossel" id="carrossel">
+      <div class="carrossel-track" id="carrossel-track"></div>
+      <!-- Controles -->
+      <button class="car-btn car-prev" onclick="carrosselMover(-1)">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="car-btn car-next" onclick="carrosselMover(1)">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <div class="car-dots" id="car-dots"></div>
+    </div>
+    <!-- Overlay com info -->
+    <div class="hero-overlay"></div>
+    <div class="hero-info">
+      <div class="hero-info-inner">
+        <span class="badge-destino" id="badge-destino"></span>
+        <h1 id="titulo-viagem"></h1>
+        <p  id="subtitulo-viagem" class="hero-sub"></p>
+        <div class="hero-chips">
+          <span class="chip"><i class="fas fa-calendar-alt"></i> <span id="periodo-viagem"></span></span>
+          <span class="chip"><i class="fas fa-clock"></i> <span id="duracao-viagem"></span></span>
+          <span class="chip"><i class="fas fa-users"></i> <span id="grupo-viagem"></span></span>
+        </div>
+        <div class="hero-actions">
+          <button class="btn-hero-wpp" onclick="abrirWhatsApp()">
+            <i class="fab fa-whatsapp"></i> Quero me inscrever!
+          </button>
+          <button class="btn-hero-pdf" onclick="gerarPDF()">
+            <i class="fas fa-file-pdf"></i> Baixar PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INCLUÍDOS / NÃO INCLUÍDOS ── -->
+  <section id="sec-inc" class="sec-inc escondido">
+    <div class="container">
+      <div class="inc-grid">
+        <div class="inc-card inc-sim">
+          <div class="inc-header">
+            <i class="fas fa-check-circle"></i>
+            <h3>O que está incluído</h3>
+          </div>
+          <ul id="lista-incluido"></ul>
+        </div>
+        <div class="inc-card inc-nao">
+          <div class="inc-header">
+            <i class="fas fa-times-circle"></i>
+            <h3>O que NÃO está incluído</h3>
+          </div>
+          <ul id="lista-nao-incluido"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ROTEIRO DIA A DIA ── -->
+  <section id="sec-roteiro" class="sec-roteiro escondido">
+    <div class="container">
+      <h2 class="titulo-secao">
+        <i class="fas fa-map-marked-alt"></i> Roteiro Dia a Dia
+      </h2>
+      <div id="roteiro-timeline" class="roteiro-timeline"></div>
+    </div>
+  </section>
+
+  <!-- ── VALORES ── -->
+  <section id="sec-valores" class="sec-valores escondido">
+    <div class="valores-bg">
+      <div class="container">
+        <h2 class="titulo-secao light">
+          <i class="fas fa-tag"></i> Investimento
+        </h2>
+        <div id="valores-grid" class="valores-grid"></div>
+        <div class="parcelamento-box">
+          <i class="fas fa-credit-card"></i>
+          <p id="parcelamento-texto"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONDIÇÕES DE PAGAMENTO ── -->
+  <section id="sec-condicoes" class="sec-generica escondido">
+    <div class="container">
+      <h2 class="titulo-secao">
+        <i class="fas fa-file-invoice-dollar"></i> Condições de Pagamento
+      </h2>
+      <div id="condicoes-texto" class="caixa-texto borda-azul"></div>
+    </div>
+  </section>
+
+  <!-- ── OBSERVAÇÕES ── -->
+  <section id="sec-obs" class="sec-generica escondido">
+    <div class="container">
+      <h2 class="titulo-secao">
+        <i class="fas fa-info-circle"></i> Observações Importantes
+      </h2>
+      <div id="obs-texto" class="caixa-texto borda-dourada"></div>
+    </div>
+  </section>
+
+  <!-- ── RODAPÉ DO ORÇAMENTO ── -->
+  <div id="sec-rodape-orc" class="rodape-orcamento escondido">
+    <div class="container">
+      <p>📅 Orçamento emitido em <strong id="data-geracao"></strong>
+         &nbsp;·&nbsp; Válido por <strong id="validade-dias"></strong> dias
+         &nbsp;·&nbsp; Ref: <strong id="ref-id"></strong>
+      </p>
+    </div>
+  </div>
+
+</main>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-logos">
+      <img src="assets/images/logo.png"   alt="Oficina de Turismo" class="footer-logo"/>
+      <img src="assets/images/logo30.png" alt="30 Anos" class="footer-logo30"/>
+    </div>
+    <div class="footer-info">
+      <p class="footer-slogan"><strong>Oficina de Turismo</strong> — Sua viagem começa aqui!</p>
+      <div class="footer-links">
+        <a href="https://wa.me/5535988622943" target="_blank">
+          <i class="fab fa-whatsapp"></i> (35) 98862-2943
+        </a>
+        <a href="mailto:oficinadeturismo@oficinatur.com.br">
+          <i class="fas fa-envelope"></i> oficinadeturismo@oficinatur.com.br
+        </a>
+        <a href="https://instagram.com/oficinadeturismo" target="_blank">
+          <i class="fab fa-instagram"></i> @oficinadeturismo
+        </a>
+        <a href="https://www.oficinatur.com.br" target="_blank">
+          <i class="fas fa-globe"></i> www.oficinatur.com.br
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copy">
+    <p>© 2026 Oficina de Turismo · 30 anos transformando sonhos em realidade ✈️</p>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════
+     BOTÕES FLUTUANTES
+══════════════════════════════════════ -->
+<div class="fab-container">
+  <button class="fab fab-wpp" onclick="abrirWhatsApp()" title="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </button>
+  <button class="fab fab-pdf" onclick="gerarPDF()" title="Baixar PDF" id="btn-pdf">
+    <i class="fas fa-file-pdf"></i>
+  </button>
+</div>
+
+<!-- ══════════════════════════════════════
+     LOADING OVERLAY
+══════════════════════════════════════ -->
+<div id="loading-overlay" class="loading-overlay">
+  <div class="loading-box">
+    <i class="fas fa-plane-departure fa-spin"></i>
+    <p>Gerando seu PDF...</p>
+  </div>
+</div>
+
+<script src="assets/js/orcamento.js"></script>
+</body>
+</html>
