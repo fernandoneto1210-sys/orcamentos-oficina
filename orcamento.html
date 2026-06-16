@@ -51,9 +51,10 @@
       display:flex;align-items:center;gap:14px;
       background:rgba(255,255,255,.12);padding:6px 16px;
       border-radius:10px;border:1px solid rgba(255,255,255,.2);}
-    .logo-principal{height:68px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .logo-30{height:58px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .logo-divider{width:1px;height:54px;background:rgba(255,255,255,.30);}
+    /* ★ AUMENTANDO LOGOS DO HEADER ★ */
+    .logo-principal{height:75px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
+    .logo-30{height:65px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
+    .logo-divider{width:1px;height:60px;background:rgba(255,255,255,.30);}
     .h-contatos{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
     .h-link{
       color:rgba(255,255,255,.85);font-size:.9rem;
@@ -184,7 +185,8 @@
       color:#fff;transition:transform .3s,box-shadow .3s;}
     .val-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.3);}
     .v-label{font-size:.85rem;font-weight:600;letter-spacing:1.5px;opacity:.75;margin-bottom:10px;}
-    .v-preco{font-size:2.1rem;font-weight:800;color:var(--dourado2);line-height:1.1;}
+    /* ★ CORRIGINDO COR DO PREÇO ★ */
+    .v-preco{font-size:2.1rem;font-weight:800;color:#fff;line-height:1.1;} /* Alterado para branco puro */
     .v-desc{font-size:.82rem;opacity:.78;margin-top:8px;}
     .parc-box{
       background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);
@@ -215,14 +217,17 @@
       display:flex;align-items:center;flex-wrap:wrap;
       gap:24px;padding-bottom:30px;
       max-width:980px;margin:0 auto;}
-    /* ★ LOGOS FOOTER GRANDES ★ */
+    /* ★ AJUSTANDO LOGOS E CONTATO DO FOOTER ★ */
     .footer-logo-wrap{
-      display:flex;align-items:center;gap:14px;
-      background:rgba(255,255,255,.09);padding:12px 18px;
-      border-radius:12px;border:1px solid rgba(255,255,255,.15);}
-    .footer-logo{height:68px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .footer-logo30{height:58px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .footer-div{width:1px;height:54px;background:rgba(255,255,255,.25);}
+      display:flex;align-items:center;gap:10px; /* Reduzido o gap */
+      background:none; /* Removido background */
+      padding:0; /* Removido padding */
+      border:none; /* Removido border */
+      margin-bottom:15px; /* Adicionado margem para separar do texto */
+    }
+    .footer-logo{height:60px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));} /* Reduzido altura */
+    .footer-logo30{height:50px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));} /* Reduzido altura */
+    .footer-div{width:1px;height:46px;background:rgba(255,255,255,.25);} /* Reduzido altura */
     .footer-info{flex:1;}
     .footer-slogan{font-size:.95rem;margin-bottom:10px;color:#fff;font-weight:600;}
     .footer-links{display:flex;flex-wrap:wrap;gap:8px 20px;}
@@ -287,6 +292,7 @@
       .header-inner{flex-direction:column;text-align:center;}
       .h-contatos{width:100%;justify-content:center;}
       .logo-wrap{padding:6px 12px;}
+      /* ★ LOGOS HEADER RESPONSIVO ★ */
       .logo-principal{height:60px;}
       .logo-30{height:50px;}
       .logo-divider{height:46px;}
@@ -303,7 +309,7 @@
       .timeline::before{left:28px;}
       .dia{flex-direction:column;gap:10px;}
       .dia-num{width:60px;height:60px;font-size:1rem;margin-left:-10px;}
-      .dia-corpo{width:100%;margin-left:0;}
+      .dia-corpo{margin-left:0;}
       .dia-foto-wrap{max-height:180px;}
       .dia-foto{height:180px;}
       .dia-txt{padding:15px;}
@@ -467,6 +473,9 @@
           <div class="footer-links">
             <a href="tel:+5535988622943"><i class="fas fa-phone"></i> (35) 98862-2943</a>
             <a href="mailto:contato@oficinadeturismo.com.br"><i class="fas fa-envelope"></i> contato@oficinadeturismo.com.br</a>
+            <!-- Adicione o Instagram e o Site aqui, se desejar -->
+            <a href="https://www.instagram.com/oficinadeturismo/" target="_blank"><i class="fab fa-instagram"></i> @oficinadeturismo</a>
+            <a href="https://www.oficinatur.com.br/" target="_blank"><i class="fas fa-globe"></i> www.oficinatur.com.br</a>
           </div>
         </div>
       </div>
