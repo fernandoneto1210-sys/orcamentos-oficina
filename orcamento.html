@@ -4,227 +4,585 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Orçamento — Oficina de Turismo</title>
-  <link rel="stylesheet" href="assets/css/orcamento.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    :root {
+      --azul:#1B3A6B; --azul2:#2E5FA3; --verde:#2D6A4F;
+      --verde2:#40916C; --dourado:#C9A84C; --cinza:#F5F6FA;
+      --sombra:0 6px 24px rgba(0,0,0,.10); --radius:14px;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cinza);color:#444;line-height:1.75;}
+    a{text-decoration:none;color:inherit;}
+    img{display:block;max-width:100%;}
+    .container{max-width:980px;margin:0 auto;padding:0 20px;}
+    .hide{display:none!important;}
+
+    /* HEADER */
+    .site-header{
+      position:sticky;top:0;z-index:200;
+      background:linear-gradient(135deg,var(--azul),var(--verde));
+      box-shadow:0 3px 16px rgba(0,0,0,.28);
+    }
+    .header-inner{
+      max-width:980px;margin:0 auto;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:10px 20px;gap:16px;flex-wrap:wrap;
+    }
+    .logo-wrap{display:flex;align-items:center;gap:14px;}
+    .logo-wrap img.logo-p{height:56px;object-fit:contain;}
+    .logo-wrap img.logo-30{height:46px;object-fit:contain;}
+    .h-contatos{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;}
+    .h-contatos a{
+      display:flex;align-items:center;gap:6px;
+      color:rgba(255,255,255,.88);font-size:.82rem;
+      padding:4px 10px;border-radius:20px;
+      transition:all .3s;
+    }
+    .h-contatos a:hover{color:var(--dourado);background:rgba(255,255,255,.10);}
+
+    /* HERO + CARROSSEL */
+    .hero{position:relative;height:92vh;min-height:520px;max-height:800px;overflow:hidden;}
+    .car-track{display:flex;height:100%;transition:transform .7s cubic-bezier(.77,0,.18,1);}
+    .car-track img{flex-shrink:0;width:100%;height:100%;object-fit:cover;object-position:center;}
+    .car-btn{
+      position:absolute;top:50%;transform:translateY(-50%);
+      background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.4);
+      color:#fff;width:48px;height:48px;border-radius:50%;
+      font-size:1.1rem;cursor:pointer;z-index:5;
+      transition:all .3s;backdrop-filter:blur(4px);
+    }
+    .car-btn:hover{background:rgba(255,255,255,.35);}
+    .car-prev{left:18px;} .car-next{right:18px;}
+    .car-dots{
+      position:absolute;bottom:150px;left:50%;transform:translateX(-50%);
+      display:flex;gap:8px;z-index:5;
+    }
+    .car-dot{
+      width:10px;height:10px;border-radius:50%;
+      background:rgba(255,255,255,.45);border:none;cursor:pointer;transition:all .3s;
+    }
+    .car-dot.on{background:var(--dourado);transform:scale(1.3);}
+    .hero-overlay{
+      position:absolute;inset:0;z-index:2;
+      background:linear-gradient(to bottom,rgba(27,58,107,.1) 0%,rgba(27,58,107,.6) 55%,rgba(27,58,107,.93) 100%);
+    }
+    .hero-info{position:absolute;bottom:0;left:0;right:0;z-index:3;padding-bottom:40px;}
+    .hero-info-in{max-width:980px;margin:0 auto;padding:0 24px;}
+    .badge{
+      display:inline-block;background:var(--dourado);color:#fff;
+      font-size:.75rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+      padding:4px 16px;border-radius:20px;margin-bottom:10px;
+    }
+    .hero-info h1{
+      font-size:clamp(1.8rem,5vw,3.2rem);font-weight:800;color:#fff;
+      line-height:1.15;text-shadow:0 3px 12px rgba(0,0,0,.45);margin-bottom:8px;
+    }
+    .hero-sub{font-size:1.05rem;color:rgba(255,255,255,.88);margin-bottom:18px;max-width:580px;}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;}
+    .chip{
+      display:flex;align-items:center;gap:7px;
+      background:rgba(255,255,255,.15);backdrop-filter:blur(6px);
+      border:1px solid rgba(255,255,255,.3);color:#fff;
+      font-size:.87rem;padding:6px 16px;border-radius:22px;
+    }
+    .hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+    .btn-wpp,.btn-pdf-hero{
+      display:flex;align-items:center;gap:8px;
+      padding:12px 28px;border-radius:30px;font-size:.95rem;font-weight:700;
+      border:none;cursor:pointer;transition:all .3s;
+      box-shadow:0 4px 16px rgba(0,0,0,.25);
+    }
+    .btn-wpp{background:#25D366;color:#fff;}
+    .btn-wpp:hover{background:#1ebe5d;transform:translateY(-2px);}
+    .btn-pdf-hero{background:rgba(255,255,255,.15);color:#fff;backdrop-filter:blur(6px);border:2px solid rgba(255,255,255,.4);}
+    .btn-pdf-hero:hover{background:rgba(255,255,255,.28);transform:translateY(-2px);}
+
+    /* SEÇÕES */
+    section{padding:56px 0;}
+    .sec-titulo{
+      font-size:1.55rem;font-weight:800;color:var(--azul);
+      margin-bottom:36px;padding-bottom:12px;
+      border-bottom:3px solid var(--dourado);
+      display:flex;align-items:center;gap:10px;
+    }
+    .sec-titulo.light{color:#fff;border-color:rgba(255,255,255,.4);}
+
+    /* INCLUÍDOS */
+    .inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+    .inc-card{background:#fff;border-radius:var(--radius);padding:28px 32px;box-shadow:var(--sombra);}
+    .inc-hd{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid #f0f0f0;}
+    .inc-hd i{font-size:1.4rem;}
+    .inc-hd h3{font-size:1.05rem;font-weight:700;}
+    .sim .inc-hd i,.sim .inc-hd h3{color:var(--verde);}
+    .nao .inc-hd i,.nao .inc-hd h3{color:#c0392b;}
+    .inc-card ul{list-style:none;}
+    .inc-card ul li{padding:9px 0 9px 26px;position:relative;border-bottom:1px solid #f5f5f5;font-size:.94rem;}
+    .inc-card ul li:last-child{border-bottom:none;}
+    .sim ul li::before{content:'✓';position:absolute;left:0;color:var(--verde2);font-weight:700;}
+    .nao ul li::before{content:'✕';position:absolute;left:0;color:#e74c3c;font-weight:700;}
+
+    /* ROTEIRO */
+    .timeline{position:relative;padding-left:24px;}
+    .timeline::before{
+      content:'';position:absolute;left:36px;top:0;bottom:0;width:3px;
+      background:linear-gradient(to bottom,var(--azul2),var(--verde2));border-radius:3px;
+    }
+    .dia{display:flex;gap:20px;margin-bottom:28px;animation:fadeUp .5s ease both;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    .dia:nth-child(1){animation-delay:.0s;} .dia:nth-child(2){animation-delay:.08s;}
+    .dia:nth-child(3){animation-delay:.16s;} .dia:nth-child(4){animation-delay:.24s;}
+    .dia:nth-child(5){animation-delay:.32s;} .dia:nth-child(6){animation-delay:.40s;}
+    .dia:nth-child(7){animation-delay:.48s;}
+    .dia-num{
+      width:76px;min-width:76px;height:76px;flex-shrink:0;
+      background:linear-gradient(135deg,var(--azul),var(--azul2));
+      color:#fff;border-radius:50%;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      font-weight:800;font-size:1.2rem;
+      box-shadow:0 4px 16px rgba(27,58,107,.35);z-index:1;position:relative;
+    }
+    .dia-num small{font-size:.6rem;font-weight:500;opacity:.8;letter-spacing:.5px;margin-bottom:2px;}
+    .dia-corpo{
+      background:#fff;border-radius:var(--radius);box-shadow:var(--sombra);
+      flex:1;overflow:hidden;border-left:5px solid var(--dourado);transition:all .3s;
+    }
+    .dia-corpo:hover{transform:translateX(4px);box-shadow:0 8px 30px rgba(0,0,0,.14);}
+    .dia-foto{width:100%;max-height:220px;object-fit:cover;}
+    .dia-txt{padding:20px 24px;}
+    .dia-txt h4{font-size:1.02rem;font-weight:700;color:var(--azul);margin-bottom:8px;}
+    .dia-txt p{font-size:.93rem;line-height:1.7;}
+
+    /* VALORES */
+    .valores-bg{
+      background:linear-gradient(135deg,var(--azul),var(--verde));
+      padding:64px 20px;
+    }
+    .val-grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin-bottom:28px;}
+    .val-card{
+      background:rgba(255,255,255,.12);backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,.25);border-radius:var(--radius);
+      padding:32px 36px;text-align:center;color:#fff;
+      min-width:200px;flex:1;max-width:280px;transition:all .3s;
+    }
+    .val-card:hover{background:rgba(255,255,255,.20);transform:translateY(-4px);}
+    .val-label{font-size:.78rem;text-transform:uppercase;letter-spacing:1.5px;opacity:.75;margin-bottom:10px;}
+    .val-preco{font-size:2.1rem;font-weight:800;color:#E8C56A;line-height:1.1;}
+    .val-desc{font-size:.82rem;opacity:.78;margin-top:8px;}
+    .parc-box{
+      background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);
+      border-radius:var(--radius);padding:20px 32px;
+      color:rgba(255,255,255,.88);display:flex;align-items:flex-start;
+      gap:14px;font-size:.95rem;
+    }
+    .parc-box i{font-size:1.4rem;color:#E8C56A;flex-shrink:0;margin-top:2px;}
+
+    /* CAIXAS */
+    .caixa{
+      background:#fff;border-radius:var(--radius);
+      padding:32px;box-shadow:var(--sombra);font-size:.95rem;line-height:1.85;
+    }
+    .borda-azul{border-left:6px solid var(--azul2);}
+    .borda-gold{border-left:6px solid var(--dourado);}
+
+    /* RODAPÉ ORC */
+    .rodape-orc{
+      background:#eef0f5;padding:20px;text-align:center;
+      font-size:.82rem;color:#888;border-top:1px solid #ddd;
+    }
+
+    /* FOOTER */
+    .site-footer{background:var(--azul);color:rgba(255,255,255,.82);padding:40px 20px 0;}
+    .footer-in{
+      display:flex;align-items:center;flex-wrap:wrap;
+      gap:24px;padding-bottom:32px;
+    }
+    .footer-logos{display:flex;align-items:center;gap:16px;}
+    .footer-logos img.fl{height:56px;object-fit:contain;}
+    .footer-logos img.fl30{height:46px;object-fit:contain;}
+    .footer-slogan{font-size:.95rem;margin-bottom:10px;color:#fff;}
+    .footer-links{display:flex;flex-wrap:wrap;gap:8px 20px;}
+    .footer-links a{font-size:.84rem;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:6px;transition:all .3s;}
+    .footer-links a:hover{color:var(--dourado);}
+    .footer-copy{text-align:center;padding:16px;border-top:1px solid rgba(255,255,255,.12);font-size:.78rem;color:rgba(255,255,255,.45);}
+
+    /* FAB */
+    .fab-area{position:fixed;bottom:28px;right:28px;display:flex;flex-direction:column;gap:12px;z-index:999;}
+    .fab{
+      width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;
+      font-size:1.4rem;color:#fff;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 4px 18px rgba(0,0,0,.28);transition:all .3s;
+    }
+    .fab:hover{transform:scale(1.12);}
+    .fab-w{background:#25D366;} .fab-p{background:#e74c3c;}
+
+    /* LOADING */
+    .load-ov{
+      display:none;position:fixed;inset:0;
+      background:rgba(27,58,107,.82);z-index:9999;
+      align-items:center;justify-content:center;
+    }
+    .load-ov.on{display:flex;}
+    .load-box{background:#fff;border-radius:var(--radius);padding:40px 56px;text-align:center;}
+    .load-box i{font-size:3rem;color:var(--azul2);display:block;margin-bottom:16px;}
+    .load-box p{font-weight:600;color:var(--azul);}
+
+    /* ERRO */
+    .erro-wrap{min-height:70vh;display:flex;align-items:center;justify-content:center;}
+    .erro-box{text-align:center;padding:60px 24px;max-width:420px;}
+    .erro-box i{font-size:4rem;color:var(--dourado);display:block;margin-bottom:20px;}
+    .erro-box h2{color:var(--azul);margin-bottom:10px;}
+    .btn-wpp2{
+      display:inline-flex;align-items:center;gap:8px;
+      background:#25D366;color:#fff;padding:12px 28px;
+      border-radius:30px;font-weight:700;margin-top:20px;transition:all .3s;
+    }
+    .btn-wpp2:hover{background:#1ebe5d;transform:translateY(-2px);}
+
+    /* RESPONSIVO */
+    @media(max-width:768px){
+      .inc-grid{grid-template-columns:1fr;}
+      .hero{height:100vh;max-height:700px;}
+      .hero-info h1{font-size:1.7rem;}
+      .hero-sub{display:none;}
+      .car-dots{bottom:210px;}
+      .header-inner{flex-direction:column;align-items:flex-start;}
+      .logo-wrap img.logo-p{height:44px;} .logo-wrap img.logo-30{height:36px;}
+      .timeline::before{left:29px;}
+      .dia-num{width:60px;min-width:60px;height:60px;font-size:1rem;}
+      .val-grid{flex-direction:column;align-items:center;}
+      .val-card{max-width:100%;width:100%;}
+      .footer-in{flex-direction:column;text-align:center;}
+      .fab-area{bottom:16px;right:16px;}
+    }
+  </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
-     HEADER FIXO
-══════════════════════════════════════ -->
+<!-- HEADER -->
 <header class="site-header">
   <div class="header-inner">
     <div class="logo-wrap">
-      <img src="assets/images/logo.png"   alt="Oficina de Turismo" class="logo-principal"/>
-      <img src="assets/images/logo30.png" alt="30 Anos de Experiência" class="logo-30"/>
+      <img src="assets/images/logo.png"   class="logo-p"  alt="Oficina de Turismo"/>
+      <img src="assets/images/logo30.png" class="logo-30" alt="30 Anos"/>
     </div>
-    <nav class="header-contatos">
-      <a href="https://wa.me/5535988622943" target="_blank" class="contato-link whatsapp">
-        <i class="fab fa-whatsapp"></i><span>(35) 98862-2943</span>
+    <nav class="h-contatos">
+      <a href="https://wa.me/5535988622943" target="_blank">
+        <i class="fab fa-whatsapp"></i> (35) 98862-2943
       </a>
-      <a href="mailto:oficinadeturismo@oficinatur.com.br" class="contato-link email">
-        <i class="fas fa-envelope"></i><span class="hide-sm">oficinadeturismo@oficinatur.com.br</span>
+      <a href="mailto:oficinadeturismo@oficinatur.com.br">
+        <i class="fas fa-envelope"></i> <span class="hide-sm">oficinadeturismo@oficinatur.com.br</span>
       </a>
-      <a href="https://instagram.com/oficinadeturismo" target="_blank" class="contato-link insta">
-        <i class="fab fa-instagram"></i><span>@oficinadeturismo</span>
+      <a href="https://instagram.com/oficinadeturismo" target="_blank">
+        <i class="fab fa-instagram"></i> @oficinadeturismo
       </a>
-      <a href="https://www.oficinatur.com.br" target="_blank" class="contato-link site">
-        <i class="fas fa-globe"></i><span class="hide-sm">oficinatur.com.br</span>
+      <a href="https://www.oficinatur.com.br" target="_blank">
+        <i class="fas fa-globe"></i> oficinatur.com.br
       </a>
     </nav>
   </div>
 </header>
 
-<!-- ══════════════════════════════════════
-     CONTEÚDO PRINCIPAL
-══════════════════════════════════════ -->
-<main id="pagina-orcamento">
+<!-- MAIN -->
+<main id="main-orc">
 
   <!-- ERRO -->
-  <div id="bloco-erro" class="bloco-erro escondido">
-    <div class="erro-inner">
+  <div id="bloco-erro" class="erro-wrap hide">
+    <div class="erro-box">
       <i class="fas fa-map-signs"></i>
       <h2>Orçamento não encontrado</h2>
       <p>O link pode estar incorreto ou expirado.</p>
-      <a href="https://wa.me/5535988622943" class="btn-wpp">
+      <a href="https://wa.me/5535988622943" class="btn-wpp2">
         <i class="fab fa-whatsapp"></i> Falar com a Oficina de Turismo
       </a>
     </div>
   </div>
 
-  <!-- ── HERO + CARROSSEL ── -->
-  <section id="sec-hero" class="hero-section escondido">
-    <div class="carrossel" id="carrossel">
-      <div class="carrossel-track" id="carrossel-track"></div>
-      <!-- Controles -->
-      <button class="car-btn car-prev" onclick="carrosselMover(-1)">
-        <i class="fas fa-chevron-left"></i>
-      </button>
-      <button class="car-btn car-next" onclick="carrosselMover(1)">
-        <i class="fas fa-chevron-right"></i>
-      </button>
-      <div class="car-dots" id="car-dots"></div>
-    </div>
-    <!-- Overlay com info -->
+  <!-- HERO -->
+  <section id="sec-hero" class="hero hide">
+    <div class="car-track" id="car-track"></div>
+    <button class="car-btn car-prev" onclick="carMove(-1)"><i class="fas fa-chevron-left"></i></button>
+    <button class="car-btn car-next" onclick="carMove(1)"><i class="fas fa-chevron-right"></i></button>
+    <div class="car-dots" id="car-dots"></div>
     <div class="hero-overlay"></div>
     <div class="hero-info">
-      <div class="hero-info-inner">
-        <span class="badge-destino" id="badge-destino"></span>
+      <div class="hero-info-in">
+        <span class="badge" id="badge-destino"></span>
         <h1 id="titulo-viagem"></h1>
         <p  id="subtitulo-viagem" class="hero-sub"></p>
-        <div class="hero-chips">
-          <span class="chip"><i class="fas fa-calendar-alt"></i> <span id="periodo-viagem"></span></span>
-          <span class="chip"><i class="fas fa-clock"></i> <span id="duracao-viagem"></span></span>
-          <span class="chip"><i class="fas fa-users"></i> <span id="grupo-viagem"></span></span>
+        <div class="chips">
+          <span class="chip"><i class="fas fa-calendar-alt"></i><span id="periodo-viagem"></span></span>
+          <span class="chip"><i class="fas fa-clock"></i><span id="duracao-viagem"></span></span>
+          <span class="chip"><i class="fas fa-users"></i><span id="grupo-viagem"></span></span>
         </div>
-        <div class="hero-actions">
-          <button class="btn-hero-wpp" onclick="abrirWhatsApp()">
-            <i class="fab fa-whatsapp"></i> Quero me inscrever!
-          </button>
-          <button class="btn-hero-pdf" onclick="gerarPDF()">
-            <i class="fas fa-file-pdf"></i> Baixar PDF
-          </button>
+        <div class="hero-btns">
+          <button class="btn-wpp"      onclick="abrirWpp()"><i class="fab fa-whatsapp"></i> Quero me inscrever!</button>
+          <button class="btn-pdf-hero" onclick="gerarPDF()"><i class="fas fa-file-pdf"></i> Baixar PDF</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── INCLUÍDOS / NÃO INCLUÍDOS ── -->
-  <section id="sec-inc" class="sec-inc escondido">
+  <!-- INCLUÍDOS -->
+  <section id="sec-inc" class="hide">
     <div class="container">
+      <h2 class="sec-titulo"><i class="fas fa-list-check"></i> O que está incluído</h2>
       <div class="inc-grid">
-        <div class="inc-card inc-sim">
-          <div class="inc-header">
-            <i class="fas fa-check-circle"></i>
-            <h3>O que está incluído</h3>
-          </div>
-          <ul id="lista-incluido"></ul>
+        <div class="inc-card sim">
+          <div class="inc-hd"><i class="fas fa-check-circle"></i><h3>Incluído</h3></div>
+          <ul id="lista-inc"></ul>
         </div>
-        <div class="inc-card inc-nao">
-          <div class="inc-header">
-            <i class="fas fa-times-circle"></i>
-            <h3>O que NÃO está incluído</h3>
-          </div>
-          <ul id="lista-nao-incluido"></ul>
+        <div class="inc-card nao">
+          <div class="inc-hd"><i class="fas fa-times-circle"></i><h3>Não incluído</h3></div>
+          <ul id="lista-nao"></ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── ROTEIRO DIA A DIA ── -->
-  <section id="sec-roteiro" class="sec-roteiro escondido">
+  <!-- ROTEIRO -->
+  <section id="sec-roteiro" class="hide" style="padding-top:0;">
     <div class="container">
-      <h2 class="titulo-secao">
-        <i class="fas fa-map-marked-alt"></i> Roteiro Dia a Dia
-      </h2>
-      <div id="roteiro-timeline" class="roteiro-timeline"></div>
+      <h2 class="sec-titulo"><i class="fas fa-map-marked-alt"></i> Roteiro Dia a Dia</h2>
+      <div class="timeline" id="timeline"></div>
     </div>
   </section>
 
-  <!-- ── VALORES ── -->
-  <section id="sec-valores" class="sec-valores escondido">
+  <!-- VALORES -->
+  <section id="sec-valores" class="hide" style="padding:0;">
     <div class="valores-bg">
       <div class="container">
-        <h2 class="titulo-secao light">
-          <i class="fas fa-tag"></i> Investimento
-        </h2>
-        <div id="valores-grid" class="valores-grid"></div>
-        <div class="parcelamento-box">
+        <h2 class="sec-titulo light"><i class="fas fa-tag"></i> Investimento</h2>
+        <div class="val-grid" id="val-grid"></div>
+        <div class="parc-box">
           <i class="fas fa-credit-card"></i>
-          <p id="parcelamento-texto"></p>
+          <p id="parc-txt"></p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── CONDIÇÕES DE PAGAMENTO ── -->
-  <section id="sec-condicoes" class="sec-generica escondido">
+  <!-- CONDIÇÕES -->
+  <section id="sec-cond" class="hide">
     <div class="container">
-      <h2 class="titulo-secao">
-        <i class="fas fa-file-invoice-dollar"></i> Condições de Pagamento
-      </h2>
-      <div id="condicoes-texto" class="caixa-texto borda-azul"></div>
+      <h2 class="sec-titulo"><i class="fas fa-file-invoice-dollar"></i> Condições de Pagamento</h2>
+      <div id="cond-txt" class="caixa borda-azul"></div>
     </div>
   </section>
 
-  <!-- ── OBSERVAÇÕES ── -->
-  <section id="sec-obs" class="sec-generica escondido">
+  <!-- OBS -->
+  <section id="sec-obs" class="hide">
     <div class="container">
-      <h2 class="titulo-secao">
-        <i class="fas fa-info-circle"></i> Observações Importantes
-      </h2>
-      <div id="obs-texto" class="caixa-texto borda-dourada"></div>
+      <h2 class="sec-titulo"><i class="fas fa-info-circle"></i> Observações Importantes</h2>
+      <div id="obs-txt" class="caixa borda-gold"></div>
     </div>
   </section>
 
-  <!-- ── RODAPÉ DO ORÇAMENTO ── -->
-  <div id="sec-rodape-orc" class="rodape-orcamento escondido">
+  <!-- RODAPÉ ORC -->
+  <div id="sec-rodape" class="rodape-orc hide">
     <div class="container">
-      <p>📅 Orçamento emitido em <strong id="data-geracao"></strong>
-         &nbsp;·&nbsp; Válido por <strong id="validade-dias"></strong> dias
-         &nbsp;·&nbsp; Ref: <strong id="ref-id"></strong>
-      </p>
+      <p>📅 Emitido em <strong id="data-ger"></strong>
+         · Válido por <strong id="val-dias"></strong> dias
+         · Ref: <strong id="ref-cod"></strong></p>
     </div>
   </div>
 
 </main>
 
-<!-- ══════════════════════════════════════
-     FOOTER
-══════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer class="site-footer">
-  <div class="container footer-inner">
+  <div class="container footer-in">
     <div class="footer-logos">
-      <img src="assets/images/logo.png"   alt="Oficina de Turismo" class="footer-logo"/>
-      <img src="assets/images/logo30.png" alt="30 Anos" class="footer-logo30"/>
+      <img src="assets/images/logo.png"   class="fl"   alt="Oficina de Turismo"/>
+      <img src="assets/images/logo30.png" class="fl30" alt="30 Anos"/>
     </div>
-    <div class="footer-info">
+    <div>
       <p class="footer-slogan"><strong>Oficina de Turismo</strong> — Sua viagem começa aqui!</p>
       <div class="footer-links">
-        <a href="https://wa.me/5535988622943" target="_blank">
-          <i class="fab fa-whatsapp"></i> (35) 98862-2943
-        </a>
-        <a href="mailto:oficinadeturismo@oficinatur.com.br">
-          <i class="fas fa-envelope"></i> oficinadeturismo@oficinatur.com.br
-        </a>
-        <a href="https://instagram.com/oficinadeturismo" target="_blank">
-          <i class="fab fa-instagram"></i> @oficinadeturismo
-        </a>
-        <a href="https://www.oficinatur.com.br" target="_blank">
-          <i class="fas fa-globe"></i> www.oficinatur.com.br
-        </a>
+        <a href="https://wa.me/5535988622943" target="_blank"><i class="fab fa-whatsapp"></i>(35) 98862-2943</a>
+        <a href="mailto:oficinadeturismo@oficinatur.com.br"><i class="fas fa-envelope"></i>oficinadeturismo@oficinatur.com.br</a>
+        <a href="https://instagram.com/oficinadeturismo" target="_blank"><i class="fab fa-instagram"></i>@oficinadeturismo</a>
+        <a href="https://www.oficinatur.com.br" target="_blank"><i class="fas fa-globe"></i>oficinatur.com.br</a>
       </div>
     </div>
   </div>
-  <div class="footer-copy">
-    <p>© 2026 Oficina de Turismo · 30 anos transformando sonhos em realidade ✈️</p>
-  </div>
+  <div class="footer-copy">© 2026 Oficina de Turismo · 30 anos transformando sonhos em realidade ✈️</div>
 </footer>
 
-<!-- ══════════════════════════════════════
-     BOTÕES FLUTUANTES
-══════════════════════════════════════ -->
-<div class="fab-container">
-  <button class="fab fab-wpp" onclick="abrirWhatsApp()" title="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-  </button>
-  <button class="fab fab-pdf" onclick="gerarPDF()" title="Baixar PDF" id="btn-pdf">
-    <i class="fas fa-file-pdf"></i>
-  </button>
+<!-- FABs -->
+<div class="fab-area">
+  <button class="fab fab-w" onclick="abrirWpp()" title="WhatsApp"><i class="fab fa-whatsapp"></i></button>
+  <button class="fab fab-p" onclick="gerarPDF()"  title="PDF"><i class="fas fa-file-pdf"></i></button>
 </div>
 
-<!-- ══════════════════════════════════════
-     LOADING OVERLAY
-══════════════════════════════════════ -->
-<div id="loading-overlay" class="loading-overlay">
-  <div class="loading-box">
+<!-- LOADING -->
+<div class="load-ov" id="load-ov">
+  <div class="load-box">
     <i class="fas fa-plane-departure fa-spin"></i>
     <p>Gerando seu PDF...</p>
   </div>
 </div>
 
-<script src="assets/js/orcamento.js"></script>
+<script>
+/* ═══════════════════════════════════════════
+   OFICINA DE TURISMO — orcamento.js inline
+   ═══════════════════════════════════════════ */
+let carIdx=0, carTotal=0, carTimer=null, dadosOrc=null;
+const P = new URLSearchParams(location.search);
+const ID = P.get('id');
+
+async function init(){
+  if(!ID){ erro(); return; }
+  try{
+    const r = await fetch('data/orcamentos.json?_='+Date.now());
+    const l = await r.json();
+    const o = l.find(x=>x.id===ID);
+    if(!o){ erro(); return; }
+    dadosOrc = o;
+    render(o);
+  }catch(e){ console.error(e); erro(); }
+}
+
+function render(o){
+  document.title = o.titulo+' — Oficina de Turismo';
+  document.querySelectorAll('.hide').forEach(el=>el.classList.remove('hide'));
+  document.getElementById('bloco-erro').classList.add('hide');
+
+  // Carrossel
+  const gal = (o.galeria&&o.galeria.length)?o.galeria:[o.imgCapa];
+  buildCar(gal);
+
+  // Hero
+  tx('badge-destino',   o.destino||'');
+  tx('titulo-viagem',   o.titulo||'');
+  tx('subtitulo-viagem',o.subtitulo||'');
+  tx('periodo-viagem',  o.periodo||'');
+  tx('duracao-viagem',  o.duracao||'');
+  tx('grupo-viagem',    o.grupo||'');
+
+  // Listas
+  lista('lista-inc', o.incluido||[]);
+  lista('lista-nao', o.naoIncluido||[]);
+
+  // Roteiro
+  buildRoteiro(o.roteiro||[]);
+
+  // Valores
+  buildValores(o.valores||[]);
+  html('parc-txt', nl(o.parcelamento||''));
+
+  // Caixas
+  html('cond-txt', nl(o.condicoes||''));
+  html('obs-txt',  nl(o.observacoes||''));
+
+  // Rodapé
+  tx('data-ger', fmtData(o.dataGeracao));
+  tx('val-dias', o.validadeDias||'10');
+  tx('ref-cod',  ID.toUpperCase());
+}
+
+/* CARROSSEL */
+function buildCar(fotos){
+  carTotal = fotos.length;
+  const track = document.getElementById('car-track');
+  const dots  = document.getElementById('car-dots');
+  track.innerHTML = fotos.map(f=>`<img src="${f}" alt="Destino" loading="lazy">`).join('');
+  dots.innerHTML  = fotos.map((_,i)=>
+    `<button class="car-dot ${i===0?'on':''}" onclick="goSlide(${i})"></button>`
+  ).join('');
+  carTimer = setInterval(()=>carMove(1), 5000);
+}
+function carMove(d){
+  carIdx=(carIdx+d+carTotal)%carTotal;
+  applySlide();
+}
+function goSlide(i){
+  carIdx=i; applySlide();
+  clearInterval(carTimer); carTimer=setInterval(()=>carMove(1),5000);
+}
+function applySlide(){
+  document.getElementById('car-track').style.transform=`translateX(-${carIdx*100}%)`;
+  document.querySelectorAll('.car-dot').forEach((d,i)=>d.classList.toggle('on',i===carIdx));
+}
+
+/* ROTEIRO */
+function buildRoteiro(dias){
+  document.getElementById('timeline').innerHTML = dias.map((d,i)=>`
+    <div class="dia">
+      <div class="dia-num"><small>DIA</small>${i+1}</div>
+      <div class="dia-corpo">
+        ${d.imagem?`<img class="dia-foto" src="${d.imagem}" alt="Dia ${i+1}" loading="lazy">` : ''}
+        <div class="dia-txt">
+          <h4>${d.titulo||''}</h4>
+          <p>${nl(d.descricao||'')}</p>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+/* VALORES */
+function buildValores(vals){
+  document.getElementById('val-grid').innerHTML = vals.map(v=>`
+    <div class="val-card">
+      <div class="val-label">${v.label}</div>
+      <div class="val-preco">${v.preco}</div>
+      ${v.desc?`<div class="val-desc">${v.desc}</div>`:''}
+    </div>`).join('');
+}
+
+/* HELPERS */
+function tx(id,v){ const e=document.getElementById(id); if(e) e.textContent=v; }
+function html(id,v){ const e=document.getElementById(id); if(e) e.innerHTML=v; }
+function nl(s){ return (s||'').replace(/\n/g,'<br>'); }
+function lista(id,arr){
+  const ul=document.getElementById(id);
+  if(ul) ul.innerHTML=arr.map(i=>`<li>${i}</li>`).join('');
+}
+function fmtData(iso){
+  if(!iso) return new Date().toLocaleDateString('pt-BR');
+  try{ return new Date(iso).toLocaleDateString('pt-BR'); }catch{ return iso; }
+}
+function erro(){
+  document.getElementById('bloco-erro').classList.remove('hide');
+}
+
+/* WHATSAPP */
+function abrirWpp(){
+  const t=encodeURIComponent(`Olá! Tenho interesse no orçamento: *${dadosOrc?.titulo||''}* (Ref: ${ID}). Pode me ajudar?`);
+  window.open(`https://wa.me/5535988622943?text=${t}`,'_blank');
+}
+
+/* PDF */
+async function gerarPDF(){
+  document.getElementById('load-ov').classList.add('on');
+  document.querySelector('.fab-area').style.display='none';
+  try{
+    const {jsPDF}=window.jspdf;
+    const el=document.getElementById('main-orc');
+    const canvas=await html2canvas(el,{scale:2,useCORS:true,allowTaint:true,backgroundColor:'#F5F6FA'});
+    const img=canvas.toDataURL('image/jpeg',.90);
+    const pdf=new jsPDF('p','mm','a4');
+    const pW=pdf.internal.pageSize.getWidth();
+    const pH=pdf.internal.pageSize.getHeight();
+    const ratio=canvas.height/canvas.width;
+    const iH=pW*ratio;
+    let y=0,rest=iH;
+    while(rest>0){
+      pdf.addImage(img,'JPEG',0,-y,pW,iH);
+      rest-=pH; y+=pH;
+      if(rest>0) pdf.addPage();
+    }
+    const nome=(dadosOrc?.titulo||'Orcamento').replace(/[^a-zA-Z0-9]/g,'_');
+    pdf.save(`Oficina_${nome}_${ID}.pdf`);
+  }catch(e){ console.error(e); alert('Erro ao gerar PDF. Tente novamente.'); }
+  document.querySelector('.fab-area').style.display='flex';
+  document.getElementById('load-ov').classList.remove('on');
+}
+
+init();
+</script>
 </body>
 </html>
