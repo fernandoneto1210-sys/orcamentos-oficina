@@ -3,1009 +3,1221 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title id="page-title">Orçamento de Viagem — Oficina de Turismo</title>
-  <meta property="og:title" id="og-title" content="Orçamento de Viagem — Oficina de Turismo"/>
-  <meta property="og:description" id="og-description" content="Seu orçamento personalizado da Oficina de Turismo."/>
-  <meta property="og:image" id="og-image" content="https://via.placeholder.com/1200x630/1B3A6B/FFFFFF?text=Oficina+de+Turismo"/>
-  <meta property="og:url" content="https://fernandoneto1210-sys.github.io/orcamentos-oficina"/>
-  <meta property="og:type" content="website"/>
+  <title>Painel Admin — Oficina de Turismo</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     :root{
       --azul:#1B3A6B;--azul2:#2E5FA3;--verde:#2D6A4F;--verde2:#40916C;
       --dourado:#C9A84C;--dourado2:#b8941f;--cinza:#F5F6FA;--branco:#fff;
-      --sombra:0 4px 20px rgba(0,0,0,.08);--radius:12px;
+      --sombra:0 4px 20px rgba(0,0,0,.10);--radius:12px;
     }
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cinza);color:#333;line-height:1.6;}
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cinza);color:#444;}
     a{text-decoration:none;color:inherit;}
-    img{max-width:100%;height:auto;}
-    h1,h2,h3,h4{color:var(--azul);line-height:1.3;}
-    p{margin-bottom:10px;}
-    ul{list-style:none;}
-    .container{max-width:980px;margin:0 auto;padding:0 20px;}
-    section{padding:40px 0;}
-    section:nth-of-type(even){background:#eef0f5;}
-    .sec-titulo{
-      font-size:1.8rem;font-weight:700;text-align:center;
-      margin-bottom:30px;display:flex;align-items:center;justify-content:center;gap:12px;}
-    .sec-titulo i{color:var(--dourado);font-size:1.5em;}
-    .sec-titulo.light{color:#333;}
-    .sec-titulo.light i{color:var(--dourado2);}
-
-    /* ══ ANIMAÇÕES ══ */
-    .fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease-out,transform .6s ease-out;}
-    .fade-in.vis{opacity:1;transform:translateY(0);}
+    input,textarea,select,button{font-family:inherit;}
 
     /* ══ HEADER ══ */
-    .site-header{
-      background:var(--azul);padding:10px 0;
-      box-shadow:0 2px 10px rgba(0,0,0,.15);
-      position:sticky;top:0;z-index:100;}
-    .header-inner{
+    .adm-header{
+      background:linear-gradient(135deg,var(--azul) 0%,var(--verde) 100%);
+      padding:10px 24px;
       display:flex;align-items:center;justify-content:space-between;
-      flex-wrap:wrap;gap:15px;max-width:980px;margin:0 auto;padding:0 20px;}
-    .logo-wrap{
+      flex-wrap:wrap;gap:10px;
+      box-shadow:0 3px 16px rgba(0,0,0,.28);
+      position:sticky;top:0;z-index:100;
+    }
+    .adm-logo{
       display:flex;align-items:center;gap:14px;
       background:rgba(255,255,255,.12);padding:6px 16px;
-      border-radius:10px;border:1px solid rgba(255,255,255,.2);}
-    .logo-principal{height:75px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .logo-30{height:65px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .logo-divider{width:1px;height:60px;background:rgba(255,255,255,.30);}
-    .h-contatos{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
-    .h-link{
-      color:rgba(255,255,255,.85);font-size:.9rem;
-      display:flex;align-items:center;gap:8px;transition:all .3s;}
-    .h-link:hover{color:var(--dourado);}
+      border-radius:10px;border:1px solid rgba(255,255,255,.2);
+    }
+    .adm-logo img.lp{
+      height:68px;width:auto;object-fit:contain;
+      filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));
+    }
+    .adm-logo img.l30{
+      height:58px;width:auto;object-fit:contain;
+      filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));
+    }
+    .logo-sep{width:1px;height:54px;background:rgba(255,255,255,.30);}
+    .adm-info .titulo{color:#fff;font-size:1rem;font-weight:700;}
+    .adm-badge{
+      background:var(--dourado);color:#fff;font-size:.68rem;
+      font-weight:700;padding:2px 10px;border-radius:10px;
+      letter-spacing:1px;width:fit-content;
+    }
+    .adm-header-right{display:flex;align-items:center;gap:14px;}
+    .adm-header-right a{
+      color:rgba(255,255,255,.75);font-size:.82rem;
+      display:flex;align-items:center;gap:5px;transition:all .3s;
+    }
+    .adm-header-right a:hover{color:var(--dourado);}
 
-    /* ══ BANNER VALIDADE ══ */
-    /* REMOVIDO */
+    /* ══ STATUS BAR ══ */
+    .jb-status-bar{
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      padding:7px 16px;font-size:.82rem;font-weight:600;
+    }
+    .jb-status-bar.ok{background:#dcfce7;color:#166534;}
+    .jb-status-bar.off{background:#fef9c3;color:#854d0e;}
 
-    /* ══ HERO SECTION ══ */
-    .hero{
-      position:relative;min-height:500px;max-height:700px;
-      display:flex;align-items:flex-end;color:#fff;overflow:hidden;}
-    .car-wrap{position:absolute;inset:0;width:100%;height:100%;}
-    .car-track{
-      display:flex;width:100%;height:100%;transition:transform .8s ease-in-out;}
-    .car-track img{width:100%;height:100%;object-fit:cover;flex-shrink:0;}
-    .hero-ov{
-      position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,0) 100%);}
-    .hero-info{position:relative;z-index:10;width:100%;padding-bottom:40px;}
-    .hero-in{max-width:980px;margin:0 auto;padding:0 20px;}
-    .badge{
-      background:var(--dourado);color:#fff;padding:5px 12px;
-      border-radius:20px;font-size:.8rem;font-weight:700;
-      letter-spacing:1px;margin-bottom:15px;display:inline-block;}
-    .hero-info h1{font-size:2.8rem;font-weight:800;margin-bottom:10px;color:#fff;}
-    .hero-sub{font-size:1.1rem;opacity:.9;margin-bottom:20px;}
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:25px;}
-    .chip{
-      background:rgba(255,255,255,.15);color:#fff;padding:8px 15px;
-      border-radius:20px;font-size:.85rem;display:flex;align-items:center;gap:8px;}
-    .hero-btns{display:flex;flex-wrap:wrap;gap:15px;}
-    .btn-wpp,.btn-pdf-h{
-      background:var(--dourado);color:#fff;padding:12px 25px;
-      border-radius:30px;font-weight:700;font-size:1rem;
-      display:inline-flex;align-items:center;gap:10px;
-      box-shadow:0 4px 12px rgba(0,0,0,.2);transition:all .3s;}
-    .btn-wpp:hover,.btn-pdf-h:hover{background:var(--dourado2);transform:translateY(-2px);}
-    .btn-wpp{background:#25D366;}
-    .btn-wpp:hover{background:#1ebe5d;}
+    /* ══ LAYOUT ══ */
+    .layout{display:flex;min-height:calc(100vh - 88px);}
 
-    /* Carrossel navegação e dots */
-    .car-btn{
-      position:absolute;top:50%;transform:translateY(-50%);
-      background:rgba(0,0,0,.5);color:#fff;border:none;
-      width:40px;height:40px;border-radius:50%;font-size:1.2rem;
-      cursor:pointer;z-index:20;transition:background .3s;}
-    .car-btn:hover{background:rgba(0,0,0,.7);}
-    .car-prev{left:15px;}
-    .car-next{right:15px;}
-    .car-dots{
-      position:absolute;bottom:15px;left:50%;transform:translateX(-50%);
-      display:flex;gap:8px;z-index:20;}
-    .car-dot{
-      width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4);
-      border:1px solid rgba(255,255,255,.8);cursor:pointer;transition:all .3s;}
-    .car-dot.on{background:#fff;transform:scale(1.2);}
+    /* ══ SIDEBAR ══ */
+    .sidebar{
+      width:290px;min-width:290px;background:#fff;
+      border-right:1px solid #e8e8e8;
+      display:flex;flex-direction:column;
+      position:sticky;top:88px;
+      height:calc(100vh - 88px);overflow-y:auto;
+    }
+    .sb-topo{padding:14px;}
+    .btn-novo{
+      width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
+      background:linear-gradient(135deg,var(--azul),var(--azul2));
+      color:#fff;border:none;cursor:pointer;
+      padding:12px 16px;border-radius:var(--radius);
+      font-size:.95rem;font-weight:700;transition:all .3s;
+    }
+    .btn-novo:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(27,58,107,.4);}
+    .sb-label{
+      font-size:.72rem;font-weight:700;color:#bbb;
+      letter-spacing:1.5px;text-transform:uppercase;
+      padding:10px 16px 6px;
+    }
+    .orc-lista{padding:0 8px 16px;flex:1;}
+    .orc-item{
+      padding:12px 14px;border-radius:10px;cursor:pointer;
+      margin-bottom:6px;border:2px solid transparent;
+      background:var(--cinza);transition:all .2s;
+    }
+    .orc-item:hover{border-color:var(--azul2);background:#fff;box-shadow:var(--sombra);}
+    .orc-item.on{border-color:var(--azul);background:#fff;box-shadow:var(--sombra);}
+    .orc-top{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:4px;}
+    .orc-titulo{font-weight:700;font-size:.90rem;color:var(--azul);flex:1;}
+    .sbadge{font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:8px;white-space:nowrap;flex-shrink:0;}
+    .s-ativo{background:#dcfce7;color:#166534;}
+    .s-rascunho{background:#fef9c3;color:#854d0e;}
+    .s-expirado{background:#fee2e2;color:#991b1b;}
+    .orc-meta{font-size:.76rem;color:#aaa;display:flex;gap:8px;flex-wrap:wrap;}
+    .orc-meta span{display:flex;align-items:center;gap:4px;}
+    .sb-vazio{text-align:center;padding:36px 16px;color:#ccc;font-size:.85rem;}
+    .sb-vazio i{font-size:2.5rem;display:block;margin-bottom:10px;color:#e0e0e0;}
 
-    /* ══ INCLUÍDOS / NÃO INCLUÍDOS ══ */
-    .inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
-    .inc-card{
-      background:#fff;border-radius:var(--radius);
-      box-shadow:var(--sombra);padding:30px;}
-    .inc-hd{
-      display:flex;align-items:center;gap:15px;
-      margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid #eee;}
-    .inc-card.sim .inc-hd i{color:var(--verde);font-size:1.8rem;}
-    .inc-card.nao .inc-hd i{color:#e74c3c;font-size:1.8rem;}
-    .inc-hd h3{font-size:1.3rem;color:var(--azul);}
-    .inc-card ul li{
-      display:flex;align-items:flex-start;gap:10px;
-      margin-bottom:10px;font-size:.95rem;}
-    .inc-card.sim ul li::before{
-      content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;
-      color:var(--verde);flex-shrink:0;margin-top:3px;}
-    .inc-card.nao ul li::before{
-      content:'\f00d';font-family:'Font Awesome 6 Free';font-weight:900;
-      color:#e74c3c;flex-shrink:0;margin-top:3px;}
+    /* ══ MAIN ══ */
+    .main{flex:1;padding:24px;overflow-y:auto;}
+    .tela-ini{
+      display:flex;flex-direction:column;align-items:center;
+      justify-content:center;min-height:65vh;
+      text-align:center;color:#ccc;
+    }
+    .tela-ini i{font-size:5rem;color:var(--dourado);opacity:.5;margin-bottom:20px;}
+    .tela-ini h2{color:#bbb;font-size:1.3rem;margin-bottom:8px;}
+    .tela-ini p{font-size:.9rem;}
+
+    /* ══ FORM CARD ══ */
+    .form-card{background:#fff;border-radius:var(--radius);box-shadow:var(--sombra);overflow:hidden;}
+    .form-topo{
+      background:linear-gradient(135deg,var(--azul),var(--azul2));
+      padding:16px 24px;
+      display:flex;align-items:center;justify-content:space-between;
+      flex-wrap:wrap;gap:10px;
+    }
+    .form-topo h2{color:#fff;font-size:1.05rem;font-weight:700;display:flex;align-items:center;gap:8px;}
+    .topo-btns{display:flex;gap:8px;flex-wrap:wrap;}
+    .btn{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:8px 18px;border-radius:25px;
+      font-size:.84rem;font-weight:700;
+      border:none;cursor:pointer;transition:all .3s;
+    }
+    .b-salvar{background:var(--dourado);color:#fff;}
+    .b-salvar:hover{background:#b8941f;transform:translateY(-1px);}
+    .b-ver{background:#25D366;color:#fff;}
+    .b-ver:hover{background:#1ebe5d;}
+    .b-wpp{background:#128C7E;color:#fff;}
+    .b-wpp:hover{background:#0e7065;}
+    .b-del{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);}
+    .b-del:hover{background:rgba(231,76,60,.4);}
+    .b-dup{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);}
+    .b-dup:hover{background:rgba(255,255,255,.28);}
+
+    /* ══ ABAS ══ */
+    .abas{
+      display:flex;border-bottom:2px solid #f0f0f0;
+      background:#fafafa;padding:0 20px;overflow-x:auto;
+    }
+    .aba{
+      padding:13px 18px;font-size:.84rem;font-weight:600;
+      color:#bbb;cursor:pointer;
+      border-bottom:3px solid transparent;margin-bottom:-2px;
+      white-space:nowrap;transition:all .2s;
+      display:flex;align-items:center;gap:5px;
+    }
+    .aba.on{color:var(--azul);border-color:var(--azul);}
+    .aba:hover:not(.on){color:var(--azul2);}
+    .painel{display:none;padding:24px;}
+    .painel.on{display:block;}
+
+    /* ══ CAMPOS ══ */
+    .cg{margin-bottom:18px;}
+    .cg label{display:block;font-size:.80rem;font-weight:700;color:var(--azul);margin-bottom:6px;}
+    .cg label i{margin-right:4px;opacity:.7;}
+    .cg input,.cg textarea,.cg select{
+      width:100%;padding:9px 13px;
+      border:2px solid #e8e8e8;border-radius:8px;
+      font-size:.90rem;transition:border-color .2s;
+      background:#fff;color:#444;
+    }
+    .cg input:focus,.cg textarea:focus,.cg select:focus{outline:none;border-color:var(--azul2);}
+    .cg textarea{resize:vertical;min-height:90px;line-height:1.6;}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+    .hint{font-size:.75rem;color:#aaa;margin-top:4px;}
+
+    /* Campos de valores */
+    .cg.valor input{text-align:right;}
+    .cg.valor input::placeholder{text-align:right;}
+
+    /* ══ LISTA DINÂMICA ══ */
+    .ldyn{border:2px solid #e8e8e8;border-radius:8px;overflow:hidden;background:#fff;}
+    .litem{display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1px solid #f5f5f5;}
+    .litem:last-child{border-bottom:none;}
+    .litem input{flex:1;border:none;font-size:.90rem;outline:none;padding:3px 0;color:#444;}
+    .brem{background:none;border:none;cursor:pointer;color:#e74c3c;padding:4px 6px;border-radius:4px;font-size:.9rem;flex-shrink:0;transition:all .2s;}
+    .brem:hover{background:#fee2e2;}
+    .badd{
+      display:flex;align-items:center;gap:6px;width:100%;
+      background:none;border:2px dashed #ddd;color:#bbb;
+      cursor:pointer;padding:9px 14px;font-size:.85rem;font-weight:600;
+      border-radius:8px;margin-top:7px;transition:all .2s;
+    }
+    .badd:hover{border-color:var(--azul2);color:var(--azul2);}
+
+    /* ══ UPLOAD ══ */
+    .upload-box{
+      border:2px dashed #ddd;border-radius:10px;
+      padding:22px;text-align:center;cursor:pointer;
+      transition:all .3s;background:#fafafa;position:relative;
+    }
+    .upload-box:hover{border-color:var(--azul2);background:#f0f4ff;}
+    .upload-box input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+    .upload-box i{font-size:2rem;color:#ccc;display:block;margin-bottom:8px;}
+    .upload-box p{font-size:.85rem;color:#aaa;line-height:1.5;pointer-events:none;}
+    .upload-box.sending{border-color:var(--dourado);background:#fffbf0;}
+
+    /* Preview galeria */
+    .prev-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+    .prev-item{position:relative;width:90px;height:70px;border-radius:8px;overflow:hidden;border:2px solid #e8e8e8;}
+    .prev-item img{width:100%;height:100%;object-fit:cover;}
+    .prev-item .del-prev{
+      position:absolute;top:3px;right:3px;
+      background:rgba(220,38,38,.85);color:#fff;
+      border:none;border-radius:50%;width:20px;height:20px;
+      font-size:.65rem;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .capa-tag{
+      position:absolute;bottom:0;left:0;right:0;
+      background:rgba(201,168,76,.9);color:#fff;
+      font-size:.6rem;text-align:center;padding:2px;font-weight:700;
+    }
 
     /* ══ ROTEIRO ══ */
-    .timeline{
-      position:relative;max-width:800px;margin:0 auto;padding:20px 0;}
-    .timeline::before{
-      content:'';position:absolute;top:0;bottom:0;left:50%;
-      width:4px;background:var(--azul);transform:translateX(-50%);}
-    .dia{
-      position:relative;margin-bottom:40px;display:flex;
-      align-items:flex-start;opacity:0;transform:translateY(20px);
-      transition:opacity .6s ease-out,transform .6s ease-out;}
-    .dia:nth-child(even){flex-direction:row-reverse;} /* Dias pares na direita */
-    .dia.vis{opacity:1;transform:translateY(0);}
-    .dia-num{
-      width:80px;height:80px;border-radius:50%;background:var(--dourado);
-      color:#fff;display:flex;flex-direction:column;align-items:center;
-      justify-content:center;font-size:1.8rem;font-weight:800;
-      position:absolute;top:0;left:50%;transform:translateX(-50%);
-      border:4px solid var(--azul);box-shadow:0 0 0 4px #fff;
-      flex-shrink:0;z-index:5;}
-    .dia-num small{font-size:.5em;font-weight:normal;margin-top:-5px;}
-    .dia-corpo{
-      background:#fff;border-radius:var(--radius);box-shadow:var(--sombra);
-      width:calc(50% - 60px);padding:20px;position:relative;
-      margin-top:10px;}
-    .dia:nth-child(odd) .dia-corpo{margin-right:60px;}
-    .dia:nth-child(even) .dia-corpo{margin-left:60px;}
-    .dia-foto-wrap{
-      width:100%;max-height:250px;overflow:hidden;border-radius:8px;
-      margin-bottom:15px;background:#eee;}
-    .dia-foto{width:100%;height:100%;object-fit:cover;}
-    .dia-txt h4{font-size:1.3rem;margin-bottom:10px;}
-    .dia-txt p{font-size:.95rem;line-height:1.7;}
+    .rot-bloco{
+      border:2px solid #e8e8e8;border-radius:10px;
+      margin-bottom:14px;overflow:hidden;transition:border-color .2s;
+    }
+    .rot-bloco:hover{border-color:var(--azul2);}
+    .rot-head{
+      display:flex;align-items:center;gap:10px;
+      background:linear-gradient(135deg,var(--azul),var(--azul2));
+      padding:12px 16px;
+    }
+    .rot-num{
+      width:32px;height:32px;border-radius:50%;
+      background:var(--dourado);color:#fff;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;font-size:.9rem;flex-shrink:0;
+    }
+    .rot-head span{color:#fff;font-weight:700;flex:1;font-size:.9rem;}
+    .rot-del{
+      background:rgba(255,255,255,.15);color:#fff;
+      border:1px solid rgba(255,255,255,.3);
+      padding:5px 12px;border-radius:20px;font-size:.75rem;
+      cursor:pointer;transition:all .2s;
+    }
+    .rot-del:hover{background:rgba(231,76,60,.4);}
+    .rot-campos{padding:18px 24px;}
+
+    /* Foto do dia no roteiro */
+    .foto-dia-row{display:flex;gap:10px;align-items:flex-start;}
+    .rd-img-wrap{flex:1;}
+    .upload-mini{
+      width:100px;height:100px;border:2px dashed #ddd;
+      border-radius:8px;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      text-align:center;font-size:.7rem;color:#aaa;
+      cursor:pointer;position:relative;flex-shrink:0;
+      transition:all .2s;
+    }
+    .upload-mini:hover{border-color:var(--azul2);background:#f0f4ff;}
+    .upload-mini input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;}
+    .upload-mini i{font-size:1.5rem;margin-bottom:4px;color:#ccc;}
+    .upload-mini p{line-height:1.2;pointer-events:none;}
+    .upload-mini.tem-foto{border-color:var(--verde2);background:#dcfce7;}
+    .upload-mini.tem-foto i{display:none;}
+    .upload-mini.tem-foto p{color:var(--verde);}
+    .foto-preview{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;border-radius:6px;display:none;
+    }
+    .btn-rm-foto{
+      position:absolute;top:4px;right:4px;
+      background:rgba(220,38,38,.85);color:#fff;
+      border:none;border-radius:50%;width:24px;height:24px;
+      font-size:.6rem;cursor:pointer;display:none;
+      align-items:center;justify-content:center;
+    }
 
     /* ══ VALORES ══ */
-    .valores-bg{background:linear-gradient(135deg,var(--azul) 0%,var(--verde) 100%);}
-    .val-grid{
-      display:flex;flex-wrap:wrap;justify-content:center;gap:25px;
-      margin-bottom:30px;}
-    .val-card{
-      background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
-      border-radius:var(--radius);padding:25px;text-align:center;
-      width:100%;max-width:320px;box-shadow:var(--sombra);
-      transition:transform .3s,box-shadow .3s;}
-    .val-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.3);}
-    .v-label{font-size:.85rem;font-weight:600;letter-spacing:1.5px;color:var(--dourado);margin-bottom:10px;}
-    .v-preco{font-size:2.1rem;font-weight:800;color:#333;line-height:1.1;}
-    .v-desc{font-size:.82rem;color:#333;margin-top:8px;}
-    .parc-box{
-      background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);
-      border-radius:var(--radius);padding:20px 32px;
-      color:var(--dourado);
-      display:flex;
-      align-items:flex-start;gap:14px;font-size:.95rem;}
-    .parc-box i{font-size:1.4rem;color:var(--dourado2);flex-shrink:0;margin-top:2px;}
-
-    /* ══ CAIXAS TEXTO ══ */
-    .caixa{
-      background:#fff;border-radius:var(--radius);
-      padding:32px;box-shadow:var(--sombra);
-      font-size:.95rem;line-height:1.88;}
-    .borda-azul{border-left:6px solid var(--azul2);}
-    .borda-gold{border-left:6px solid var(--dourado);}
-
-    /* Estilo para as listas de detalhes de Aéreo/Carro */
-    .detalhes-lista{
-      list-style:none;padding:0;margin:0;
+    .val-bloco{
+      border:2px solid #e8e8e8;border-radius:10px;
+      margin-bottom:14px;overflow:hidden;transition:border-color .2s;
     }
-    .detalhes-lista li{
-      margin-bottom:8px;
-      display:flex;
-      align-items:flex-start;
-      gap:10px;
-      font-size:.95rem;
-      color:#444;
+    .val-bloco:hover{border-color:var(--azul2);}
+    .val-head{
+      display:flex;align-items:center;justify-content:space-between;
+      background:linear-gradient(135deg,var(--dourado),var(--dourado2));
+      padding:12px 16px;color:#fff;font-size:.9rem;
     }
-    .detalhes-lista li i{
-      color:var(--azul);
-      flex-shrink:0;
-      margin-top:3px;
+    .val-head i{margin-right:6px;}
+    .val-head .brem{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);}
+    .val-head .brem:hover{background:rgba(231,76,60,.4);}
+
+    /* ══ TOAST ══ */
+    .toast{
+      position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+      background:#333;color:#fff;padding:12px 20px;border-radius:8px;
+      font-size:.9rem;z-index:1000;opacity:0;visibility:hidden;
+      transition:opacity .3s,visibility .3s;
+      display:flex;align-items:center;gap:8px;
     }
-    .detalhes-lista li strong{
-      color:var(--azul);
-      font-weight:600;
-    }
-
-    /* ══ RODAPÉ ORÇAMENTO ══ */
-    .rodape-orc{
-      background:#eef0f5;padding:20px;text-align:center;
-      font-size:.82rem;color:#888;border-top:1px solid #ddd;}
-
-    /* ══ FOOTER ══ */
-    .site-footer{
-      background:var(--azul);
-      color:rgba(255,255,255,.82);
-      padding:40px 20px 0;}
-    .footer-in{
-      display:flex;align-items:center;flex-wrap:wrap;
-      gap:24px;padding-bottom:30px;
-      max-width:980px;margin:0 auto;}
-    .footer-logo-wrap{
-      display:flex;align-items:center;gap:10px;
-      background:none;
-      padding:0;
-      border:none;
-      margin-bottom:15px;
-    }
-    .footer-logo{height:60px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .footer-logo30{height:50px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .footer-div{width:1px;height:46px;background:rgba(255,255,255,.25);}
-    .footer-info{flex:1;}
-    .footer-slogan{font-size:.95rem;margin-bottom:10px;color:#fff;font-weight:600;}
-    .footer-links{display:flex;flex-wrap:wrap;gap:8px 20px;}
-    .footer-links a{
-      font-size:.84rem;color:rgba(255,255,255,.75);
-      display:flex;align-items:center;gap:6px;transition:all .3s;}
-    .footer-links a:hover{color:var(--dourado);}
-    .footer-links a.social-link{font-size:.9rem;color:#fff;margin-left:10px;}
-    .footer-links a.social-link:hover{color:var(--dourado);}
-    .footer-copy{
-      text-align:center;padding:14px;max-width:980px;margin:0 auto;
-      border-top:1px solid rgba(255,255,255,.12);
-      font-size:.78rem;color:rgba(255,255,255,.42);}
-
-    /* ══ FABs FLUTUANTES ══ */
-    .fab-area{
-      position:fixed;bottom:28px;right:28px;
-      display:flex;flex-direction:column;gap:12px;z-index:999;}
-    .fab{
-      width:58px;height:58px;border-radius:50%;border:none;
-      cursor:pointer;font-size:1.4rem;color:#fff;
-      display:flex;align-items:center;justify-content:center;
-      box-shadow:0 4px 16px rgba(0,0,0,.25);transition:all .3s;
-      position:relative;}
-    .fab:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.35);}
-    .fab-wpp{background:#25D366;}
-    .fab-pdf{background:#c0392b;}
-    .fab-top{background:var(--azul);}
-    .fab-label{
-      position:absolute;right:100%;margin-right:12px;
-      background:rgba(0,0,0,.7);color:#fff;
-      padding:6px 12px;border-radius:6px;
-      font-size:.8rem;white-space:nowrap;
-      opacity:0;visibility:hidden;transition:all .2s;}
-    .fab:hover .fab-label{opacity:1;visibility:visible;}
-
-    /* ══ LOADING / ERRO ══ */
-    .load-ov{
-      position:fixed;inset:0;background:rgba(255,255,255,.9);
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      z-index:1000;opacity:0;visibility:hidden;transition:all .3s;}
-    .load-ov.on{opacity:1;visibility:visible;}
-    .load-spinner{font-size:3rem;color:var(--azul);margin-bottom:20px;}
-    .load-txt{font-size:1.1rem;color:#555;margin-bottom:10px;}
-    .load-bar-wrap{width:200px;height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden;}
-    .load-bar{width:0%;height:100%;background:var(--dourado);transition:width .3s linear;}
-
-    .erro-box{
-      position:fixed;inset:0;background:#fff;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      text-align:center;padding:20px;z-index:1000;}
-    .erro-box i{font-size:4rem;color:#e74c3c;margin-bottom:20px;}
-    .erro-box h2{font-size:1.8rem;color:#333;margin-bottom:10px;}
-    .erro-box p{font-size:1rem;color:#666;margin-bottom:30px;}
-    .btn-wa{
-      display:inline-flex;align-items:center;gap:10px;
-      background:#25D366;color:#fff;padding:12px 25px;
-      border-radius:30px;font-weight:700;font-size:1rem;
-      box-shadow:0 4px 12px rgba(0,0,0,.2);transition:all .3s;}
-    .btn-wa:hover{background:#1ebe5d;transform:translateY(-2px);}
+    .toast.on{opacity:1;visibility:visible;}
+    .toast.ok{background:#28a745;}
+    .toast.err{background:#dc3545;}
+    .toast.info{background:#007bff;}
 
     /* ══ RESPONSIVO ══ */
     @media(max-width:768px){
-      .header-inner{flex-direction:column;text-align:center;}
-      .h-contatos{justify-content:center;}
-      .logo-wrap{margin-bottom:15px;}
-      .hero{min-height:400px;}
-      .hero-info h1{font-size:2rem;}
-      .hero-sub{font-size:.9rem;}
-      .chips{justify-content:center;}
-      .hero-btns{justify-content:center;}
-      .sec-titulo{font-size:1.5rem;}
-      .inc-grid{grid-template-columns:1fr;}
-      .timeline::before{left:20px;transform:translateX(0);}
-      .dia{flex-direction:column;align-items:center;}
-      .dia:nth-child(even){flex-direction:column;}
-      .dia-num{position:relative;left:auto;transform:translateX(0);margin-bottom:15px;}
-      .dia-corpo{width:100%;margin:0;}
-      .dia:nth-child(odd) .dia-corpo{margin-right:0;}
-      .dia:nth-child(even) .dia-corpo{margin-left:0;}
-      .dia-txt{padding:15px;}
-      .val-grid{flex-direction:column;align-items:center;}
-      .val-card{width:100%;max-width:300px;}
-      .caixa{padding:20px;}
-      .fab-area{bottom:15px;right:15px;}
-      .fab{width:50px;height:50px;font-size:1.2rem;}
-      .fab-label{display:none;} /* Esconde labels em mobile */
-      .footer-in{flex-direction:column;text-align:center;}
-      .footer-logo-wrap{margin-bottom:15px;}
-      .footer-links{flex-direction:column;align-items:center;}
+      .adm-header{flex-direction:column;text-align:center;}
+      .adm-header-right{width:100%;justify-content:center;}
+      .layout{flex-direction:column;}
+      .sidebar{width:100%;position:static;height:auto;border-right:none;border-bottom:1px solid #e8e8e8;}
+      .orc-lista{display:flex;flex-wrap:wrap;gap:8px;padding:8px;}
+      .orc-item{flex:1 1 calc(50% - 8px);margin-bottom:0;}
+      .main{padding:16px;}
+      .painel{padding:16px;}
+      .row2,.row3{grid-template-columns:1fr;}
+      .foto-dia-row{flex-direction:column;}
+      .rd-img-wrap{width:100%;}
+      .upload-mini{width:100%;height:80px;}
     }
   </style>
 </head>
 <body>
 
-  <div id="loading-skeleton" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; background:#f5f6fa;">
-    <i class="fas fa-plane-departure fa-spin" style="font-size:3rem; color:#1B3A6B; margin-bottom:20px;"></i>
-    <p style="font-size:1.2rem; color:#555;">Carregando seu orçamento...</p>
-  </div>
-
-  <div id="main-content" style="display:none;">
-    <header class="site-header">
-      <div class="header-inner">
-        <a href="#" class="logo-wrap">
-          <img src="assets/images/logo.png" alt="Oficina de Turismo" class="logo-principal"/>
-          <div class="logo-divider"></div>
-          <img src="assets/images/logo-30-anos.png" alt="30 Anos" class="logo-30"/>
-        </a>
-        <div class="h-contatos">
-          <a href="tel:+5535988622943" class="h-link"><i class="fas fa-phone"></i> (35) 98862-2943</a>
-          <a href="https://wa.me/5535988622943" target="_blank" class="h-link"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        </div>
-      </div>
-    </header>
-
-    <main id="main-orc">
-      <section class="hero">
-        <div class="car-wrap">
-          <div id="car-track" class="car-track">
-            <!-- Imagens do carrossel aqui -->
-          </div>
-          <button id="car-prev" class="car-btn car-prev"><i class="fas fa-chevron-left"></i></button>
-          <button id="car-next" class="car-btn car-next"><i class="fas fa-chevron-right"></i></button>
-          <div id="car-dots" class="car-dots"></div>
-        </div>
-        <div class="hero-ov"></div>
-        <div class="hero-info">
-          <div class="hero-in">
-            <span id="hero-badge" class="badge">DESTINO</span>
-            <h1 id="hero-titulo">Título da Viagem</h1>
-            <p id="hero-subtitulo" class="hero-sub">Subtítulo ou destaque da viagem</p>
-            <div class="chips">
-              <span id="chip-periodo" class="chip"><i class="fas fa-calendar-alt"></i> Período</span>
-              <span id="chip-duracao" class="chip"><i class="fas fa-clock"></i> Duração</span>
-              <span id="chip-grupo" class="chip"><i class="fas fa-users"></i> Grupo</span>
-            </div>
-            <div class="hero-btns">
-              <button class="btn-wpp" onclick="envWppOrc()"><i class="fab fa-whatsapp"></i> Falar no WhatsApp</button>
-              <button class="btn-pdf-h" onclick="gerarPDF()"><i class="fas fa-file-pdf"></i> Baixar PDF</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="sec-incluidos" class="fade-in">
-        <div class="container">
-          <h2 class="sec-titulo"><i class="fas fa-list-ul"></i> O que está incluído</h2>
-          <div class="inc-grid">
-            <div class="inc-card sim">
-              <div class="inc-hd">
-                <i class="fas fa-check-circle"></i>
-                <h3>Incluído no Pacote</h3>
-              </div>
-              <ul id="lista-incluido">
-                <!-- Itens incluídos aqui -->
-              </ul>
-            </div>
-            <div class="inc-card nao">
-              <div class="inc-hd">
-                <i class="fas fa-times-circle"></i>
-                <h3>Não Incluído no Pacote</h3>
-              </div>
-              <ul id="lista-nao-incluido">
-                <!-- Itens não incluídos aqui -->
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="sec-roteiro" class="fade-in">
-        <div class="container">
-          <h2 class="sec-titulo"><i class="fas fa-route"></i> Roteiro Dia a Dia</h2>
-          <div id="roteiro-timeline" class="timeline">
-            <!-- Roteiro será renderizado aqui -->
-          </div>
-        </div>
-      </section>
-
-      <section id="sec-valores" class="valores-bg fade-in">
-        <div class="container">
-          <h2 class="sec-titulo light"><i class="fas fa-dollar-sign"></i> Valores por Pessoa</h2>
-          <div id="valores-grid" class="val-grid">
-            <!-- Opções de valores aqui -->
-          </div>
-          <div id="parcelamento-box" class="parc-box hide">
-            <i class="fas fa-credit-card"></i>
-            <p id="parcelamento-txt"></p>
-          </div>
-        </div>
-      </section>
-
-      <!-- NOVA SEÇÃO PARA PARTE AÉREA -->
-      <section id="sec-aereo" class="fade-in" style="display:none;">
-        <div class="container">
-          <h2 class="sec-titulo"><i class="fas fa-plane-departure"></i> Parte Aérea</h2>
-          <div id="aereo-info-box" class="caixa borda-azul">
-            <ul class="detalhes-lista">
-              <li id="aereo-cia-display" style="display:none;"><i class="fas fa-plane"></i> <strong>Cia Aérea:</strong> <span></span></li>
-              <li id="aereo-num-voo-display" style="display:none;"><i class="fas fa-ticket-alt"></i> <strong>Número do Voo:</strong> <span></span></li>
-              <li id="aereo-origem-display" style="display:none;"><i class="fas fa-plane-departure"></i> <strong>Embarque:</strong> <span></span></li>
-              <li id="aereo-destino-display" style="display:none;"><i class="fas fa-plane-arrival"></i> <strong>Chegada:</strong> <span></span></li>
-              <li id="aereo-horarios-display" style="display:none;"><i class="fas fa-clock"></i> <strong>Horários:</strong> <span></span></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- NOVA SEÇÃO PARA ALUGUEL DE CARRO -->
-      <section id="sec-aluguel-carro" class="fade-in" style="display:none;">
-        <div class="container">
-          <h2 class="sec-titulo"><i class="fas fa-car"></i> Aluguel de Carro</h2>
-          <div id="aluguel-carro-info-box" class="caixa borda-azul">
-            <ul class="detalhes-lista">
-              <li id="carro-retirada-display" style="display:none;"><i class="fas fa-map-marker-alt"></i> <strong>Retirada:</strong> <span></span></li>
-              <li id="carro-entrega-display" style="display:none;"><i class="fas fa-map-marker-alt"></i> <strong>Entrega:</strong> <span></span></li>
-              <li id="carro-info-adicional-display" style="display:none;"><i class="fas fa-info-circle"></i> <strong>Detalhes:</strong> <span></span></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="sec-condicoes" class="fade-in">
-        <div class="container">
-          <h2 class="sec-titulo"><i class="fas fa-file-alt"></i> Condições Gerais</h2>
-          <div id="condicoes-box" class="caixa borda-azul"></div>
-        </div>
-      </section>
-
-      <section id="sec-observacoes" class="fade-in">
-        <div class="container">
-          <h2 class="sec-titulo"><i class="fas fa-comment-dots"></i> Observações Importantes</h2>
-          <div id="observacoes-box" class="caixa borda-gold"></div>
-        </div>
-      </section>
-
-      <div class="rodape-orc">
-        <p>Orçamento gerado em <span id="data-geracao-orc"></span></p>
-      </div>
-    </main>
-
-    <div class="fab-area">
-      <button class="fab fab-wpp" onclick="envWppOrc()" title="Falar no WhatsApp">
-        <i class="fab fa-whatsapp"></i><span class="fab-label">WhatsApp</span>
-      </button>
-      <button class="fab fab-pdf" onclick="gerarPDF()" title="Baixar PDF">
-        <i class="fas fa-file-pdf"></i><span class="fab-label">Baixar PDF</span>
-      </button>
-      <button class="fab fab-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao Topo">
-        <i class="fas fa-arrow-up"></i><span class="fab-label">Topo</span>
-      </button>
+  <header class="adm-header">
+    <div class="adm-logo">
+      <img src="assets/images/logo.png" alt="Oficina de Turismo" class="lp"/>
+      <div class="logo-sep"></div>
+      <img src="assets/images/logo-30-anos.png" alt="30 Anos" class="l30"/>
     </div>
-
-    <footer class="site-footer">
-      <div class="footer-in">
-        <div class="footer-logo-wrap">
-          <img src="assets/images/logo.png" alt="Oficina de Turismo" class="footer-logo"/>
-          <div class="footer-div"></div>
-          <img src="assets/images/logo-30-anos.png" alt="30 Anos" class="footer-logo30"/>
-        </div>
-        <div class="footer-info">
-          <p class="footer-slogan">Oficina de Turismo — Sua viagem começa aqui!</p>
-          <div class="footer-links">
-            <a href="tel:+5535988622943"><i class="fas fa-phone"></i> (35) 98862-2943</a>
-            <a href="mailto:contato@oficinadeturismo.com.br"><i class="fas fa-envelope"></i> contato@oficinadeturismo.com.br</a>
-            <a href="https://www.instagram.com/oficinadeturismo" target="_blank" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
-            <a href="https://www.oficinatur.com.br" target="_blank" class="social-link"><i class="fas fa-globe"></i> Site</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-copy">
-        &copy; 2024 Oficina de Turismo. Todos os direitos reservados.
-      </div>
-    </footer>
-
-    <div id="load-overlay" class="load-ov">
-      <i class="fas fa-spinner fa-spin load-spinner"></i>
-      <span id="load-txt" class="load-txt">Gerando PDF...</span>
-      <div class="load-bar-wrap"><div id="load-bar" class="load-bar"></div></div>
+    <div class="adm-info">
+      <span class="titulo">Painel Administrativo</span>
+      <span class="adm-badge">ORÇAMENTOS</span>
     </div>
-
-    <div id="erro-box" class="erro-box" style="display:none;">
-      <i class="fas fa-exclamation-triangle"></i>
-      <h2>Orçamento não encontrado!</h2>
-      <p>O orçamento que você está procurando não existe ou foi removido.</p>
-      <a href="https://wa.me/5535988622943?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20viagem!" target="_blank" class="btn-wa">
-        <i class="fab fa-whatsapp"></i> Falar com a Oficina de Turismo
+    <div class="adm-header-right">
+      <a href="https://fernandoneto1210-sys.github.io/orcamentos-oficina/" target="_blank">
+        <i class="fas fa-globe"></i> Ver Site
       </a>
     </div>
+  </header>
+
+  <div id="jb-status" class="jb-status-bar">
+    <i class="fas fa-circle-notch fa-spin"></i> Conectando ao JSONBin...
   </div>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sb-topo">
+        <button class="btn-novo" onclick="novoOrc()">
+          <i class="fas fa-plus-circle"></i> Novo Orçamento
+        </button>
+      </div>
+      <div class="sb-label">Meus Orçamentos</div>
+      <div id="orc-lista" class="orc-lista">
+        <!-- Orçamentos serão renderizados aqui -->
+      </div>
+    </aside>
+
+    <main class="main">
+      <div id="tela-ini" class="tela-ini">
+        <i class="fas fa-plane-departure"></i>
+        <h2>Bem-vindo ao Painel!</h2>
+        <p>Selecione um orçamento na lateral ou crie um novo para começar.</p>
+      </div>
+
+      <div id="form-card" class="form-card" style="display:none;">
+        <div class="form-topo">
+          <h2 id="f-topo-txt"><i class="fas fa-edit"></i> Editar Orçamento</h2>
+          <div class="topo-btns">
+            <button class="btn b-salvar" onclick="salvarOrc()">
+              <i class="fas fa-save"></i> Salvar
+            </button>
+            <button class="btn b-ver" onclick="verOrc()">
+              <i class="fas fa-eye"></i> Ver
+            </button>
+            <button class="btn b-wpp" onclick="envWpp()">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </button>
+            <button class="btn b-dup" onclick="duplicarOrc()">
+              <i class="fas fa-copy"></i> Duplicar
+            </button>
+            <button class="btn b-del" onclick="delOrc()">
+              <i class="fas fa-trash-alt"></i> Excluir
+            </button>
+          </div>
+        </div>
+
+        <div class="abas">
+          <button class="aba on" onclick="aba('basico')"><i class="fas fa-info-circle"></i> Básico</button>
+          <button class="aba" onclick="aba('inc')"><i class="fas fa-list-ul"></i> Incluídos</button>
+          <button class="aba" onclick="aba('rot')"><i class="fas fa-route"></i> Roteiro</button>
+          <button class="aba" onclick="aba('val')"><i class="fas fa-dollar-sign"></i> Valores</button>
+          <button class="aba" onclick="aba('img')"><i class="fas fa-images"></i> Fotos</button>
+          <button class="aba" onclick="aba('add')"><i class="fas fa-plus-circle"></i> Adicionais</button>
+          <button class="aba" onclick="aba('lnk')"><i class="fas fa-link"></i> Link</button>
+        </div>
+
+        <div id="p-basico" class="painel on">
+          <div class="row2">
+            <div class="cg">
+              <label for="f-id"><i class="fas fa-fingerprint"></i> ID do Orçamento *</label>
+              <input type="text" id="f-id" placeholder="ex: chile-atacama-2024"/>
+              <p class="hint">ID único para o link do orçamento (ex: `chile-atacama-2024`)</p>
+            </div>
+            <div class="cg">
+              <label for="f-sts"><i class="fas fa-check-circle"></i> Status</label>
+              <select type="text" id="f-sts">
+                <option value="ativo">Ativo</option>
+                <option value="rascunho">Rascunho</option>
+                <option value="expirado">Expirado</option>
+              </select>
+            </div>
+          </div>
+          <div class="cg">
+            <label for="f-cli"><i class="fas fa-user"></i> Cliente</label>
+            <input type="text" id="f-cli" placeholder="Nome do cliente"/>
+          </div>
+          <div class="cg">
+            <label for="f-tit"><i class="fas fa-plane"></i> Título da Viagem *</label>
+            <input type="text" id="f-tit" placeholder="Ex: Chile - Atacama e Santiago"/>
+          </div>
+          <div class="cg">
+            <label for="f-sub"><i class="fas fa-tag"></i> Subtítulo / Destaque</label>
+            <input type="text" id="f-sub" placeholder="Ex: Uma aventura inesquecível no deserto!"/>
+          </div>
+          <div class="row3">
+            <div class="cg">
+              <label for="f-dest"><i class="fas fa-map-marker-alt"></i> Destino</label>
+              <input type="text" id="f-dest" placeholder="Ex: Atacama"/>
+            </div>
+            <div class="cg">
+              <label for="f-per"><i class="fas fa-calendar-alt"></i> Período</label>
+              <input type="text" id="f-per" placeholder="Ex: 01 a 08 de Setembro"/>
+            </div>
+            <div class="cg">
+              <label for="f-dur"><i class="fas fa-clock"></i> Duração</label>
+              <input type="text" id="f-dur" placeholder="Ex: 8 dias e 7 noites"/>
+            </div>
+          </div>
+          <div class="cg">
+            <label for="f-grp"><i class="fas fa-users"></i> Grupo</label>
+            <input type="text" id="f-grp" placeholder="Ex: Grupo Oficina de Turismo"/>
+          </div>
+          <div class="cg">
+            <label for="f-cond"><i class="fas fa-file-alt"></i> Condições Gerais</label>
+            <textarea id="f-cond" placeholder="Condições gerais do pacote..."></textarea>
+          </div>
+          <div class="cg">
+            <label for="f-obs"><i class="fas fa-comment-dots"></i> Observações Importantes</label>
+            <textarea id="f-obs" placeholder="Observações importantes..."></textarea>
+          </div>
+        </div>
+
+        <div id="p-inc" class="painel">
+          <div class="cg">
+            <label><i class="fas fa-check-circle"></i> Itens Incluídos</label>
+            <div id="lista-inc" class="ldyn"></div>
+            <button class="badd" onclick="addLItem('lista-inc')"><i class="fas fa-plus"></i> Adicionar Item</button>
+          </div>
+          <div class="cg">
+            <label><i class="fas fa-times-circle"></i> Itens Não Incluídos</label>
+            <div id="lista-ninc" class="ldyn"></div>
+            <button class="badd" onclick="addLItem('lista-ninc')"><i class="fas fa-plus"></i> Adicionar Item</button>
+          </div>
+        </div>
+
+        <div id="p-rot" class="painel">
+          <div id="roteiro-list">
+            <!-- Blocos de roteiro serão adicionados aqui -->
+          </div>
+          <button class="badd" onclick="addRotBloco()"><i class="fas fa-plus"></i> Adicionar Dia no Roteiro</button>
+        </div>
+
+        <div id="p-val" class="painel">
+          <div class="cg">
+            <label><i class="fas fa-dollar-sign"></i> Opções de Valores</label>
+            <div id="valores-list">
+              <!-- Blocos de valores serão adicionados aqui -->
+            </div>
+            <button class="badd" onclick="addValBloco()"><i class="fas fa-plus"></i> Adicionar Opção de Valor</button>
+          </div>
+          <hr style="margin: 30px 0; border-color: #eee;"/>
+          <div class="cg">
+            <label for="f-valor-total"><i class="fas fa-money-bill-wave"></i> Valor Total do Pacote</label>
+            <input type="number" id="f-valor-total" placeholder="0.00" step="0.01" oninput="calcularParcelas()"/>
+            <p class="hint">Valor total do pacote (ex: 10000.00)</p>
+          </div>
+          <div class="row2">
+            <div class="cg">
+              <label for="f-valor-entrada"><i class="fas fa-hand-holding-usd"></i> Valor da Entrada</label>
+              <input type="number" id="f-valor-entrada" placeholder="0.00" step="0.01" oninput="calcularParcelas()"/>
+              <p class="hint">Valor pago na entrada (ex: 1000.00)</p>
+            </div>
+            <div class="cg">
+              <label for="f-num-parcelas"><i class="fas fa-calendar-alt"></i> Número de Parcelas</label>
+              <input type="number" id="f-num-parcelas" placeholder="10" min="1" oninput="calcularParcelas()"/>
+              <p class="hint">Número de parcelas restantes (ex: 10)</p>
+            </div>
+          </div>
+          <div class="cg">
+            <label for="f-valor-parcela"><i class="fas fa-money-check-alt"></i> Valor da Parcela (Calculado)</label>
+            <input type="text" id="f-valor-parcela" readonly disabled placeholder="0.00"/>
+            <p class="hint">Valor de cada parcela restante.</p>
+          </div>
+          <div class="cg">
+            <label for="f-parcelamento-txt"><i class="fas fa-credit-card"></i> Texto de Parcelamento (Exibido no Orçamento)</label>
+            <textarea id="f-parcelamento-txt" placeholder="Ex: Entrada de R$ 1.000,00 e saldo em 10x de R$ 900,00"></textarea>
+            <p class="hint">Este texto será exibido no orçamento final. Será preenchido automaticamente, mas você pode editar.</p>
+          </div>
+        </div>
+
+        <div id="p-img" class="painel">
+          <div class="cg">
+            <label for="f-img-capa"><i class="fas fa-image"></i> Imagem de Capa (URL)</label>
+            <input type="text" id="f-img-capa" placeholder="URL da imagem de capa"/>
+            <p class="hint">URL da imagem principal do orçamento. Será a primeira imagem da galeria.</p>
+          </div>
+          <div class="cg">
+            <label><i class="fas fa-images"></i> Galeria de Imagens</label>
+            <div class="upload-box" onclick="document.getElementById('file-upload').click()">
+              <input type="file" id="file-upload" accept="image/*" multiple onchange="handleFileUpload(event)"/>
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Arraste e solte imagens aqui ou clique para selecionar</p>
+            </div>
+            <div id="galeria-preview" class="prev-grid">
+              <!-- Imagens da galeria serão pré-visualizadas aqui -->
+            </div>
+          </div>
+        </div>
+
+        <div id="p-add" class="painel">
+          <!-- Novos campos detalhados para Aéreo -->
+          <div class="cg">
+            <label for="f-aereo-cia"><i class="fas fa-plane"></i> Cia Aérea (Opcional)</label>
+            <input type="text" id="f-aereo-cia" placeholder="Ex: LATAM, GOL"/>
+          </div>
+          <div class="cg">
+            <label for="f-aereo-num-voo"><i class="fas fa-ticket-alt"></i> Número do Voo (Opcional)</label>
+            <input type="text" id="f-aereo-num-voo" placeholder="Ex: LA3456"/>
+          </div>
+          <div class="cg">
+            <label for="f-aereo-origem"><i class="fas fa-plane-departure"></i> Local de Embarque (Opcional)</label>
+            <input type="text" id="f-aereo-origem" placeholder="Ex: GRU - São Paulo"/>
+          </div>
+          <div class="cg">
+            <label for="f-aereo-destino"><i class="fas fa-plane-arrival"></i> Local de Chegada (Opcional)</label>
+            <input type="text" id="f-aereo-destino" placeholder="Ex: SCL - Santiago (com conexão em LIM)"/>
+          </div>
+          <div class="cg">
+            <label for="f-aereo-horarios"><i class="fas fa-clock"></i> Horários de Chegada/Partida (Opcional)</label>
+            <input type="text" id="f-aereo-horarios" placeholder="Ex: Partida 10:00, Chegada 18:30"/>
+          </div>
+          <hr style="margin: 30px 0; border-color: #eee;"/>
+          <!-- Novos campos detalhados para Aluguel de Carro -->
+          <div class="cg">
+            <label for="f-carro-local-retirada"><i class="fas fa-car"></i> Local de Retirada (Opcional)</label>
+            <input type="text" id="f-carro-local-retirada" placeholder="Ex: Aeroporto de Santiago"/>
+          </div>
+          <div class="cg">
+            <label for="f-carro-local-entrega"><i class="fas fa-map-marker-alt"></i> Local de Entrega (Opcional)</label>
+            <input type="text" id="f-carro-local-entrega" placeholder="Ex: Aeroporto de Santiago"/>
+          </div>
+          <div class="cg">
+            <label for="f-carro-info-adicional"><i class="fas fa-info-circle"></i> Informações Adicionais do Carro (Opcional)</label>
+            <textarea id="f-carro-info-adicional" placeholder="Ex: Categoria do carro, período de locação, etc."></textarea>
+          </div>
+        </div>
+
+        <div id="p-lnk" class="painel">
+          <div class="cg">
+            <label><i class="fas fa-link"></i> Link do Orçamento</label>
+            <p id="link-prev" style="word-break: break-all; background:#f0f0f0; padding:10px; border-radius:8px;"></p>
+            <button class="btn b-ver" onclick="copyLink()"><i class="fas fa-copy"></i> Copiar Link</button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
 
   <script>
 /* ════════════════════════════════════════════
-   CONFIGURAÇÃO JSONBin — Substitua aqui!
+   CONFIGURAÇÕES GLOBAIS
    ════════════════════════════════════════════ */
 const JSONBIN_ID  = '6a318e1eda38895dfecb475a'; // Seu BIN ID do JSONBin.io
 const JSONBIN_KEY = '$2a$10$HTy/puCq6iupLHos/RV5DejOrnyU5.Pz18WDA4.dpmLOWJ09Rdqj.'; // Sua API Key do JSONBin.io
+const IMGUR_ID    = 'f02693992038747'; // Seu Client ID do Imgur - VERIFIQUE SE ESTÁ CORRETO!
+const BASE_URL    = 'https://fernandoneto1210-sys.github.io/orcamentos-oficina/orcamento.html'; // URL base do seu GitHub Pages para o orcamento.html
 /* ════════════════════════════════════════════ */
 
-let dadosOrc = null; // Dados do orçamento carregado
+let orcs = []; // Array para armazenar os orçamentos
+let idx = -1;  // Índice do orçamento atualmente editado
+let currentOrcId = null; // ID do orçamento atualmente carregado
+let imgurUploads = {}; // Para controlar uploads do Imgur
 
-/* ════════════════════════════════════════════
-   CARREGAR DADOS DO JSONBIN
-   ════════════════════════════════════════════ */
-async function carregarOrcamento() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const id = urlParams.get('id');
+// Funções auxiliares para pegar/setar valores de campos
+const fld = (id) => document.getElementById(id);
+const gv = (id) => fld(id).value;
+const sv = (id, val) => fld(id).value = val;
+const esc = (s) => s.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
 
-  if (!id) {
-    document.getElementById('loading-skeleton').style.display = 'none';
-    document.getElementById('erro-box').style.display = 'flex';
-    return;
-  }
-
+// ════════════════════════════════════════════
+// JSONBIN.IO INTEGRAÇÃO
+// ════════════════════════════════════════════
+async function fetchOrgs() {
   try {
+    fld('jb-status').className = 'jb-status-bar';
+    fld('jb-status').innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Conectando ao JSONBin...';
     const r = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}/latest`, {
       headers: { 'X-Master-Key': JSONBIN_KEY }
     });
+    if (!r.ok) throw new Error('Erro ao carregar dados do JSONBin.');
     const d = await r.json();
-    const orcamentos = Array.isArray(d.record) ? d.record : [];
-    dadosOrc = orcamentos.find(o => o.id === id);
-
-    if (dadosOrc) {
-      renderizarOrcamento(dadosOrc);
-      document.getElementById('loading-skeleton').style.display = 'none';
-      document.getElementById('main-content').style.display = 'block';
-      // Atualiza meta tags para compartilhamento
-      document.getElementById('page-title').textContent = `${dadosOrc.titulo} — Oficina de Turismo`;
-      const ogImage = document.getElementById('og-image');
-      if (ogImage && dadosOrc.imgCapa) {
-        ogImage.setAttribute('content', dadosOrc.imgCapa);
-      }
-      const ogTitle = document.getElementById('og-title');
-      if (ogTitle) {
-        ogTitle.setAttribute('content', dadosOrc.titulo);
-      }
-      const ogDescription = document.getElementById('og-description');
-      if (ogDescription) {
-        ogDescription.setAttribute('content', dadosOrc.subtitulo || dadosOrc.destino);
-      }
-
-    } else {
-      document.getElementById('loading-skeleton').style.display = 'none';
-      document.getElementById('erro-box').style.display = 'flex';
-    }
-  } catch (e) {
-    console.error('Erro ao carregar orçamento:', e);
-    document.getElementById('loading-skeleton').style.display = 'none';
-    document.getElementById('erro-box').style.display = 'flex';
+    orcs = Array.isArray(d.record) ? d.record : [];
+    renderSB();
+    fld('jb-status').className = 'jb-status-bar ok';
+    fld('jb-status').innerHTML = '<i class="fas fa-check-circle"></i> Conectado ao JSONBin.';
+  } catch(e) {
+    console.error(e);
+    fld('jb-status').className = 'jb-status-bar off';
+    fld('jb-status').innerHTML = '<i class="fas fa-exclamation-triangle"></i> Erro ao conectar ao JSONBin. Salve localmente.';
   }
 }
 
-/* ════════════════════════════════════════════
-   RENDERIZAR ORÇAMENTO
-   ════════════════════════════════════════════ */
-function renderizarOrcamento(o) {
-  document.getElementById('hero-badge').textContent = o.destino || 'Destino';
-  document.getElementById('hero-titulo').textContent = o.titulo;
-  document.getElementById('hero-subtitulo').textContent = o.subtitulo;
-  document.getElementById('chip-periodo').innerHTML = `<i class="fas fa-calendar-alt"></i> ${o.periodo}`;
-  document.getElementById('chip-duracao').innerHTML = `<i class="fas fa-clock"></i> ${o.duracao}`;
-  document.getElementById('chip-grupo').innerHTML = `<i class="fas fa-users"></i> ${o.grupo}`;
-
-  // Carrossel de imagens
-  initCarrossel(o.galeria || []);
-
-  // Listas de incluídos e não incluídos
-  renderizarLista('lista-incluido', o.incluido || []);
-  renderizarLista('lista-nao-incluido', o.naoIncluido || []);
-
-  // Roteiro
-  renderizarRoteiro('roteiro-timeline', o.roteiro || []);
-
-  // Valores
-  renderizarValores('valores-grid', o.valores || []);
-  if (o.parcelamento && o.parcelamento.trim() !== '' && o.parcelamento.trim() !== 'Informe os valores para calcular o parcelamento.') {
-    document.getElementById('parcelamento-txt').innerHTML = o.parcelamento.replace(/\n/g, '<br>');
-    document.getElementById('parcelamento-box').classList.remove('hide');
-  } else {
-    document.getElementById('parcelamento-box').classList.add('hide');
+async function salvarOrc() {
+  const o = getOrcData();
+  if (!o.id || !o.titulo) {
+    toast('ID e Título são obrigatórios!', 'err');
+    return;
   }
 
-  // Parte Aérea (Opcional)
-  const aereoInfoBox = document.getElementById('aereo-info-box');
-  const secAereo = document.getElementById('sec-aereo');
-  let hasAereoInfo = false;
-
-  if (o.aereoCia && o.aereoCia.trim() !== '') {
-    document.getElementById('aereo-cia-display').querySelector('span').textContent = o.aereoCia;
-    document.getElementById('aereo-cia-display').style.display = 'flex';
-    hasAereoInfo = true;
-  } else {
-    document.getElementById('aereo-cia-display').style.display = 'none';
-  }
-  if (o.aereoNumVoo && o.aereoNumVoo.trim() !== '') {
-    document.getElementById('aereo-num-voo-display').querySelector('span').textContent = o.aereoNumVoo;
-    document.getElementById('aereo-num-voo-display').style.display = 'flex';
-    hasAereoInfo = true;
-  } else {
-    document.getElementById('aereo-num-voo-display').style.display = 'none';
-  }
-  if (o.aereoOrigem && o.aereoOrigem.trim() !== '') {
-    document.getElementById('aereo-origem-display').querySelector('span').textContent = o.aereoOrigem;
-    document.getElementById('aereo-origem-display').style.display = 'flex';
-    hasAereoInfo = true;
-  } else {
-    document.getElementById('aereo-origem-display').style.display = 'none';
-  }
-  if (o.aereoDestino && o.aereoDestino.trim() !== '') {
-    document.getElementById('aereo-destino-display').querySelector('span').textContent = o.aereoDestino;
-    document.getElementById('aereo-destino-display').style.display = 'flex';
-    hasAereoInfo = true;
-  } else {
-    document.getElementById('aereo-destino-display').style.display = 'none';
-  }
-  if (o.aereoHorarios && o.aereoHorarios.trim() !== '') {
-    document.getElementById('aereo-horarios-display').querySelector('span').textContent = o.aereoHorarios;
-    document.getElementById('aereo-horarios-display').style.display = 'flex';
-    hasAereoInfo = true;
-  } else {
-    document.getElementById('aereo-horarios-display').style.display = 'none';
-  }
-
-  if (hasAereoInfo) {
-    secAereo.style.display = 'block';
-  } else {
-    secAereo.style.display = 'none';
-  }
-
-
-  // Aluguel de Carro (Opcional)
-  const carroInfoBox = document.getElementById('aluguel-carro-info-box');
-  const secAluguelCarro = document.getElementById('sec-aluguel-carro');
-  let hasCarroInfo = false;
-
-  if (o.carroLocalRetirada && o.carroLocalRetirada.trim() !== '') {
-    document.getElementById('carro-retirada-display').querySelector('span').textContent = o.carroLocalRetirada;
-    document.getElementById('carro-retirada-display').style.display = 'flex';
-    hasCarroInfo = true;
-  } else {
-    document.getElementById('carro-retirada-display').style.display = 'none';
-  }
-  if (o.carroLocalEntrega && o.carroLocalEntrega.trim() !== '') {
-    document.getElementById('carro-entrega-display').querySelector('span').textContent = o.carroLocalEntrega;
-    document.getElementById('carro-entrega-display').style.display = 'flex';
-    hasCarroInfo = true;
-  } else {
-    document.getElementById('carro-entrega-display').style.display = 'none';
-  }
-  if (o.carroInfoAdicional && o.carroInfoAdicional.trim() !== '') {
-    document.getElementById('carro-info-adicional-display').querySelector('span').textContent = o.carroInfoAdicional;
-    document.getElementById('carro-info-adicional-display').style.display = 'flex';
-    hasCarroInfo = true;
-  } else {
-    document.getElementById('carro-info-adicional-display').style.display = 'none';
-  }
-
-  if (hasCarroInfo) {
-    secAluguelCarro.style.display = 'block';
-  } else {
-    secAluguelCarro.style.display = 'none';
-  }
-
-
-  // Condições e Observações
-  document.getElementById('condicoes-box').innerHTML = (o.condicoes || 'Nenhuma condição geral informada.').replace(/\n/g, '<br>');
-  document.getElementById('observacoes-box').innerHTML = (o.observacoes || 'Nenhuma observação importante.').replace(/\n/g, '<br>');
-
-  // Data de geração no rodapé
-  document.getElementById('data-geracao-orc').textContent = formatarData(o.dataGeracao);
-
-  // Ativar animações de entrada ao rolar
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('vis');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-in').forEach(section => {
-    observer.observe(section);
-  });
-  document.querySelectorAll('.dia').forEach(dia => {
-    observer.observe(dia);
-  });
-}
-
-/* ════════════════════════════════════════════
-   CARROSSEL DE IMAGENS
-   ════════════════════════════════════════════ */
-let carIndex = 0;
-let carInterval;
-
-function initCarrossel(imagens) {
-  const track = document.getElementById('car-track');
-  const dotsContainer = document.getElementById('car-dots');
-  track.innerHTML = '';
-  dotsContainer.innerHTML = '';
-
-  if (!imagens || imagens.length === 0) {
-    // Imagem de fallback se não houver imagens
-    imagens = ['https://via.placeholder.com/1920x1080/1B3A6B/FFFFFF?text=Oficina+de+Turismo'];
-  }
-
-  imagens.forEach((src, i) => {
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = `Imagem ${i + 1}`;
-    img.onerror = function() {
-      this.src = 'https://via.placeholder.com/1920x1080/1B3A6B/FFFFFF?text=Imagem+Nao+Disponivel';
-    };
-    track.appendChild(img);
-
-    const dot = document.createElement('button');
-    dot.classList.add('car-dot');
-    if (i === 0) dot.classList.add('on');
-    dot.onclick = () => moveCarrossel(i);
-    dotsContainer.appendChild(dot);
-  });
-
-  if (imagens.length > 1) {
-    document.getElementById('car-prev').onclick = () => moveCarrossel(carIndex - 1);
-    document.getElementById('car-next').onclick = () => moveCarrossel(carIndex + 1);
-    startCarrosselAuto();
-  } else {
-    document.getElementById('car-prev').style.display = 'none';
-    document.getElementById('car-next').style.display = 'none';
-    dotsContainer.style.display = 'none';
-  }
-}
-
-function moveCarrossel(n) {
-  const track = document.getElementById('car-track');
-  const dots = document.querySelectorAll('.car-dot');
-  const totalImagens = track.children.length;
-
-  if (n >= totalImagens) carIndex = 0;
-  else if (n < 0) carIndex = totalImagens - 1;
-  else carIndex = n;
-
-  track.style.transform = `translateX(-${carIndex * 100}%)`;
-
-  dots.forEach((dot, i) => {
-    dot.classList.toggle('on', i === carIndex);
-  });
-
-  resetCarrosselAuto();
-}
-
-function startCarrosselAuto() {
-  carInterval = setInterval(() => {
-    moveCarrossel(carIndex + 1);
-  }, 6000); // Troca a cada 6 segundos
-}
-
-function resetCarrosselAuto() {
-  clearInterval(carInterval);
-  startCarrosselAuto();
-}
-
-/* ════════════════════════════════════════════
-   RENDERIZAR LISTAS (Incluídos / Não Incluídos)
-   ════════════════════════════════════════════ */
-function renderizarLista(idUl, itens) {
-  const ul = document.getElementById(idUl);
-  ul.innerHTML = '';
-  if (itens && itens.length > 0) {
-    itens.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item;
-      ul.appendChild(li);
-    });
-  } else {
-    const li = document.createElement('li');
-    li.textContent = 'Nenhum item informado.';
-    ul.appendChild(li);
-  }
-}
-
-/* ════════════════════════════════════════════
-   RENDERIZAR ROTEIRO
-   ════════════════════════════════════════════ */
-function renderizarRoteiro(idTimeline, roteiro) {
-  const timeline = document.getElementById(idTimeline);
-  timeline.innerHTML = '';
-  if (roteiro && roteiro.length > 0) {
-    roteiro.forEach((dia, i) => {
-      const divDia = document.createElement('div');
-      divDia.classList.add('dia');
-      divDia.style.transitionDelay = `${i * 0.1}s`; // Atraso para animação em cascata
-      divDia.innerHTML = `
-        <div class="dia-num">
-          <small>DIA</small>
-          ${i + 1}
-        </div>
-        <div class="dia-corpo">
-          ${dia.imagem ? `
-            <div class="dia-foto-wrap">
-              <img class="dia-foto"
-                   src="${dia.imagem}"
-                   alt="Dia ${i+1}"
-                   onerror="this.closest('.dia-foto-wrap').style.display='none'"/>
-            </div>` : ''}
-          <div class="dia-txt">
-            <h4>${dia.titulo}</h4>
-            <p>${dia.descricao.replace(/\n/g, '<br>')}</p>
-          </div>
-        </div>
-      `;
-      timeline.appendChild(divDia);
-    });
-  } else {
-    timeline.innerHTML = '<p style="text-align:center;color:#888;">Nenhum roteiro detalhado disponível.</p>';
-  }
-}
-
-/* ════════════════════════════════════════════
-   RENDERIZAR VALORES
-   ════════════════════════════════════════════ */
-function renderizarValores(idGrid, valores) {
-  const grid = document.getElementById(idGrid);
-  grid.innerHTML = '';
-  if (valores && valores.length > 0) {
-    valores.forEach(val => {
-      const card = document.createElement('div');
-      card.classList.add('val-card');
-      card.innerHTML = `
-        <p class="v-label">${val.label}</p>
-        <p class="v-preco">${val.preco}</p>
-        <p class="v-desc">${val.desc}</p>
-      `;
-      grid.appendChild(card);
-    });
-  } else {
-    grid.innerHTML = '<p style="text-align:center;color:rgba(255,255,255,.7);">Nenhuma opção de valor disponível.</p>';
-  }
-}
-
-/* ════════════════════════════════════════════
-   GERAR PDF
-   ════════════════════════════════════════════ */
-async function gerarPDF() {
-  const overlay = document.getElementById('load-overlay');
-  const barra   = document.getElementById('load-bar');
-  const fabArea = document.querySelector('.fab-area');
-
-  overlay.classList.add('on');
-  fabArea.style.display = 'none';
-
-  // Garante que todas as animações estejam visíveis para o PDF
-  document.querySelectorAll('.fade-in').forEach(el => el.classList.add('vis'));
-  document.querySelectorAll('.dia').forEach(el => el.classList.add('vis'));
-
-  barra.style.width = '15%';
+  const existente = orcs.findIndex(x => x.id === o.id);
+  if (existente >= 0)       orcs[existente] = o;
+  else if (idx >= 0)        orcs[idx] = o;
+  else                      orcs.push(o);
+  idx = orcs.findIndex(x => x.id === o.id);
 
   try {
-    const { jsPDF } = window.jspdf;
-    const el        = document.getElementById('main-orc');
-
-    barra.style.width = '30%';
-
-    const canvas = await html2canvas(el, {
-      scale:           1.6, // Aumenta a resolução para melhor qualidade
-      useCORS:         true,
-      allowTaint:      true,
-      backgroundColor: '#F5F6FA', // Fundo branco explícito
-      logging:         false,
-      imageTimeout:    20000,
-      scrollX:         0,
-      scrollY:         0,
-      windowWidth:     document.documentElement.scrollWidth,
-      windowHeight:    document.documentElement.scrollHeight,
-      onclone: (clonedDoc) => {
-        // Força visibilidade de tudo no clone para o PDF
-        clonedDoc.querySelectorAll('.fade-in').forEach(el => el.classList.add('vis'));
-        clonedDoc.querySelectorAll('.dia').forEach(el => el.classList.add('vis'));
-        clonedDoc.body.style.background = '#F5F6FA'; // Garante fundo branco no clone
-
-        // Remove elementos desnecessários no PDF
-        const toHide = clonedDoc.querySelectorAll(
-          '.fab-area, .load-ov, .car-btn, .car-dots, .hero-btns'
-        );
-        toHide.forEach(el => el.style.display = 'none');
-      }
+    toast('Salvando...', 'info');
+    const r = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}`, {
+      method:  'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN_KEY
+      },
+      body: JSON.stringify(orcs)
     });
-
-    barra.style.width = '60%';
-
-    const pdf    = new jsPDF('p', 'mm', 'a4');
-    const pW     = pdf.internal.pageSize.getWidth();   // 210mm
-    const pH     = pdf.internal.pageSize.getHeight();  // 297mm
-    const ratio  = canvas.width / pW;                  // px por mm
-    const pgPx   = Math.floor(pH * ratio);             // altura de 1 pág em px
-    const total  = canvas.height;
-    const nPags  = Math.ceil(total / pgPx);
-
-    for (let p = 0; p < nPags; p++) {
-      if (p > 0) pdf.addPage();
-
-      // ★ Fundo branco em CADA página ★
-      pdf.setFillColor(245, 246, 250); // Cor #F5F6FA
-      pdf.rect(0, 0, pW, pH, 'F');
-
-      const srcY = p * pgPx;
-      const srcH = Math.min(pgPx, total - srcY);
-
-      // Cria canvas da fatia desta página
-      const pageCanvas      = document.createElement('canvas');
-      pageCanvas.width      = canvas.width;
-      pageCanvas.height     = srcH;
-      const ctx             = pageCanvas.getContext('2d');
-
-      // Fundo na fatia
-      ctx.fillStyle = '#F5F6FA';
-      ctx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
-
-      // Desenha a fatia
-      ctx.drawImage(
-        canvas,
-        0, srcY,             // origem no canvas original
-        canvas.width, srcH,  // tamanho da fatia
-        0, 0,                // destino no pageCanvas
-        canvas.width, srcH
-      );
-
-      const imgData = pageCanvas.toDataURL('image/jpeg', 0.88); // Qualidade JPEG
-      const imgH    = (srcH / canvas.width) * pW;
-
-      pdf.addImage(imgData, 'JPEG', 0, 0, pW, imgH);
-
-      // Atualiza barra de progresso
-      barra.style.width = `${60 + Math.round((p+1)/nPags * 35)}%`;
-    }
-
-    barra.style.width = '100%';
-    await new Promise(r => setTimeout(r, 400)); // Pequeno delay para UX
-
-    const nome = (dadosOrc?.titulo || 'Orcamento')
-      .normalize('NFD').replace(/[\u0300-\u036f]/g,'') // Remove acentos
-      .replace(/[^a-zA-Z0-9]/g,'_'); // Substitui caracteres especiais por _
-    pdf.save(`Oficina_Turismo_${nome}.pdf`);
-
+    if (!r.ok) throw new Error('Erro ao salvar');
+    renderSB();
+    updLink();
+    fld('f-topo-txt').textContent = o.titulo;
+    toast('✅ Salvo! Link já está ativo!', 'ok');
   } catch(e) {
-    console.error('Erro PDF:', e);
-    alert('Erro ao gerar PDF. Tente novamente.');
+    console.error(e);
+    // Fallback: download JSON
+    downloadJSON();
+    toast('Salvo localmente. Suba o JSON no GitHub.', 'info');
   }
-
-  fabArea.style.display = 'flex';
-  overlay.classList.remove('on');
-  barra.style.width = '0%'; // Reseta a barra
 }
 
-/* ════════════════════════════════════════════
-   ENVIAR WHATSAPP (Página do Orçamento)
-   ════════════════════════════════════════════ */
-function envWppOrc() {
-  if (!dadosOrc) return;
-  const link = window.location.href;
+// ════════════════════════════════════════════
+// SIDEBAR E NAVEGAÇÃO
+// ════════════════════════════════════════════
+function renderSB() {
+  const lista = fld('orc-lista');
+  lista.innerHTML = '';
+  if (orcs.length === 0) {
+    lista.innerHTML = '<div class="sb-vazio"><i class="fas fa-box-open"></i><p>Nenhum orçamento ainda.</p></div>';
+    return;
+  }
+  orcs.forEach((o, i) => {
+    const item = document.createElement('div');
+    item.className = `orc-item ${i === idx ? 'on' : ''}`;
+    item.onclick = () => loadOrc(i);
+    item.innerHTML = `
+      <div class="orc-top">
+        <span class="orc-titulo">${esc(o.titulo || 'Novo Orçamento')}</span>
+        <span class="sbadge s-${o.status || 'rascunho'}">${o.status || 'Rascunho'}</span>
+      </div>
+      <div class="orc-meta">
+        <span><i class="fas fa-user"></i> ${esc(o.cliente || 'Sem Cliente')}</span>
+        <span><i class="fas fa-map-marker-alt"></i> ${esc(o.destino || 'Sem Destino')}</span>
+      </div>
+    `;
+    lista.appendChild(item);
+  });
+}
+
+function novoOrc() {
+  idx = -1;
+  currentOrcId = null;
+  fld('tela-ini').style.display = 'none';
+  fld('form-card').style.display = 'block';
+  fld('f-topo-txt').innerHTML = '<i class="fas fa-plus-circle"></i> Novo Orçamento';
+  setOrcData({}); // Limpa o formulário
+  renderSB();
+  aba('basico');
+  updLink();
+}
+
+function loadOrc(i) {
+  idx = i;
+  currentOrcId = orcs[i].id;
+  fld('tela-ini').style.display = 'none';
+  fld('form-card').style.display = 'block';
+  fld('f-topo-txt').textContent = orcs[i].titulo;
+  setOrcData(orcs[i]);
+  renderSB();
+  aba('basico');
+  updLink();
+}
+
+function delOrc() {
+  if (!confirm('Tem certeza que deseja excluir este orçamento?')) return;
+  orcs.splice(idx, 1);
+  salvarOrc();
+  fld('form-card').style.display = 'none';
+  fld('tela-ini').style.display = 'flex';
+  idx = -1;
+  currentOrcId = null;
+  renderSB();
+  toast('Orçamento excluído!', 'ok');
+}
+
+function duplicarOrc() {
+  if (idx < 0) {
+    toast('Selecione um orçamento para duplicar!', 'err');
+    return;
+  }
+  const original = orcs[idx];
+  const copia = JSON.parse(JSON.stringify(original)); // Deep copy
+  copia.id = original.id + '-copia-' + Date.now(); // Novo ID único
+  copia.titulo = original.titulo + ' (Cópia)';
+  copia.status = 'rascunho';
+  orcs.push(copia);
+  salvarOrc();
+  loadOrc(orcs.length - 1); // Carrega a cópia
+  toast('Orçamento duplicado!', 'ok');
+}
+
+// ════════════════════════════════════════════
+// FORMULÁRIO E DADOS
+// ════════════════════════════════════════════
+function getOrcData() {
+  const roteiro = [];
+  document.querySelectorAll('#roteiro-list .rot-bloco').forEach(bloco => {
+    roteiro.push({
+      titulo: bloco.querySelector('.f-rot-titulo').value,
+      descricao: bloco.querySelector('.f-rot-desc').value,
+      imagem: bloco.querySelector('.foto-preview').src === window.location.href ? '' : bloco.querySelector('.foto-preview').src // Evita salvar URL base se não houver imagem
+    });
+  });
+
+  const valores = [];
+  document.querySelectorAll('#valores-list .val-bloco').forEach(bloco => {
+    valores.push({
+      label: bloco.querySelector('.f-val-label').value,
+      preco: bloco.querySelector('.f-val-preco').value,
+      desc: bloco.querySelector('.f-val-desc').value
+    });
+  });
+
+  const galeria = [];
+  const capaUrl = gv('f-img-capa').trim();
+  if (capaUrl) galeria.push(capaUrl); // Capa é sempre a primeira
+  document.querySelectorAll('#galeria-preview .prev-item img').forEach(img => {
+    if (img.src !== capaUrl) galeria.push(img.src);
+  });
+
+  return {
+    id: gv('f-id'),
+    status: gv('f-sts'),
+    cliente: gv('f-cli'),
+    titulo: gv('f-tit'),
+    subtitulo: gv('f-sub'),
+    destino: gv('f-dest'),
+    periodo: gv('f-per'),
+    duracao: gv('f-dur'),
+    grupo: gv('f-grp'),
+    condicoes: gv('f-cond'),
+    observacoes: gv('f-obs'),
+    incluido: getLItems('lista-inc'),
+    naoIncluido: getLItems('lista-ninc'),
+    roteiro: roteiro,
+    valores: valores,
+    // Novos campos de parcelamento
+    valorTotal: parseFloat(gv('f-valor-total')) || 0,
+    valorEntrada: parseFloat(gv('f-valor-entrada')) || 0,
+    numParcelas: parseInt(gv('f-num-parcelas')) || 0,
+    valorParcela: parseFloat(fld('f-valor-parcela').dataset.rawVal) || 0, // Salva o valor numérico
+    parcelamento: gv('f-parcelamento-txt'),
+    // Novos campos detalhados de aéreo
+    aereoCia: gv('f-aereo-cia'),
+    aereoNumVoo: gv('f-aereo-num-voo'),
+    aereoOrigem: gv('f-aereo-origem'),
+    aereoDestino: gv('f-aereo-destino'),
+    aereoHorarios: gv('f-aereo-horarios'),
+    // Novos campos detalhados de aluguel de carro
+    carroLocalRetirada: gv('f-carro-local-retirada'),
+    carroLocalEntrega: gv('f-carro-local-entrega'),
+    carroInfoAdicional: gv('f-carro-info-adicional'),
+    galeria: galeria,
+    imgCapa: capaUrl,
+    dataGeracao: new Date().toISOString()
+  };
+}
+
+function setOrcData(o) {
+  sv('f-id', o.id || '');
+  sv('f-sts', o.status || 'ativo');
+  sv('f-cli', o.cliente || '');
+  sv('f-tit', o.titulo || '');
+  sv('f-sub', o.subtitulo || '');
+  sv('f-dest', o.destino || '');
+  sv('f-per', o.periodo || '');
+  sv('f-dur', o.duracao || '');
+  sv('f-grp', o.grupo || '');
+  sv('f-cond', o.condicoes || '');
+  sv('f-obs', o.observacoes || '');
+
+  setLItems('lista-inc', o.incluido || []);
+  setLItems('lista-ninc', o.naoIncluido || []);
+  setRoteiro(o.roteiro || []);
+  setValores(o.valores || []);
+
+  // Novos campos de parcelamento
+  sv('f-valor-total', o.valorTotal || '');
+  sv('f-valor-entrada', o.valorEntrada || '');
+  sv('f-num-parcelas', o.numParcelas || '');
+  // Calcula e exibe o valor da parcela
+  calcularParcelas();
+  sv('f-parcelamento-txt', o.parcelamento || '');
+
+  // Novos campos detalhados de aéreo
+  sv('f-aereo-cia', o.aereoCia || '');
+  sv('f-aereo-num-voo', o.aereoNumVoo || '');
+  sv('f-aereo-origem', o.aereoOrigem || '');
+  sv('f-aereo-destino', o.aereoDestino || '');
+  sv('f-aereo-horarios', o.aereoHorarios || '');
+
+  // Novos campos detalhados de aluguel de carro
+  sv('f-carro-local-retirada', o.carroLocalRetirada || '');
+  sv('f-carro-local-entrega', o.carroLocalEntrega || '');
+  sv('f-carro-info-adicional', o.carroInfoAdicional || '');
+
+  sv('f-img-capa', o.imgCapa || '');
+  setGaleria(o.galeria || []);
+}
+
+// ════════════════════════════════════════════
+// ABAS
+// ════════════════════════════════════════════
+function aba(id) {
+  document.querySelectorAll('.aba').forEach(b => b.classList.remove('on'));
+  document.querySelectorAll('.painel').forEach(p => p.classList.remove('on'));
+  fld(`p-${id}`).classList.add('on');
+  document.querySelector(`.aba[onclick="aba('${id}')"]`).classList.add('on');
+}
+
+// ════════════════════════════════════════════
+// LISTAS DINÂMICAS (Incluídos / Não Incluídos)
+// ════════════════════════════════════════════
+function addLItem(listId, val = '') {
+  const list = fld(listId);
+  const item = document.createElement('div');
+  item.className = 'litem';
+  item.innerHTML = `
+    <input type="text" value="${esc(val)}" onchange="salvarOrc()"/>
+    <button class="brem" onclick="this.closest('.litem').remove(); salvarOrc();"><i class="fas fa-times"></i></button>
+  `;
+  list.appendChild(item);
+}
+
+function getLItems(listId) {
+  const items = [];
+  fld(listId).querySelectorAll('input').forEach(input => {
+    if (input.value.trim()) items.push(input.value.trim());
+  });
+  return items;
+}
+
+function setLItems(listId, items) {
+  const list = fld(listId);
+  list.innerHTML = '';
+  items.forEach(item => addLItem(listId, item));
+}
+
+// ════════════════════════════════════════════
+// ROTEIRO
+// ════════════════════════════════════════════
+function addRotBloco(data = {}) {
+  const list = fld('roteiro-list');
+  const bloco = document.createElement('div');
+  bloco.className = 'rot-bloco';
+  const num = list.children.length + 1;
+  bloco.innerHTML = `
+    <div class="rot-head">
+      <div class="rot-num">${num}</div>
+      <span class="f-rot-titulo-display">${esc(data.titulo || 'Novo Dia')}</span>
+      <button class="rot-del" onclick="this.closest('.rot-bloco').remove(); updateRotNums(); salvarOrc();"><i class="fas fa-trash-alt"></i> Excluir</button>
+    </div>
+    <div class="rot-campos">
+      <div class="cg">
+        <label>Título do Dia</label>
+        <input type="text" class="f-rot-titulo" value="${esc(data.titulo || '')}" placeholder="Ex: Chegada em Santiago" oninput="this.closest('.rot-bloco').querySelector('.f-rot-titulo-display').textContent = this.value || 'Novo Dia'; salvarOrc();"/>
+      </div>
+      <div class="cg">
+        <label>Descrição do Dia</label>
+        <textarea class="f-rot-desc" placeholder="Detalhes do que acontece neste dia..." onchange="salvarOrc()">${esc(data.descricao || '')}</textarea>
+      </div>
+      <div class="cg">
+        <label>Foto do Dia (Opcional)</label>
+        <div class="foto-dia-row">
+          <div class="upload-mini ${data.imagem ? 'tem-foto' : ''}" onclick="this.querySelector('input').click()">
+            <input type="file" accept="image/*" onchange="handleDiaFotoUpload(event, this.closest('.rot-bloco'))"/>
+            <i class="fas fa-camera"></i>
+            <p>${data.imagem ? 'Foto Carregada' : 'Adicionar Foto'}</p>
+            <img class="foto-preview" src="${esc(data.imagem || '')}" style="${data.imagem ? 'display:block;' : 'display:none;'}"/>
+            <button class="btn-rm-foto" onclick="event.stopPropagation(); removeDiaFoto(this.closest('.rot-bloco'))" style="${data.imagem ? 'display:flex;' : 'display:none;'}"><i class="fas fa-times"></i></button>
+          </div>
+          <div class="cg rd-img-wrap" style="margin-bottom:0;">
+            <label>URL da Foto (ou cole aqui)</label>
+            <input type="text" class="f-rot-img-url" value="${esc(data.imagem || '')}" placeholder="URL da imagem" oninput="updateDiaFotoFromUrl(this.value, this.closest('.rot-bloco')); salvarOrc();"/>
+            <p class="hint">Cole a URL de uma imagem ou faça upload.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  list.appendChild(bloco);
+  updateRotNums();
+}
+
+function updateRotNums() {
+  document.querySelectorAll('#roteiro-list .rot-bloco').forEach((bloco, i) => {
+    bloco.querySelector('.rot-num').textContent = i + 1;
+  });
+}
+
+function setRoteiro(roteiro) {
+  fld('roteiro-list').innerHTML = '';
+  roteiro.forEach(dia => addRotBloco(dia));
+}
+
+// ════════════════════════════════════════════
+// VALORES
+// ════════════════════════════════════════════
+function addValBloco(data = {}) {
+  const list = fld('valores-list');
+  const bloco = document.createElement('div');
+  bloco.className = 'val-bloco';
+  bloco.innerHTML = `
+    <div class="val-head">
+      <i class="fas fa-dollar-sign"></i>
+      <span>Opção de Valor</span>
+      <button class="brem" onclick="this.closest('.val-bloco').remove(); salvarOrc();"><i class="fas fa-times"></i> Excluir</button>
+    </div>
+    <div class="rot-campos">
+      <div class="cg">
+        <label>Rótulo</label>
+        <input type="text" class="f-val-label" value="${esc(data.label || '')}" placeholder="Ex: Por pessoa em duplo" onchange="salvarOrc()"/>
+      </div>
+      <div class="cg">
+        <label>Preço</label>
+        <input type="text" class="f-val-preco" value="${esc(data.preco || '')}" placeholder="Ex: R$ 17.647,00" onchange="salvarOrc()"/>
+      </div>
+      <div class="cg">
+        <label>Descrição</label>
+        <textarea class="f-val-desc" placeholder="Detalhes da opção de valor..." onchange="salvarOrc()">${esc(data.desc || '')}</textarea>
+      </div>
+    </div>
+  `;
+  list.appendChild(bloco);
+}
+
+function setValores(valores) {
+  fld('valores-list').innerHTML = '';
+  valores.forEach(val => addValBloco(val));
+}
+
+// ════════════════════════════════════════════
+// CÁLCULO DE PARCELAS
+// ════════════════════════════════════════════
+function calcularParcelas() {
+  const valorTotal = parseFloat(gv('f-valor-total')) || 0;
+  const valorEntrada = parseFloat(gv('f-valor-entrada')) || 0;
+  const numParcelas = parseInt(gv('f-num-parcelas')) || 0;
+
+  let valorParcela = 0;
+  let textoParcelamento = 'Informe os valores para calcular o parcelamento.';
+
+  if (valorTotal > 0 && numParcelas > 0) {
+    const saldo = valorTotal - valorEntrada;
+    if (saldo > 0) {
+      valorParcela = saldo / numParcelas;
+      textoParcelamento = `Entrada de ${formatarMoeda(valorEntrada)} e saldo em ${numParcelas}x de ${formatarMoeda(valorParcela)}`;
+    } else if (saldo === 0) {
+      textoParcelamento = `Valor total de ${formatarMoeda(valorTotal)} pago à vista.`;
+    } else {
+      textoParcelamento = `Entrada de ${formatarMoeda(valorEntrada)} (valor maior que o total do pacote).`;
+    }
+  } else if (valorTotal > 0 && valorEntrada > 0 && numParcelas === 0) {
+    textoParcelamento = `Valor total de ${formatarMoeda(valorTotal)} com entrada de ${formatarMoeda(valorEntrada)}. Número de parcelas não informado.`;
+  } else if (valorTotal > 0 && numParcelas === 0) {
+    textoParcelamento = `Valor total de ${formatarMoeda(valorTotal)}. Número de parcelas não informado.`;
+  } else if (valorTotal === 0 && valorEntrada === 0 && numParcelas === 0) {
+    textoParcelamento = 'Informe os valores para calcular o parcelamento.';
+  }
+
+  fld('f-valor-parcela').value = formatarMoeda(valorParcela);
+  fld('f-valor-parcela').dataset.rawVal = valorParcela.toFixed(2); // Salva o valor numérico para getOrcData
+  sv('f-parcelamento-txt', textoParcelamento);
+  salvarOrc(); // Salva automaticamente ao recalcular
+}
+
+function formatarMoeda(valor) {
+  return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+
+// ════════════════════════════════════════════
+// UPLOAD DE IMAGENS
+// ════════════════════════════════════════════
+async function uploadImageToImgur(file) {
+  const formData = new FormData();
+  formData.append('image', file);
+
+  try {
+    const r = await fetch('https://api.imgur.com/3/image', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Client-ID ${IMGUR_ID}`
+      },
+      body: formData
+    });
+
+    if (!r.ok) {
+      const errorText = await r.text();
+      console.error('Erro Imgur:', r.status, errorText);
+      throw new Error(`Erro ao fazer upload para o Imgur: ${r.status} - ${errorText.substring(0, 100)}...`);
+    }
+
+    const d = await r.json();
+    if (d.success) {
+      return d.data.link;
+    } else {
+      throw new Error(`Falha no upload do Imgur: ${d.data.error}`);
+    }
+  } catch (e) {
+    console.error('Erro no upload da imagem:', e);
+    toast(`Erro ao fazer upload da imagem: ${e.message}. Tente novamente ou cole a URL.`, 'err');
+    return null;
+  }
+}
+
+async function handleFileUpload(event) {
+  const files = event.target.files;
+  const previewGrid = fld('galeria-preview');
+  const uploadBox = event.target.closest('.upload-box');
+
+  if (!files.length) return;
+
+  uploadBox.classList.add('sending');
+  toast('Fazendo upload das imagens...', 'info');
+
+  for (const file of files) {
+    const imgUrl = await uploadImageToImgur(file);
+    if (imgUrl) {
+      addGaleriaImage(imgUrl);
+    }
+  }
+  uploadBox.classList.remove('sending');
+  salvarOrc();
+  toast('Upload de imagens concluído!', 'ok');
+}
+
+function addGaleriaImage(url, isCapa = false) {
+  const previewGrid = fld('galeria-preview');
+  const item = document.createElement('div');
+  item.className = `prev-item ${isCapa ? 'is-capa' : ''}`;
+  item.innerHTML = `
+    <img src="${esc(url)}" alt="Preview"/>
+    <button class="del-prev" onclick="this.closest('.prev-item').remove(); salvarOrc();"><i class="fas fa-times"></i></button>
+    ${isCapa ? '<span class="capa-tag">CAPA</span>' : ''}
+  `;
+  if (isCapa) {
+    previewGrid.prepend(item); // Capa sempre no início
+  } else {
+    previewGrid.appendChild(item);
+  }
+}
+
+function setGaleria(galeria) {
+  fld('galeria-preview').innerHTML = '';
+  const capaUrl = gv('f-img-capa');
+  if (capaUrl) addGaleriaImage(capaUrl, true);
+  galeria.forEach(url => {
+    if (url !== capaUrl) addGaleriaImage(url);
+  });
+}
+
+async function handleDiaFotoUpload(event, bloco) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const uploadMini = bloco.querySelector('.upload-mini');
+  const fotoPreview = bloco.querySelector('.foto-preview');
+  const btnRmFoto = bloco.querySelector('.btn-rm-foto');
+  const imgUrlInput = bloco.querySelector('.f-rot-img-url');
+
+  uploadMini.classList.add('sending');
+  toast('Fazendo upload da foto do dia...', 'info');
+
+  const imgUrl = await uploadImageToImgur(file);
+  if (imgUrl) {
+    fotoPreview.src = imgUrl;
+    fotoPreview.style.display = 'block';
+    btnRmFoto.style.display = 'flex';
+    uploadMini.classList.add('tem-foto');
+    uploadMini.querySelector('p').textContent = 'Foto Carregada';
+    imgUrlInput.value = imgUrl; // Atualiza o campo de URL
+    toast('Foto do dia carregada!', 'ok');
+  } else {
+    fotoPreview.src = '';
+    fotoPreview.style.display = 'none';
+    btnRmFoto.style.display = 'none';
+    uploadMini.classList.remove('tem-foto');
+    uploadMini.querySelector('p').textContent = 'Adicionar Foto';
+    imgUrlInput.value = '';
+  }
+  uploadMini.classList.remove('sending');
+  salvarOrc();
+}
+
+function removeDiaFoto(bloco) {
+  const uploadMini = bloco.querySelector('.upload-mini');
+  const fotoPreview = bloco.querySelector('.foto-preview');
+  const btnRmFoto = bloco.querySelector('.btn-rm-foto');
+  const imgUrlInput = bloco.querySelector('.f-rot-img-url');
+
+  fotoPreview.src = '';
+  fotoPreview.style.display = 'none';
+  btnRmFoto.style.display = 'none';
+  uploadMini.classList.remove('tem-foto');
+  uploadMini.querySelector('p').textContent = 'Adicionar Foto';
+  imgUrlInput.value = '';
+  salvarOrc();
+}
+
+function updateDiaFotoFromUrl(url, bloco) {
+  const uploadMini = bloco.querySelector('.upload-mini');
+  const fotoPreview = bloco.querySelector('.foto-preview');
+  const btnRmFoto = bloco.querySelector('.btn-rm-foto');
+
+  if (url.trim()) {
+    fotoPreview.src = url.trim();
+    fotoPreview.style.display = 'block';
+    btnRmFoto.style.display = 'flex';
+    uploadMini.classList.add('tem-foto');
+    uploadMini.querySelector('p').textContent = 'Foto Carregada';
+  } else {
+    fotoPreview.src = '';
+    fotoPreview.style.display = 'none';
+    btnRmFoto.style.display = 'none';
+    uploadMini.classList.remove('tem-foto');
+    uploadMini.querySelector('p').textContent = 'Adicionar Foto';
+  }
+}
+
+// ════════════════════════════════════════════
+// LINK DO ORÇAMENTO
+// ════════════════════════════════════════════
+function updLink() {
+  const linkPrev = fld('link-prev');
+  if (currentOrcId) {
+    linkPrev.textContent = `${BASE_URL}?id=${currentOrcId}`;
+  } else {
+    linkPrev.textContent = 'Salve o orçamento para gerar o link.';
+  }
+}
+
+function copyLink() {
+  const linkText = fld('link-prev').textContent;
+  if (linkText && linkText.startsWith('http')) {
+    navigator.clipboard.writeText(linkText).then(() => {
+      toast('Link copiado!', 'ok');
+    }).catch(err => {
+      console.error('Erro ao copiar link:', err);
+      toast('Erro ao copiar link.', 'err');
+    });
+  } else {
+    toast('Nenhum link para copiar.', 'err');
+  }
+}
+
+function verOrc() {
+  if (currentOrcId) {
+    window.open(`${BASE_URL}?id=${currentOrcId}`, '_blank');
+  } else {
+    toast('Salve o orçamento para visualizar!', 'err');
+  }
+}
+
+function envWpp() {
+  if (!currentOrcId) {
+    toast('Salve o orçamento para enviar via WhatsApp!', 'err');
+    return;
+  }
+  const link = `${BASE_URL}?id=${currentOrcId}`;
+  const orc = orcs.find(o => o.id === currentOrcId);
   const msg  = encodeURIComponent(
-    `Olá${dadosOrc.cliente ? ' ' + dadosOrc.cliente : ''}! 🌍✈️\n\n` +
+    `Olá${orc?.cliente ? ' ' + orc.cliente : ''}! 🌍✈️\n\n` +
     `Segue seu orçamento personalizado da *Oficina de Turismo*:\n\n` +
-    `✈️ *${dadosOrc.titulo}*\n\n` +
+    `✈️ *${orc?.titulo || 'Sua Viagem'}*\n\n` +
     `👉 ${link}\n\n` +
     `Qualquer dúvida estou à disposição! 😊\n\n` +
     `_Oficina de Turismo — (35) 98862-2943_`
@@ -1013,17 +1225,24 @@ function envWppOrc() {
   window.open(`https://wa.me/?text=${msg}`, '_blank');
 }
 
-/* ════════════════════════════════════════════
-   HELPERS
-   ════════════════════════════════════════════ */
-function formatarData(data) {
-  return new Date(data).toLocaleDateString('pt-BR', {
-    day: '2-digit', month: '2-digit', year: 'numeric'
-  });
+// ════════════════════════════════════════════
+// TOAST NOTIFICATIONS
+// ════════════════════════════════════════════
+let toastTimeout;
+function toast(msg, type = 'info') {
+  const t = fld('toast');
+  t.textContent = msg;
+  t.className = `toast on ${type}`;
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => {
+    t.classList.remove('on');
+  }, 3000);
 }
 
-// Inicia o carregamento do orçamento ao carregar a página
-document.addEventListener('DOMContentLoaded', carregarOrcamento);
+// ════════════════════════════════════════════
+// INICIALIZAÇÃO
+// ════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', fetchOrgs);
 </script>
 </body>
 </html>
