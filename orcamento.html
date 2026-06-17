@@ -32,7 +32,6 @@
       font-size:1.8rem;font-weight:700;text-align:center;
       margin-bottom:30px;display:flex;align-items:center;justify-content:center;gap:12px;}
     .sec-titulo i{color:var(--dourado);font-size:1.5em;}
-    /* ★ AJUSTE DE COR DO TÍTULO DA SEÇÃO VALORES - MAIS ESCURO ★ */
     .sec-titulo.light{color:#333;} /* Alterado para cinza escuro */
     .sec-titulo.light i{color:var(--dourado2);}
 
@@ -60,15 +59,6 @@
       color:rgba(255,255,255,.85);font-size:.9rem;
       display:flex;align-items:center;gap:8px;transition:all .3s;}
     .h-link:hover{color:var(--dourado);}
-
-    /* ══ BANNER VALIDADE ══ */
-    .val-banner{
-      background:#fef9c3;color:#854d0e;padding:10px 20px;
-      text-align:center;font-size:.9rem;font-weight:600;
-      border-bottom:1px solid #fde68a;}
-    .val-banner.ok{background:#dcfce7;color:#166534;}
-    .val-banner.urgente{background:#fef9c3;color:#854d0e;}
-    .val-banner.expirado{background:#fee2e2;color:#991b1b;}
 
     /* ══ HERO SECTION ══ */
     .hero{
@@ -184,15 +174,13 @@
       width:100%;max-width:320px;box-shadow:var(--sombra);
       transition:transform .3s,box-shadow .3s;}
     .val-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.3);}
-    /* ★ AJUSTES DE COR E OPACIDADE DOS TEXTOS NO CARD DE VALORES - MAIS ESCURO ★ */
-    .v-label{font-size:.85rem;font-weight:600;letter-spacing:1.5px;color:var(--dourado);margin-bottom:10px;} /* Dourado */
-    .v-preco{font-size:2.1rem;font-weight:800;color:#333;line-height:1.1;} /* Cinza escuro */
-    .v-desc{font-size:.82rem;color:#333;margin-top:8px;} /* Cinza escuro */
+    .v-label{font-size:.85rem;font-weight:600;letter-spacing:1.5px;color:var(--dourado);margin-bottom:10px;}
+    .v-preco{font-size:2.1rem;font-weight:800;color:#333;line-height:1.1;}
+    .v-desc{font-size:.82rem;color:#333;margin-top:8px;}
     .parc-box{
       background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);
       border-radius:var(--radius);padding:20px 32px;
-      /* ★ AJUSTE DE COR DO TEXTO NO PARCELAMENTO - MAIS ESCURO ★ */
-      color:var(--dourado); /* Dourado */
+      color:var(--dourado);
       display:flex;
       align-items:flex-start;gap:14px;font-size:.95rem;}
     .parc-box i{font-size:1.4rem;color:var(--dourado2);flex-shrink:0;margin-top:2px;}
@@ -344,9 +332,7 @@
       </div>
     </header>
 
-    <div id="val-banner" class="val-banner">
-      <span id="val-msg"></span>
-    </div>
+    <!-- O BANNER DE VALIDADE FOI REMOVIDO DAQUI -->
 
     <main id="main-orc">
       <section class="hero">
@@ -361,9 +347,9 @@
         <div class="hero-ov"></div>
         <div class="hero-info">
           <div class="hero-in">
-            <span id="hero-badge" class="badge"></span>
-            <h1 id="hero-titulo"></h1>
-            <p id="hero-subtitulo" class="hero-sub"></p>
+            <span id="hero-badge" class="badge">DESTINO</span>
+            <h1 id="hero-titulo">Título da Viagem</h1>
+            <p id="hero-subtitulo" class="hero-sub">Subtítulo ou destaque da viagem</p>
             <div class="chips">
               <span id="chip-periodo" class="chip"><i class="fas fa-calendar-alt"></i> Período</span>
               <span id="chip-duracao" class="chip"><i class="fas fa-clock"></i> Duração</span>
@@ -379,12 +365,12 @@
 
       <section id="sec-incluidos" class="fade-in">
         <div class="container">
-          <h2 class="sec-titulo"><i class="fas fa-check-circle"></i> O que está incluído</h2>
+          <h2 class="sec-titulo"><i class="fas fa-list-ul"></i> O que está incluído</h2>
           <div class="inc-grid">
             <div class="inc-card sim">
               <div class="inc-hd">
                 <i class="fas fa-check-circle"></i>
-                <h3>Serviços Incluídos</h3>
+                <h3>Incluído no Pacote</h3>
               </div>
               <ul id="lista-incluido">
                 <!-- Itens incluídos aqui -->
@@ -393,7 +379,7 @@
             <div class="inc-card nao">
               <div class="inc-hd">
                 <i class="fas fa-times-circle"></i>
-                <h3>Serviços Não Incluídos</h3>
+                <h3>Não Incluído no Pacote</h3>
               </div>
               <ul id="lista-nao-incluido">
                 <!-- Itens não incluídos aqui -->
@@ -416,7 +402,7 @@
         <div class="container">
           <h2 class="sec-titulo light"><i class="fas fa-dollar-sign"></i> Valores por Pessoa</h2>
           <div id="valores-grid" class="val-grid">
-            <!-- Valores serão renderizados aqui -->
+            <!-- Opções de valores aqui -->
           </div>
           <div id="parcelamento-box" class="parc-box hide">
             <i class="fas fa-credit-card"></i>
@@ -425,9 +411,25 @@
         </div>
       </section>
 
+      <!-- NOVA SEÇÃO PARA PARTE AÉREA -->
+      <section id="sec-aereo" class="fade-in" style="display:none;">
+        <div class="container">
+          <h2 class="sec-titulo"><i class="fas fa-plane-departure"></i> Parte Aérea</h2>
+          <div id="aereo-info-box" class="caixa borda-azul"></div>
+        </div>
+      </section>
+
+      <!-- NOVA SEÇÃO PARA ALUGUEL DE CARRO -->
+      <section id="sec-aluguel-carro" class="fade-in" style="display:none;">
+        <div class="container">
+          <h2 class="sec-titulo"><i class="fas fa-car"></i> Aluguel de Carro</h2>
+          <div id="aluguel-carro-info-box" class="caixa borda-azul"></div>
+        </div>
+      </section>
+
       <section id="sec-condicoes" class="fade-in">
         <div class="container">
-          <h2 class="sec-titulo"><i class="fas fa-file-contract"></i> Condições Gerais</h2>
+          <h2 class="sec-titulo"><i class="fas fa-file-alt"></i> Condições Gerais</h2>
           <div id="condicoes-box" class="caixa borda-azul"></div>
         </div>
       </section>
@@ -569,37 +571,7 @@ function renderizarOrcamento(o) {
   // Carrossel de imagens
   initCarrossel(o.galeria || []);
 
-  // Validade do orçamento
-  const dataGeracao = new Date(o.dataGeracao);
-  const validadeDias = parseInt(o.validadeDias, 10);
-  const dataValidade = new Date(dataGeracao);
-  dataValidade.setDate(dataValidade.getDate() + validadeDias);
-  const hoje = new Date();
-  hoje.setHours(0,0,0,0); // Zera a hora para comparação
-
-  const valBanner = document.getElementById('val-banner');
-  const valMsg = document.getElementById('val-msg');
-
-  if (o.status === 'expirado') {
-    valBanner.classList.add('expirado');
-    valMsg.textContent = '❌ Este orçamento está expirado.';
-  } else if (o.status === 'rascunho') {
-    valBanner.classList.add('urgente');
-    valMsg.textContent = '📝 Este é um rascunho de orçamento e pode ser alterado.';
-  } else if (hoje > dataValidade) {
-    valBanner.classList.add('expirado');
-    valMsg.textContent = `❌ Este orçamento expirou em ${formatarData(dataValidade)}.`;
-  } else {
-    const diffTime = Math.abs(dataValidade.getTime() - hoje.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    if (diffDays <= 5) {
-      valBanner.classList.add('urgente');
-      valMsg.textContent = `⚠️ Este orçamento expira em ${diffDays} dia(s)!`;
-    } else {
-      valBanner.classList.add('ok');
-      valMsg.textContent = `✅ Orçamento válido até ${formatarData(dataValidade)}.`;
-    }
-  }
+  // O BANNER DE VALIDADE FOI REMOVIDO DAQUI
 
   // Listas de incluídos e não incluídos
   renderizarLista('lista-incluido', o.incluido || []);
@@ -615,12 +587,28 @@ function renderizarOrcamento(o) {
     document.getElementById('parcelamento-box').classList.remove('hide');
   }
 
+  // Parte Aérea (Opcional)
+  if (o.aereoInfo && o.aereoInfo.trim() !== '') {
+    document.getElementById('aereo-info-box').innerHTML = o.aereoInfo.replace(/\n/g, '<br>');
+    document.getElementById('sec-aereo').style.display = 'block';
+  } else {
+    document.getElementById('sec-aereo').style.display = 'none';
+  }
+
+  // Aluguel de Carro (Opcional)
+  if (o.aluguelCarroInfo && o.aluguelCarroInfo.trim() !== '') {
+    document.getElementById('aluguel-carro-info-box').innerHTML = o.aluguelCarroInfo.replace(/\n/g, '<br>');
+    document.getElementById('sec-aluguel-carro').style.display = 'block';
+  } else {
+    document.getElementById('sec-aluguel-carro').style.display = 'none';
+  }
+
   // Condições e Observações
   document.getElementById('condicoes-box').innerHTML = (o.condicoes || 'Nenhuma condição geral informada.').replace(/\n/g, '<br>');
   document.getElementById('observacoes-box').innerHTML = (o.observacoes || 'Nenhuma observação importante.').replace(/\n/g, '<br>');
 
   // Data de geração no rodapé
-  document.getElementById('data-geracao-orc').textContent = formatarData(dataGeracao);
+  document.getElementById('data-geracao-orc').textContent = formatarData(o.dataGeracao);
 
   // Ativar animações de entrada ao rolar
   const observer = new IntersectionObserver((entries) => {
@@ -798,11 +786,11 @@ async function gerarPDF() {
   const overlay = document.getElementById('load-overlay');
   const barra   = document.getElementById('load-bar');
   const fabArea = document.querySelector('.fab-area');
-  const valBanner = document.getElementById('val-banner');
+  // const valBanner = document.getElementById('val-banner'); // Removido
 
   overlay.classList.add('on');
   fabArea.style.display = 'none';
-  valBanner.style.display = 'none';
+  // valBanner.style.display = 'none'; // Removido
 
   // Garante que todas as animações estejam visíveis para o PDF
   document.querySelectorAll('.fade-in').forEach(el => el.classList.add('vis'));
@@ -835,7 +823,7 @@ async function gerarPDF() {
 
         // Remove elementos desnecessários no PDF
         const toHide = clonedDoc.querySelectorAll(
-          '.fab-area, .load-ov, #val-banner, .car-btn, .car-dots, .hero-btns'
+          '.fab-area, .load-ov, .car-btn, .car-dots, .hero-btns' // val-banner removido
         );
         toHide.forEach(el => el.style.display = 'none');
       }
@@ -903,7 +891,7 @@ async function gerarPDF() {
   }
 
   fabArea.style.display = 'flex';
-  valBanner.style.display = '';
+  // valBanner.style.display = ''; // Removido
   overlay.classList.remove('on');
   barra.style.width = '0%'; // Reseta a barra
 }
