@@ -8,14 +8,13 @@
   <style>
     :root{
       --azul:#1B3A6B;--azul2:#2E5FA3;--verde:#2D6A4F;--verde2:#40916C;
-      --dourado:#C9A84C;--dourado2:#b8941f;--cinza:#F5F6FA;--branco:#fff;
+      --dourado:#C9A84C;--cinza:#F5F6FA;--branco:#fff;
       --sombra:0 4px 20px rgba(0,0,0,.10);--radius:12px;
     }
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
     body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cinza);color:#444;}
     a{text-decoration:none;color:inherit;}
     input,textarea,select,button{font-family:inherit;}
-
     /* ══ HEADER ══ */
     .adm-header{
       background:linear-gradient(135deg,var(--azul) 0%,var(--verde) 100%);
@@ -51,7 +50,6 @@
       display:flex;align-items:center;gap:5px;transition:all .3s;
     }
     .adm-header-right a:hover{color:var(--dourado);}
-
     /* ══ STATUS BAR ══ */
     .jb-status-bar{
       display:flex;align-items:center;justify-content:center;gap:8px;
@@ -59,10 +57,8 @@
     }
     .jb-status-bar.ok{background:#dcfce7;color:#166534;}
     .jb-status-bar.off{background:#fef9c3;color:#854d0e;}
-
     /* ══ LAYOUT ══ */
     .layout{display:flex;min-height:calc(100vh - 88px);}
-
     /* ══ SIDEBAR ══ */
     .sidebar{
       width:290px;min-width:290px;background:#fff;
@@ -103,7 +99,6 @@
     .orc-meta span{display:flex;align-items:center;gap:4px;}
     .sb-vazio{text-align:center;padding:36px 16px;color:#ccc;font-size:.85rem;}
     .sb-vazio i{font-size:2.5rem;display:block;margin-bottom:10px;color:#e0e0e0;}
-
     /* ══ MAIN ══ */
     .main{flex:1;padding:24px;overflow-y:auto;}
     .tela-ini{
@@ -114,7 +109,6 @@
     .tela-ini i{font-size:5rem;color:var(--dourado);opacity:.5;margin-bottom:20px;}
     .tela-ini h2{color:#bbb;font-size:1.3rem;margin-bottom:8px;}
     .tela-ini p{font-size:.9rem;}
-
     /* ══ FORM CARD ══ */
     .form-card{background:#fff;border-radius:var(--radius);box-shadow:var(--sombra);overflow:hidden;}
     .form-topo{
@@ -141,7 +135,6 @@
     .b-del:hover{background:rgba(231,76,60,.4);}
     .b-dup{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);}
     .b-dup:hover{background:rgba(255,255,255,.28);}
-
     /* ══ ABAS ══ */
     .abas{
       display:flex;border-bottom:2px solid #f0f0f0;
@@ -158,7 +151,6 @@
     .aba:hover:not(.on){color:var(--azul2);}
     .painel{display:none;padding:24px;}
     .painel.on{display:block;}
-
     /* ══ CAMPOS ══ */
     .cg{margin-bottom:18px;}
     .cg label{display:block;font-size:.80rem;font-weight:700;color:var(--azul);margin-bottom:6px;}
@@ -174,11 +166,6 @@
     .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
     .row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
     .hint{font-size:.75rem;color:#aaa;margin-top:4px;}
-
-    /* Campos de valores */
-    .cg.valor input{text-align:right;}
-    .cg.valor input::placeholder{text-align:right;}
-
     /* ══ LISTA DINÂMICA ══ */
     .ldyn{border:2px solid #e8e8e8;border-radius:8px;overflow:hidden;background:#fff;}
     .litem{display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1px solid #f5f5f5;}
@@ -193,7 +180,6 @@
       border-radius:8px;margin-top:7px;transition:all .2s;
     }
     .badd:hover{border-color:var(--azul2);color:var(--azul2);}
-
     /* ══ UPLOAD ══ */
     .upload-box{
       border:2px dashed #ddd;border-radius:10px;
@@ -205,7 +191,6 @@
     .upload-box i{font-size:2rem;color:#ccc;display:block;margin-bottom:8px;}
     .upload-box p{font-size:.85rem;color:#aaa;line-height:1.5;pointer-events:none;}
     .upload-box.sending{border-color:var(--dourado);background:#fffbf0;}
-
     /* Preview galeria */
     .prev-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
     .prev-item{position:relative;width:90px;height:70px;border-radius:8px;overflow:hidden;border:2px solid #e8e8e8;}
@@ -222,7 +207,6 @@
       background:rgba(201,168,76,.9);color:#fff;
       font-size:.6rem;text-align:center;padding:2px;font-weight:700;
     }
-
     /* ══ ROTEIRO ══ */
     .rot-bloco{
       border:2px solid #e8e8e8;border-radius:10px;
@@ -249,7 +233,6 @@
     }
     .rot-del:hover{background:rgba(231,76,60,.4);}
     .rot-campos{padding:18px 24px;}
-
     /* Foto do dia no roteiro */
     .foto-dia-row{display:flex;gap:10px;align-items:flex-start;}
     .rd-img-wrap{flex:1;}
@@ -279,7 +262,6 @@
       font-size:.6rem;cursor:pointer;display:none;
       align-items:center;justify-content:center;
     }
-
     /* ══ VALORES ══ */
     .val-bloco{
       border:2px solid #e8e8e8;border-radius:10px;
@@ -294,7 +276,6 @@
     .val-head i{margin-right:6px;}
     .val-head .brem{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);}
     .val-head .brem:hover{background:rgba(231,76,60,.4);}
-
     /* ══ TOAST ══ */
     .toast{
       position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
@@ -307,7 +288,6 @@
     .toast.ok{background:#28a745;}
     .toast.err{background:#dc3545;}
     .toast.info{background:#007bff;}
-
     /* ══ RESPONSIVO ══ */
     @media(max-width:768px){
       .adm-header{flex-direction:column;text-align:center;}
@@ -326,7 +306,6 @@
   </style>
 </head>
 <body>
-
   <header class="adm-header">
     <div class="adm-logo">
       <img src="assets/images/logo.png" alt="Oficina de Turismo" class="lp"/>
@@ -343,11 +322,9 @@
       </a>
     </div>
   </header>
-
   <div id="jb-status" class="jb-status-bar">
     <i class="fas fa-circle-notch fa-spin"></i> Conectando ao JSONBin...
   </div>
-
   <div class="layout">
     <aside class="sidebar">
       <div class="sb-topo">
@@ -360,14 +337,12 @@
         <!-- Orçamentos serão renderizados aqui -->
       </div>
     </aside>
-
     <main class="main">
       <div id="tela-ini" class="tela-ini">
         <i class="fas fa-plane-departure"></i>
         <h2>Bem-vindo ao Painel!</h2>
         <p>Selecione um orçamento na lateral ou crie um novo para começar.</p>
       </div>
-
       <div id="form-card" class="form-card" style="display:none;">
         <div class="form-topo">
           <h2 id="f-topo-txt"><i class="fas fa-edit"></i> Editar Orçamento</h2>
@@ -389,17 +364,14 @@
             </button>
           </div>
         </div>
-
         <div class="abas">
           <button class="aba on" onclick="aba('basico')"><i class="fas fa-info-circle"></i> Básico</button>
           <button class="aba" onclick="aba('inc')"><i class="fas fa-list-ul"></i> Incluídos</button>
           <button class="aba" onclick="aba('rot')"><i class="fas fa-route"></i> Roteiro</button>
           <button class="aba" onclick="aba('val')"><i class="fas fa-dollar-sign"></i> Valores</button>
           <button class="aba" onclick="aba('img')"><i class="fas fa-images"></i> Fotos</button>
-          <button class="aba" onclick="aba('add')"><i class="fas fa-plus-circle"></i> Adicionais</button>
           <button class="aba" onclick="aba('lnk')"><i class="fas fa-link"></i> Link</button>
         </div>
-
         <div id="p-basico" class="painel on">
           <div class="row2">
             <div class="cg">
@@ -422,226 +394,185 @@
           </div>
           <div class="cg">
             <label for="f-tit"><i class="fas fa-plane"></i> Título da Viagem *</label>
-            <input type="text" id="f-tit" placeholder="Ex: Chile - Atacama e Santiago"/>
+            <input type="text" id="f-tit" placeholder="ex: Deserto do Atacama e Santiago"/>
           </div>
           <div class="cg">
             <label for="f-sub"><i class="fas fa-tag"></i> Subtítulo / Destaque</label>
-            <input type="text" id="f-sub" placeholder="Ex: Uma aventura inesquecível no deserto!"/>
+            <input type="text" id="f-sub" placeholder="ex: Aventura no deserto mais árido do mundo"/>
+          </div>
+          <div class="cg">
+            <label for="f-dst"><i class="fas fa-map-marker-alt"></i> Destino</label>
+            <input type="text" id="f-dst" placeholder="ex: Chile (Atacama e Santiago)"/>
           </div>
           <div class="row3">
             <div class="cg">
-              <label for="f-dest"><i class="fas fa-map-marker-alt"></i> Destino</label>
-              <input type="text" id="f-dest" placeholder="Ex: Atacama"/>
-            </div>
-            <div class="cg">
               <label for="f-per"><i class="fas fa-calendar-alt"></i> Período</label>
-              <input type="text" id="f-per" placeholder="Ex: 01 a 08 de Setembro"/>
+              <input type="text" id="f-per" placeholder="ex: 10 a 17 de Outubro"/>
             </div>
             <div class="cg">
               <label for="f-dur"><i class="fas fa-clock"></i> Duração</label>
-              <input type="text" id="f-dur" placeholder="Ex: 8 dias e 7 noites"/>
+              <input type="text" id="f-dur" placeholder="ex: 8 dias e 7 noites"/>
             </div>
-          </div>
-          <div class="cg">
-            <label for="f-grp"><i class="fas fa-users"></i> Grupo</label>
-            <input type="text" id="f-grp" placeholder="Ex: Grupo Oficina de Turismo"/>
-          </div>
-          <div class="cg">
-            <label for="f-cond"><i class="fas fa-file-alt"></i> Condições Gerais</label>
-            <textarea id="f-cond" placeholder="Condições gerais do pacote..."></textarea>
-          </div>
-          <div class="cg">
-            <label for="f-obs"><i class="fas fa-comment-dots"></i> Observações Importantes</label>
-            <textarea id="f-obs" placeholder="Observações importantes..."></textarea>
-          </div>
-        </div>
-
-        <div id="p-inc" class="painel">
-          <div class="cg">
-            <label><i class="fas fa-check-circle"></i> Itens Incluídos</label>
-            <div id="lista-inc" class="ldyn"></div>
-            <button class="badd" onclick="addLItem('lista-inc')"><i class="fas fa-plus"></i> Adicionar Item</button>
-          </div>
-          <div class="cg">
-            <label><i class="fas fa-times-circle"></i> Itens Não Incluídos</label>
-            <div id="lista-ninc" class="ldyn"></div>
-            <button class="badd" onclick="addLItem('lista-ninc')"><i class="fas fa-plus"></i> Adicionar Item</button>
-          </div>
-        </div>
-
-        <div id="p-rot" class="painel">
-          <div id="roteiro-list">
-            <!-- Blocos de roteiro serão adicionados aqui -->
-          </div>
-          <button class="badd" onclick="addRotBloco()"><i class="fas fa-plus"></i> Adicionar Dia no Roteiro</button>
-        </div>
-
-        <div id="p-val" class="painel">
-          <div class="cg">
-            <label><i class="fas fa-dollar-sign"></i> Opções de Valores</label>
-            <div id="valores-list">
-              <!-- Blocos de valores serão adicionados aqui -->
+            <div class="cg">
+              <label for="f-grp"><i class="fas fa-users"></i> Grupo</label>
+              <input type="text" id="f-grp" placeholder="ex: Grupo exclusivo"/>
             </div>
-            <button class="badd" onclick="addValBloco()"><i class="fas fa-plus"></i> Adicionar Opção de Valor</button>
-          </div>
-          <hr style="margin: 30px 0; border-color: #eee;"/>
-          <div class="cg">
-            <label for="f-valor-total"><i class="fas fa-money-bill-wave"></i> Valor Total do Pacote</label>
-            <input type="number" id="f-valor-total" placeholder="0.00" step="0.01" oninput="calcularParcelas()"/>
-            <p class="hint">Valor total do pacote (ex: 10000.00)</p>
           </div>
           <div class="row2">
             <div class="cg">
-              <label for="f-valor-entrada"><i class="fas fa-hand-holding-usd"></i> Valor da Entrada</label>
-              <input type="number" id="f-valor-entrada" placeholder="0.00" step="0.01" oninput="calcularParcelas()"/>
-              <p class="hint">Valor pago na entrada (ex: 1000.00)</p>
+              <label for="f-dtg"><i class="fas fa-calendar-check"></i> Data de Geração</label>
+              <input type="date" id="f-dtg"/>
             </div>
             <div class="cg">
-              <label for="f-num-parcelas"><i class="fas fa-calendar-alt"></i> Número de Parcelas</label>
-              <input type="number" id="f-num-parcelas" placeholder="10" min="1" oninput="calcularParcelas()"/>
-              <p class="hint">Número de parcelas restantes (ex: 10)</p>
+              <label for="f-vld"><i class="fas fa-hourglass-half"></i> Validade (dias)</label>
+              <input type="number" id="f-vld" value="10"/>
             </div>
           </div>
           <div class="cg">
-            <label for="f-valor-parcela"><i class="fas fa-money-check-alt"></i> Valor da Parcela (Calculado)</label>
-            <input type="text" id="f-valor-parcela" readonly disabled placeholder="0.00"/>
-            <p class="hint">Valor de cada parcela restante.</p>
+            <label for="f-par"><i class="fas fa-credit-card"></i> Parcelamento</label>
+            <textarea id="f-par" rows="3" placeholder="ex: Entrada de R$ 1.000 + 10x sem juros"></textarea>
           </div>
           <div class="cg">
-            <label for="f-parcelamento-txt"><i class="fas fa-credit-card"></i> Texto de Parcelamento (Exibido no Orçamento)</label>
-            <textarea id="f-parcelamento-txt" placeholder="Ex: Entrada de R$ 1.000,00 e saldo em 10x de R$ 900,00"></textarea>
-            <p class="hint">Este texto será exibido no orçamento final. Será preenchido automaticamente, mas você pode editar.</p>
+            <label for="f-con"><i class="fas fa-file-contract"></i> Condições Gerais</label>
+            <textarea id="f-con" rows="5" placeholder="Condições de cancelamento, alterações, etc."></textarea>
+          </div>
+          <div class="cg">
+            <label for="f-obs"><i class="fas fa-comment-dots"></i> Observações Importantes</label>
+            <textarea id="f-obs" rows="5" placeholder="Informações adicionais relevantes."></textarea>
           </div>
         </div>
-
+        <div id="p-inc" class="painel">
+          <div class="cg">
+            <label><i class="fas fa-check-circle"></i> Itens Incluídos</label>
+            <div id="li-inc" class="ldyn">
+              <!-- Itens incluídos aqui -->
+            </div>
+            <button class="badd" onclick="addItem('li-inc')">
+              <i class="fas fa-plus"></i> Adicionar Item
+            </button>
+          </div>
+          <div class="cg">
+            <label><i class="fas fa-times-circle"></i> Itens Não Incluídos</label>
+            <div id="li-nao" class="ldyn">
+              <!-- Itens não incluídos aqui -->
+            </div>
+            <button class="badd" onclick="addItem('li-nao')">
+              <i class="fas fa-plus"></i> Adicionar Item
+            </button>
+          </div>
+        </div>
+        <div id="p-rot" class="painel">
+          <div id="rot-wrap">
+            <!-- Roteiro dia a dia aqui -->
+          </div>
+          <button class="badd" onclick="addDia()">
+            <i class="fas fa-plus"></i> Adicionar Dia
+          </button>
+        </div>
+        <div id="p-val" class="painel">
+          <div id="val-wrap">
+            <!-- Opções de valores aqui -->
+          </div>
+          <button class="badd" onclick="addValor()">
+            <i class="fas fa-plus"></i> Adicionar Opção de Valor
+          </button>
+        </div>
         <div id="p-img" class="painel">
           <div class="cg">
-            <label for="f-img-capa"><i class="fas fa-image"></i> Imagem de Capa (URL)</label>
-            <input type="text" id="f-img-capa" placeholder="URL da imagem de capa"/>
-            <p class="hint">URL da imagem principal do orçamento. Será a primeira imagem da galeria.</p>
-          </div>
-          <div class="cg">
-            <label><i class="fas fa-images"></i> Galeria de Imagens</label>
-            <div class="upload-box" onclick="document.getElementById('file-upload').click()">
-              <input type="file" id="file-upload" accept="image/*" multiple onchange="handleFileUpload(event)"/>
+            <label><i class="fas fa-images"></i> Galeria de Fotos</label>
+            <div class="upload-box">
+              <input type="file" accept="image/*" multiple onchange="processarUpload(this)"/>
               <i class="fas fa-cloud-upload-alt"></i>
-              <p>Arraste e solte imagens aqui ou clique para selecionar</p>
+              <p>Arraste e solte suas fotos aqui ou clique para selecionar.<br>Máx. 2MB por imagem.</p>
             </div>
-            <div id="galeria-preview" class="prev-grid">
-              <!-- Imagens da galeria serão pré-visualizadas aqui -->
+            <div id="prev-gal" class="prev-grid">
+              <!-- Previews das fotos aqui -->
             </div>
+            <p class="hint" style="margin-top:10px;">A primeira imagem será a capa do orçamento.</p>
+          </div>
+          <div class="cg">
+            <label for="f-gal"><i class="fas fa-link"></i> URLs de Imagens Externas (uma por linha)</label>
+            <textarea id="f-gal" rows="5" placeholder="https://unsplash.com/photos/exemplo1.jpg&#10;https://unsplash.com/photos/exemplo2.jpg"></textarea>
+            <p class="hint">Imagens enviadas pelo desktop são automaticamente convertidas em URLs.</p>
           </div>
         </div>
-
-        <div id="p-add" class="painel">
-          <!-- Novos campos detalhados para Aéreo -->
-          <div class="cg">
-            <label for="f-aereo-cia"><i class="fas fa-plane"></i> Cia Aérea (Opcional)</label>
-            <input type="text" id="f-aereo-cia" placeholder="Ex: LATAM, GOL"/>
-          </div>
-          <div class="cg">
-            <label for="f-aereo-num-voo"><i class="fas fa-ticket-alt"></i> Número do Voo (Opcional)</label>
-            <input type="text" id="f-aereo-num-voo" placeholder="Ex: LA3456"/>
-          </div>
-          <div class="cg">
-            <label for="f-aereo-origem"><i class="fas fa-plane-departure"></i> Local de Embarque (Opcional)</label>
-            <input type="text" id="f-aereo-origem" placeholder="Ex: GRU - São Paulo"/>
-          </div>
-          <div class="cg">
-            <label for="f-aereo-destino"><i class="fas fa-plane-arrival"></i> Local de Chegada (Opcional)</label>
-            <input type="text" id="f-aereo-destino" placeholder="Ex: SCL - Santiago (com conexão em LIM)"/>
-          </div>
-          <div class="cg">
-            <label for="f-aereo-horarios"><i class="fas fa-clock"></i> Horários de Chegada/Partida (Opcional)</label>
-            <input type="text" id="f-aereo-horarios" placeholder="Ex: Partida 10:00, Chegada 18:30"/>
-          </div>
-          <hr style="margin: 30px 0; border-color: #eee;"/>
-          <!-- Novos campos detalhados para Aluguel de Carro -->
-          <div class="cg">
-            <label for="f-carro-local-retirada"><i class="fas fa-car"></i> Local de Retirada (Opcional)</label>
-            <input type="text" id="f-carro-local-retirada" placeholder="Ex: Aeroporto de Santiago"/>
-          </div>
-          <div class="cg">
-            <label for="f-carro-local-entrega"><i class="fas fa-map-marker-alt"></i> Local de Entrega (Opcional)</label>
-            <input type="text" id="f-carro-local-entrega" placeholder="Ex: Aeroporto de Santiago"/>
-          </div>
-          <div class="cg">
-            <label for="f-carro-info-adicional"><i class="fas fa-info-circle"></i> Informações Adicionais do Carro (Opcional)</label>
-            <textarea id="f-carro-info-adicional" placeholder="Ex: Categoria do carro, período de locação, etc."></textarea>
-          </div>
-        </div>
-
         <div id="p-lnk" class="painel">
           <div class="cg">
-            <label><i class="fas fa-link"></i> Link do Orçamento</label>
+            <label><i class="fas fa-share-alt"></i> Link do Orçamento</label>
             <p id="link-prev" style="word-break: break-all; background:#f0f0f0; padding:10px; border-radius:8px;"></p>
-            <button class="btn b-ver" onclick="copyLink()"><i class="fas fa-copy"></i> Copiar Link</button>
+            <button class="btn b-salvar" style="margin-top:10px;" onclick="copiarLink()">
+              <i class="fas fa-copy"></i> Copiar Link
+            </button>
           </div>
         </div>
-
       </div>
     </main>
   </div>
-
-  <div id="toast" class="toast"></div>
-
+  <div id="toast" class="toast">
+    <span id="t-msg">Mensagem do Toast</span>
+  </div>
   <script>
 /* ════════════════════════════════════════════
-   CONFIGURAÇÕES GLOBAIS
+   CONFIGURAÇÕES GLOBAIS — Substitua aqui!
    ════════════════════════════════════════════ */
 const JSONBIN_ID  = '6a318e1eda38895dfecb475a'; // Seu BIN ID do JSONBin.io
 const JSONBIN_KEY = '$2a$10$HTy/puCq6iupLHos/RV5DejOrnyU5.Pz18WDA4.dpmLOWJ09Rdqj.'; // Sua API Key do JSONBin.io
-const IMGUR_ID    = 'f02693992038747'; // Seu Client ID do Imgur - VERIFIQUE SE ESTÁ CORRETO!
-const BASE_URL    = 'https://fernandoneto1210-sys.github.io/orcamentos-oficina/orcamento.html'; // URL base do seu GitHub Pages para o orcamento.html
+const IMGUR_ID    = 'SEU_CLIENT_ID_AQUI'; // <--- COLOQUE SEU CLIENT ID DO IMGUR AQUI!
+const IMGUR_ID    = 'd70305e7c3ac5c6'; // <--- COLOQUE SEU CLIENT ID DO IMGUR AQUI!
+const BASE_URL    = 'https://fernandoneto1210-sys.github.io/orcamentos-oficina'; // URL base do seu GitHub Pages
 /* ════════════════════════════════════════════ */
 
-let orcs = []; // Array para armazenar os orçamentos
-let idx = -1;  // Índice do orçamento atualmente editado
-let currentOrcId = null; // ID do orçamento atualmente carregado
-let imgurUploads = {}; // Para controlar uploads do Imgur
-
-// Funções auxiliares para pegar/setar valores de campos
-const fld = (id) => document.getElementById(id);
-const gv = (id) => fld(id).value;
-const sv = (id, val) => fld(id).value = val;
-const esc = (s) => s.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
-
-// ════════════════════════════════════════════
-// JSONBIN.IO INTEGRAÇÃO
-// ════════════════════════════════════════════
-async function fetchOrgs() {
-  try {
-    fld('jb-status').className = 'jb-status-bar';
-    fld('jb-status').innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Conectando ao JSONBin...';
-    const r = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}/latest`, {
-      headers: { 'X-Master-Key': JSONBIN_KEY }
-    });
-    if (!r.ok) throw new Error('Erro ao carregar dados do JSONBin.');
-    const d = await r.json();
-    orcs = Array.isArray(d.record) ? d.record : [];
-    renderSB();
-    fld('jb-status').className = 'jb-status-bar ok';
-    fld('jb-status').innerHTML = '<i class="fas fa-check-circle"></i> Conectado ao JSONBin.';
-  } catch(e) {
-    console.error(e);
-    fld('jb-status').className = 'jb-status-bar off';
-    fld('jb-status').innerHTML = '<i class="fas fa-exclamation-triangle"></i> Erro ao conectar ao JSONBin. Salve localmente.';
-  }
+let orcs = []; // Array de orçamentos
+let idx  = -1; // Índice do orçamento selecionado
+let diaB = 0;   // Contador para dias do roteiro
+let valN = 0;   // Contador para opções de valores
+let galUrls = []; // URLs da galeria principal
+/* ════════════════════════════════════════════
+   COLETAR DADOS DO FORMULÁRIO
+   ════════════════════════════════════════════ */
+function coletar() {
+  // URLs digitadas na textarea
+  const urlsDigitadas = gv('f-gal')
+    .split('\n')
+    .map(s => s.trim())
+    .filter(s => s.startsWith('http'));
+  // Galeria final: URLs digitadas + URLs do Imgur (galUrls)
+  const galeriaFinal = [...urlsDigitadas, ...galUrls];
+  return {
+    id:           gv('f-id'),
+    cliente:      gv('f-cli'),
+    titulo:       gv('f-tit'),
+    subtitulo:    gv('f-sub'),
+    status:       gv('f-sts'),
+    destino:      gv('f-dst'),
+    periodo:      gv('f-per'),
+    duracao:      gv('f-dur'),
+    grupo:        gv('f-grp'),
+    dataGeracao:  gv('f-dtg'),
+    validadeDias: gv('f-vld'),
+    imgCapa:      galeriaFinal[0] || '', // A primeira imagem da galeria é a capa
+    galeria:      galeriaFinal,
+    incluido:     coletarLD('li-inc'),
+    naoIncluido:  coletarLD('li-nao'),
+    roteiro:      coletarRot(),
+    valores:      coletarVal(),
+    parcelamento: gv('f-par'),
+    condicoes:    gv('f-con'),
+    observacoes:  gv('f-obs'),
+  };
 }
-
+/* ════════════════════════════════════════════
+   SALVAR / EXCLUIR ORÇAMENTO
+   ════════════════════════════════════════════ */
 async function salvarOrc() {
-  const o = getOrcData();
-  if (!o.id || !o.titulo) {
-    toast('ID e Título são obrigatórios!', 'err');
-    return;
-  }
-
+  const o = coletar();
+  if (!o.id)     { toast('Preencha o ID do orçamento!', 'err'); return; }
+  if (!o.titulo) { toast('Preencha o Título da viagem!', 'err'); return; }
   const existente = orcs.findIndex(x => x.id === o.id);
   if (existente >= 0)       orcs[existente] = o;
   else if (idx >= 0)        orcs[idx] = o;
   else                      orcs.push(o);
   idx = orcs.findIndex(x => x.id === o.id);
-
   try {
     toast('Salvando...', 'info');
     const r = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}`, {
@@ -654,595 +585,502 @@ async function salvarOrc() {
     });
     if (!r.ok) throw new Error('Erro ao salvar');
     renderSB();
-    updLink();
+    updLink(); // Atualiza o link após salvar
     fld('f-topo-txt').textContent = o.titulo;
     toast('✅ Salvo! Link já está ativo!', 'ok');
   } catch(e) {
     console.error(e);
-    // Fallback: download JSON
-    downloadJSON();
+    downloadJSON(); // Fallback
     toast('Salvo localmente. Suba o JSON no GitHub.', 'info');
   }
 }
-
-// ════════════════════════════════════════════
-// SIDEBAR E NAVEGAÇÃO
-// ════════════════════════════════════════════
-function renderSB() {
-  const lista = fld('orc-lista');
-  lista.innerHTML = '';
-  if (orcs.length === 0) {
-    lista.innerHTML = '<div class="sb-vazio"><i class="fas fa-box-open"></i><p>Nenhum orçamento ainda.</p></div>';
-    return;
-  }
-  orcs.forEach((o, i) => {
-    const item = document.createElement('div');
-    item.className = `orc-item ${i === idx ? 'on' : ''}`;
-    item.onclick = () => loadOrc(i);
-    item.innerHTML = `
-      <div class="orc-top">
-        <span class="orc-titulo">${esc(o.titulo || 'Novo Orçamento')}</span>
-        <span class="sbadge s-${o.status || 'rascunho'}">${o.status || 'Rascunho'}</span>
-      </div>
-      <div class="orc-meta">
-        <span><i class="fas fa-user"></i> ${esc(o.cliente || 'Sem Cliente')}</span>
-        <span><i class="fas fa-map-marker-alt"></i> ${esc(o.destino || 'Sem Destino')}</span>
-      </div>
-    `;
-    lista.appendChild(item);
-  });
-}
-
-function novoOrc() {
-  idx = -1;
-  currentOrcId = null;
-  fld('tela-ini').style.display = 'none';
-  fld('form-card').style.display = 'block';
-  fld('f-topo-txt').innerHTML = '<i class="fas fa-plus-circle"></i> Novo Orçamento';
-  setOrcData({}); // Limpa o formulário
-  renderSB();
-  aba('basico');
-  updLink();
-}
-
-function loadOrc(i) {
-  idx = i;
-  currentOrcId = orcs[i].id;
-  fld('tela-ini').style.display = 'none';
-  fld('form-card').style.display = 'block';
-  fld('f-topo-txt').textContent = orcs[i].titulo;
-  setOrcData(orcs[i]);
-  renderSB();
-  aba('basico');
-  updLink();
-}
-
-function delOrc() {
-  if (!confirm('Tem certeza que deseja excluir este orçamento?')) return;
+async function delOrc() {
+  if (idx < 0) { toast('Selecione um orçamento primeiro!', 'err'); return; }
+  const titulo = orcs[idx]?.titulo || 'este orçamento';
+  if (!confirm(`Excluir "${titulo}"?\nEsta ação não pode ser desfeita.`)) return;
   orcs.splice(idx, 1);
-  salvarOrc();
-  fld('form-card').style.display = 'none';
-  fld('tela-ini').style.display = 'flex';
   idx = -1;
-  currentOrcId = null;
-  renderSB();
-  toast('Orçamento excluído!', 'ok');
-}
-
-function duplicarOrc() {
-  if (idx < 0) {
-    toast('Selecione um orçamento para duplicar!', 'err');
-    return;
-  }
-  const original = orcs[idx];
-  const copia = JSON.parse(JSON.stringify(original)); // Deep copy
-  copia.id = original.id + '-copia-' + Date.now(); // Novo ID único
-  copia.titulo = original.titulo + ' (Cópia)';
-  copia.status = 'rascunho';
-  orcs.push(copia);
-  salvarOrc();
-  loadOrc(orcs.length - 1); // Carrega a cópia
-  toast('Orçamento duplicado!', 'ok');
-}
-
-// ════════════════════════════════════════════
-// FORMULÁRIO E DADOS
-// ════════════════════════════════════════════
-function getOrcData() {
-  const roteiro = [];
-  document.querySelectorAll('#roteiro-list .rot-bloco').forEach(bloco => {
-    roteiro.push({
-      titulo: bloco.querySelector('.f-rot-titulo').value,
-      descricao: bloco.querySelector('.f-rot-desc').value,
-      imagem: bloco.querySelector('.foto-preview').src === window.location.href ? '' : bloco.querySelector('.foto-preview').src // Evita salvar URL base se não houver imagem
-    });
-  });
-
-  const valores = [];
-  document.querySelectorAll('#valores-list .val-bloco').forEach(bloco => {
-    valores.push({
-      label: bloco.querySelector('.f-val-label').value,
-      preco: bloco.querySelector('.f-val-preco').value,
-      desc: bloco.querySelector('.f-val-desc').value
-    });
-  });
-
-  const galeria = [];
-  const capaUrl = gv('f-img-capa').trim();
-  if (capaUrl) galeria.push(capaUrl); // Capa é sempre a primeira
-  document.querySelectorAll('#galeria-preview .prev-item img').forEach(img => {
-    if (img.src !== capaUrl) galeria.push(img.src);
-  });
-
-  return {
-    id: gv('f-id'),
-    status: gv('f-sts'),
-    cliente: gv('f-cli'),
-    titulo: gv('f-tit'),
-    subtitulo: gv('f-sub'),
-    destino: gv('f-dest'),
-    periodo: gv('f-per'),
-    duracao: gv('f-dur'),
-    grupo: gv('f-grp'),
-    condicoes: gv('f-cond'),
-    observacoes: gv('f-obs'),
-    incluido: getLItems('lista-inc'),
-    naoIncluido: getLItems('lista-ninc'),
-    roteiro: roteiro,
-    valores: valores,
-    // Novos campos de parcelamento
-    valorTotal: parseFloat(gv('f-valor-total')) || 0,
-    valorEntrada: parseFloat(gv('f-valor-entrada')) || 0,
-    numParcelas: parseInt(gv('f-num-parcelas')) || 0,
-    valorParcela: parseFloat(fld('f-valor-parcela').dataset.rawVal) || 0, // Salva o valor numérico
-    parcelamento: gv('f-parcelamento-txt'),
-    // Novos campos detalhados de aéreo
-    aereoCia: gv('f-aereo-cia'),
-    aereoNumVoo: gv('f-aereo-num-voo'),
-    aereoOrigem: gv('f-aereo-origem'),
-    aereoDestino: gv('f-aereo-destino'),
-    aereoHorarios: gv('f-aereo-horarios'),
-    // Novos campos detalhados de aluguel de carro
-    carroLocalRetirada: gv('f-carro-local-retirada'),
-    carroLocalEntrega: gv('f-carro-local-entrega'),
-    carroInfoAdicional: gv('f-carro-info-adicional'),
-    galeria: galeria,
-    imgCapa: capaUrl,
-    dataGeracao: new Date().toISOString()
-  };
-}
-
-function setOrcData(o) {
-  sv('f-id', o.id || '');
-  sv('f-sts', o.status || 'ativo');
-  sv('f-cli', o.cliente || '');
-  sv('f-tit', o.titulo || '');
-  sv('f-sub', o.subtitulo || '');
-  sv('f-dest', o.destino || '');
-  sv('f-per', o.periodo || '');
-  sv('f-dur', o.duracao || '');
-  sv('f-grp', o.grupo || '');
-  sv('f-cond', o.condicoes || '');
-  sv('f-obs', o.observacoes || '');
-
-  setLItems('lista-inc', o.incluido || []);
-  setLItems('lista-ninc', o.naoIncluido || []);
-  setRoteiro(o.roteiro || []);
-  setValores(o.valores || []);
-
-  // Novos campos de parcelamento
-  sv('f-valor-total', o.valorTotal || '');
-  sv('f-valor-entrada', o.valorEntrada || '');
-  sv('f-num-parcelas', o.numParcelas || '');
-  // Calcula e exibe o valor da parcela
-  calcularParcelas();
-  sv('f-parcelamento-txt', o.parcelamento || '');
-
-  // Novos campos detalhados de aéreo
-  sv('f-aereo-cia', o.aereoCia || '');
-  sv('f-aereo-num-voo', o.aereoNumVoo || '');
-  sv('f-aereo-origem', o.aereoOrigem || '');
-  sv('f-aereo-destino', o.aereoDestino || '');
-  sv('f-aereo-horarios', o.aereoHorarios || '');
-
-  // Novos campos detalhados de aluguel de carro
-  sv('f-carro-local-retirada', o.carroLocalRetirada || '');
-  sv('f-carro-local-entrega', o.carroLocalEntrega || '');
-  sv('f-carro-info-adicional', o.carroInfoAdicional || '');
-
-  sv('f-img-capa', o.imgCapa || '');
-  setGaleria(o.galeria || []);
-}
-
-// ════════════════════════════════════════════
-// ABAS
-// ════════════════════════════════════════════
-function aba(id) {
-  document.querySelectorAll('.aba').forEach(b => b.classList.remove('on'));
-  document.querySelectorAll('.painel').forEach(p => p.classList.remove('on'));
-  fld(`p-${id}`).classList.add('on');
-  document.querySelector(`.aba[onclick="aba('${id}')"]`).classList.add('on');
-}
-
-// ════════════════════════════════════════════
-// LISTAS DINÂMICAS (Incluídos / Não Incluídos)
-// ════════════════════════════════════════════
-function addLItem(listId, val = '') {
-  const list = fld(listId);
-  const item = document.createElement('div');
-  item.className = 'litem';
-  item.innerHTML = `
-    <input type="text" value="${esc(val)}" onchange="salvarOrc()"/>
-    <button class="brem" onclick="this.closest('.litem').remove(); salvarOrc();"><i class="fas fa-times"></i></button>
-  `;
-  list.appendChild(item);
-}
-
-function getLItems(listId) {
-  const items = [];
-  fld(listId).querySelectorAll('input').forEach(input => {
-    if (input.value.trim()) items.push(input.value.trim());
-  });
-  return items;
-}
-
-function setLItems(listId, items) {
-  const list = fld(listId);
-  list.innerHTML = '';
-  items.forEach(item => addLItem(listId, item));
-}
-
-// ════════════════════════════════════════════
-// ROTEIRO
-// ════════════════════════════════════════════
-function addRotBloco(data = {}) {
-  const list = fld('roteiro-list');
-  const bloco = document.createElement('div');
-  bloco.className = 'rot-bloco';
-  const num = list.children.length + 1;
-  bloco.innerHTML = `
-    <div class="rot-head">
-      <div class="rot-num">${num}</div>
-      <span class="f-rot-titulo-display">${esc(data.titulo || 'Novo Dia')}</span>
-      <button class="rot-del" onclick="this.closest('.rot-bloco').remove(); updateRotNums(); salvarOrc();"><i class="fas fa-trash-alt"></i> Excluir</button>
-    </div>
-    <div class="rot-campos">
-      <div class="cg">
-        <label>Título do Dia</label>
-        <input type="text" class="f-rot-titulo" value="${esc(data.titulo || '')}" placeholder="Ex: Chegada em Santiago" oninput="this.closest('.rot-bloco').querySelector('.f-rot-titulo-display').textContent = this.value || 'Novo Dia'; salvarOrc();"/>
-      </div>
-      <div class="cg">
-        <label>Descrição do Dia</label>
-        <textarea class="f-rot-desc" placeholder="Detalhes do que acontece neste dia..." onchange="salvarOrc()">${esc(data.descricao || '')}</textarea>
-      </div>
-      <div class="cg">
-        <label>Foto do Dia (Opcional)</label>
-        <div class="foto-dia-row">
-          <div class="upload-mini ${data.imagem ? 'tem-foto' : ''}" onclick="this.querySelector('input').click()">
-            <input type="file" accept="image/*" onchange="handleDiaFotoUpload(event, this.closest('.rot-bloco'))"/>
-            <i class="fas fa-camera"></i>
-            <p>${data.imagem ? 'Foto Carregada' : 'Adicionar Foto'}</p>
-            <img class="foto-preview" src="${esc(data.imagem || '')}" style="${data.imagem ? 'display:block;' : 'display:none;'}"/>
-            <button class="btn-rm-foto" onclick="event.stopPropagation(); removeDiaFoto(this.closest('.rot-bloco'))" style="${data.imagem ? 'display:flex;' : 'display:none;'}"><i class="fas fa-times"></i></button>
-          </div>
-          <div class="cg rd-img-wrap" style="margin-bottom:0;">
-            <label>URL da Foto (ou cole aqui)</label>
-            <input type="text" class="f-rot-img-url" value="${esc(data.imagem || '')}" placeholder="URL da imagem" oninput="updateDiaFotoFromUrl(this.value, this.closest('.rot-bloco')); salvarOrc();"/>
-            <p class="hint">Cole a URL de uma imagem ou faça upload.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-  list.appendChild(bloco);
-  updateRotNums();
-}
-
-function updateRotNums() {
-  document.querySelectorAll('#roteiro-list .rot-bloco').forEach((bloco, i) => {
-    bloco.querySelector('.rot-num').textContent = i + 1;
-  });
-}
-
-function setRoteiro(roteiro) {
-  fld('roteiro-list').innerHTML = '';
-  roteiro.forEach(dia => addRotBloco(dia));
-}
-
-// ════════════════════════════════════════════
-// VALORES
-// ════════════════════════════════════════════
-function addValBloco(data = {}) {
-  const list = fld('valores-list');
-  const bloco = document.createElement('div');
-  bloco.className = 'val-bloco';
-  bloco.innerHTML = `
-    <div class="val-head">
-      <i class="fas fa-dollar-sign"></i>
-      <span>Opção de Valor</span>
-      <button class="brem" onclick="this.closest('.val-bloco').remove(); salvarOrc();"><i class="fas fa-times"></i> Excluir</button>
-    </div>
-    <div class="rot-campos">
-      <div class="cg">
-        <label>Rótulo</label>
-        <input type="text" class="f-val-label" value="${esc(data.label || '')}" placeholder="Ex: Por pessoa em duplo" onchange="salvarOrc()"/>
-      </div>
-      <div class="cg">
-        <label>Preço</label>
-        <input type="text" class="f-val-preco" value="${esc(data.preco || '')}" placeholder="Ex: R$ 17.647,00" onchange="salvarOrc()"/>
-      </div>
-      <div class="cg">
-        <label>Descrição</label>
-        <textarea class="f-val-desc" placeholder="Detalhes da opção de valor..." onchange="salvarOrc()">${esc(data.desc || '')}</textarea>
-      </div>
-    </div>
-  `;
-  list.appendChild(bloco);
-}
-
-function setValores(valores) {
-  fld('valores-list').innerHTML = '';
-  valores.forEach(val => addValBloco(val));
-}
-
-// ════════════════════════════════════════════
-// CÁLCULO DE PARCELAS
-// ════════════════════════════════════════════
-function calcularParcelas() {
-  const valorTotal = parseFloat(gv('f-valor-total')) || 0;
-  const valorEntrada = parseFloat(gv('f-valor-entrada')) || 0;
-  const numParcelas = parseInt(gv('f-num-parcelas')) || 0;
-
-  let valorParcela = 0;
-  let textoParcelamento = 'Informe os valores para calcular o parcelamento.';
-
-  if (valorTotal > 0 && numParcelas > 0) {
-    const saldo = valorTotal - valorEntrada;
-    if (saldo > 0) {
-      valorParcela = saldo / numParcelas;
-      textoParcelamento = `Entrada de ${formatarMoeda(valorEntrada)} e saldo em ${numParcelas}x de ${formatarMoeda(valorParcela)}`;
-    } else if (saldo === 0) {
-      textoParcelamento = `Valor total de ${formatarMoeda(valorTotal)} pago à vista.`;
-    } else {
-      textoParcelamento = `Entrada de ${formatarMoeda(valorEntrada)} (valor maior que o total do pacote).`;
-    }
-  } else if (valorTotal > 0 && valorEntrada > 0 && numParcelas === 0) {
-    textoParcelamento = `Valor total de ${formatarMoeda(valorTotal)} com entrada de ${formatarMoeda(valorEntrada)}. Número de parcelas não informado.`;
-  } else if (valorTotal > 0 && numParcelas === 0) {
-    textoParcelamento = `Valor total de ${formatarMoeda(valorTotal)}. Número de parcelas não informado.`;
-  } else if (valorTotal === 0 && valorEntrada === 0 && numParcelas === 0) {
-    textoParcelamento = 'Informe os valores para calcular o parcelamento.';
-  }
-
-  fld('f-valor-parcela').value = formatarMoeda(valorParcela);
-  fld('f-valor-parcela').dataset.rawVal = valorParcela.toFixed(2); // Salva o valor numérico para getOrcData
-  sv('f-parcelamento-txt', textoParcelamento);
-  salvarOrc(); // Salva automaticamente ao recalcular
-}
-
-function formatarMoeda(valor) {
-  return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-}
-
-// ════════════════════════════════════════════
-// UPLOAD DE IMAGENS
-// ════════════════════════════════════════════
-async function uploadImageToImgur(file) {
-  const formData = new FormData();
-  formData.append('image', file);
-
   try {
-    const r = await fetch('https://api.imgur.com/3/image', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Client-ID ${IMGUR_ID}`
-      },
-      body: formData
+    await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}`, {
+      method:  'PUT',
+      headers: { 'Content-Type':'application/json', 'X-Master-Key': JSONBIN_KEY },
+      body:    JSON.stringify(orcs)
     });
-
-    if (!r.ok) {
-      const errorText = await r.text();
-      console.error('Erro Imgur:', r.status, errorText);
-      throw new Error(`Erro ao fazer upload para o Imgur: ${r.status} - ${errorText.substring(0, 100)}...`);
-    }
-
-    const d = await r.json();
-    if (d.success) {
-      return d.data.link;
-    } else {
-      throw new Error(`Falha no upload do Imgur: ${d.data.error}`);
-    }
-  } catch (e) {
-    console.error('Erro no upload da imagem:', e);
-    toast(`Erro ao fazer upload da imagem: ${e.message}. Tente novamente ou cole a URL.`, 'err');
-    return null;
+    toast('Excluído com sucesso! ✅', 'ok');
+  } catch {
+    downloadJSON(); // Fallback
+    toast('Excluído. Suba o JSON no GitHub.', 'info');
   }
+  renderSB();
+  fld('form-card').style.display = 'none';
+  fld('tela-ini').style.display  = 'flex';
 }
-
-async function handleFileUpload(event) {
-  const files = event.target.files;
-  const previewGrid = fld('galeria-preview');
-  const uploadBox = event.target.closest('.upload-box');
-
-  if (!files.length) return;
-
+/* ════════════════════════════════════════════
+   UPLOAD IMGUR — Galeria Principal
+   ════════════════════════════════════════════ */
+async function processarUpload(input) {
+  const files = [...input.files];
+  const uploadBox = input.closest('.upload-box');
+  let ok = 0;
   uploadBox.classList.add('sending');
-  toast('Fazendo upload das imagens...', 'info');
-
+  uploadBox.querySelector('p').textContent = 'Enviando...';
   for (const file of files) {
-    const imgUrl = await uploadImageToImgur(file);
-    if (imgUrl) {
-      addGaleriaImage(imgUrl);
+    if (file.size > 2 * 1024 * 1024) {
+      toast(`"${file.name}" muito grande! Máx: 2MB`, 'err');
+      continue;
+    }
+    try {
+      toast(`📤 Enviando "${file.name}"...`, 'info');
+      const url = await imgurUpload(file);
+      galUrls.push(url);
+      ok++;
+    } catch(e) {
+      console.error(e);
+      toast(`❌ Erro ao enviar "${file.name}": ${e.message}`, 'err');
     }
   }
+  renderGalPrev();
   uploadBox.classList.remove('sending');
-  salvarOrc();
-  toast('Upload de imagens concluído!', 'ok');
+  uploadBox.querySelector('p').textContent =
+    'Arraste e solte suas fotos aqui ou clique para selecionar.\nMáx. 2MB por imagem.';
+  input.value = '';
+  if (ok > 0) toast(`✅ ${ok} foto(s) enviada(s) com sucesso!`, 'ok');
 }
-
-function addGaleriaImage(url, isCapa = false) {
-  const previewGrid = fld('galeria-preview');
-  const item = document.createElement('div');
-  item.className = `prev-item ${isCapa ? 'is-capa' : ''}`;
-  item.innerHTML = `
-    <img src="${esc(url)}" alt="Preview"/>
-    <button class="del-prev" onclick="this.closest('.prev-item').remove(); salvarOrc();"><i class="fas fa-times"></i></button>
-    ${isCapa ? '<span class="capa-tag">CAPA</span>' : ''}
-  `;
-  if (isCapa) {
-    previewGrid.prepend(item); // Capa sempre no início
-  } else {
-    previewGrid.appendChild(item);
+/* ════════════════════════════════════════════
+   UPLOAD IMGUR — Foto do dia (roteiro)
+   ════════════════════════════════════════════ */
+async function uploadFotoDia(input, n) {
+  const file = input.files[0];
+  if (!file) return;
+  const bloco  = input.closest('.rot-bloco');
+  const urlInp = bloco.querySelector('.rd-img');
+  const mini   = bloco.querySelector('.upload-mini');
+  const prev   = bloco.querySelector('.foto-preview');
+  const btnRm  = bloco.querySelector('.btn-rm-foto');
+  mini.querySelector('p').textContent = 'Enviando...';
+  mini.style.pointerEvents = 'none'; // Desabilita clique enquanto envia
+  try {
+    toast(`📤 Enviando foto do dia ${n}...`, 'info');
+    const url   = await imgurUpload(file);
+    urlInp.value = url; // Salva a URL no campo oculto
+    prev.src            = url;
+    prev.style.display  = 'block';
+    btnRm.style.display = 'flex';
+    mini.classList.add('tem-foto');
+    mini.querySelector('p').textContent = '✅ Foto enviada!';
+    toast(`✅ Foto do dia ${n} enviada!`, 'ok');
+  } catch(e) {
+    console.error(e);
+    mini.querySelector('p').textContent = 'Erro. Tente novamente.';
+    toast(`❌ Erro ao enviar foto do dia ${n}: ${e.message}`, 'err');
   }
+  mini.style.pointerEvents = ''; // Reabilita clique
+  input.value = ''; // Limpa o input file
 }
-
-function setGaleria(galeria) {
-  fld('galeria-preview').innerHTML = '';
-  const capaUrl = gv('f-img-capa');
-  if (capaUrl) addGaleriaImage(capaUrl, true);
-  galeria.forEach(url => {
-    if (url !== capaUrl) addGaleriaImage(url);
+function removerFotoDia(btn) {
+  const bloco  = btn.closest('.rot-bloco');
+  const urlInp = bloco.querySelector('.rd-img');
+  const mini   = bloco.querySelector('.upload-mini');
+  const prev   = bloco.querySelector('.foto-preview');
+  urlInp.value       = '';
+  prev.src            = '';
+  prev.style.display  = 'none';
+  btn.style.display   = 'none';
+  mini.classList.remove('tem-foto');
+  mini.querySelector('p').textContent = 'Clique para foto\ndo dia';
+}
+/* ════════════════════════════════════════════
+   IMGUR API HELPER
+   ════════════════════════════════════════════ */
+async function imgurUpload(file) {
+  const fd = new FormData();
+  fd.append('image', file);
+  const r = await fetch('https://api.imgur.com/3/image', {
+    method:  'POST',
+    headers: { 'Authorization': `Client-ID ${IMGUR_ID}` },
+    body:    fd
+  });
+  if (!r.ok) {
+    const errorData = await r.json();
+    throw new Error(errorData.data?.error || `Erro HTTP: ${r.status}`);
+  }
+  const d = await r.json();
+  if (!d.success) throw new Error(d.data?.error || 'Erro imgur desconhecido');
+  return d.data.link;
+}
+/* ════════════════════════════════════════════
+   RENDER PREVIEW GALERIA
+   ════════════════════════════════════════════ */
+function renderGalPrev() {
+  const el = fld('prev-gal');
+  if (!el) return;
+  el.innerHTML = '';
+  galUrls.filter(Boolean).forEach((url, i) => {
+    const div = document.createElement('div');
+    div.className = 'prev-item';
+    div.innerHTML = `
+      <img src="${url}" alt="foto ${i+1}"
+           onerror="this.src='https://via.placeholder.com/90x70/e8e8e8/aaa?text=Erro'"/>
+      <button class="del-prev" onclick="removerGalUrl(${i})" title="Remover">
+        <i class="fas fa-times"></i>
+      </button>
+      ${i===0 ? '<div class="capa-tag">★ CAPA</div>' : ''}`;
+    el.appendChild(div);
   });
 }
-
-async function handleDiaFotoUpload(event, bloco) {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  const uploadMini = bloco.querySelector('.upload-mini');
-  const fotoPreview = bloco.querySelector('.foto-preview');
-  const btnRmFoto = bloco.querySelector('.btn-rm-foto');
-  const imgUrlInput = bloco.querySelector('.f-rot-img-url');
-
-  uploadMini.classList.add('sending');
-  toast('Fazendo upload da foto do dia...', 'info');
-
-  const imgUrl = await uploadImageToImgur(file);
-  if (imgUrl) {
-    fotoPreview.src = imgUrl;
-    fotoPreview.style.display = 'block';
-    btnRmFoto.style.display = 'flex';
-    uploadMini.classList.add('tem-foto');
-    uploadMini.querySelector('p').textContent = 'Foto Carregada';
-    imgUrlInput.value = imgUrl; // Atualiza o campo de URL
-    toast('Foto do dia carregada!', 'ok');
-  } else {
-    fotoPreview.src = '';
-    fotoPreview.style.display = 'none';
-    btnRmFoto.style.display = 'none';
-    uploadMini.classList.remove('tem-foto');
-    uploadMini.querySelector('p').textContent = 'Adicionar Foto';
-    imgUrlInput.value = '';
-  }
-  uploadMini.classList.remove('sending');
-  salvarOrc();
+function removerGalUrl(i) {
+  galUrls.splice(i, 1);
+  renderGalPrev();
 }
-
-function removeDiaFoto(bloco) {
-  const uploadMini = bloco.querySelector('.upload-mini');
-  const fotoPreview = bloco.querySelector('.foto-preview');
-  const btnRmFoto = bloco.querySelector('.btn-rm-foto');
-  const imgUrlInput = bloco.querySelector('.f-rot-img-url');
-
-  fotoPreview.src = '';
-  fotoPreview.style.display = 'none';
-  btnRmFoto.style.display = 'none';
-  uploadMini.classList.remove('tem-foto');
-  uploadMini.querySelector('p').textContent = 'Adicionar Foto';
-  imgUrlInput.value = '';
-  salvarOrc();
-}
-
-function updateDiaFotoFromUrl(url, bloco) {
-  const uploadMini = bloco.querySelector('.upload-mini');
-  const fotoPreview = bloco.querySelector('.foto-preview');
-  const btnRmFoto = bloco.querySelector('.btn-rm-foto');
-
-  if (url.trim()) {
-    fotoPreview.src = url.trim();
-    fotoPreview.style.display = 'block';
-    btnRmFoto.style.display = 'flex';
-    uploadMini.classList.add('tem-foto');
-    uploadMini.querySelector('p').textContent = 'Foto Carregada';
-  } else {
-    fotoPreview.src = '';
-    fotoPreview.style.display = 'none';
-    btnRmFoto.style.display = 'none';
-    uploadMini.classList.remove('tem-foto');
-    uploadMini.querySelector('p').textContent = 'Adicionar Foto';
-  }
-}
-
-// ════════════════════════════════════════════
-// LINK DO ORÇAMENTO
-// ════════════════════════════════════════════
-function updLink() {
-  const linkPrev = fld('link-prev');
-  if (currentOrcId) {
-    linkPrev.textContent = `${BASE_URL}?id=${currentOrcId}`;
-  } else {
-    linkPrev.textContent = 'Salve o orçamento para gerar o link.';
-  }
-}
-
-function copyLink() {
-  const linkText = fld('link-prev').textContent;
-  if (linkText && linkText.startsWith('http')) {
-    navigator.clipboard.writeText(linkText).then(() => {
-      toast('Link copiado!', 'ok');
-    }).catch(err => {
-      console.error('Erro ao copiar link:', err);
-      toast('Erro ao copiar link.', 'err');
-    });
-  } else {
-    toast('Nenhum link para copiar.', 'err');
-  }
-}
-
+/* ════════════════════════════════════════════
+   VER / WHATSAPP / LINK
+   ════════════════════════════════════════════ */
 function verOrc() {
-  if (currentOrcId) {
-    window.open(`${BASE_URL}?id=${currentOrcId}`, '_blank');
-  } else {
-    toast('Salve o orçamento para visualizar!', 'err');
-  }
+  const id = gv('f-id').trim();
+  if (!id) { toast('Preencha o ID primeiro!', 'err'); return; }
+  window.open(`${BASE_URL}?id=${id}`, '_blank');
 }
-
 function envWpp() {
-  if (!currentOrcId) {
-    toast('Salve o orçamento para enviar via WhatsApp!', 'err');
-    return;
-  }
-  const link = `${BASE_URL}?id=${currentOrcId}`;
-  const orc = orcs.find(o => o.id === currentOrcId);
+  const id  = gv('f-id').trim();
+  const tit = gv('f-tit').trim();
+  const cli = gv('f-cli').trim();
+  if (!id) { toast('Preencha o ID primeiro!', 'err'); return; }
+  const link = `${BASE_URL}?id=${id}`;
   const msg  = encodeURIComponent(
-    `Olá${orc?.cliente ? ' ' + orc.cliente : ''}! 🌍✈️\n\n` +
+    `Olá${cli ? ' ' + cli : ''}! 🌍✈️\n\n` +
     `Segue seu orçamento personalizado da *Oficina de Turismo*:\n\n` +
-    `✈️ *${orc?.titulo || 'Sua Viagem'}*\n\n` +
+    `✈️ *${tit}*\n\n` +
     `👉 ${link}\n\n` +
     `Qualquer dúvida estou à disposição! 😊\n\n` +
     `_Oficina de Turismo — (35) 98862-2943_`
   );
   window.open(`https://wa.me/?text=${msg}`, '_blank');
 }
-
-// ════════════════════════════════════════════
-// TOAST NOTIFICATIONS
-// ════════════════════════════════════════════
-let toastTimeout;
-function toast(msg, type = 'info') {
-  const t = fld('toast');
-  t.textContent = msg;
-  t.className = `toast on ${type}`;
-  clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(() => {
-    t.classList.remove('on');
-  }, 3000);
+function updLink() {
+  const id = gv('f-id').trim();
+  fld('link-prev').textContent = id
+    ? `${BASE_URL}?id=${id}`
+    : 'Preencha o ID na aba "Básico"...';
 }
-
-// ════════════════════════════════════════════
-// INICIALIZAÇÃO
-// ════════════════════════════════════════════
-document.addEventListener('DOMContentLoaded', fetchOrgs);
+function copiarLink() {
+  const id = gv('f-id').trim();
+  if (!id) { toast('Preencha o ID primeiro!', 'err'); return; }
+  const url = `${BASE_URL}?id=${id}`;
+  navigator.clipboard.writeText(url)
+    .then(() => toast('✅ Link copiado!', 'ok'))
+    .catch(() => {
+      const ta = Object.assign(document.createElement('textarea'), { value: url });
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      toast('✅ Link copiado!', 'ok');
+    });
+}
+/* ════════════════════════════════════════════
+   ABAS
+   ════════════════════════════════════════════ */
+function aba(id) {
+  const ids = ['basico','inc','rot','val','img','lnk'];
+  document.querySelectorAll('.aba').forEach((a, i) =>
+    a.classList.toggle('on', ids[i] === id));
+  document.querySelectorAll('.painel').forEach(p =>
+    p.classList.toggle('on', p.id === 'p-' + id));
+  if (id === 'lnk') updLink();
+}
+/* ════════════════════════════════════════════
+   LISTAS DINÂMICAS
+   ════════════════════════════════════════════ */
+function renderLD(cid, arr) {
+  fld(cid).innerHTML = '';
+  arr.forEach(v => addItemVal(cid, v));
+}
+function addItem(cid) {
+  addItemVal(cid, '');
+  const ins = fld(cid).querySelectorAll('input');
+  ins[ins.length - 1]?.focus();
+}
+function addItemVal(cid, val) {
+  const el  = fld(cid);
+  const div = document.createElement('div');
+  div.className = 'litem';
+  div.innerHTML = `
+    <input type="text" value="${esc(val)}" placeholder="Digite aqui..."/>
+    <button class="brem" onclick="this.parentElement.remove()">
+      <i class="fas fa-times"></i>
+    </button>`;
+  el.appendChild(div);
+}
+function coletarLD(cid) {
+  return [...fld(cid).querySelectorAll('input')]
+    .map(i => i.value.trim()).filter(Boolean);
+}
+/* ════════════════════════════════════════════
+   ROTEIRO — com upload foto do dia via Imgur
+   ════════════════════════════════════════════ */
+function addDia(d = null) {
+  diaB++;
+  const n        = diaB;
+  const el       = fld('rot-wrap');
+  const div      = document.createElement('div');
+  div.className  = 'rot-bloco';
+  const temFoto  = d?.imagem ? true : false;
+  div.innerHTML = `
+    <div class="rot-head">
+      <div class="rot-num">${n}</div>
+      <span>DIA ${n}</span>
+      <button class="rot-del" onclick="this.closest('.rot-bloco').remove()">
+        <i class="fas fa-trash"></i> Remover dia
+      </button>
+    </div>
+    <div class="rot-campos">
+      <div class="cg">
+        <label>Título do dia</label>
+        <input type="text" class="rd-tit"
+               value="${esc(d?.titulo||'')}"
+               placeholder="ex: São Paulo → Calama → San Pedro de Atacama"/>
+      </div>
+      <div class="cg">
+        <label>Descrição / Atividades</label>
+        <textarea class="rd-des" rows="3"
+          placeholder="Descreva as atividades do dia...">${esc(d?.descricao||'')}</textarea>
+      </div>
+      <div class="cg">
+        <label><i class="fas fa-camera"></i> Foto do dia</label>
+        <div class="foto-dia-row">
+          <div class="rd-img-wrap">
+            <input type="url" class="rd-img"
+                   value="${esc(d?.imagem||'')}"
+                   placeholder="URL da foto (preenchido automaticamente ao fazer upload)"/>
+          </div>
+          <div class="upload-mini ${temFoto ? 'tem-foto' : ''}" title="Upload foto do dia">
+            <input type="file" accept="image/*" onchange="uploadFotoDia(this,${n})"/>
+            <img class="foto-preview"
+                 src="${esc(d?.imagem||'')}"
+                 style="${temFoto ? 'display:block' : 'display:none'}"/>
+            <button class="btn-rm-foto"
+                    style="${temFoto ? 'display:flex' : 'display:none'}"
+                    onclick="removerFotoDia(this)" type="button">
+              <i class="fas fa-times"></i>
+            </button>
+            <i class="fas fa-camera" style="${temFoto ? 'display:none' : ''}"></i>
+            <p>${temFoto ? '✅ Foto ok' : 'Clique para\nfoto do dia'}</p>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  el.appendChild(div);
+}
+function coletarRot() {
+  return [...document.querySelectorAll('.rot-bloco')].map(b => ({
+    titulo:    b.querySelector('.rd-tit')?.value.trim() || '',
+    descricao: b.querySelector('.rd-des')?.value.trim() || '',
+    imagem:    b.querySelector('.rd-img')?.value.trim() || '',
+  }));
+}
+/* ════════════════════════════════════════════
+   VALORES
+   ════════════════════════════════════════════ */
+function addValor(d = null) {
+  valN++;
+  const n   = valN;
+  const el  = fld('val-wrap');
+  const div = document.createElement('div');
+  div.className = 'val-bloco';
+  div.innerHTML = `
+    <div class="val-head">
+      <strong><i class="fas fa-tag"></i> Opção ${n}</strong>
+      <button class="brem" onclick="this.closest('.val-bloco').remove()">
+        <i class="fas fa-times"></i> Remover
+      </button>
+    </div>
+    <div class="row3">
+      <div class="cg">
+        <label>Label</label>
+        <input type="text" class="vl-lab"
+               value="${esc(d?.label||'')}"
+               placeholder="ex: Por pessoa em duplo"/>
+      </div>
+      <div class="cg">
+        <label>Preço</label>
+        <input type="text" class="vl-pre"
+               value="${esc(d?.preco||'')}"
+               placeholder="ex: R$ 18.000"/>
+      </div>
+      <div class="cg">
+        <label>Descrição</label>
+        <input type="text" class="vl-des"
+               value="${esc(d?.desc||'')}"
+               placeholder="ex: Acomodação dupla"/>
+      </div>
+    </div>`;
+  el.appendChild(div);
+}
+function coletarVal() {
+  return [...document.querySelectorAll('.val-bloco')].map(b => ({
+    label: b.querySelector('.vl-lab')?.value.trim() || '',
+    preco: b.querySelector('.vl-pre')?.value.trim() || '',
+    desc:  b.querySelector('.vl-des')?.value.trim() || '',
+  })).filter(v => v.label || v.preco);
+}
+/* ════════════════════════════════════════════
+   HELPERS
+   ════════════════════════════════════════════ */
+function sv(id, val)  { const e = fld(id); if (e) e.value = val; }
+function gv(id)       { return fld(id)?.value || ''; }
+function fld(id)      { return document.getElementById(id); }
+function esc(s)       { return (s||'').replace(/"/g,'&quot;').replace(/</g,'<'); }
+function hoje()       { return new Date().toISOString().slice(0,10); }
+function mostrarForm(titulo) {
+  fld('tela-ini').style.display  = 'none';
+  fld('form-card').style.display = 'block';
+  fld('f-topo-txt').textContent  = titulo;
+}
+function limpar() {
+  ['f-id','f-cli','f-tit','f-sub','f-dst',
+   'f-per','f-dur','f-grp','f-par','f-con','f-obs']
+    .forEach(id => sv(id,''));
+  sv('f-sts','ativo');
+  sv('f-dtg', hoje());
+  sv('f-vld','10');
+  fld('li-inc').innerHTML   = '';
+  fld('li-nao').innerHTML   = '';
+  fld('rot-wrap').innerHTML = '';
+  fld('val-wrap').innerHTML = '';
+  galUrls = [];
+  renderGalPrev();
+  diaB = 0; valN = 0;
+}
+function toast(msg, tipo = '') {
+  const el = fld('toast');
+  fld('t-msg').textContent = msg;
+  el.className = `toast ${tipo} on`;
+  setTimeout(() => { el.className = `toast ${tipo}`; }, 3200);
+}
+/* ════════════════════════════════════════════
+   SIDEBAR — RENDERIZAR LISTA
+   ════════════════════════════════════════════ */
+function renderSB() {
+  const el = fld('orc-lista');
+  if (!orcs.length) {
+    el.innerHTML = `
+      <div class="sb-vazio">
+        <i class="fas fa-folder-open"></i>
+        Nenhum orçamento ainda.<br>Crie o primeiro!
+      </div>`;
+    return;
+  }
+  el.innerHTML = orcs.map((o, i) => `
+    <div class="orc-item ${i===idx?'on':''}" onclick="abrirOrc(${i})">
+      <div class="orc-top">
+        <div class="orc-titulo">${o.titulo||'(sem título)'}</div>
+        <span class="sbadge s-${o.status||'ativo'}">${
+          o.status==='rascunho' ? '📝 Rascunho' :
+          o.status==='expirado' ? '❌ Expirado' : '✅ Ativo'
+        }</span>
+      </div>
+      <div class="orc-meta">
+        ${o.cliente ? `<span><i class="fas fa-user"></i>${o.cliente}</span>` : ''}
+        ${o.destino ? `<span><i class="fas fa-map-marker-alt"></i>${o.destino}</span>` : ''}
+        ${o.periodo ? `<span><i class="fas fa-calendar"></i>${o.periodo}</span>` : ''}
+      </div>
+    </div>`).join('');
+}
+/* ════════════════════════════════════════════
+   NOVO / ABRIR / DUPLICAR
+   ════════════════════════════════════════════ */
+function novoOrc() {
+  idx = -1; diaB = 0; valN = 0; galUrls = [];
+  limpar();
+  mostrarForm('Novo Orçamento');
+  aba('basico');
+  renderSB();
+}
+function abrirOrc(i) {
+  idx = i; diaB = 0; valN = 0; galUrls = [];
+  limpar();
+  preencher(orcs[i]);
+  mostrarForm(orcs[i].titulo || 'Orçamento');
+  aba('basico');
+  renderSB();
+}
+function duplicarOrc() {
+  if (idx < 0) return;
+  const orig    = JSON.parse(JSON.stringify(orcs[idx]));
+  orig.id       = orig.id + '-copia';
+  orig.titulo   = orig.titulo + ' (cópia)';
+  orig.status   = 'rascunho';
+  orcs.push(orig);
+  idx = orcs.length - 1;
+  renderSB();
+  abrirOrc(idx);
+  toast('Orçamento duplicado como rascunho ✅','ok');
+}
+/* ════════════════════════════════════════════
+   PREENCHER FORMULÁRIO
+   ════════════════════════════════════════════ */
+function preencher(o) {
+  sv('f-id',  o.id           || '');
+  sv('f-cli', o.cliente      || '');
+  sv('f-tit', o.titulo       || '');
+  sv('f-sub', o.subtitulo    || '');
+  sv('f-dst', o.destino      || '');
+  sv('f-sts', o.status       || 'ativo');
+  sv('f-per', o.periodo      || '');
+  sv('f-dur', o.duracao      || '');
+  sv('f-grp', o.grupo        || '');
+  sv('f-dtg', o.dataGeracao  || hoje());
+  sv('f-vld', o.validadeDias || '10');
+  sv('f-par', o.parcelamento || '');
+  sv('f-con', o.condicoes    || '');
+  sv('f-obs', o.observacoes  || '');
+  // Galeria principal
+  galUrls = o.galeria.filter(url => url.startsWith('http')) || []; // Filtra apenas URLs válidas
+  fld('f-gal').value = o.galeria.filter(url => !url.startsWith('http')).join('\n'); // Coloca URLs não-imgur na textarea
+  renderGalPrev();
+  // Listas
+  renderLD('li-inc', o.incluido    || []);
+  renderLD('li-nao', o.naoIncluido || []);
+  // Roteiro e valores
+  (o.roteiro || []).forEach(d => addDia(d));
+  (o.valores || []).forEach(v => addValor(v));
+  updLink();
+}
+/* ════════════════════════════════════════════
+   DOWNLOAD JSON (fallback)
+   ════════════════════════════════════════════ */
+function downloadJSON() {
+  const blob = new Blob([JSON.stringify(orcs, null, 2)], { type: 'application/json' });
+  const a = Object.assign(document.createElement('a'), {
+    href: URL.createObjectURL(blob), download: 'orcamentos.json'
+  });
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+/* ════════════════════════════════════════════
+   INIT
+   ════════════════════════════════════════════ */
+async function init() {
+  try {
+    const r = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}/latest`,{
+      headers:{'X-Master-Key': JSONBIN_KEY}
+    });
+    const d = await r.json();
+    orcs = Array.isArray(d.record) ? d.record : [];
+    fld('jb-status').className = 'jb-status-bar ok';
+    fld('jb-status').innerHTML =
+      '<i class="fas fa-circle" style="font-size:.6rem"></i> JSONBin conectado — salvamento automático ativo';
+  } catch(e) {
+    console.error(e);
+    orcs = [];
+    fld('jb-status').className = 'jb-status-bar off';
+    fld('jb-status').innerHTML =
+      '<i class="fas fa-exclamation-triangle"></i> JSONBin offline — usando fallback local';
+  }
+  renderSB();
+}
+init();
 </script>
 </body>
 </html>
