@@ -39,6 +39,8 @@
     /* ══ ANIMAÇÕES ══ */
     .fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease-out,transform .6s ease-out;}
     .fade-in.vis{opacity:1;transform:translateY(0);}
+    .dia{opacity:0;transform:translateX(-20px);transition:opacity .6s ease-out,transform .6s ease-out;}
+    .dia.vis{opacity:1;transform:translateX(0);}
 
     /* ══ HEADER ══ */
     .site-header{
@@ -47,281 +49,299 @@
       position:sticky;top:0;z-index:100;}
     .header-inner{
       display:flex;align-items:center;justify-content:space-between;
-      flex-wrap:wrap;gap:15px;max-width:980px;margin:0 auto;padding:0 20px;}
-    .logo-wrap{display:flex;align-items:center;gap:12px;}
-    .logo-principal{height:68px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .logo-divisoria{width:1px;height:54px;background:rgba(255,255,255,.30);}
-    .logo-30-anos{height:58px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .contato-header{display:flex;align-items:center;gap:15px;}
-    .contato-header a{
-      color:rgba(255,255,255,.75);font-size:.82rem;
-      display:flex;align-items:center;gap:5px;transition:all .3s;}
-    .contato-header a:hover{color:var(--dourado);}
+      flex-wrap:wrap;gap:10px;
+    }
+    .site-logo{
+      display:flex;align-items:center;gap:14px;
+      background:rgba(255,255,255,.12);padding:6px 16px;
+      border-radius:10px;border:1px solid rgba(255,255,255,.2);
+    }
+    .site-logo img.lp{
+      height:68px;width:auto;object-fit:contain;
+      filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));
+    }
+    .site-logo img.l30{
+      height:58px;width:auto;object-fit:contain;
+      filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));
+    }
+    .logo-sep{width:1px;height:54px;background:rgba(255,255,255,.30);}
+    .site-info .titulo{color:#fff;font-size:1rem;font-weight:700;}
+    .site-badge{
+      background:var(--dourado);color:#fff;font-size:.68rem;
+      font-weight:700;padding:2px 10px;border-radius:10px;
+      letter-spacing:1px;width:fit-content;
+    }
+    .header-btns{display:flex;gap:10px;flex-wrap:wrap;}
+    .btn-header{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:8px 18px;border-radius:25px;
+      font-size:.84rem;font-weight:700;
+      border:none;cursor:pointer;transition:all .3s;
+      background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);
+    }
+    .btn-header:hover{background:rgba(255,255,255,.28);}
 
     /* ══ HERO ══ */
     .hero{
-      position:relative;height:450px;background-color:#333;
+      position:relative;height:450px;overflow:hidden;
       display:flex;align-items:center;justify-content:center;
-      text-align:center;color:#fff;overflow:hidden;}
+      text-align:center;color:#fff;
+      box-shadow:0 4px 20px rgba(0,0,0,.15);
+    }
     .hero-bg{
-      position:absolute;inset:0;width:100%;height:100%;
-      object-fit:cover;opacity:.6;transition:opacity .5s ease-in-out;}
-    .hero-overlay{
-      position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.4),var(--azul));}
-    .hero-content{position:relative;z-index:1;max-width:800px;padding:0 20px;}
-    .hero-content h1{font-size:2.8rem;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,.4);}
-    .hero-content p{font-size:1.1rem;margin-bottom:20px;opacity:.9;}
+      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+      filter:brightness(.4);transition:opacity .5s ease-in-out;
+    }
+    .hero-content{position:relative;z-index:10;max-width:800px;}
+    .hero-content h1{font-size:3rem;margin-bottom:10px;color:#fff;}
+    .hero-content p{font-size:1.2rem;margin-bottom:20px;opacity:.9;}
     .hero-meta{
       display:flex;flex-wrap:wrap;justify-content:center;gap:15px;
-      font-size:.9rem;font-weight:600;background:rgba(255,255,255,.15);
-      padding:10px 20px;border-radius:8px;width:fit-content;margin:0 auto;}
-    .hero-meta span{display:flex;align-items:center;gap:6px;}
+      font-size:.95rem;font-weight:600;
+    }
+    .hero-meta span{
+      background:rgba(0,0,0,.3);padding:8px 15px;border-radius:25px;
+      display:flex;align-items:center;gap:8px;
+    }
     .hero-btns{margin-top:30px;display:flex;gap:15px;justify-content:center;}
-    .btn-primario{
+    .hero-btns .btn{
       background:var(--dourado);color:#fff;padding:12px 25px;
-      border-radius:30px;font-weight:700;font-size:.95rem;
-      transition:all .3s;box-shadow:0 4px 15px rgba(0,0,0,.2);}
-    .btn-primario:hover{background:var(--dourado2);transform:translateY(-2px);}
-    .btn-secundario{
-      background:rgba(255,255,255,.2);color:#fff;padding:12px 25px;
-      border-radius:30px;font-weight:700;font-size:.95rem;
-      transition:all .3s;border:1px solid rgba(255,255,255,.3);}
-    .btn-secundario:hover{background:rgba(255,255,255,.3);transform:translateY(-2px);}
+      border-radius:30px;font-size:1rem;font-weight:700;
+      transition:all .3s;
+    }
+    .hero-btns .btn:hover{background:var(--dourado2);transform:translateY(-2px);}
 
-    /* Carrossel de fotos */
+    /* Carrossel de dots */
     .hero-carousel-dots{
       position:absolute;bottom:20px;left:0;right:0;
-      display:flex;justify-content:center;gap:8px;z-index:2;}
+      display:flex;justify-content:center;gap:8px;z-index:11;
+    }
     .hero-carousel-dots .dot{
-      width:10px;height:10px;background:rgba(255,255,255,.5);
-      border-radius:50%;cursor:pointer;transition:all .3s;}
+      width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.5);
+      cursor:pointer;transition:all .3s;border:1px solid rgba(255,255,255,.8);
+    }
     .hero-carousel-dots .dot.active{background:var(--dourado);transform:scale(1.2);}
 
-    /* ══ INCLUÍDOS / NÃO INCLUÍDOS ══ */
+    /* ══ SEÇÃO INCLUÍDOS ══ */
     .listas-wrap{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
-    .lista-item h3{
-      font-size:1.2rem;color:var(--verde);margin-bottom:15px;
-      display:flex;align-items:center;gap:10px;}
-    .lista-item ul li{
+    .lista-itens h3{color:var(--verde);font-size:1.3rem;margin-bottom:15px;display:flex;align-items:center;gap:10px;}
+    .lista-itens h3.nao-incluidos{color:#e74c3c;}
+    .lista-itens ul li{
       display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;
-      font-size:.95rem;}
-    .lista-item ul li i{font-size:1.1em;flex-shrink:0;}
-    .lista-item ul li .fa-check{color:var(--verde);}
-    .lista-item ul li .fa-times{color:#e74c3c;}
+      font-size:.95rem;color:#555;
+    }
+    .lista-itens ul li i{
+      font-size:1.1em;flex-shrink:0;
+      color:var(--verde);margin-top:2px;
+    }
+    .lista-itens h3.nao-incluidos ul li i{color:#e74c3c;}
 
     /* ══ ROTEIRO ══ */
-    .timeline{
-      position:relative;max-width:800px;margin:0 auto;
-      padding-left:20px;border-left:2px solid var(--azul2);}
-    .timeline::before{
-      content:'';position:absolute;left:-10px;top:0;
-      width:20px;height:20px;background:var(--azul);
-      border-radius:50%;border:3px solid var(--branco);
-      box-shadow:0 0 0 2px var(--azul2);z-index:1;}
-    .timeline::after{
-      content:'';position:absolute;left:-10px;bottom:0;
-      width:20px;height:20px;background:var(--azul);
-      border-radius:50%;border:3px solid var(--branco);
-      box-shadow:0 0 0 2px var(--azul2);z-index:1;}
+    .roteiro-timeline{
+      display:flex;flex-direction:column;gap:30px;
+      position:relative;padding-left:30px;
+    }
+    .roteiro-timeline::before{
+      content:'';position:absolute;left:14px;top:0;bottom:0;
+      width:2px;background:var(--azul);
+    }
     .dia{
-      margin-bottom:40px;position:relative;opacity:0;
-      transform:translateY(20px);transition:opacity .6s ease-out,transform .6s ease-out;}
-    .dia.vis{opacity:1;transform:translateY(0);}
+      position:relative;background:#fff;padding:20px;border-radius:var(--radius);
+      box-shadow:var(--sombra);border-left:4px solid var(--dourado);
+    }
+    .dia::before{
+      content:'';position:absolute;left:-20px;top:25px;
+      width:12px;height:12px;border-radius:50%;background:var(--dourado);
+      border:2px solid var(--azul);
+    }
     .dia-num{
-      position:absolute;left:-55px;top:0;
-      background:var(--dourado);color:#fff;
-      width:40px;height:40px;border-radius:50%;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      font-size:1.2rem;font-weight:700;line-height:1;z-index:1;
-      border:3px solid var(--branco);box-shadow:0 0 0 2px var(--azul2);}
-    .dia-num small{font-size:.6em;font-weight:500;}
-    .dia-corpo{
-      background:#fff;border-radius:var(--radius);padding:20px;
-      box-shadow:var(--sombra);margin-left:30px;}
-    .dia-foto-wrap{margin-bottom:15px;border-radius:8px;overflow:hidden;}
-    .dia-foto{width:100%;height:200px;object-fit:cover;}
-    .dia-txt h4{font-size:1.3rem;margin-bottom:10px;}
+      position:absolute;left:-70px;top:20px;
+      font-size:1.8rem;font-weight:700;color:var(--azul);
+      text-align:center;line-height:1;
+    }
+    .dia-num small{display:block;font-size:.6em;font-weight:600;color:#aaa;}
+    .dia-corpo{display:flex;gap:20px;flex-wrap:wrap;}
+    .dia-foto-wrap{flex-shrink:0;width:250px;height:160px;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1);}
+    .dia-foto{width:100%;height:100%;object-fit:cover;}
+    .dia-txt h4{font-size:1.2rem;margin-bottom:8px;}
     .dia-txt p{font-size:.95rem;color:#555;}
 
     /* ══ VALORES ══ */
-    .valores-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;}
+    .valores-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:20px;margin-bottom:30px;
+    }
     .val-card{
-      background:#fff;border-radius:var(--radius);box-shadow:var(--sombra);
-      padding:25px;text-align:center;border:2px solid transparent;
-      transition:all .3s;}
-    .val-card:hover{border-color:var(--dourado);}
+      background:#fff;padding:25px;border-radius:var(--radius);
+      box-shadow:var(--sombra);text-align:center;
+      border-top:4px solid var(--dourado);
+    }
     .val-card .v-label{
-      font-size:1.2rem;font-weight:700;color:var(--azul);margin-bottom:10px;}
+      font-size:1.1rem;font-weight:700;color:var(--azul);margin-bottom:10px;
+    }
     .val-card .v-preco{
-      font-size:2.2rem;font-weight:800;color:var(--dourado);margin-bottom:15px;}
-    .val-card .v-desc{font-size:.9rem;color:#666;min-height:60px;}
+      font-size:2.2rem;font-weight:800;color:var(--dourado);margin-bottom:10px;
+      line-height:1;
+    }
+    .val-card .v-desc{font-size:.85rem;color:#777;}
 
-    /* Destaque para Parcelamento */
     .parcelamento-destaque{
-      background:linear-gradient(135deg,var(--azul),var(--azul2));
-      color:#fff;padding:25px;border-radius:var(--radius);
-      text-align:center;margin-top:30px;box-shadow:var(--sombra);}
-    .parcelamento-destaque h3{
-      color:#fff;font-size:1.5rem;margin-bottom:10px;
-      display:flex;align-items:center;justify-content:center;gap:10px;}
-    .parcelamento-destaque p{font-size:1.1rem;font-weight:600;line-height:1.4;}
+      background:linear-gradient(135deg,var(--azul) 0%,var(--azul2) 100%);
+      color:#fff;padding:25px 30px;border-radius:var(--radius);
+      text-align:center;box-shadow:var(--sombra);
+      font-size:1.2rem;font-weight:600;line-height:1.5;
+      margin-top:30px;
+    }
+    .parcelamento-destaque strong{color:var(--dourado);font-weight:800;}
+
+    /* ══ ADICIONAIS (Aéreo / Carro) ══ */
+    .adicionais-item{
+      background:#fff;padding:20px;border-radius:var(--radius);
+      box-shadow:var(--sombra);margin-bottom:20px;
+      border-left:4px solid var(--verde);
+    }
+    .adicionais-item h4{font-size:1.1rem;color:var(--verde);margin-bottom:10px;}
+    .adicionais-item p{font-size:.9rem;margin-bottom:5px;}
+    .adicionais-item p strong{color:#555;}
 
     /* ══ GALERIA ══ */
-    .galeria-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;}
+    .galeria-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:15px;
+    }
     .galeria-item{
-      border-radius:var(--radius);overflow:hidden;box-shadow:var(--sombra);
-      height:180px;position:relative;}
+      height:150px;border-radius:var(--radius);overflow:hidden;
+      box-shadow:0 2px 8px rgba(0,0,0,.1);
+    }
     .galeria-item img{width:100%;height:100%;object-fit:cover;}
-    .galeria-item::after{
-      content:'';position:absolute;inset:0;background:rgba(0,0,0,.2);
-      opacity:0;transition:opacity .3s;}
-    .galeria-item:hover::after{opacity:1;}
-
-    /* ══ ADICIONAIS (Aéreo e Carro) ══ */
-    .adicionais-section{margin-bottom:40px;}
-    .adicionais-section h3{
-      font-size:1.5rem;color:var(--azul);margin-bottom:20px;
-      display:flex;align-items:center;gap:10px;}
-    .adicionais-item{
-      background:#fff;border-radius:var(--radius);box-shadow:var(--sombra);
-      padding:20px;margin-bottom:15px;border-left:5px solid var(--dourado);}
-    .adicionais-item h4{font-size:1.1rem;color:var(--azul);margin-bottom:10px;}
-    .adicionais-item p{font-size:.95rem;color:#555;margin-bottom:5px;}
-    .adicionais-item p strong{color:var(--azul2);}
-
-    /* ══ CONDIÇÕES / OBSERVAÇÕES ══ */
-    .texto-formatado{
-      background:#fff;border-radius:var(--radius);box-shadow:var(--sombra);
-      padding:25px;font-size:.95rem;color:#555;}
-    .texto-formatado h4{font-size:1.2rem;color:var(--azul);margin-bottom:15px;}
-    .texto-formatado ul{list-style:disc;margin-left:20px;margin-bottom:10px;}
-    .texto-formatado ol{list-style:decimal;margin-left:20px;margin-bottom:10px;}
-    .texto-formatado li{margin-bottom:5px;}
-    .texto-formatado strong{color:var(--azul2);}
 
     /* ══ FOOTER ══ */
     .site-footer{
       background:var(--azul);color:rgba(255,255,255,.7);
-      padding:30px 0;text-align:center;font-size:.85rem;}
-    .footer-contato{
-      display:flex;flex-wrap:wrap;justify-content:center;gap:15px;
-      margin-bottom:15px;}
-    .footer-contato a{display:flex;align-items:center;gap:8px;color:inherit;transition:color .3s;}
-    .footer-contato a:hover{color:var(--dourado);}
-    .footer-social a{color:inherit;font-size:1.2rem;margin:0 8px;transition:color .3s;}
-    .footer-social a:hover{color:var(--dourado);}
-    .footer-copy{margin-top:20px;}
+      padding:30px 0;text-align:center;font-size:.85rem;
+    }
+    .site-footer a{color:var(--dourado);font-weight:600;}
 
-    /* ══ FAB (Floating Action Buttons) ══ */
-    .fab-area{
-      position:fixed;bottom:25px;right:25px;z-index:100;
-      display:flex;flex-direction:column;gap:12px;}
-    .fab-btn{
-      background:var(--dourado);color:#fff;width:55px;height:55px;
-      border-radius:50%;display:flex;align-items:center;justify-content:center;
-      font-size:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,.2);
-      transition:all .3s;cursor:pointer;}
-    .fab-btn:hover{background:var(--dourado2);transform:scale(1.05);}
-    .fab-btn.wpp{background:#25D366;}
-    .fab-btn.wpp:hover{background:#1ebe5d;}
-    .fab-btn.top{background:#666;}
-    .fab-btn.top:hover{background:#555;}
-
-    /* ══ LOADING OVERLAY ══ */
+    /* ══ LOAD OVERLAY / ERRO ══ */
     .load-overlay{
       position:fixed;inset:0;background:rgba(255,255,255,.9);
       display:flex;flex-direction:column;align-items:center;justify-content:center;
-      z-index:1000;opacity:0;visibility:hidden;transition:all .3s;}
+      z-index:1000;opacity:0;visibility:hidden;transition:all .3s;
+    }
     .load-overlay.on{opacity:1;visibility:visible;}
-    .load-overlay .spinner{
-      border:8px solid #f3f3f3;border-top:8px solid var(--azul);
-      border-radius:50%;width:60px;height:60px;animation:spin 1s linear infinite;}
-    .load-overlay p{margin-top:20px;font-size:1.1rem;color:var(--azul);}
-    .load-bar-wrap{width:80%;max-width:400px;height:8px;background:#e0e0e0;border-radius:4px;margin-top:20px;overflow:hidden;}
-    .load-bar{height:100%;width:0%;background:var(--dourado);border-radius:4px;transition:width .4s ease-out;}
-    @keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+    .load-overlay i{font-size:3rem;color:var(--azul);margin-bottom:20px;}
+    .load-overlay p{font-size:1.1rem;color:#555;}
+    .load-bar-wrap{width:200px;height:8px;background:#eee;border-radius:4px;margin-top:20px;}
+    .load-bar{height:100%;width:0%;background:var(--dourado);border-radius:4px;transition:width .3s;}
 
-    /* ══ ORÇAMENTO NÃO ENCONTRADO ══ */
     .orc-nao-encontrado{
-      min-height:calc(100vh - 100px);display:flex;flex-direction:column;
-      align-items:center;justify-content:center;text-align:center;
-      padding:40px 20px;background:#fff;border-radius:var(--radius);
-      box-shadow:var(--sombra);margin:40px auto;max-width:600px;}
-    .orc-nao-encontrado i{font-size:4rem;color:#e74c3c;margin-bottom:20px;}
-    .orc-nao-encontrado h2{font-size:1.8rem;color:#e74c3c;margin-bottom:15px;}
-    .orc-nao-encontrado p{font-size:1.1rem;color:#666;margin-bottom:25px;}
-    .orc-nao-encontrado .btn-primario{background:#25D366;}
-    .orc-nao-encontrado .btn-primario:hover{background:#1ebe5d;}
+      display:none;flex-direction:column;align-items:center;justify-content:center;
+      min-height:80vh;text-align:center;color:#888;
+    }
+    .orc-nao-encontrado i{font-size:5rem;color:#ccc;margin-bottom:20px;}
+    .orc-nao-encontrado h2{color:#555;font-size:1.8rem;margin-bottom:10px;}
+    .orc-nao-encontrado p{font-size:1rem;}
+
+    /* ══ FAB (Fixed Action Button) ══ */
+    .fab-area{
+      position:fixed;bottom:20px;right:20px;z-index:900;
+      display:flex;flex-direction:column;gap:10px;
+    }
+    .fab-area .btn{
+      display:flex;align-items:center;gap:10px;
+      background:var(--azul);color:#fff;padding:12px 20px;
+      border-radius:30px;font-size:.9rem;font-weight:700;
+      box-shadow:0 4px 15px rgba(0,0,0,.2);transition:all .3s;
+    }
+    .fab-area .btn:hover{background:var(--azul2);transform:translateY(-2px);}
+    .fab-area .btn.pdf{background:var(--verde);}
+    .fab-area .btn.pdf:hover{background:var(--verde2);}
+    .fab-area .btn.wpp{background:#25D366;}
+    .fab-area .btn.wpp:hover{background:#1ebe5d;}
 
     /* Responsividade */
     @media(max-width:768px){
       .header-inner{flex-direction:column;text-align:center;}
-      .contato-header{width:100%;justify-content:center;}
-      .hero-content h1{font-size:2rem;}
-      .hero-content p{font-size:.95rem;}
-      .hero-meta{flex-direction:column;width:auto;}
+      .site-logo{margin-bottom:10px;}
+      .hero{height:350px;}
+      .hero-content h1{font-size:2.2rem;}
+      .hero-content p{font-size:1rem;}
+      .hero-meta{flex-direction:column;gap:8px;}
       .listas-wrap{grid-template-columns:1fr;}
-      .timeline{padding-left:0;border-left:none;}
-      .timeline::before,.timeline::after{left:50%;transform:translateX(-50%);}
-      .dia{margin-left:0;text-align:center;}
-      .dia-num{position:static;margin:0 auto 15px;transform:none;width:50px;height:50px;font-size:1.5rem;}
-      .dia-corpo{margin-left:0;}
-      .dia-foto{height:180px;}
+      .roteiro-timeline{padding-left:0;}
+      .roteiro-timeline::before{left:0;}
+      .dia-num{position:static;margin-bottom:10px;text-align:left;}
+      .dia-corpo{flex-direction:column;}
+      .dia-foto-wrap{width:100%;height:200px;}
       .valores-grid{grid-template-columns:1fr;}
-      .galeria-grid{grid-template-columns:1fr 1fr;}
-      .fab-area{bottom:15px;right:15px;}
-      .fab-btn{width:50px;height:50px;font-size:1.3rem;}
+      .fab-area{right:10px;bottom:10px;}
+      .fab-area .btn{padding:10px 15px;font-size:.8rem;}
     }
   </style>
 </head>
 <body>
 
-  <div id="main-content">
+  <div id="load-overlay" class="load-overlay">
+    <i class="fas fa-plane-departure fa-spin"></i>
+    <p>Carregando seu orçamento...</p>
+    <div class="load-bar-wrap"><div id="load-bar" class="load-bar"></div></div>
+  </div>
+
+  <div id="orc-nao-encontrado" class="orc-nao-encontrado">
+    <i class="fas fa-frown"></i>
+    <h2>Orçamento Não Encontrado</h2>
+    <p>Parece que este link de orçamento é inválido ou o orçamento foi removido.</p>
+    <p>Por favor, verifique o link ou entre em contato com a Oficina de Turismo.</p>
+  </div>
+
+  <div id="main-content" style="display:none;">
     <header class="site-header">
-      <div class="header-inner">
-        <div class="logo-wrap">
-          <img src="assets/images/logo.png" alt="Oficina de Turismo" class="logo-principal"/>
-          <div class="logo-divisoria"></div>
-          <img src="assets/images/logo-30-anos.png" alt="30 Anos" class="logo-30-anos"/>
+      <div class="container header-inner">
+        <div class="site-logo">
+          <img src="assets/images/logo.png" alt="Oficina de Turismo" class="lp"/>
+          <div class="logo-sep"></div>
+          <img src="assets/images/logo-30-anos.png" alt="30 Anos" class="l30"/>
         </div>
-        <div class="contato-header">
-          <a href="https://wa.me/5535988622943" target="_blank"><i class="fab fa-whatsapp"></i> (35) 98862-2943</a>
-          <a href="mailto:contato@oficinadeturismo.com.br"><i class="fas fa-envelope"></i> E-mail</a>
+        <div class="site-info">
+          <span class="titulo">Orçamento de Viagem</span>
+          <span class="site-badge">OFICINA DE TURISMO</span>
+        </div>
+        <div class="header-btns">
+          <button class="btn-header" onclick="gerarPDF()"><i class="fas fa-file-pdf"></i> Baixar PDF</button>
+          <a href="https://wa.me/5535988622943" target="_blank" class="btn-header"><i class="fab fa-whatsapp"></i> Fale Conosco</a>
         </div>
       </div>
     </header>
 
     <section class="hero">
       <img id="hero-bg" src="https://via.placeholder.com/1920x450/1B3A6B/FFFFFF?text=Oficina+de+Turismo" alt="Capa do Orçamento" class="hero-bg"/>
-      <div class="hero-overlay"></div>
-      <div class="hero-content fade-in">
-        <p class="fade-in" style="transition-delay:.2s;">Seu orçamento personalizado da Oficina de Turismo</p>
-        <h1 id="orc-titulo" class="fade-in" style="transition-delay:.4s;">Carregando seu orçamento...</h1>
-        <p id="orc-cliente" class="fade-in" style="transition-delay:.6s;"></p>
-        <div class="hero-meta fade-in" style="transition-delay:.8s;">
-          <span id="orc-periodo"><i class="fas fa-calendar-alt"></i> Período</span>
-          <span id="orc-duracao"><i class="fas fa-clock"></i> Duração</span>
-          <span id="orc-grupo"><i class="fas fa-users"></i> Grupo</span>
+      <div class="hero-content container fade-in">
+        <h1 id="orc-titulo">Orçamento de Viagem</h1>
+        <p id="orc-cliente"></p>
+        <div class="hero-meta">
+          <span id="orc-periodo"><i class="fas fa-calendar-alt"></i> Período não informado</span>
+          <span id="orc-duracao"><i class="fas fa-clock"></i> Duração não informada</span>
+          <span id="orc-grupo"><i class="fas fa-users"></i> Grupo não informado</span>
         </div>
-        <div class="hero-btns fade-in" style="transition-delay:1s;">
-          <a id="btn-wpp-hero" href="#" target="_blank" class="btn-primario"><i class="fab fa-whatsapp"></i> Falar no WhatsApp</a>
-          <button class="btn-secundario" onclick="gerarPDF()"><i class="fas fa-file-pdf"></i> Baixar PDF</button>
+        <div class="hero-btns">
+          <a href="#section-valores" class="btn"><i class="fas fa-dollar-sign"></i> Ver Valores</a>
+          <a id="btn-wpp-hero" href="#" target="_blank" class="btn"><i class="fab fa-whatsapp"></i> Fale Conosco</a>
         </div>
       </div>
       <div id="hero-carousel-dots" class="hero-carousel-dots"></div>
     </section>
 
-    <section id="section-incluidos" class="container fade-in" style="transition-delay:.2s;">
-      <h2 class="sec-titulo"><i class="fas fa-check-circle"></i> O que está incluído</h2>
+    <section id="section-incluidos" class="container">
+      <h2 class="sec-titulo fade-in"><i class="fas fa-list-alt"></i> Detalhes do Pacote</h2>
       <div class="listas-wrap">
-        <div class="lista-item">
-          <h3><i class="fas fa-check"></i> Serviços Incluídos</h3>
+        <div class="lista-itens fade-in">
+          <h3><i class="fas fa-check-circle"></i> Incluído no Pacote</h3>
           <ul id="lista-incluidos">
             <!-- Itens incluídos serão renderizados aqui -->
           </ul>
         </div>
-        <div class="lista-item">
-          <h3><i class="fas fa-times"></i> Serviços Não Incluídos</h3>
+        <div class="lista-itens fade-in">
+          <h3 class="nao-incluidos"><i class="fas fa-times-circle"></i> Não Incluído no Pacote</h3>
           <ul id="lista-nao-incluidos">
             <!-- Itens não incluídos serão renderizados aqui -->
           </ul>
@@ -329,101 +349,78 @@
       </div>
     </section>
 
-    <section id="section-roteiro" class="container fade-in" style="transition-delay:.4s;">
-      <h2 class="sec-titulo"><i class="fas fa-map-marked-alt"></i> Roteiro Dia a Dia</h2>
-      <div id="roteiro-timeline" class="timeline">
-        <!-- Roteiro será renderizado aqui -->
+    <section id="section-roteiro">
+      <div class="container">
+        <h2 class="sec-titulo fade-in"><i class="fas fa-map-marked-alt"></i> Roteiro Dia a Dia</h2>
+        <div id="roteiro-timeline" class="roteiro-timeline">
+          <!-- Roteiro será renderizado aqui -->
+        </div>
       </div>
     </section>
 
-    <section id="section-valores" class="container fade-in" style="transition-delay:.6s;">
-      <h2 class="sec-titulo light"><i class="fas fa-dollar-sign"></i> Valores por Pessoa</h2>
-      <div id="valores-grid" class="valores-grid">
+    <section id="section-valores" class="container">
+      <h2 class="sec-titulo light fade-in"><i class="fas fa-dollar-sign"></i> Valores por Pessoa</h2>
+      <div id="valores-grid" class="valores-grid fade-in">
         <!-- Opções de valores serão renderizadas aqui -->
       </div>
-      <div id="parcelamento-destaque" class="parcelamento-destaque">
-        <h3><i class="fas fa-credit-card"></i> Forma de Pagamento</h3>
-        <p id="orc-parcelamento-txt">Carregando informações de pagamento...</p>
+      <div class="parcelamento-destaque fade-in">
+        <p id="orc-parcelamento-txt">Informações de pagamento não disponíveis.</p>
       </div>
     </section>
 
-    <section id="section-aereo" class="container adicionais-section fade-in" style="transition-delay:.8s;">
-      <h3><i class="fas fa-plane"></i> Parte Aérea</h3>
-      <div id="aereo-detalhes">
+    <section id="section-aereo" class="container">
+      <h2 class="sec-titulo fade-in"><i class="fas fa-plane"></i> Parte Aérea</h2>
+      <div id="aereo-detalhes" class="fade-in">
         <!-- Detalhes de aéreo serão renderizados aqui -->
       </div>
     </section>
 
-    <section id="section-carro" class="container adicionais-section fade-in" style="transition-delay:1s;">
-      <h3><i class="fas fa-car"></i> Aluguel de Carro</h3>
-      <div id="carro-detalhes">
+    <section id="section-carro" class="container">
+      <h2 class="sec-titulo fade-in"><i class="fas fa-car"></i> Aluguel de Carro</h2>
+      <div id="carro-detalhes" class="fade-in">
         <!-- Detalhes de aluguel de carro serão renderizados aqui -->
       </div>
     </section>
 
-    <section id="section-galeria" class="container fade-in" style="transition-delay:1.2s;">
-      <h2 class="sec-titulo"><i class="fas fa-images"></i> Galeria de Fotos</h2>
-      <div id="galeria-grid" class="galeria-grid">
-        <!-- Fotos da galeria serão renderizadas aqui -->
+    <section id="section-galeria" class="container">
+      <h2 class="sec-titulo fade-in"><i class="fas fa-images"></i> Galeria de Fotos</h2>
+      <div id="galeria-grid" class="galeria-grid fade-in">
+        <!-- Galeria de fotos será renderizada aqui -->
       </div>
     </section>
 
-    <section id="section-condicoes" class="container fade-in" style="transition-delay:1.4s;">
-      <h2 class="sec-titulo"><i class="fas fa-file-alt"></i> Condições Gerais</h2>
-      <div id="condicoes-gerais" class="texto-formatado">
+    <section id="section-condicoes" class="container">
+      <h2 class="sec-titulo fade-in"><i class="fas fa-file-alt"></i> Condições Gerais</h2>
+      <div id="condicoes-gerais" class="fade-in">
         <!-- Condições gerais serão renderizadas aqui -->
       </div>
     </section>
 
-    <section id="section-observacoes" class="container fade-in" style="transition-delay:1.6s;">
-      <h2 class="sec-titulo"><i class="fas fa-sticky-note"></i> Observações Importantes</h2>
-      <div id="observacoes" class="texto-formatado">
+    <section id="section-observacoes" class="container">
+      <h2 class="sec-titulo fade-in"><i class="fas fa-exclamation-triangle"></i> Observações Importantes</h2>
+      <div id="observacoes" class="fade-in">
         <!-- Observações importantes serão renderizadas aqui -->
       </div>
     </section>
 
     <footer class="site-footer">
       <div class="container">
-        <div class="footer-contato">
-          <a href="https://wa.me/5535988622943" target="_blank"><i class="fab fa-whatsapp"></i> (35) 98862-2943</a>
-          <a href="mailto:contato@oficinadeturismo.com.br"><i class="fas fa-envelope"></i> contato@oficinadeturismo.com.br</a>
-        </div>
-        <div class="footer-social">
-          <a href="https://www.instagram.com/oficinadeturismo/" target="_blank"><i class="fab fa-instagram"></i></a>
-          <!-- Adicione outros links de redes sociais se tiver -->
-        </div>
-        <p class="footer-copy">© 2024 Oficina de Turismo. Todos os direitos reservados.</p>
+        <p>&copy; 2024 Oficina de Turismo. Todos os direitos reservados.</p>
+        <p>Desenvolvido com <i class="fas fa-heart" style="color:#e74c3c;"></i> por <a href="https://fernandoneto1210-sys.github.io/orcamentos-oficina/" target="_blank">Fernando Neto</a></p>
       </div>
     </footer>
-  </div> <!-- Fim do main-content para PDF -->
 
-  <!-- Orçamento Não Encontrado -->
-  <div id="orc-nao-encontrado" class="orc-nao-encontrado" style="display:none;">
-    <i class="fas fa-exclamation-triangle"></i>
-    <h2>Orçamento não encontrado!</h2>
-    <p>O orçamento que você está procurando não existe ou foi removido.</p>
-    <a href="https://wa.me/5535988622943" target="_blank" class="btn-primario"><i class="fab fa-whatsapp"></i> Falar com a Oficina de Turismo</a>
-  </div>
-
-  <!-- Floating Action Buttons -->
-  <div class="fab-area">
-    <button class="fab-btn wpp" onclick="envWppOrc()"><i class="fab fa-whatsapp"></i></button>
-    <button class="fab-btn" onclick="gerarPDF()"><i class="fas fa-file-pdf"></i></button>
-    <button class="fab-btn top" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
-  </div>
-
-  <!-- Loading Overlay para PDF -->
-  <div id="load-overlay" class="load-overlay">
-    <div class="spinner"></div>
-    <p>Gerando PDF...</p>
-    <div class="load-bar-wrap"><div id="load-bar" class="load-bar"></div></div>
+    <div class="fab-area">
+      <button class="btn pdf" onclick="gerarPDF()"><i class="fas fa-file-pdf"></i> Baixar PDF</button>
+      <button class="btn wpp" onclick="envWppOrc()"><i class="fab fa-whatsapp"></i> Enviar WhatsApp</button>
+    </div>
   </div>
 
   <script>
     // ════════════════════════════════════════════
     // CONFIGURAÇÕES GLOBAIS
     // ════════════════════════════════════════════
-    const JSONBIN_ID    = '6a318e1eda38895dfecb475a'; // SEU ID DO JSONBIN.IO
+    const JSONBIN_ID    = '6a318e1eda38895dfecb475a'; // Seu BIN ID do JSONBin.io
     const JSONBIN_KEY   = '$2a$10$HTy/puCq6iupLHos/RV5DejOrnyU5.Pz18WDA4.dpmLOWJ09Rdqj.'; // Sua API Key do JSONBin.io
     const BASE_URL      = 'https://fernandoneto1210-sys.github.io/orcamentos-oficina'; // URL base do seu GitHub Pages
 
@@ -460,11 +457,12 @@
       if (!orcId) {
         document.getElementById('main-content').style.display = 'none';
         document.getElementById('orc-nao-encontrado').style.display = 'flex';
+        document.getElementById('load-overlay').classList.remove('on'); // Esconde o overlay
         return;
       }
 
       try {
-        const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}`, {
+        const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}/latest`, {
           headers: {
             'X-Master-Key': JSONBIN_KEY,
             'X-Bin-Meta': false
@@ -472,7 +470,7 @@
         });
 
         if (!response.ok) {
-          throw new Error(`Erro ao carregar orçamentos: ${response.status}`);
+          throw new Error(`Erro ao carregar orçamentos: ${response.status} - ${response.statusText}`);
         }
 
         const data = await response.json();
@@ -481,6 +479,7 @@
 
         if (dadosOrc) {
           preencherOrcamento(dadosOrc);
+          document.getElementById('main-content').style.display = 'block'; // Mostra o conteúdo principal
           ativarAnimacoes();
         } else {
           document.getElementById('main-content').style.display = 'none';
@@ -490,13 +489,15 @@
         console.error('Erro ao carregar orçamento:', error);
         document.getElementById('main-content').style.display = 'none';
         document.getElementById('orc-nao-encontrado').style.display = 'flex';
+      } finally {
+        document.getElementById('load-overlay').classList.remove('on'); // Esconde o overlay
       }
     }
 
     function preencherOrcamento(orc) {
       // Metadados da página
-      document.getElementById('page-title').textContent = `${orc.titulo} — Oficina de Turismo`;
-      document.getElementById('og-title').content = `${orc.titulo} — Oficina de Turismo`;
+      document.getElementById('page-title').textContent = `${orc.titulo || 'Orçamento de Viagem'} — Oficina de Turismo`;
+      document.getElementById('og-title').content = `${orc.titulo || 'Orçamento de Viagem'} — Oficina de Turismo`;
       document.getElementById('og-description').content = orc.cliente ? `Orçamento para ${orc.cliente}` : 'Seu orçamento personalizado da Oficina de Turismo.';
       if (orc.capaFoto) {
         document.getElementById('og-image').content = orc.capaFoto;
