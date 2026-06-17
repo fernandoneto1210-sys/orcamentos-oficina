@@ -393,21 +393,23 @@
           </div>
           <div class="cg">
             <label for="f-cliente"><i class="fas fa-user"></i> Nome do Cliente</label>
-            <input type="text" id="f-cliente" placeholder="Ex: Fernando Neto"/>
-          </div>
-          <div class="row2">
-            <div class="cg">
-              <label for="f-periodo"><i class="fas fa-calendar-alt"></i> Período da Viagem</label>
-              <input type="text" id="f-periodo" placeholder="Ex: 01 a 07 de Julho de 2027"/>
-            </div>
-            <div class="cg">
-              <label for="f-duracao"><i class="fas fa-clock"></i> Duração</label>
-              <input type="text" id="f-duracao" placeholder="Ex: 7 dias e 6 noites"/>
-            </div>
+            <input type="text" id="f-cliente" placeholder="Ex: João da Silva"/>
           </div>
           <div class="cg">
-            <label for="f-grupo"><i class="fas fa-users"></i> Grupo de Pessoas</label>
-            <input type="text" id="f-grupo" placeholder="Ex: 2 adultos e 1 criança"/>
+            <label for="f-subtitulo"><i class="fas fa-pen-nib"></i> Subtítulo</label>
+            <input type="text" id="f-subtitulo" placeholder="Ex: Pacote de 5 dias e 4 noites"/>
+          </div>
+          <div class="cg">
+            <label for="f-data-viagem"><i class="fas fa-calendar-alt"></i> Data da Viagem</label>
+            <input type="date" id="f-data-viagem"/>
+          </div>
+          <div class="cg">
+            <label for="f-status"><i class="fas fa-info-circle"></i> Status</label>
+            <select id="f-status">
+              <option value="rascunho">Rascunho</option>
+              <option value="ativo">Ativo</option>
+              <option value="expirado">Expirado</option>
+            </select>
           </div>
         </div>
 
@@ -441,9 +443,9 @@
           </div>
           <button class="badd" onclick="addOpcaoValor()"><i class="fas fa-plus"></i> Adicionar Opção de Valor</button>
 
-          <hr style="margin:30px 0;border-color:#eee;"/>
+          <hr style="margin:30px 0;border:none;border-top:1px solid #eee;"/>
 
-          <h3><i class="fas fa-calculator"></i> Cálculo de Parcelamento</h3>
+          <h3><i class="fas fa-hand-holding-usd"></i> Detalhes de Pagamento</h3>
           <div class="row3">
             <div class="cg valor">
               <label for="f-valor-total">Valor Total</label>
@@ -455,38 +457,42 @@
             </div>
             <div class="cg">
               <label for="f-num-parcelas">Nº de Parcelas</label>
-              <input type="number" id="f-num-parcelas" min="1" placeholder="0" oninput="calcularParcelamento()"/>
+              <input type="number" id="f-num-parcelas" min="1" placeholder="1" oninput="calcularParcelamento()"/>
             </div>
           </div>
-          <div class="cg">
-            <label>Valor da Parcela</label>
-            <input type="text" id="f-valor-parcela" readonly style="background:#f0f0f0;"/>
-          </div>
-          <div class="cg">
-            <label>Texto de Parcelamento</label>
-            <textarea id="f-parcelamento-txt" rows="3" readonly style="background:#f0f0f0;"></textarea>
+          <div class="row2">
+            <div class="cg valor">
+              <label>Valor da Parcela</label>
+              <input type="text" id="f-valor-parcela" readonly style="background:#f9f9f9;"/>
+            </div>
+            <div class="cg">
+              <label>Texto de Parcelamento</label>
+              <input type="text" id="f-parcelamento-txt" readonly style="background:#f9f9f9;"/>
+            </div>
           </div>
         </div>
 
         <div id="p-fotos" class="painel">
           <div class="cg">
-            <label><i class="fas fa-camera"></i> Imagem de Capa (Clique em uma imagem da galeria para definir)</label>
-            <div class="prev-item capa-main" id="capa-main-preview">
-              <img id="capa-preview" src="https://via.placeholder.com/200x180?text=Capa" alt="Capa do Orçamento"/>
-              <button class="del-prev" onclick="removeCapaFoto()"><i class="fas fa-times"></i></button>
+            <label><i class="fas fa-image"></i> Foto de Capa</label>
+            <div class="prev-grid">
+              <div class="prev-item capa">
+                <img id="capa-preview" src="https://via.placeholder.com/200x180?text=Capa" alt="Capa"/>
+                <button class="del-prev" onclick="removeCapaFoto()"><i class="fas fa-times"></i></button>
+              </div>
             </div>
-            <p class="hint">A imagem de capa será a principal no carrossel e no compartilhamento.</p>
+            <p class="hint">Clique em uma imagem da galeria abaixo para defini-la como capa.</p>
           </div>
 
           <div class="cg">
             <label><i class="fas fa-images"></i> Galeria de Fotos</label>
             <div class="upload-box" data-loading="false">
-              <input type="file" accept="image/*" multiple onchange="handleGalleryUpload(event, this)"/>
+              <input type="file" accept="image/*" multiple onchange="handleGalleryUpload(event, this.closest('.upload-box'))"/>
               <i class="fas fa-cloud-upload-alt"></i>
               <p>Clique ou arraste para enviar fotos para a galeria</p>
             </div>
             <div id="galeria-preview-grid" class="prev-grid">
-              <!-- Fotos da galeria serão pré-visualizadas aqui -->
+              <!-- Imagens da galeria serão adicionadas aqui -->
             </div>
           </div>
         </div>
@@ -494,11 +500,11 @@
         <div id="p-adicionais" class="painel">
           <h3><i class="fas fa-plane"></i> Parte Aérea</h3>
           <div id="aereo-container">
-            <!-- Itens de aéreo serão adicionados aqui -->
+            <!-- Itens aéreos serão adicionados aqui -->
           </div>
           <button class="badd" onclick="addAereoItem()"><i class="fas fa-plus"></i> Adicionar Voo</button>
 
-          <hr style="margin:30px 0;border-color:#eee;"/>
+          <hr style="margin:30px 0;border:none;border-top:1px solid #eee;"/>
 
           <h3><i class="fas fa-car"></i> Aluguel de Carro</h3>
           <div id="carro-container">
@@ -510,14 +516,13 @@
         <div id="p-condicoes" class="painel">
           <div class="cg">
             <label for="f-condicoes-gerais"><i class="fas fa-file-contract"></i> Condições Gerais</label>
-            <textarea id="f-condicoes-gerais" rows="8" placeholder="Informações importantes sobre o pacote, termos e condições."></textarea>
+            <textarea id="f-condicoes-gerais" rows="8" placeholder="Informações importantes sobre o pacote, cancelamentos, etc."></textarea>
           </div>
           <div class="cg">
             <label for="f-observacoes"><i class="fas fa-exclamation-triangle"></i> Observações Importantes</label>
-            <textarea id="f-observacoes" rows="5" placeholder="Qualquer observação adicional que o cliente precise saber."></textarea>
+            <textarea id="f-observacoes" rows="5" placeholder="Qualquer observação adicional para o cliente."></textarea>
           </div>
         </div>
-
       </div>
     </main>
   </div>
@@ -552,7 +557,6 @@
 
     function slugify(text) {
       return text.toString().toLowerCase()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // Remove acentos
         .replace(/\s+/g, '-')           // Substitui espaços por -
         .replace(/[^\w\-]+/g, '')       // Remove caracteres não-palavra
         .replace(/\-\-+/g, '-')         // Substitui múltiplos - por um único -
@@ -562,12 +566,6 @@
         .replace(/-+
 $
 /, '');            // Remove - do final
-    }
-
-    function gerarIdUnico(titulo) {
-      const slug = slugify(titulo);
-      const timestamp = Date.now();
-      return `${slug}-${timestamp}`;
     }
 
     function showToast(message, type = 'info') {
@@ -673,37 +671,31 @@ $
           const errorText = await response.text();
           let errorMessage = `Erro Imgur: ${response.status} - ${errorText}`;
           try {
-            // Tenta parsear como JSON para pegar a mensagem de erro mais específica
+            // Tenta parsear como JSON para uma mensagem mais específica
             const errorJson = JSON.parse(errorText);
             errorMessage = `Erro Imgur: ${response.status} - ${errorJson.data.error || errorText}`;
           } catch (e) {
-            // Se não for JSON, usa o texto puro (que pode ser XML/HTML)
-            if (errorText.includes('<?xml')) {
-                errorMessage = `Erro Imgur: ${response.status} - Resposta inesperada (XML/HTML). Verifique seu IMGUR_ID.`;
-            }
+            // Se não for JSON, usa o texto puro (que pode ser XML/HTML de erro)
+            errorMessage = `Erro Imgur: ${response.status}. Resposta inesperada. Verifique seu IMGUR_ID. Detalhes: ${errorText.substring(0, 100)}...`;
           }
           throw new Error(errorMessage);
         }
 
         const data = await response.json();
-        if (data.success) {
-          return data.data.link;
-        } else {
-          throw new Error(data.data.error || 'Erro desconhecido no upload do Imgur.');
-        }
+        return data.data.link;
       } catch (error) {
         console.error('Erro no upload para Imgur:', error);
-        throw new Error(`Falha no upload da imagem: ${error.message}.`);
+        throw error; // Re-lança o erro para ser tratado pela função chamadora
       }
     }
 
     // ════════════════════════════════════════════
-    // RENDERIZAÇÃO DA LISTA DE ORÇAMENTOS (SIDEBAR)
+    // RENDERIZAÇÃO DA LISTA DE ORÇAMENTOS NA SIDEBAR
     // ════════════════════════════════════════════
 
     function renderizarListaOrcamentos() {
       const listaDiv = document.getElementById('orc-lista');
-      listaDiv.innerHTML = '';
+      listaDiv.innerHTML = ''; // Limpa a lista existente
 
       if (todosOrcamentos.length === 0) {
         listaDiv.innerHTML = `
@@ -715,58 +707,63 @@ $
         return;
       }
 
-      todosOrcamentos.sort((a, b) => new Date(b.dataCriacao) - new Date(a.dataCriacao));
-
       todosOrcamentos.forEach(orc => {
-        const div = document.createElement('div');
-        div.classList.add('orc-item');
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('orc-item');
         if (orc.id === orcamentoAtualId) {
-          div.classList.add('on');
+          itemDiv.classList.add('on');
         }
-        div.dataset.id = orc.id;
-        div.onclick = () => selecionarOrcamento(orc.id);
+        itemDiv.onclick = () => selecionarOrcamento(orc.id);
 
-        let statusBadgeClass = 's-rascunho';
-        let statusText = 'Rascunho';
+        let statusClass = '';
+        let statusText = '';
         if (orc.status === 'ativo') {
-          statusBadgeClass = 's-ativo';
+          statusClass = 's-ativo';
           statusText = 'Ativo';
+        } else if (orc.status === 'rascunho') {
+          statusClass = 's-rascunho';
+          statusText = 'Rascunho';
         } else if (orc.status === 'expirado') {
-          statusBadgeClass = 's-expirado';
+          statusClass = 's-expirado';
           statusText = 'Expirado';
         }
 
-        div.innerHTML = `
+        itemDiv.innerHTML = `
           <div class="orc-top">
             <span class="orc-titulo">${orc.titulo || 'Novo Orçamento'}</span>
-            <span class="sbadge ${statusBadgeClass}">${statusText}</span>
+            <span class="sbadge ${statusClass}">${statusText}</span>
           </div>
           <div class="orc-meta">
             <span><i class="fas fa-user"></i> ${orc.cliente || 'Sem Cliente'}</span>
-            <span><i class="fas fa-calendar-alt"></i> ${formatarData(orc.dataCriacao)}</span>
+            <span><i class="fas fa-calendar-alt"></i> ${orc.dataViagem ? formatarData(orc.dataViagem) : 'Sem Data'}</span>
           </div>
         `;
-        listaDiv.appendChild(div);
+        listaDiv.appendChild(itemDiv);
       });
     }
 
     // ════════════════════════════════════════════
-    // MANIPULAÇÃO DO FORMULÁRIO
+    // MANIPULAÇÃO DE ORÇAMENTOS
     // ════════════════════════════════════════════
 
-    function limparFormulario() {
+    function novoOrc() {
+      orcamentoAtualId = null;
+      document.getElementById('tela-ini').style.display = 'none';
+      document.getElementById('form-card').style.display = 'block';
+      document.getElementById('f-topo-txt').innerHTML = '<i class="fas fa-plus-circle"></i> Novo Orçamento';
+
+      // Limpar todos os campos do formulário
       document.getElementById('f-titulo').value = '';
       document.getElementById('f-cliente').value = '';
-      document.getElementById('f-periodo').value = '';
-      document.getElementById('f-duracao').value = '';
-      document.getElementById('f-grupo').value = '';
+      document.getElementById('f-subtitulo').value = '';
+      document.getElementById('f-data-viagem').value = '';
+      document.getElementById('f-status').value = 'rascunho';
 
       document.getElementById('incluidos-container').innerHTML = '';
       document.getElementById('nao-incluidos-container').innerHTML = '';
-
       document.getElementById('roteiro-dias-container').innerHTML = '';
-
       document.getElementById('opcoes-valores-container').innerHTML = '';
+
       document.getElementById('f-valor-total').value = '';
       document.getElementById('f-valor-entrada').value = '';
       document.getElementById('f-num-parcelas').value = '';
@@ -774,8 +771,8 @@ $
       document.getElementById('f-parcelamento-txt').value = '';
 
       document.getElementById('capa-preview').src = 'https://via.placeholder.com/200x180?text=Capa';
+      document.getElementById('capa-preview').classList.remove('capa');
       document.getElementById('galeria-preview-grid').innerHTML = '';
-      removeCapaFoto(); // Garante que a classe 'capa' seja removida
 
       document.getElementById('aereo-container').innerHTML = '';
       document.getElementById('carro-container').innerHTML = '';
@@ -783,140 +780,117 @@ $
       document.getElementById('f-condicoes-gerais').value = '';
       document.getElementById('f-observacoes').value = '';
 
-      // Reseta para a primeira aba
-      document.querySelectorAll('.abas .aba').forEach(a => a.classList.remove('on'));
-      document.querySelector('.abas .aba[data-painel="p-geral"]').classList.add('on');
-      document.querySelectorAll('.painel').forEach(p => p.classList.remove('on'));
+      // Resetar abas
+      document.querySelectorAll('.aba').forEach(aba => aba.classList.remove('on'));
+      document.querySelectorAll('.painel').forEach(painel => painel.classList.remove('on'));
+      document.querySelector('.aba[data-painel="p-geral"]').classList.add('on');
       document.getElementById('p-geral').classList.add('on');
 
-      document.getElementById('f-topo-txt').innerHTML = '<i class="fas fa-plus-circle"></i> Novo Orçamento';
-      document.querySelectorAll('.topo-btns .btn').forEach(btn => {
-        if (btn.classList.contains('b-salvar')) btn.style.display = 'inline-flex';
-        else btn.style.display = 'none';
-      });
-    }
-
-    function preencherFormulario(orc) {
-      document.getElementById('f-titulo').value = orc.titulo || '';
-      document.getElementById('f-cliente').value = orc.cliente || '';
-      document.getElementById('f-periodo').value = orc.periodo || '';
-      document.getElementById('f-duracao').value = orc.duracao || '';
-      document.getElementById('f-grupo').value = orc.grupo || '';
-
-      document.getElementById('incluidos-container').innerHTML = '';
-      (orc.incluidos || []).forEach(item => addListItem('incluidos-container', item));
-
-      document.getElementById('nao-incluidos-container').innerHTML = '';
-      (orc.naoIncluidos || []).forEach(item => addListItem('nao-incluidos-container', item));
-
-      document.getElementById('roteiro-dias-container').innerHTML = '';
-      (orc.roteiro || []).forEach(dia => addRoteiroDia(dia));
-
-      document.getElementById('opcoes-valores-container').innerHTML = '';
-      (orc.opcoesValores || []).forEach(val => addOpcaoValor(val));
-
-      document.getElementById('f-valor-total').value = orc.valorTotal || '';
-      document.getElementById('f-valor-entrada').value = orc.valorEntrada || '';
-      document.getElementById('f-num-parcelas').value = orc.numParcelas || '';
-      calcularParcelamento(); // Recalcula ao carregar
-
-      document.getElementById('galeria-preview-grid').innerHTML = '';
-      (orc.galeriaFotos || []).forEach(url => addGalleryPreview(url));
-      setCapaFoto(orc.capaFoto || 'https://via.placeholder.com/200x180?text=Capa');
-
-      document.getElementById('aereo-container').innerHTML = '';
-      (orc.aereo || []).forEach(item => addAereoItem(item));
-
-      document.getElementById('carro-container').innerHTML = '';
-      (orc.carro || []).forEach(item => addCarroItem(item));
-
-      document.getElementById('f-condicoes-gerais').value = orc.condicoesGerais || '';
-      document.getElementById('f-observacoes').value = orc.observacoes || '';
-
-      document.getElementById('f-topo-txt').innerHTML = `<i class="fas fa-edit"></i> Editar Orçamento: ${orc.titulo || 'Sem Título'}`;
-      document.querySelectorAll('.topo-btns .btn').forEach(btn => btn.style.display = 'inline-flex');
-    }
-
-    function getOrcData() {
-      const titulo = document.getElementById('f-titulo').value.trim();
-      if (!titulo) {
-        showToast('O título do orçamento é obrigatório!', 'error');
-        throw new Error('Título obrigatório');
-      }
-
-      const valorTotal = parseFloat(document.getElementById('f-valor-total').value) || 0;
-      const valorEntrada = parseFloat(document.getElementById('f-valor-entrada').value) || 0;
-      const numParcelas = parseInt(document.getElementById('f-num-parcelas').value) || 0;
-      const valorParcela = parseFloat(document.getElementById('f-valor-parcela').value.replace('R$', '').replace('.', '').replace(',', '.')) || 0;
-      const parcelamentoTxt = document.getElementById('f-parcelamento-txt').value.trim();
-
-      return {
-        id: orcamentoAtualId || gerarIdUnico(titulo),
-        titulo: titulo,
-        cliente: document.getElementById('f-cliente').value.trim(),
-        periodo: document.getElementById('f-periodo').value.trim(),
-        duracao: document.getElementById('f-duracao').value.trim(),
-        grupo: document.getElementById('f-grupo').value.trim(),
-        incluidos: getListItems('incluidos-container'),
-        naoIncluidos: getListItems('nao-incluidos-container'),
-        roteiro: getRoteiroDias(),
-        opcoesValores: getOpcoesValores(),
-        valorTotal: valorTotal,
-        valorEntrada: valorEntrada,
-        numParcelas: numParcelas,
-        valorParcela: valorParcela,
-        parcelamentoTxt: parcelamentoTxt,
-        capaFoto: document.getElementById('capa-preview').src.startsWith('http') && !document.getElementById('capa-preview').src.includes('placeholder') ? document.getElementById('capa-preview').src : '',
-        galeriaFotos: getGalleryPreviews(),
-        aereo: getAereoItems(),
-        carro: getCarroItems(),
-        condicoesGerais: document.getElementById('f-condicoes-gerais').value.trim(),
-        observacoes: document.getElementById('f-observacoes').value.trim(),
-        dataCriacao: new Date().toISOString(),
-        status: 'rascunho' // Pode ser 'ativo', 'rascunho', 'expirado'
-      };
-    }
-
-    function novoOrc() {
-      orcamentoAtualId = null;
-      limparFormulario();
-      document.getElementById('tela-ini').style.display = 'none';
-      document.getElementById('form-card').style.display = 'block';
-      document.querySelectorAll('.orc-item').forEach(item => item.classList.remove('on'));
-      document.getElementById('f-titulo').focus();
+      renderizarListaOrcamentos(); // Remove a seleção de qualquer item na sidebar
     }
 
     function selecionarOrcamento(id) {
       orcamentoAtualId = id;
       const orc = todosOrcamentos.find(o => o.id === id);
+
       if (orc) {
-        limparFormulario(); // Limpa antes de preencher para evitar resíduos
-        preencherFormulario(orc);
         document.getElementById('tela-ini').style.display = 'none';
         document.getElementById('form-card').style.display = 'block';
-        document.querySelectorAll('.orc-item').forEach(item => item.classList.remove('on'));
-        document.querySelector(`.orc-item[data-id="${id}"]`).classList.add('on');
-      } else {
-        showToast('Orçamento não encontrado!', 'error');
+        document.getElementById('f-topo-txt').innerHTML = `<i class="fas fa-edit"></i> Editar Orçamento: ${orc.titulo || 'Sem Título'}`;
+
+        // Preencher campos
+        document.getElementById('f-titulo').value = orc.titulo || '';
+        document.getElementById('f-cliente').value = orc.cliente || '';
+        document.getElementById('f-subtitulo').value = orc.subtitulo || '';
+        document.getElementById('f-data-viagem').value = orc.dataViagem || '';
+        document.getElementById('f-status').value = orc.status || 'rascunho';
+
+        // Listas dinâmicas
+        document.getElementById('incluidos-container').innerHTML = '';
+        (orc.incluidos || []).forEach(item => addListItem('incluidos-container', item));
+        document.getElementById('nao-incluidos-container').innerHTML = '';
+        (orc.naoIncluidos || []).forEach(item => addListItem('nao-incluidos-container', item));
+
+        // Roteiro
+        document.getElementById('roteiro-dias-container').innerHTML = '';
+        (orc.roteiro || []).forEach(dia => addRoteiroDia(dia));
+
+        // Valores
+        document.getElementById('opcoes-valores-container').innerHTML = '';
+        (orc.opcoesValores || []).forEach(val => addOpcaoValor(val));
+        document.getElementById('f-valor-total').value = orc.valorTotal || '';
+        document.getElementById('f-valor-entrada').value = orc.valorEntrada || '';
+        document.getElementById('f-num-parcelas').value = orc.numParcelas || '';
+        calcularParcelamento(); // Recalcula para preencher os campos readonly
+
+        // Fotos
+        document.getElementById('capa-preview').src = orc.capaFoto || 'https://via.placeholder.com/200x180?text=Capa';
+        document.getElementById('galeria-preview-grid').innerHTML = '';
+        (orc.galeriaFotos || []).forEach(url => addGalleryPreview(url));
+        updateCapaPreview(); // Garante que a capa esteja marcada corretamente
+
+        // Adicionais
+        document.getElementById('aereo-container').innerHTML = '';
+        (orc.aereo || []).forEach(item => addAereoItem(item));
+        document.getElementById('carro-container').innerHTML = '';
+        (orc.carro || []).forEach(item => addCarroItem(item));
+
+        // Condições
+        document.getElementById('f-condicoes-gerais').value = orc.condicoesGerais || '';
+        document.getElementById('f-observacoes').value = orc.observacoes || '';
+
+        // Resetar abas
+        document.querySelectorAll('.aba').forEach(aba => aba.classList.remove('on'));
+        document.querySelectorAll('.painel').forEach(painel => painel.classList.remove('on'));
+        document.querySelector('.aba[data-painel="p-geral"]').classList.add('on');
+        document.getElementById('p-geral').classList.add('on');
+
+        renderizarListaOrcamentos(); // Atualiza a seleção na sidebar
       }
     }
 
     async function salvarOrc() {
-      try {
-        const novoOrcData = getOrcData();
-        const index = todosOrcamentos.findIndex(o => o.id === novoOrcData.id);
-
-        if (index !== -1) {
-          todosOrcamentos[index] = novoOrcData; // Atualiza existente
-        } else {
-          todosOrcamentos.push(novoOrcData); // Adiciona novo
-        }
-        orcamentoAtualId = novoOrcData.id; // Garante que o ID atual seja o do orçamento salvo
-        await salvarOrcamentosNoBin();
-        selecionarOrcamento(novoOrcData.id); // Seleciona o orçamento recém-salvo/atualizado
-      } catch (error) {
-        // Erro já tratado em getOrcData ou uploadImageToImgur
+      const titulo = document.getElementById('f-titulo').value.trim();
+      if (!titulo) {
+        showToast('Por favor, preencha o Título do Orçamento.', 'error');
+        return;
       }
+
+      const orcData = {
+        id: orcamentoAtualId || `orc-${Date.now()}-${slugify(titulo)}`,
+        titulo: titulo,
+        cliente: document.getElementById('f-cliente').value.trim(),
+        subtitulo: document.getElementById('f-subtitulo').value.trim(),
+        dataViagem: document.getElementById('f-data-viagem').value,
+        status: document.getElementById('f-status').value,
+        incluidos: getListItems('incluidos-container'),
+        naoIncluidos: getListItems('nao-incluidos-container'),
+        roteiro: getRoteiroDias(),
+        opcoesValores: getOpcoesValores(),
+        valorTotal: document.getElementById('f-valor-total').value,
+        valorEntrada: document.getElementById('f-valor-entrada').value,
+        numParcelas: document.getElementById('f-num-parcelas').value,
+        valorParcela: document.getElementById('f-valor-parcela').value, // Salva o valor formatado
+        parcelamentoTxt: document.getElementById('f-parcelamento-txt').value, // Salva o texto formatado
+        capaFoto: document.getElementById('capa-preview').src.includes('placeholder') ? '' : document.getElementById('capa-preview').src,
+        galeriaFotos: getGalleryPreviews(),
+        aereo: getAereoItems(),
+        carro: getCarroItems(),
+        condicoesGerais: document.getElementById('f-condicoes-gerais').value.trim(),
+        observacoes: document.getElementById('f-observacoes').value.trim(),
+        ultimaAtualizacao: new Date().toISOString()
+      };
+
+      const existingIndex = todosOrcamentos.findIndex(orc => orc.id === orcData.id);
+      if (existingIndex > -1) {
+        todosOrcamentos[existingIndex] = orcData;
+      } else {
+        todosOrcamentos.push(orcData);
+        orcamentoAtualId = orcData.id; // Define o ID do novo orçamento como o atual
+      }
+
+      await salvarOrcamentosNoBin();
+      selecionarOrcamento(orcamentoAtualId); // Re-seleciona para atualizar a sidebar e o título
     }
 
     function verOrc() {
@@ -925,45 +899,23 @@ $
         return;
       }
       const orc = todosOrcamentos.find(o => o.id === orcamentoAtualId);
-      if (orc && orc.titulo) {
-        window.open(`${BASE_URL}/orcamento.html?id=${orc.id}`, '_blank');
-      } else {
+      if (!orc || !orc.titulo) {
         showToast('Salve o orçamento com um título antes de visualizar.', 'error');
-      }
-    }
-
-    function envWppOrc() {
-      if (!orcamentoAtualId) {
-        showToast('Selecione ou salve um orçamento para compartilhar.', 'error');
         return;
       }
-      const orc = todosOrcamentos.find(o => o.id === orcamentoAtualId);
-      if (orc && orc.titulo) {
-        const link = `${BASE_URL}/orcamento.html?id=${orc.id}`;
-        const msg  = encodeURIComponent(
-          `Olá${orc.cliente ? ' ' + orc.cliente : ''}! 🌍✈️\n\n` +
-          `Segue seu orçamento personalizado da *Oficina de Turismo*:\n\n` +
-          `✈️ *${orc.titulo}*\n\n` +
-          `👉 ${link}\n\n` +
-          `Qualquer dúvida estou à disposição! 😊\n\n` +
-          `_Oficina de Turismo — (35) 98862-2943_`
-        );
-        window.open(`https://wa.me/?text=${msg}`, '_blank');
-      } else {
-        showToast('Salve o orçamento com um título antes de compartilhar.', 'error');
-      }
+      const url = `${BASE_URL}/orcamento.html?id=${orcamentoAtualId}`;
+      window.open(url, '_blank');
     }
 
     async function deletarOrc() {
       if (!orcamentoAtualId) {
-        showToast('Selecione um orçamento para deletar.', 'error');
+        showToast('Nenhum orçamento selecionado para deletar.', 'error');
         return;
       }
       if (confirm('Tem certeza que deseja deletar este orçamento? Esta ação é irreversível.')) {
-        todosOrcamentos = todosOrcamentos.filter(o => o.id !== orcamentoAtualId);
+        todosOrcamentos = todosOrcamentos.filter(orc => orc.id !== orcamentoAtualId);
         orcamentoAtualId = null;
         await salvarOrcamentosNoBin();
-        limparFormulario();
         document.getElementById('form-card').style.display = 'none';
         document.getElementById('tela-ini').style.display = 'flex';
         showToast('Orçamento deletado com sucesso!', 'success');
@@ -975,32 +927,50 @@ $
         showToast('Selecione um orçamento para duplicar.', 'error');
         return;
       }
+      const orcOriginal = todosOrcamentos.find(orc => orc.id === orcamentoAtualId);
+      if (orcOriginal) {
+        const novoOrcamento = { ...orcOriginal };
+        novoOrcamento.id = `orc-${Date.now()}-copia-${slugify(orcOriginal.titulo || 'sem-titulo')}`;
+        novoOrcamento.titulo = `Cópia de ${orcOriginal.titulo || 'Novo Orçamento'}`;
+        novoOrcamento.status = 'rascunho';
+        novoOrcamento.ultimaAtualizacao = new Date().toISOString();
+        todosOrcamentos.push(novoOrcamento);
+        orcamentoAtualId = novoOrcamento.id;
+        await salvarOrcamentosNoBin();
+        selecionarOrcamento(orcamentoAtualId);
+        showToast('Orçamento duplicado com sucesso!', 'success');
+      }
+    }
 
-      const orcamentoOriginal = todosOrcamentos.find(o => o.id === orcamentoAtualId);
-      if (!orcamentoOriginal) {
-        showToast('Orçamento original não encontrado para duplicação.', 'error');
+    function envWppOrc() {
+      if (!orcamentoAtualId) {
+        showToast('Selecione um orçamento para enviar via WhatsApp.', 'error');
         return;
       }
-
-      const orcDuplicado = JSON.parse(JSON.stringify(orcamentoOriginal)); // Deep copy
-      orcDuplicado.id = gerarIdUnico(`${orcDuplicado.titulo} (Cópia)`);
-      orcDuplicado.titulo = `${orcDuplicado.titulo} (Cópia)`;
-      orcDuplicado.dataCriacao = new Date().toISOString();
-      orcDuplicado.status = 'rascunho';
-
-      todosOrcamentos.push(orcDuplicado);
-      await salvarOrcamentosNoBin();
-      selecionarOrcamento(orcDuplicado.id);
-      showToast('Orçamento duplicado com sucesso!', 'success');
+      const orc = todosOrcamentos.find(o => o.id === orcamentoAtualId);
+      if (!orc || !orc.titulo) {
+        showToast('Salve o orçamento com um título antes de enviar via WhatsApp.', 'error');
+        return;
+      }
+      const link = `${BASE_URL}/orcamento.html?id=${orcamentoAtualId}`;
+      const msg  = encodeURIComponent(
+        `Olá${orc.cliente ? ' ' + orc.cliente : ''}! 🌍✈️\n\n` +
+        `Segue seu orçamento personalizado da *Oficina de Turismo*:\n\n` +
+        `✈️ *${orc.titulo}*\n\n` +
+        `👉 ${link}\n\n` +
+        `Qualquer dúvida estou à disposição! 😊\n\n` +
+        `_Oficina de Turismo — (35) 98862-2943_`
+      );
+      window.open(`https://wa.me/?text=${msg}`, '_blank');
     }
 
     // ════════════════════════════════════════════
-    // ABAS
+    // NAVEGAÇÃO POR ABAS
     // ════════════════════════════════════════════
 
-    document.querySelectorAll('.abas .aba').forEach(aba => {
+    document.querySelectorAll('.aba').forEach(aba => {
       aba.addEventListener('click', function() {
-        document.querySelectorAll('.abas .aba').forEach(a => a.classList.remove('on'));
+        document.querySelectorAll('.aba').forEach(t => t.classList.remove('on'));
         this.classList.add('on');
         document.querySelectorAll('.painel').forEach(p => p.classList.remove('on'));
         document.getElementById(this.dataset.painel).classList.add('on');
@@ -1055,7 +1025,7 @@ $
           <div class="foto-dia-row">
             <div class="rd-img-wrap">
               <img class="f-rd-imagem-preview" src="${diaData.imagem || 'https://via.placeholder.com/180x120?text=Sem+Foto'}" alt="Preview"/>
-              ${diaData.imagem ? `<button class="del-rd-img" onclick="removeRoteiroDiaImage(this)"><i class="fas fa-times"></i></button>` : ''}
+              ${diaData.imagem && !diaData.imagem.includes('placeholder') ? `<button class="del-rd-img" onclick="removeRoteiroDiaImage(this)"><i class="fas fa-times"></i></button>` : ''}
             </div>
             <div class="rd-img-upload">
               <div class="upload-box upload-mini" data-loading="false">
@@ -1081,20 +1051,19 @@ $
       }).filter(dia => dia.titulo || dia.descricao || dia.imagem);
     }
 
-    async function handleRoteiroDiaUpload(event, uploadBox) {
+    async function handleRoteiroDiaUpload(event, inputElement) {
       const file = event.target.files[0];
       if (!file) return;
 
+      const uploadBox = inputElement.closest('.upload-box');
       const imgPreview = uploadBox.closest('.foto-dia-row').querySelector('.f-rd-imagem-preview');
-      const delBtnContainer = imgPreview.closest('.rd-img-wrap'); // Container para o botão de deletar
+      let delBtn = uploadBox.closest('.foto-dia-row').querySelector('.del-rd-img');
       const originalSrc = imgPreview.src;
 
       uploadBox.classList.add('sending');
       uploadBox.dataset.loading = 'true';
       imgPreview.src = 'https://via.placeholder.com/180x120?text=Subindo...';
-      // Remove botão de deletar existente, se houver
-      const existingDelBtn = delBtnContainer.querySelector('.del-rd-img');
-      if (existingDelBtn) existingDelBtn.remove();
+      if (delBtn) delBtn.remove(); // Remove botão de deletar temporariamente
 
       try {
         const imageUrl = await uploadImageToImgur(file);
@@ -1103,7 +1072,7 @@ $
         newDelBtn.classList.add('del-rd-img');
         newDelBtn.innerHTML = '<i class="fas fa-times"></i>';
         newDelBtn.onclick = () => removeRoteiroDiaImage(newDelBtn);
-        delBtnContainer.appendChild(newDelBtn); // Adiciona o novo botão
+        imgPreview.closest('.rd-img-wrap').appendChild(newDelBtn);
         showToast('Foto do roteiro enviada com sucesso!', 'success');
       } catch (error) {
         console.error('Erro ao enviar foto do roteiro:', error);
@@ -1175,27 +1144,29 @@ $
       const valorParcelaOutput = document.getElementById('f-valor-parcela');
       const parcelamentoTxtOutput = document.getElementById('f-parcelamento-txt');
 
-      const valorTotal = parseFloat(valorTotalInput.value) || 0;
-      const valorEntrada = parseFloat(valorEntradaInput.value) || 0;
+      const valorTotal = parseFloat(valorTotalInput.value.replace(',', '.')) || 0;
+      const valorEntrada = parseFloat(valorEntradaInput.value.replace(',', '.')) || 0;
       const numParcelas = parseInt(numParcelasInput.value) || 0;
 
       let valorParcela = 0;
       let parcelamentoTxt = '';
 
-      if (valorTotal > 0 && numParcelas > 0) {
-        const saldo = valorTotal - valorEntrada;
-        if (saldo > 0) {
-          valorParcela = saldo / numParcelas;
-          parcelamentoTxt = `Entrada de ${formatarMoeda(valorEntrada)} e saldo em ${numParcelas}x de ${formatarMoeda(valorParcela)} sem juros.`;
-        } else if (saldo === 0) {
-          parcelamentoTxt = `Valor total de ${formatarMoeda(valorTotal)} pago à vista.`;
+      if (valorTotal > 0) {
+        if (numParcelas > 0) {
+          const saldo = valorTotal - valorEntrada;
+          if (saldo > 0) {
+            valorParcela = saldo / numParcelas;
+            parcelamentoTxt = `Entrada de ${formatarMoeda(valorEntrada)} e saldo em ${numParcelas}x de ${formatarMoeda(valorParcela)} sem juros.`;
+          } else if (saldo === 0) {
+            parcelamentoTxt = `Valor total de ${formatarMoeda(valorTotal)} pago à vista.`;
+          } else {
+            parcelamentoTxt = `Entrada maior que o valor total. Saldo a devolver: ${formatarMoeda(Math.abs(saldo))}.`;
+          }
         } else {
-          parcelamentoTxt = `Entrada maior que o valor total. Saldo a devolver: ${formatarMoeda(Math.abs(saldo))}.`;
+          parcelamentoTxt = `Valor total de ${formatarMoeda(valorTotal)}. Condições de parcelamento não definidas.`;
         }
-      } else if (valorTotal > 0 && numParcelas === 0) {
-        parcelamentoTxt = `Valor total de ${formatarMoeda(valorTotal)}. Condições de parcelamento não informadas.`;
       } else {
-        parcelamentoTxt = 'Preencha o valor total e o número de parcelas para calcular.';
+        parcelamentoTxt = 'Valor total não informado.';
       }
 
       valorParcelaOutput.value = formatarMoeda(valorParcela);
@@ -1203,7 +1174,7 @@ $
     }
 
     // ════════════════════════════════════════════
-    // ADICIONAIS (AÉREO)
+    // AÉREO
     // ════════════════════════════════════════════
 
     function addAereoItem(aereoData = { cia: '', numVoo: '', origem: '', destino: '', horarios: '' }) {
@@ -1216,13 +1187,15 @@ $
           <button class="brem" onclick="this.closest('.dyn-section-item').remove()"><i class="fas fa-trash-alt"></i></button>
         </div>
         <div class="dyn-body">
-          <div class="cg">
-            <label>Cia Aérea</label>
-            <input type="text" class="f-aereo-cia" value="${aereoData.cia}" placeholder="Ex: LATAM"/>
-          </div>
-          <div class="cg">
-            <label>Número do Voo</label>
-            <input type="text" class="f-aereo-numVoo" value="${aereoData.numVoo}" placeholder="Ex: LA3456"/>
+          <div class="row2">
+            <div class="cg">
+              <label>Cia Aérea</label>
+              <input type="text" class="f-aereo-cia" value="${aereoData.cia}" placeholder="Ex: LATAM"/>
+            </div>
+            <div class="cg">
+              <label>Número do Voo</label>
+              <input type="text" class="f-aereo-numvoo" value="${aereoData.numVoo}" placeholder="Ex: LA3400"/>
+            </div>
           </div>
           <div class="row2">
             <div class="cg">
@@ -1235,8 +1208,8 @@ $
             </div>
           </div>
           <div class="cg">
-            <label>Horários / Escalas</label>
-            <textarea class="f-aereo-horarios" rows="2" placeholder="Ex: Saída 08:00, Chegada 11:00. Escala em BSB">${aereoData.horarios}</textarea>
+            <label>Horários</label>
+            <input type="text" class="f-aereo-horarios" value="${aereoData.horarios}" placeholder="Ex: Ida: 08:00, Volta: 18:00"/>
           </div>
         </div>
       `;
@@ -1248,7 +1221,7 @@ $
       return Array.from(container.querySelectorAll('.dyn-section-item')).map(item => {
         return {
           cia: item.querySelector('.f-aereo-cia').value.trim(),
-          numVoo: item.querySelector('.f-aereo-numVoo').value.trim(),
+          numVoo: item.querySelector('.f-aereo-numvoo').value.trim(),
           origem: item.querySelector('.f-aereo-origem').value.trim(),
           destino: item.querySelector('.f-aereo-destino').value.trim(),
           horarios: item.querySelector('.f-aereo-horarios').value.trim()
@@ -1257,7 +1230,7 @@ $
     }
 
     // ════════════════════════════════════════════
-    // ADICIONAIS (CARRO)
+    // ALUGUEL DE CARRO
     // ════════════════════════════════════════════
 
     function addCarroItem(carroData = { localRetirada: '', localEntrega: '', infoAdicional: '' }) {
@@ -1311,7 +1284,6 @@ $
         <button class="del-prev" onclick="removeGalleryPreview(this)"><i class="fas fa-times"></i></button>
       `;
       div.onclick = (e) => {
-        // Impede que o clique no botão de deletar acione a definição de capa
         if (!e.target.classList.contains('del-prev') && !e.target.closest('.del-prev')) {
           setCapaFoto(url);
         }
@@ -1371,21 +1343,18 @@ $
           item.classList.add('capa');
         }
       });
-      // Adiciona a classe 'capa' ao container principal da capa se a imagem não for placeholder
-      const capaMainPreview = document.getElementById('capa-main-preview');
-      if (capaMainPreview) {
-        if (currentCapaUrl.includes('placeholder')) {
-          capaMainPreview.classList.remove('capa');
-        } else {
-          capaMainPreview.classList.add('capa');
-        }
+      if (currentCapaUrl.includes('placeholder')) {
+        capaPreview.classList.remove('capa');
+      } else {
+        capaPreview.classList.add('capa');
       }
     }
 
     function removeCapaFoto() {
       const capaPreview = document.getElementById('capa-preview');
       capaPreview.src = 'https://via.placeholder.com/200x180?text=Capa';
-      updateCapaPreview(); // Atualiza para remover a classe 'capa'
+      capaPreview.classList.remove('capa');
+      updateCapaPreview();
     }
 
     // ════════════════════════════════════════════
@@ -1393,6 +1362,6 @@ $
     // ════════════════════════════════════════════
 
     document.addEventListener('DOMContentLoaded', carregarOrcamentos);
-  </script>
+</script>
 </body>
 </html>
