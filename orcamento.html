@@ -32,7 +32,7 @@
       font-size:1.8rem;font-weight:700;text-align:center;
       margin-bottom:30px;display:flex;align-items:center;justify-content:center;gap:12px;}
     .sec-titulo i{color:var(--dourado);font-size:1.5em;}
-    /* ★ AJUSTE DE COR DO TÍTULO DA SEÇÃO VALORES - MAIS ESCURO ★ */
+    /* AJUSTE DE COR DO TÍTULO DA SEÇÃO VALORES - MAIS ESCURO */
     .sec-titulo.light{color:#333;} /* Alterado para cinza escuro */
     .sec-titulo.light i{color:var(--dourado2);}
 
@@ -48,189 +48,219 @@
     .header-inner{
       display:flex;align-items:center;justify-content:space-between;
       flex-wrap:wrap;gap:15px;max-width:980px;margin:0 auto;padding:0 20px;}
-    .logo-wrap{
-      display:flex;align-items:center;gap:14px;
-      background:rgba(255,255,255,.12);padding:6px 16px;
-      border-radius:10px;border:1px solid rgba(255,255,255,.2);}
-    .logo-principal{height:75px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .logo-30{height:65px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .logo-divider{width:1px;height:60px;background:rgba(255,255,255,.30);}
-    .h-contatos{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+    .logo-wrap{display:flex;align-items:center;gap:12px;}
+    .logo-principal{height:68px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
+    .logo-divider{width:1px;height:54px;background:rgba(255,255,255,.30);}
+    .logo-30{height:58px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
+    .h-contatos{display:flex;gap:15px;flex-wrap:wrap;}
     .h-link{
-      color:rgba(255,255,255,.85);font-size:.9rem;
-      display:flex;align-items:center;gap:8px;transition:all .3s;}
+      color:rgba(255,255,255,.75);font-size:.88rem;
+      display:flex;align-items:center;gap:6px;transition:all .3s;}
     .h-link:hover{color:var(--dourado);}
 
-    /* ══ BANNER VALIDADE ══ */
+    /* ══ BANNER DE VALIDADE ══ */
     .val-banner{
-      background:#fef9c3;color:#854d0e;padding:10px 20px;
+      background:var(--azul2);color:#fff;padding:10px 20px;
       text-align:center;font-size:.9rem;font-weight:600;
-      border-bottom:1px solid #fde68a;}
-    .val-banner.ok{background:#dcfce7;color:#166534;}
-    .val-banner.urgente{background:#fef9c3;color:#854d0e;}
-    .val-banner.expirado{background:#fee2e2;color:#991b1b;}
+      box-shadow:0 2px 8px rgba(0,0,0,.1);
+      display:flex;align-items:center;justify-content:center;gap:8px;}
+    .val-banner.urgente{background:#f39c12;}
+    .val-banner.expirado{background:#e74c3c;}
+    .val-banner.ok{background:var(--verde);}
 
     /* ══ HERO SECTION ══ */
     .hero{
-      position:relative;min-height:500px;max-height:700px;
-      display:flex;align-items:flex-end;color:#fff;overflow:hidden;}
+      position:relative;height:550px;display:flex;align-items:center;
+      justify-content:center;overflow:hidden;text-align:center;}
     .car-wrap{position:absolute;inset:0;width:100%;height:100%;}
     .car-track{
       display:flex;width:100%;height:100%;transition:transform .8s ease-in-out;}
     .car-track img{width:100%;height:100%;object-fit:cover;flex-shrink:0;}
-    .hero-ov{
-      position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,0) 100%);}
-    .hero-info{position:relative;z-index:10;width:100%;padding-bottom:40px;}
-    .hero-in{max-width:980px;margin:0 auto;padding:0 20px;}
+    .car-btn{
+      position:absolute;top:50%;transform:translateY(-50%);
+      background:rgba(0,0,0,.4);color:#fff;border:none;
+      padding:12px 18px;font-size:1.5rem;cursor:pointer;
+      z-index:10;transition:all .3s;}
+    .car-btn:hover{background:rgba(0,0,0,.6);}
+    .car-prev{left:0;border-radius:0 8px 8px 0;}
+    .car-next{right:0;border-radius:8px 0 0 8px;}
+    .car-dots{
+      position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+      display:flex;gap:8px;z-index:10;}
+    .car-dot{
+      width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.5);
+      border:1px solid rgba(255,255,255,.8);cursor:pointer;transition:all .3s;}
+    .car-dot.on{background:var(--dourado);border-color:var(--dourado);}
+    .hero-ov{position:absolute;inset:0;background:rgba(0,0,0,.4);z-index:1;}
+    .hero-info{position:relative;z-index:2;color:#fff;max-width:800px;padding:0 20px;}
+    .hero-in{
+      background:rgba(0,0,0,.5);padding:25px 35px;border-radius:var(--radius);
+      backdrop-filter:blur(5px);border:1px solid rgba(255,255,255,.2);}
     .badge{
-      background:var(--dourado);color:#fff;padding:5px 12px;
-      border-radius:20px;font-size:.8rem;font-weight:700;
-      letter-spacing:1px;margin-bottom:15px;display:inline-block;}
-    .hero-info h1{font-size:2.8rem;font-weight:800;margin-bottom:10px;color:#fff;}
-    .hero-sub{font-size:1.1rem;opacity:.9;margin-bottom:20px;}
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:25px;}
+      background:var(--dourado);color:#fff;font-size:.85rem;
+      font-weight:700;padding:5px 15px;border-radius:20px;
+      margin-bottom:15px;display:inline-block;}
+    .hero-info h1{font-size:2.8rem;font-weight:800;margin-bottom:10px;}
+    .hero-sub{font-size:1.1rem;margin-bottom:20px;opacity:.9;}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:25px;}
     .chip{
       background:rgba(255,255,255,.15);color:#fff;padding:8px 15px;
       border-radius:20px;font-size:.85rem;display:flex;align-items:center;gap:8px;}
-    .hero-btns{display:flex;flex-wrap:wrap;gap:15px;}
+    .hero-btns{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;}
     .btn-wpp,.btn-pdf-h{
       background:var(--dourado);color:#fff;padding:12px 25px;
       border-radius:30px;font-weight:700;font-size:1rem;
-      display:inline-flex;align-items:center;gap:10px;
-      box-shadow:0 4px 12px rgba(0,0,0,.2);transition:all .3s;}
-    .btn-wpp:hover,.btn-pdf-h:hover{background:var(--dourado2);transform:translateY(-2px);}
+      border:none;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.2);
+      transition:all .3s;display:inline-flex;align-items:center;gap:8px;}
     .btn-wpp{background:#25D366;}
-    .btn-wpp:hover{background:#1ebe5d;}
-
-    /* Carrossel navegação e dots */
-    .car-btn{
-      position:absolute;top:50%;transform:translateY(-50%);
-      background:rgba(0,0,0,.5);color:#fff;border:none;
-      width:40px;height:40px;border-radius:50%;font-size:1.2rem;
-      cursor:pointer;z-index:20;transition:background .3s;}
-    .car-btn:hover{background:rgba(0,0,0,.7);}
-    .car-prev{left:15px;}
-    .car-next{right:15px;}
-    .car-dots{
-      position:absolute;bottom:15px;left:50%;transform:translateX(-50%);
-      display:flex;gap:8px;z-index:20;}
-    .car-dot{
-      width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4);
-      border:1px solid rgba(255,255,255,.8);cursor:pointer;transition:all .3s;}
-    .car-dot.on{background:#fff;transform:scale(1.2);}
+    .btn-wpp:hover{background:#1ebe5d;transform:translateY(-2px);}
+    .btn-pdf-h{background:#c0392b;}
+    .btn-pdf-h:hover{background:#a03024;transform:translateY(-2px);}
 
     /* ══ INCLUÍDOS / NÃO INCLUÍDOS ══ */
     .inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;}
     .inc-card{
-      background:#fff;border-radius:var(--radius);
-      box-shadow:var(--sombra);padding:30px;}
-    .inc-hd{
-      display:flex;align-items:center;gap:15px;
-      margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid #eee;}
-    .inc-card.sim .inc-hd i{color:var(--verde);font-size:1.8rem;}
-    .inc-card.nao .inc-hd i{color:#e74c3c;font-size:1.8rem;}
-    .inc-hd h3{font-size:1.3rem;color:var(--azul);}
-    .inc-card ul li{
-      display:flex;align-items:flex-start;gap:10px;
-      margin-bottom:10px;font-size:.95rem;}
-    .inc-card.sim ul li::before{
-      content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;
-      color:var(--verde);flex-shrink:0;margin-top:3px;}
-    .inc-card.nao ul li::before{
-      content:'\f00d';font-family:'Font Awesome 6 Free';font-weight:900;
-      color:#e74c3c;flex-shrink:0;margin-top:3px;}
+      background:#fff;border-radius:var(--radius);box-shadow:var(--sombra);
+      padding:25px;border-top:5px solid var(--azul);}
+    .inc-card.nao{border-color:#e74c3c;}
+    .inc-card.sim{border-color:var(--verde);}
+    .inc-hd{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+    .inc-hd i{font-size:2rem;color:var(--azul);}
+    .inc-card.nao .inc-hd i{color:#e74c3c;}
+    .inc-card.sim .inc-hd i{color:var(--verde);}
+    .inc-hd h3{font-size:1.2rem;color:var(--azul);}
+    .inc-card.nao .inc-hd h3{color:#e74c3c;}
+    .inc-card.sim .inc-hd h3{color:var(--verde);}
+    .inc-card ul{list-style:none;}
+    .inc-card li{
+      font-size:.95rem;padding:8px 0;border-bottom:1px dashed #eee;
+      display:flex;align-items:center;gap:10px;}
+    .inc-card li:last-child{border-bottom:none;}
+    .inc-card li::before{
+      content:'\f061';font-family:'Font Awesome 5 Free';font-weight:900;
+      color:var(--azul);font-size:.8em;flex-shrink:0;}
+    .inc-card.nao li::before{content:'\f061';color:#e74c3c;}
+    .inc-card.sim li::before{content:'\f061';color:var(--verde);}
 
     /* ══ ROTEIRO ══ */
-    .timeline{
-      position:relative;max-width:800px;margin:0 auto;padding:20px 0;}
+    .timeline{position:relative;padding-left:50px;}
     .timeline::before{
-      content:'';position:absolute;top:0;bottom:0;left:50%;
-      width:4px;background:var(--azul);transform:translateX(-50%);}
+      content:'';position:absolute;left:24px;top:0;bottom:0;
+      width:4px;background:linear-gradient(to bottom,var(--azul),var(--verde));
+      border-radius:2px;}
     .dia{
-      position:relative;margin-bottom:40px;display:flex;
-      align-items:flex-start;opacity:0;transform:translateY(20px);
-      transition:opacity .6s ease-out,transform .6s ease-out;}
-    .dia:nth-child(even){flex-direction:row-reverse;} /* Dias pares na direita */
+      position:relative;margin-bottom:30px;display:flex;align-items:flex-start;
+      opacity:0;transform:translateY(20px);transition:opacity .6s ease-out,transform .6s ease-out;}
     .dia.vis{opacity:1;transform:translateY(0);}
     .dia-num{
-      width:80px;height:80px;border-radius:50%;background:var(--dourado);
-      color:#fff;display:flex;flex-direction:column;align-items:center;
-      justify-content:center;font-size:1.8rem;font-weight:800;
-      position:absolute;top:0;left:50%;transform:translateX(-50%);
-      border:4px solid var(--azul);box-shadow:0 0 0 4px #fff;
-      flex-shrink:0;z-index:5;}
-    .dia-num small{font-size:.5em;font-weight:normal;margin-top:-5px;}
+      position:absolute;left:0;top:0;
+      width:48px;height:48px;border-radius:50%;
+      background:var(--azul);color:#fff;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      font-size:1.2rem;font-weight:800;border:3px solid #fff;
+      box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:1;}
+    .dia-num small{font-size:.6em;font-weight:600;margin-top:-3px;}
     .dia-corpo{
       background:#fff;border-radius:var(--radius);box-shadow:var(--sombra);
-      width:calc(50% - 60px);padding:20px;position:relative;
-      margin-top:10px;}
-    .dia:nth-child(odd) .dia-corpo{margin-right:60px;}
-    .dia:nth-child(even) .dia-corpo{margin-left:60px;}
+      padding:20px;margin-left:40px;flex:1;border-top:4px solid var(--dourado);}
     .dia-foto-wrap{
-      width:100%;max-height:250px;overflow:hidden;border-radius:8px;
+      width:100%;height:200px;overflow:hidden;border-radius:8px;
       margin-bottom:15px;background:#eee;}
     .dia-foto{width:100%;height:100%;object-fit:cover;}
-    .dia-txt h4{font-size:1.3rem;margin-bottom:10px;}
-    .dia-txt p{font-size:.95rem;line-height:1.7;}
+    .dia-txt h4{font-size:1.1rem;color:var(--azul);margin-bottom:10px;}
+    .dia-txt p{font-size:.95rem;color:#555;}
 
     /* ══ VALORES ══ */
-    .valores-bg{background:linear-gradient(135deg,var(--azul) 0%,var(--verde) 100%);}
-    .val-grid{
-      display:flex;flex-wrap:wrap;justify-content:center;gap:25px;
-      margin-bottom:30px;}
+    .valores-bg{
+      background:linear-gradient(135deg,var(--azul) 0%,var(--verde) 100%);
+      color:#fff;}
+    .val-grid{display:flex;flex-wrap:wrap;gap:25px;justify-content:center;}
     .val-card{
-      background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
-      border-radius:var(--radius);padding:25px;text-align:center;
-      width:100%;max-width:320px;box-shadow:var(--sombra);
-      transition:transform .3s,box-shadow .3s;}
-    .val-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.3);}
-    /* ★ AJUSTES DE COR E OPACIDADE DOS TEXTOS NO CARD DE VALORES - MAIS ESCURO ★ */
-    .v-label{font-size:.85rem;font-weight:600;letter-spacing:1.5px;color:var(--dourado);margin-bottom:10px;} /* Dourado */
-    .v-preco{font-size:2.1rem;font-weight:800;color:#333;line-height:1.1;} /* Cinza escuro */
-    .v-desc{font-size:.82rem;color:#333;margin-top:8px;} /* Cinza escuro */
+      background:rgba(255,255,255,.1);border-radius:var(--radius);
+      padding:25px;text-align:center;width:280px;
+      border:1px solid rgba(255,255,255,.2);
+      box-shadow:0 4px 15px rgba(0,0,0,.1);
+      backdrop-filter:blur(5px);}
+    .v-label{
+      font-size:.85rem;font-weight:700;margin-bottom:8px;
+      color:var(--dourado);} /* Dourado para o label */
+    .v-preco{
+      font-size:2.2rem;font-weight:800;color:#333; /* Cinza escuro para o preço */
+      margin-bottom:10px;line-height:1.1;}
+    .v-desc{
+      font-size:.9rem;color:#333;} /* Cinza escuro para a descrição */
     .parc-box{
-      background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);
-      border-radius:var(--radius);padding:20px 32px;
-      /* ★ AJUSTE DE COR DO TEXTO NO PARCELAMENTO - MAIS ESCURO ★ */
-      color:var(--dourado); /* Dourado */
-      display:flex;
-      align-items:flex-start;gap:14px;font-size:.95rem;}
-    .parc-box i{font-size:1.4rem;color:var(--dourado2);flex-shrink:0;margin-top:2px;}
+      background:rgba(0,0,0,.2);border-radius:var(--radius);
+      padding:15px 25px;margin-top:30px;
+      display:flex;align-items:center;justify-content:center;gap:12px;
+      font-size:1rem;font-weight:600;
+      color:var(--dourado); /* Dourado para o parcelamento */
+      box-shadow:0 2px 10px rgba(0,0,0,.1);
+      border:1px solid rgba(255,255,255,.1);}
+    .parc-box.hide{display:none;}
 
-    /* ══ CAIXAS TEXTO ══ */
+    /* ══ CONDIÇÕES / OBSERVAÇÕES ══ */
     .caixa{
-      background:#fff;border-radius:var(--radius);
-      padding:32px;box-shadow:var(--sombra);
-      font-size:.95rem;line-height:1.88;}
-    .borda-azul{border-left:6px solid var(--azul2);}
-    .borda-gold{border-left:6px solid var(--dourado);}
+      background:#fff;border-radius:var(--radius);box-shadow:var(--sombra);
+      padding:25px;font-size:.95rem;color:#555;line-height:1.7;}
+    .caixa.borda-azul{border-top:4px solid var(--azul);}
+    .caixa.borda-gold{border-top:4px solid var(--dourado);}
 
-    /* ══ RODAPÉ ORÇAMENTO ══ */
-    .rodape-orc{
-      background:#eef0f5;padding:20px;text-align:center;
-      font-size:.82rem;color:#888;border-top:1px solid #ddd;}
-
-    /* ══ FOOTER ══ */
-    .site-footer{
-      background:var(--azul);
-      color:rgba(255,255,255,.82);
-      padding:40px 20px 0;}
-    .footer-in{
-      display:flex;align-items:center;flex-wrap:wrap;
-      gap:24px;padding-bottom:30px;
-      max-width:980px;margin:0 auto;}
-    .footer-logo-wrap{
-      display:flex;align-items:center;gap:10px;
-      background:none;
-      padding:0;
-      border:none;
-      margin-bottom:15px;
+    /* ══ SEÇÕES ADICIONAIS (Aéreo e Carro) ══ */
+    .info-adicional-box {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--sombra);
+      padding: 25px;
+      margin-bottom: 30px;
+      border-top: 4px solid var(--azul);
     }
-    .footer-logo{height:60px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .footer-logo30{height:50px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .footer-div{width:1px;height:46px;background:rgba(255,255,255,.25);}
-    .footer-info{flex:1;}
-    .footer-slogan{font-size:.95rem;margin-bottom:10px;color:#fff;font-weight:600;}
+    .info-adicional-box h3 {
+      font-size: 1.2rem;
+      color: var(--azul);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .info-item i {
+      color: var(--dourado);
+      margin-right: 10px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .info-item strong {
+      color: var(--azul);
+      margin-right: 5px;
+    }
+    .info-item span {
+      flex: 1;
+    }
+
+    /* ══ RODAPÉ ══ */
+    .rodape-orc{
+      text-align:center;padding:20px;font-size:.85rem;color:#888;
+      border-top:1px solid #eee;margin-top:40px;}
+    .site-footer{
+      background:var(--azul);padding:30px 0 0;
+      box-shadow:0 -2px 10px rgba(0,0,0,.15);}
+    .footer-in{
+      display:flex;flex-wrap:wrap;justify-content:space-between;
+      align-items:center;max-width:980px;margin:0 auto;padding:0 20px 25px;
+      gap:20px;}
+    .footer-logo-wrap{display:flex;align-items:center;gap:12px;}
+    .footer-logo{height:68px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
+    .footer-div{width:1px;height:54px;background:rgba(255,255,255,.30);}
+    .footer-logo30{height:58px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
+    .footer-info{text-align:right;}
+    .footer-slogan{font-size:.95rem;color:rgba(255,255,255,.8);margin-bottom:15px;}
     .footer-links{display:flex;flex-wrap:wrap;gap:8px 20px;}
     .footer-links a{
       font-size:.84rem;color:rgba(255,255,255,.75);
@@ -425,6 +455,50 @@
         </div>
       </section>
 
+      <!-- Nova Seção: Parte Aérea (Opcional) -->
+      <section id="sec-aereo" class="fade-in" style="display:none;">
+        <div class="container">
+          <h2 class="sec-titulo"><i class="fas fa-plane"></i> Parte Aérea</h2>
+          <div class="info-adicional-box">
+            <h3><i class="fas fa-info-circle"></i> Detalhes do Voo</h3>
+            <div id="aereo-cia-display" class="info-item" style="display:none;">
+              <strong>Companhia Aérea:</strong> <span></span>
+            </div>
+            <div id="aereo-num-voo-display" class="info-item" style="display:none;">
+              <strong>Número do Voo:</strong> <span></span>
+            </div>
+            <div id="aereo-origem-display" class="info-item" style="display:none;">
+              <strong>Local de Embarque:</strong> <span></span>
+            </div>
+            <div id="aereo-destino-display" class="info-item" style="display:none;">
+              <strong>Local de Chegada (com conexões):</strong> <span></span>
+            </div>
+            <div id="aereo-horarios-display" class="info-item" style="display:none;">
+              <strong>Horários (Partida/Chegada):</strong> <span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Nova Seção: Aluguel de Carro (Opcional) -->
+      <section id="sec-aluguel-carro" class="fade-in" style="display:none;">
+        <div class="container">
+          <h2 class="sec-titulo"><i class="fas fa-car"></i> Aluguel de Carro</h2>
+          <div class="info-adicional-box">
+            <h3><i class="fas fa-info-circle"></i> Detalhes do Aluguel</h3>
+            <div id="carro-retirada-display" class="info-item" style="display:none;">
+              <strong>Local de Retirada:</strong> <span></span>
+            </div>
+            <div id="carro-entrega-display" class="info-item" style="display:none;">
+              <strong>Local de Entrega:</strong> <span></span>
+            </div>
+            <div id="carro-info-adicional-display" class="info-item" style="display:none;">
+              <strong>Informações Adicionais:</strong> <span></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="sec-condicoes" class="fade-in">
         <div class="container">
           <h2 class="sec-titulo"><i class="fas fa-file-contract"></i> Condições Gerais</h2>
@@ -488,7 +562,7 @@
       <i class="fas fa-exclamation-triangle"></i>
       <h2>Orçamento não encontrado!</h2>
       <p>O orçamento que você está procurando não existe ou foi removido.</p>
-      <a href="https://wa.me/5535988622943?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20viagem!" target="_blank" class="btn-wa">
+      <a href="https://wa.me/5535988622943?text=Olá%2C%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20viagem!" target="_blank" class="btn-wa">
         <i class="fab fa-whatsapp"></i> Falar com a Oficina de Turismo
       </a>
     </div>
@@ -580,26 +654,20 @@ function renderizarOrcamento(o) {
   const valBanner = document.getElementById('val-banner');
   const valMsg = document.getElementById('val-msg');
 
+  // Removendo a lógica de validade do banner, pois o usuário pediu para remover o contador
+  // O banner de validade será exibido apenas se o status for "expirado" ou "rascunho"
   if (o.status === 'expirado') {
     valBanner.classList.add('expirado');
     valMsg.textContent = '❌ Este orçamento está expirado.';
+    valBanner.style.display = 'flex';
   } else if (o.status === 'rascunho') {
     valBanner.classList.add('urgente');
     valMsg.textContent = '📝 Este é um rascunho de orçamento e pode ser alterado.';
-  } else if (hoje > dataValidade) {
-    valBanner.classList.add('expirado');
-    valMsg.textContent = `❌ Este orçamento expirou em ${formatarData(dataValidade)}.`;
+    valBanner.style.display = 'flex';
   } else {
-    const diffTime = Math.abs(dataValidade.getTime() - hoje.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    if (diffDays <= 5) {
-      valBanner.classList.add('urgente');
-      valMsg.textContent = `⚠️ Este orçamento expira em ${diffDays} dia(s)!`;
-    } else {
-      valBanner.classList.add('ok');
-      valMsg.textContent = `✅ Orçamento válido até ${formatarData(dataValidade)}.`;
-    }
+    valBanner.style.display = 'none'; // Esconde o banner se não for rascunho ou expirado
   }
+
 
   // Listas de incluídos e não incluídos
   renderizarLista('lista-incluido', o.incluido || []);
@@ -610,10 +678,106 @@ function renderizarOrcamento(o) {
 
   // Valores
   renderizarValores('valores-grid', o.valores || []);
-  if (o.parcelamento) {
+  if (o.parcelamento && o.parcelamento.trim() !== '' && o.parcelamento.trim() !== 'Informe os valores para calcular o parcelamento.') {
     document.getElementById('parcelamento-txt').innerHTML = o.parcelamento.replace(/\n/g, '<br>');
     document.getElementById('parcelamento-box').classList.remove('hide');
+  } else {
+    document.getElementById('parcelamento-box').classList.add('hide');
   }
+
+  // Parte Aérea (Opcional)
+  const secAereo = document.getElementById('sec-aereo');
+  let hasAereoInfo = false;
+
+  const aereoCiaDisplay = document.getElementById('aereo-cia-display');
+  if (o.aereoCia && o.aereoCia.trim() !== '') {
+    aereoCiaDisplay.querySelector('span').textContent = o.aereoCia;
+    aereoCiaDisplay.style.display = 'flex';
+    hasAereoInfo = true;
+  } else {
+    aereoCiaDisplay.style.display = 'none';
+  }
+
+  const aereoNumVooDisplay = document.getElementById('aereo-num-voo-display');
+  if (o.aereoNumVoo && o.aereoNumVoo.trim() !== '') {
+    aereoNumVooDisplay.querySelector('span').textContent = o.aereoNumVoo;
+    aereoNumVooDisplay.style.display = 'flex';
+    hasAereoInfo = true;
+  } else {
+    aereoNumVooDisplay.style.display = 'none';
+  }
+
+  const aereoOrigemDisplay = document.getElementById('aereo-origem-display');
+  if (o.aereoOrigem && o.aereoOrigem.trim() !== '') {
+    aereoOrigemDisplay.querySelector('span').textContent = o.aereoOrigem;
+    aereoOrigemDisplay.style.display = 'flex';
+    hasAereoInfo = true;
+  } else {
+    aereoOrigemDisplay.style.display = 'none';
+  }
+
+  const aereoDestinoDisplay = document.getElementById('aereo-destino-display');
+  if (o.aereoDestino && o.aereoDestino.trim() !== '') {
+    aereoDestinoDisplay.querySelector('span').textContent = o.aereoDestino;
+    aereoDestinoDisplay.style.display = 'flex';
+    hasAereoInfo = true;
+  } else {
+    aereoDestinoDisplay.style.display = 'none';
+  }
+
+  const aereoHorariosDisplay = document.getElementById('aereo-horarios-display');
+  if (o.aereoHorarios && o.aereoHorarios.trim() !== '') {
+    aereoHorariosDisplay.querySelector('span').textContent = o.aereoHorarios;
+    aereoHorariosDisplay.style.display = 'flex';
+    hasAereoInfo = true;
+  } else {
+    aereoHorariosDisplay.style.display = 'none';
+  }
+
+  if (hasAereoInfo) {
+    secAereo.style.display = 'block';
+  } else {
+    secAereo.style.display = 'none';
+  }
+
+
+  // Aluguel de Carro (Opcional)
+  const secAluguelCarro = document.getElementById('sec-aluguel-carro');
+  let hasCarroInfo = false;
+
+  const carroRetiradaDisplay = document.getElementById('carro-retirada-display');
+  if (o.carroLocalRetirada && o.carroLocalRetirada.trim() !== '') {
+    carroRetiradaDisplay.querySelector('span').textContent = o.carroLocalRetirada;
+    carroRetiradaDisplay.style.display = 'flex';
+    hasCarroInfo = true;
+  } else {
+    carroRetiradaDisplay.style.display = 'none';
+  }
+
+  const carroEntregaDisplay = document.getElementById('carro-entrega-display');
+  if (o.carroLocalEntrega && o.carroLocalEntrega.trim() !== '') {
+    carroEntregaDisplay.querySelector('span').textContent = o.carroLocalEntrega;
+    carroEntregaDisplay.style.display = 'flex';
+    hasCarroInfo = true;
+  } else {
+    carroEntregaDisplay.style.display = 'none';
+  }
+
+  const carroInfoAdicionalDisplay = document.getElementById('carro-info-adicional-display');
+  if (o.carroInfoAdicional && o.carroInfoAdicional.trim() !== '') {
+    carroInfoAdicionalDisplay.querySelector('span').textContent = o.carroInfoAdicional;
+    carroInfoAdicionalDisplay.style.display = 'flex';
+    hasCarroInfo = true;
+  } else {
+    carroInfoAdicionalDisplay.style.display = 'none';
+  }
+
+  if (hasCarroInfo) {
+    secAluguelCarro.style.display = 'block';
+  } else {
+    secAluguelCarro.style.display = 'none';
+  }
+
 
   // Condições e Observações
   document.getElementById('condicoes-box').innerHTML = (o.condicoes || 'Nenhuma condição geral informada.').replace(/\n/g, '<br>');
