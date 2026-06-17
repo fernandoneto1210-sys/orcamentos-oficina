@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Orçamento — Oficina de Turismo</title>
+  <title id="page-title">Carregando Orçamento...</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     :root{
       --azul:#1B3A6B;--azul2:#2E5FA3;--verde:#2D6A4F;--verde2:#40916C;
@@ -14,17 +14,18 @@
       --sombra:0 4px 20px rgba(0,0,0,.10);--radius:12px;
     }
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cinza);color:#444;line-height:1.6;}
+    body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--cinza);color:#444;}
     a{text-decoration:none;color:inherit;}
-    img{max-width:100%;height:auto;}
+    input,textarea,select,button{font-family:inherit;}
 
     /* ══ HEADER ══ */
     .orc-header{
       background:linear-gradient(135deg,var(--azul) 0%,var(--verde) 100%);
-      padding:15px 24px;
+      padding:10px 24px;
       display:flex;align-items:center;justify-content:space-between;
-      flex-wrap:wrap;gap:15px;
+      flex-wrap:wrap;gap:10px;
       box-shadow:0 3px 16px rgba(0,0,0,.28);
+      position:sticky;top:0;z-index:100;
     }
     .orc-logo{
       display:flex;align-items:center;gap:14px;
@@ -40,25 +41,24 @@
       filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));
     }
     .logo-sep{width:1px;height:54px;background:rgba(255,255,255,.30);}
-    .orc-info .titulo{color:#fff;font-size:1.1rem;font-weight:700;}
+    .orc-info .titulo{color:#fff;font-size:1rem;font-weight:700;}
     .orc-badge{
-      background:var(--dourado);color:#fff;font-size:.75rem;
-      font-weight:700;padding:3px 12px;border-radius:10px;
-      letter-spacing:1px;width:fit-content;margin-top:5px;
+      background:var(--dourado);color:#fff;font-size:.68rem;
+      font-weight:700;padding:2px 10px;border-radius:10px;
+      letter-spacing:1px;width:fit-content;
     }
     .orc-header-right{display:flex;align-items:center;gap:14px;}
     .orc-header-right a{
-      color:rgba(255,255,255,.75);font-size:.88rem;
-      display:flex;align-items:center;gap:6px;transition:all .3s;
+      color:rgba(255,255,255,.75);font-size:.82rem;
+      display:flex;align-items:center;gap:5px;transition:all .3s;
     }
     .orc-header-right a:hover{color:var(--dourado);}
 
-    /* ══ HERO ══ */
+    /* ══ HERO SECTION ══ */
     .hero-section{
-      position:relative;height:450px;overflow:hidden;
-      display:flex;align-items:center;justify-content:center;
-      text-align:center;color:#fff;
-      box-shadow:0 5px 20px rgba(0,0,0,.2);
+      position:relative;height:450px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      color:#fff;text-align:center;overflow:hidden;
     }
     .hero-bg{
       position:absolute;top:0;left:0;width:100%;height:100%;
@@ -393,5 +393,528 @@
       return new Date(data + 'T00:00:00').toLocaleDateString('pt-BR', {
         day: '2-digit', month: '2-digit', year: 'numeric'
       });
+    }
+
+    // ════════════════════════════════════════════
+    // JSONBIN.IO INTEGRAÇÃO
+    // ════════════════════════════════════════════
+
+    async function carregarOrcamento() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get('id');
+
+      if (!id) {
+        document.getElementById('orc-titulo-header').textContent = 'Orçamento não encontrado';
+        document.getElementById('orc-status-header').textContent = 'ID inválido';
+        document.getElementById('page-title').textContent = 'Erro - Orçamento não encontrado';
+        document.getElementById('main-content').innerHTML = '<p style="text-align:center; margin-top:50px; font-size:1.2rem; color:#888;">Nenhum ID de orçamento fornecido na URL.</p>';
+        return;
+      }
+
+      try {
+        const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_ID}/latest`, {
+          headers: {
+            'X-Master-Key': JSONBIN_KEY
+          }
+        });
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Erro ao carregar do JSONBin: ${response.status} - ${errorText}`);
+        }
+        const data = await response.json();
+        const todosOrcamentos = data.record || [];
+        dadosOrc = todosOrcamentos.find(orc => orc.id === id);
+
+        if (dadosOrc) {
+          preencherOrcamento(dadosOrc);
+          ativarAnimacoes();
+        } else {
+          document.getElementById('orc-titulo-header').textContent = 'Orçamento não encontrado';
+          document.getElementById('orc-status-header').textContent = 'ID inexistente';
+          document.getElementById('page-title').textContent = 'Erro - Orçamento não encontrado';
+          document.getElementById('main-content').innerHTML = '<p style="text-align:center; margin-top:50px; font-size:1.2rem; color:#888;">Orçamento com ID "' + id + '" não encontrado.</p>';
+        }
+      } catch (error) {
+        console.error('Erro ao carregar orçamento:', error);
+        document.getElementById('orc-titulo-header').textContent = 'Erro de Conexão';
+        document.getElementById('orc-status-header').textContent = 'Verifique a internet ou JSONBin';
+        document.getElementById('page-title').textContent = 'Erro - Conexão';
+        document.getElementById('main-content').innerHTML = '<p style="text-align:center; margin-top:50px; font-size:1.2rem; color:#e74c3c;">Erro ao carregar orçamento: ' + error.message + '</p>';
+      }
+    }
+
+    // ════════════════════════════════════════════
+    // PREENCHER ORÇAMENTO NA PÁGINA
+    // ════════════════════════════════════════════
+
+    function preencherOrcamento(orcamento) {
+      document.getElementById('page-title').textContent = orcamento.titulo || 'Orçamento';
+      document.getElementById('orc-titulo-header').textContent = orcamento.titulo || 'Novo Orçamento';
+      document.getElementById('orc-status-header').textContent = orcamento.status || 'Rascunho';
+      document.getElementById('orc-status-header').className = `orc-badge s-${orcamento.status ? orcamento.status.toLowerCase() : 'rascunho'}`;
+
+      document.getElementById('orc-titulo').textContent = orcamento.titulo || 'Seu Orçamento de Viagem';
+      document.getElementById('orc-subtitulo').textContent = orcamento.subtitulo || 'Detalhes da sua aventura';
+      document.getElementById('orc-data-viagem').textContent = orcamento.dataViagem ? `Período: ${formatarData(orcamento.dataViagem)}` : '';
+
+      // Hero Carousel
+      renderizarHeroCarousel(orcamento.galeria || [], orcamento.capaFoto || '');
+
+      // Incluídos
+      if (orcamento.incluidos && orcamento.incluidos.length > 0) {
+        renderizarLista('incluidos-lista', orcamento.incluidos, 'check');
+        document.getElementById('section-incluidos').style.display = 'block';
+      } else {
+        document.getElementById('section-incluidos').style.display = 'none';
+      }
+
+      // Não Incluídos
+      if (orcamento.naoIncluidos && orcamento.naoIncluidos.length > 0) {
+        renderizarLista('nao-incluidos-lista', orcamento.naoIncluidos, 'times');
+        document.getElementById('section-nao-incluidos').style.display = 'block';
+      } else {
+        document.getElementById('section-nao-incluidos').style.display = 'none';
+      }
+
+      // Roteiro
+      if (orcamento.roteiro && orcamento.roteiro.length > 0) {
+        renderizarRoteiro('roteiro-timeline', orcamento.roteiro);
+        document.getElementById('section-roteiro').style.display = 'block';
+      } else {
+        document.getElementById('section-roteiro').style.display = 'none';
+      }
+
+      // Valores
+      if (orcamento.opcoesValores && orcamento.opcoesValores.length > 0) {
+        renderizarValores('valores-grid', orcamento.opcoesValores);
+        document.getElementById('section-valores').style.display = 'block';
+      } else {
+        document.getElementById('section-valores').style.display = 'none';
+      }
+
+      // Parcelamento
+      if (orcamento.parcelamentoTxt) {
+        document.getElementById('orc-parcelamento-txt').textContent = orcamento.parcelamentoTxt;
+        document.getElementById('orc-parcelamento-txt').style.display = 'block';
+      } else {
+        document.getElementById('orc-parcelamento-txt').style.display = 'none';
+      }
+
+      // Aéreo
+      if (orcamento.aereo && orcamento.aereo.length > 0) {
+        renderizarAdicionais('aereo-detalhes', orcamento.aereo, 'aereo');
+        document.getElementById('section-aereo').style.display = 'block';
+      } else {
+        document.getElementById('section-aereo').style.display = 'none';
+      }
+
+      // Carro
+      if (orcamento.carro && orcamento.carro.length > 0) {
+        renderizarAdicionais('carro-detalhes', orcamento.carro, 'carro');
+        document.getElementById('section-carro').style.display = 'block';
+      } else {
+        document.getElementById('section-carro').style.display = 'none';
+      }
+
+      // Galeria
+      if (orcamento.galeria && orcamento.galeria.length > 0) {
+        renderizarGaleria('galeria-grid', orcamento.galeria);
+        document.getElementById('section-galeria').style.display = 'block';
+      } else {
+        document.getElementById('section-galeria').style.display = 'none';
+      }
+
+      // Condições Gerais
+      if (orcamento.condicoesGerais) {
+        document.getElementById('condicoes-gerais').innerHTML = orcamento.condicoesGerais.replace(/\n/g, '<br>');
+        document.getElementById('section-condicoes').style.display = 'block';
+      } else {
+        document.getElementById('section-condicoes').style.display = 'none';
+      }
+
+      // Observações
+      if (orcamento.observacoes) {
+        document.getElementById('observacoes').innerHTML = orcamento.observacoes.replace(/\n/g, '<br>');
+        document.getElementById('section-observacoes').style.display = 'block';
+      } else {
+        document.getElementById('section-observacoes').style.display = 'none';
+      }
+    }
+
+    // ════════════════════════════════════════════
+    // RENDERIZAÇÃO DO CARROSSEL HERO
+    // ════════════════════════════════════════════
+
+    let currentHeroImageIndex = 0;
+    let heroImages = [];
+    let carInterval;
+
+    function renderizarHeroCarousel(galeria, capa) {
+      heroImages = [];
+      if (capa && !capa.includes('placeholder')) heroImages.push(capa); // Garante que a capa seja a primeira
+      galeria.forEach(url => {
+        if (url !== capa && !url.includes('placeholder')) heroImages.push(url); // Adiciona as outras, evitando duplicidade
+      });
+
+      const heroBg = document.getElementById('hero-bg');
+      const dotsContainer = document.getElementById('hero-carousel-dots');
+      dotsContainer.innerHTML = '';
+
+      if (heroImages.length === 0) {
+        heroBg.src = "https://via.placeholder.com/1920x450/1B3A6B/FFFFFF?text=Oficina+de+Turismo";
+        dotsContainer.style.display = 'none';
+        return;
+      } else {
+        dotsContainer.style.display = 'flex';
+      }
+
+      heroBg.src = heroImages[0];
+      currentHeroImageIndex = 0;
+
+      if (heroImages.length > 1) {
+        heroImages.forEach((_, index) => {
+          const dot = document.createElement('div');
+          dot.classList.add('dot');
+          if (index === 0) dot.classList.add('active');
+          dot.onclick = () => mudarHeroImage(index);
+          dotsContainer.appendChild(dot);
+        });
+        startCarrosselAuto();
+      } else {
+        clearInterval(carInterval); // Para o auto-play se houver apenas 1 imagem
+      }
+    }
+
+    function mudarHeroImage(index) {
+      clearInterval(carInterval); // Para o auto-play ao mudar manualmente
+      const heroBg = document.getElementById('hero-bg');
+      const dots = document.querySelectorAll('.hero-carousel-dots .dot');
+
+      heroBg.style.opacity = '0'; // Fade out
+      setTimeout(() => {
+        heroBg.src = heroImages[index];
+        heroBg.style.opacity = '0.6'; // Fade in
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+        currentHeroImageIndex = index;
+        startCarrosselAuto(); // Reinicia o auto-play
+      }, 500); // Tempo do fade
+    }
+
+    function startCarrosselAuto() {
+      clearInterval(carInterval);
+      if (heroImages.length <= 1) return;
+      carInterval = setInterval(() => {
+        let nextIndex = (currentHeroImageIndex + 1) % heroImages.length;
+        mudarHeroImage(nextIndex);
+      }, 6000); // Troca a cada 6 segundos
+    }
+
+    // ════════════════════════════════════════════
+    // RENDERIZAR LISTAS (Incluídos / Não Incluídos)
+    // ════════════════════════════════════════════
+
+    function renderizarLista(idUl, itens, iconType) {
+      const ul = document.getElementById(idUl);
+      ul.innerHTML = '';
+      if (itens && itens.length > 0) {
+        itens.forEach(item => {
+          const li = document.createElement('li');
+          li.classList.add(iconType === 'times' ? 'nao-incluido' : ''); // Adiciona classe para estilo de "não incluído"
+          li.innerHTML = `<i class="fas fa-${iconType}"></i> ${item}`;
+          ul.appendChild(li);
+        });
+      } else {
+        // Não renderiza "Nenhum item informado" se a seção for escondida
+        // A visibilidade da seção é controlada em preencherOrcamento
+      }
+    }
+
+    // ════════════════════════════════════════════
+    // RENDERIZAR ROTEIRO
+    // ════════════════════════════════════════════
+
+    function renderizarRoteiro(idTimeline, roteiro) {
+      const timeline = document.getElementById(idTimeline);
+      timeline.innerHTML = '';
+      if (roteiro && roteiro.length > 0) {
+        roteiro.forEach((dia, i) => {
+          const divDia = document.createElement('div');
+          divDia.classList.add('dia');
+          divDia.style.transitionDelay = `${i * 0.1}s`; // Atraso para animação em cascata
+          divDia.innerHTML = `
+            <div class="dia-num">
+              <small>DIA</small>
+              ${i + 1}
+            </div>
+            <div class="dia-corpo">
+              ${dia.imagem && !dia.imagem.includes('placeholder') ? `
+                <div class="dia-foto-wrap">
+                  <img class="dia-foto"
+                       src="${dia.imagem}"
+                       alt="Dia ${i+1}"
+                       onerror="this.closest('.dia-foto-wrap').style.display='none'"/>
+                </div>` : ''}
+              <div class="dia-txt">
+                <h4>${dia.titulo || 'Dia sem título'}</h4>
+                <p>${dia.descricao ? dia.descricao.replace(/\n/g, '<br>') : 'Nenhuma descrição para este dia.'}</p>
+              </div>
+            </div>
+          `;
+          timeline.appendChild(divDia);
+        });
+      } else {
+        // Não renderiza "Nenhum roteiro detalhado" se a seção for escondida
+      }
+    }
+
+    // ════════════════════════════════════════════
+    // RENDERIZAR VALORES
+    // ════════════════════════════════════════════
+
+    function renderizarValores(idGrid, valores) {
+      const grid = document.getElementById(idGrid);
+      grid.innerHTML = '';
+      if (valores && valores.length > 0) {
+        valores.forEach(val => {
+          const card = document.createElement('div');
+          card.classList.add('val-card', 'fade-in');
+          card.innerHTML = `
+            <p class="v-label">${val.label || 'Opção'}</p>
+            <p class="v-preco">${val.preco || 'R$ 0.00'}</p>
+            <p class="v-desc">${val.desc || 'Sem descrição.'}</p>
+          `;
+          grid.appendChild(card);
+        });
+      } else {
+        // Não renderiza "Nenhuma opção de valor" se a seção for escondida
+      }
+    }
+
+    // ════════════════════════════════════════════
+    // RENDERIZAR ADICIONAIS (AÉREO / CARRO)
+    // ════════════════════════════════════════════
+
+    function renderizarAdicionais(containerId, itens, type) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+
+      if (itens && itens.length > 0) {
+        itens.forEach((item, index) => {
+          const div = document.createElement('div');
+          div.classList.add('adicionais-item', 'fade-in');
+          if (type === 'aereo') {
+            div.innerHTML = `
+              <h4>Voo ${index + 1}</h4>
+              <p><strong>Cia Aérea:</strong> ${item.cia || 'N/A'}</p>
+              <p><strong>Número do Voo:</strong> ${item.numVoo || 'N/A'}</p>
+              <p><strong>Origem:</strong> ${item.origem || 'N/A'}</p>
+              <p><strong>Destino:</strong> ${item.destino || 'N/A'}</p>
+              <p><strong>Horários:</strong> ${item.horarios || 'N/A'}</p>
+            `;
+          } else if (type === 'carro') {
+            div.innerHTML = `
+              <h4>Aluguel de Carro ${index + 1}</h4>
+              <p><strong>Local de Retirada:</strong> ${item.localRetirada || 'N/A'}</p>
+              <p><strong>Local de Entrega:</strong> ${item.localEntrega || 'N/A'}</p>
+              <p><strong>Informações Adicionais:</strong> ${item.infoAdicional || 'N/A'}</p>
+            `;
+          }
+          container.appendChild(div);
+        });
+      } else {
+        // Não renderiza "Nenhum detalhe" se a seção for escondida
+      }
+    }
+
+    // ════════════════════════════════════════════
+    // RENDERIZAR GALERIA
+    // ════════════════════════════════════════════
+
+    function renderizarGaleria(idGrid, fotos) {
+      const grid = document.getElementById(idGrid);
+      grid.innerHTML = '';
+      if (fotos && fotos.length > 0) {
+        fotos.forEach((foto, index) => {
+          if (!foto.includes('placeholder')) { // Evita renderizar placeholders na galeria final
+            const div = document.createElement('div');
+            div.classList.add('galeria-item', 'fade-in');
+            div.innerHTML = `<img src="${foto}" alt="Galeria ${index + 1}" onerror="this.src='https://via.placeholder.com/200x180?text=Erro'"/>`;
+            grid.appendChild(div);
+          }
+        });
+      } else {
+        // Não renderiza "Nenhuma foto" se a seção for escondida
+      }
+    }
+
+    // ════════════════════════════════════════════
+    // ANIMAÇÕES
+    // ════════════════════════════════════════════
+
+    function ativarAnimacoes() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('vis');
+            observer.unobserve(entry.target); // Para de observar depois de animar
+          }
+        });
+      }, { threshold: 0.1 }); // Começa a animar quando 10% do elemento está visível
+
+      document.querySelectorAll('.fade-in, .dia, .val-card, .parcelamento-info, .adicionais-item, .galeria-item').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // ════════════════════════════════════════════
+    // GERAR PDF
+    // ════════════════════════════════════════════
+
+    async function gerarPDF() {
+      const overlay = document.getElementById('load-overlay');
+      const barra   = document.getElementById('load-bar');
+      const fabArea = document.querySelector('.fab-area');
+
+      overlay.classList.add('on');
+      fabArea.style.display = 'none';
+
+      // Garante que todas as animações estejam visíveis para o PDF
+      document.querySelectorAll('.fade-in').forEach(el => el.classList.add('vis'));
+      document.querySelectorAll('.dia').forEach(el => el.classList.add('vis'));
+      document.querySelectorAll('.val-card').forEach(el => el.classList.add('vis'));
+      document.querySelectorAll('.parcelamento-info').forEach(el => el.classList.add('vis'));
+      document.querySelectorAll('.adicionais-item').forEach(el => el.classList.add('vis'));
+      document.querySelectorAll('.galeria-item').forEach(el => el.classList.add('vis'));
 
 
+      barra.style.width = '15%';
+
+      try {
+        const { jsPDF } = window.jspdf;
+        const el        = document.getElementById('main-content');
+
+        barra.style.width = '30%';
+
+        const canvas = await html2canvas(el, {
+          scale:           1.6, // Aumenta a resolução para melhor qualidade
+          useCORS:         true,
+          allowTaint:      true,
+          backgroundColor: '#F5F6FA', // Fundo branco explícito
+          logging:         false,
+          imageTimeout:    20000,
+          scrollX:         0,
+          scrollY:         0,
+          windowWidth:     document.documentElement.scrollWidth,
+          windowHeight:    document.documentElement.scrollHeight,
+          onclone: (clonedDoc) => {
+            // Força visibilidade de tudo no clone para o PDF
+            clonedDoc.querySelectorAll('.fade-in').forEach(el => el.classList.add('vis'));
+            clonedDoc.querySelectorAll('.dia').forEach(el => el.classList.add('vis'));
+            clonedDoc.querySelectorAll('.val-card').forEach(el => el.classList.add('vis'));
+            clonedDoc.querySelectorAll('.parcelamento-info').forEach(el => el.classList.add('vis'));
+            clonedDoc.querySelectorAll('.adicionais-item').forEach(el => el.classList.add('vis'));
+            clonedDoc.querySelectorAll('.galeria-item').forEach(el => el.classList.add('vis'));
+            clonedDoc.body.style.background = '#F5F6FA'; // Garante fundo branco no clone
+
+            // Remove elementos desnecessários no PDF
+            const toHide = clonedDoc.querySelectorAll(
+              '.fab-area, .load-overlay, .hero-carousel-dots, .hero-btns'
+            );
+            toHide.forEach(el => el.style.display = 'none');
+          }
+        });
+
+        barra.style.width = '60%';
+
+        const pdf    = new jsPDF('p', 'mm', 'a4');
+        const pW     = pdf.internal.pageSize.getWidth();   // 210mm
+        const pH     = pdf.internal.pageSize.getHeight();  // 297mm
+        const ratio  = canvas.width / pW;                  // px por mm
+        const pgPx   = Math.floor(pH * ratio);             // altura de 1 pág em px
+        const total  = canvas.height;
+        const nPags  = Math.ceil(total / pgPx);
+
+        for (let p = 0; p < nPags; p++) {
+          if (p > 0) pdf.addPage();
+
+          // ★ Fundo branco em CADA página ★
+          pdf.setFillColor(245, 246, 250); // Cor #F5F6FA
+          pdf.rect(0, 0, pW, pH, 'F');
+
+          const srcY = p * pgPx;
+          const srcH = Math.min(pgPx, total - srcY);
+
+          // Cria canvas da fatia desta página
+          const pageCanvas      = document.createElement('canvas');
+          pageCanvas.width      = canvas.width;
+          pageCanvas.height     = srcH;
+          const ctx             = pageCanvas.getContext('2d');
+
+          // Fundo na fatia
+          ctx.fillStyle = '#F5F6FA';
+          ctx.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
+
+          // Desenha a fatia
+          ctx.drawImage(
+            canvas,
+            0, srcY,             // origem no canvas original
+            canvas.width, srcH,  // tamanho da fatia
+            0, 0,                // destino no pageCanvas
+            canvas.width, srcH
+          );
+
+          const imgData = pageCanvas.toDataURL('image/jpeg', 0.88); // Qualidade JPEG
+          const imgH    = (srcH / canvas.width) * pW;
+
+          pdf.addImage(imgData, 'JPEG', 0, 0, pW, imgH);
+
+          // Atualiza barra de progresso
+          barra.style.width = `${60 + Math.round((p+1)/nPags * 35)}%`;
+        }
+
+        barra.style.width = '100%';
+        await new Promise(r => setTimeout(r, 400)); // Pequeno delay para UX
+
+        const nome = (dadosOrc?.titulo || 'Orcamento')
+          .normalize('NFD').replace(/[\u0300-\u036f]/g,'') // Remove acentos
+          .replace(/[^a-zA-Z0-9]/g,'_'); // Substitui caracteres especiais por _
+        pdf.save(`Oficina_Turismo_${nome}.pdf`);
+
+      } catch(e) {
+        console.error('Erro PDF:', e);
+        alert('Erro ao gerar PDF. Tente novamente.');
+      }
+
+      fabArea.style.display = 'flex';
+      overlay.classList.remove('on');
+      barra.style.width = '0%'; // Reseta a barra
+    }
+
+    // ════════════════════════════════════════════
+    // ENVIAR WHATSAPP (Página do Orçamento)
+    // ════════════════════════════════════════════
+
+    function envWppOrc() {
+      if (!dadosOrc) return;
+      const link = window.location.href;
+      const msg  = encodeURIComponent(
+        `Olá${dadosOrc.cliente ? ' ' + dadosOrc.cliente : ''}! 🌍✈️\n\n` +
+        `Segue seu orçamento personalizado da *Oficina de Turismo*:\n\n` +
+        `✈️ *${dadosOrc.titulo}*\n\n` +
+        `👉 ${link}\n\n` +
+        `Qualquer dúvida estou à disposição! 😊\n\n` +
+        `_Oficina de Turismo — (35) 98862-2943_`
+      );
+      window.open(`https://wa.me/?text=${msg}`, '_blank');
+    }
+
+    // ════════════════════════════════════════════
+    // INICIALIZAÇÃO
+    // ════════════════════════════════════════════
+
+    document.addEventListener('DOMContentLoaded', carregarOrcamento);
+  </script>
+</body>
+</html>
