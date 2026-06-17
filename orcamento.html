@@ -58,16 +58,6 @@
       display:flex;align-items:center;gap:6px;transition:all .3s;}
     .h-link:hover{color:var(--dourado);}
 
-    /* ══ BANNER DE VALIDADE ══ */
-    .val-banner{
-      background:var(--azul2);color:#fff;padding:10px 20px;
-      text-align:center;font-size:.9rem;font-weight:600;
-      box-shadow:0 2px 8px rgba(0,0,0,.1);
-      display:flex;align-items:center;justify-content:center;gap:8px;}
-    .val-banner.urgente{background:#f39c12;}
-    .val-banner.expirado{background:#e74c3c;}
-    .val-banner.ok{background:var(--verde);}
-
     /* ══ HERO SECTION ══ */
     .hero{
       position:relative;height:550px;display:flex;align-items:center;
@@ -190,382 +180,321 @@
     .v-desc{
       font-size:.9rem;color:#333;} /* Cinza escuro para a descrição */
     .parc-box{
-      background:rgba(0,0,0,.2);border-radius:var(--radius);
-      padding:15px 25px;margin-top:30px;
+      background:var(--dourado); /* Fundo dourado para destaque */
+      color:#fff;padding:15px 25px;border-radius:var(--radius);
+      margin-top:30px;text-align:center;font-size:1.1rem;font-weight:700;
       display:flex;align-items:center;justify-content:center;gap:12px;
-      font-size:1rem;font-weight:600;
-      color:var(--dourado); /* Dourado para o parcelamento */
-      box-shadow:0 2px 10px rgba(0,0,0,.1);
-      border:1px solid rgba(255,255,255,.1);}
+      box-shadow:0 4px 15px rgba(0,0,0,.2);}
     .parc-box.hide{display:none;}
+    .parc-box i{font-size:1.5em;}
 
-    /* ══ CONDIÇÕES / OBSERVAÇÕES ══ */
+    /* ══ CAIXAS DE TEXTO (Condições/Observações) ══ */
     .caixa{
       background:#fff;border-radius:var(--radius);box-shadow:var(--sombra);
-      padding:25px;font-size:.95rem;color:#555;line-height:1.7;}
+      padding:25px;font-size:.95rem;color:#555;line-height:1.8;}
     .caixa.borda-azul{border-top:4px solid var(--azul);}
     .caixa.borda-gold{border-top:4px solid var(--dourado);}
 
-    /* ══ SEÇÕES ADICIONAIS (Aéreo e Carro) ══ */
-    .info-adicional-box {
-      background: #fff;
-      border-radius: var(--radius);
-      box-shadow: var(--sombra);
-      padding: 25px;
-      margin-bottom: 30px;
-      border-top: 4px solid var(--azul);
-    }
-    .info-adicional-box h3 {
-      font-size: 1.2rem;
-      color: var(--azul);
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .info-item {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 10px;
-      font-size: 0.95rem;
-      color: #555;
-    }
-    .info-item i {
-      color: var(--dourado);
-      margin-right: 10px;
-      flex-shrink: 0;
-      margin-top: 3px;
-    }
-    .info-item strong {
-      color: var(--azul);
-      margin-right: 5px;
-    }
-    .info-item span {
-      flex: 1;
-    }
-
-    /* ══ RODAPÉ ══ */
+    /* ══ RODAPÉ ORÇAMENTO ══ */
     .rodape-orc{
-      text-align:center;padding:20px;font-size:.85rem;color:#888;
-      border-top:1px solid #eee;margin-top:40px;}
-    .site-footer{
-      background:var(--azul);padding:30px 0 0;
-      box-shadow:0 -2px 10px rgba(0,0,0,.15);}
-    .footer-in{
-      display:flex;flex-wrap:wrap;justify-content:space-between;
-      align-items:center;max-width:980px;margin:0 auto;padding:0 20px 25px;
-      gap:20px;}
-    .footer-logo-wrap{display:flex;align-items:center;gap:12px;}
-    .footer-logo{height:68px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .footer-div{width:1px;height:54px;background:rgba(255,255,255,.30);}
-    .footer-logo30{height:58px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,0,0,.3));}
-    .footer-info{text-align:right;}
-    .footer-slogan{font-size:.95rem;color:rgba(255,255,255,.8);margin-bottom:15px;}
-    .footer-links{display:flex;flex-wrap:wrap;gap:8px 20px;}
-    .footer-links a{
-      font-size:.84rem;color:rgba(255,255,255,.75);
-      display:flex;align-items:center;gap:6px;transition:all .3s;}
-    .footer-links a:hover{color:var(--dourado);}
-    .footer-links a.social-link{font-size:.9rem;color:#fff;margin-left:10px;}
-    .footer-links a.social-link:hover{color:var(--dourado);}
-    .footer-copy{
-      text-align:center;padding:14px;max-width:980px;margin:0 auto;
-      border-top:1px solid rgba(255,255,255,.12);
-      font-size:.78rem;color:rgba(255,255,255,.42);}
+      text-align:center;font-size:.8rem;color:#aaa;padding:20px 0;}
 
-    /* ══ FABs FLUTUANTES ══ */
+    /* ══ FAB BUTTONS ══ */
     .fab-area{
-      position:fixed;bottom:28px;right:28px;
-      display:flex;flex-direction:column;gap:12px;z-index:999;}
+      position:fixed;bottom:20px;right:20px;z-index:1000;
+      display:flex;flex-direction:column;gap:10px;}
     .fab{
-      width:58px;height:58px;border-radius:50%;border:none;
-      cursor:pointer;font-size:1.4rem;color:#fff;
-      display:flex;align-items:center;justify-content:center;
-      box-shadow:0 4px 16px rgba(0,0,0,.25);transition:all .3s;
-      position:relative;}
-    .fab:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.35);}
+      background:var(--azul);color:#fff;width:50px;height:50px;
+      border-radius:50%;border:none;cursor:pointer;font-size:1.2rem;
+      box-shadow:0 4px 12px rgba(0,0,0,.2);transition:all .3s;
+      display:flex;align-items:center;justify-content:center;position:relative;}
+    .fab:hover{transform:scale(1.1);}
     .fab-wpp{background:#25D366;}
     .fab-pdf{background:#c0392b;}
-    .fab-top{background:var(--azul);}
+    .fab-top{background:#6c757d;}
     .fab-label{
-      position:absolute;right:100%;margin-right:12px;
-      background:rgba(0,0,0,.7);color:#fff;
-      padding:6px 12px;border-radius:6px;
-      font-size:.8rem;white-space:nowrap;
-      opacity:0;visibility:hidden;transition:all .2s;}
+      position:absolute;right:60px;background:rgba(0,0,0,.7);
+      color:#fff;padding:5px 10px;border-radius:5px;
+      font-size:.8rem;white-space:nowrap;opacity:0;visibility:hidden;
+      transition:opacity .3s,visibility .3s;}
     .fab:hover .fab-label{opacity:1;visibility:visible;}
 
-    /* ══ LOADING / ERRO ══ */
-    .load-ov{
-      position:fixed;inset:0;background:rgba(255,255,255,.9);
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      z-index:1000;opacity:0;visibility:hidden;transition:all .3s;}
-    .load-ov.on{opacity:1;visibility:visible;}
-    .load-spinner{font-size:3rem;color:var(--azul);margin-bottom:20px;}
-    .load-txt{font-size:1.1rem;color:#555;margin-bottom:10px;}
-    .load-bar-wrap{width:200px;height:8px;background:#e0e0e0;border-radius:4px;overflow:hidden;}
-    .load-bar{width:0%;height:100%;background:var(--dourado);transition:width .3s linear;}
+    /* ══ FOOTER ══ */
+    .site-footer{
+      background:var(--azul);color:#fff;padding:30px 0 10px;
+      font-size:.9rem;text-align:center;}
+    .footer-in{
+      display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+      gap:25px;margin-bottom:20px;padding:0 20px;}
+    .footer-logo-wrap{display:flex;align-items:center;gap:12px;}
+    .footer-logo{height:60px;object-fit:contain;}
+    .footer-div{width:1px;height:48px;background:rgba(255,255,255,.3);}
+    .footer-logo30{height:50px;object-fit:contain;}
+    .footer-info{text-align:left;}
+    .footer-slogan{font-size:1.1rem;font-weight:600;margin-bottom:15px;}
+    .footer-links{display:flex;flex-wrap:wrap;gap:10px;font-size:.85rem;}
+    .footer-links a{
+      color:rgba(255,255,255,.7);display:flex;align-items:center;gap:6px;
+      transition:all .3s;}
+    .footer-links a:hover{color:var(--dourado);}
+    .footer-copy{
+      border-top:1px solid rgba(255,255,255,.1);padding-top:10px;
+      font-size:.75rem;color:rgba(255,255,255,.5);}
 
-    .erro-box{
-      position:fixed;inset:0;background:#fff;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      text-align:center;padding:20px;z-index:1000;}
-    .erro-box i{font-size:4rem;color:#e74c3c;margin-bottom:20px;}
-    .erro-box h2{font-size:1.8rem;color:#333;margin-bottom:10px;}
-    .erro-box p{font-size:1rem;color:#666;margin-bottom:30px;}
-    .btn-wa{
-      display:inline-flex;align-items:center;gap:10px;
-      background:#25D366;color:#fff;padding:12px 25px;
-      border-radius:30px;font-weight:700;font-size:1rem;
+    /* ══ LOADING / ERRO ══ */
+    .loading-skeleton,.erro-box{
+      min-height:100vh;display:flex;flex-direction:column;align-items:center;
+      justify-content:center;text-align:center;background:var(--cinza);color:#888;}
+    .loading-skeleton i,.erro-box i{font-size:4rem;color:var(--dourado);margin-bottom:20px;}
+    .loading-skeleton h2,.erro-box h2{font-size:1.8rem;color:#555;margin-bottom:10px;}
+    .loading-skeleton p,.erro-box p{font-size:1rem;margin-bottom:20px;}
+    .erro-box .btn-wa{
+      background:#25D366;color:#fff;padding:12px 25px;border-radius:30px;
+      font-weight:700;font-size:1rem;display:inline-flex;align-items:center;gap:8px;
       box-shadow:0 4px 12px rgba(0,0,0,.2);transition:all .3s;}
-    .btn-wa:hover{background:#1ebe5d;transform:translateY(-2px);}
+    .erro-box .btn-wa:hover{background:#1ebe5d;transform:translateY(-2px);}
+
+    /* PDF Overlay */
+    .load-ov{
+      position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:9999;
+      display:none;flex-direction:column;align-items:center;justify-content:center;
+      color:#fff;font-size:1.2rem;}
+    .load-ov.on{display:flex;}
+    .load-spinner{font-size:3rem;margin-bottom:20px;}
+    .load-bar-wrap{
+      width:80%;max-width:400px;height:10px;background:rgba(255,255,255,.2);
+      border-radius:5px;overflow:hidden;margin-top:15px;}
+    .load-bar{
+      height:100%;width:0%;background:var(--dourado);border-radius:5px;
+      transition:width .4s ease-out;}
+
+    /* ══ ADICIONAIS (Aéreo/Carro) ══ */
+    .adicional-bloco{
+      background:#fff;border-radius:var(--radius);box-shadow:var(--sombra);
+      padding:25px;margin-bottom:25px;border-top:4px solid var(--azul);}
+    .adicional-bloco h3{
+      font-size:1.4rem;color:var(--azul);margin-bottom:20px;
+      display:flex;align-items:center;gap:10px;}
+    .adicional-item{
+      border:1px solid #eee;border-radius:8px;padding:15px;margin-bottom:15px;
+      background:#fafafa;}
+    .adicional-item:last-child{margin-bottom:0;}
+    .adicional-item p{margin-bottom:8px;font-size:.95rem;color:#555;}
+    .adicional-item p strong{color:var(--azul);margin-right:5px;}
+    .adicional-item p i{color:var(--dourado);margin-right:8px;}
+
 
     /* ══ RESPONSIVO ══ */
     @media(max-width:768px){
       .header-inner{flex-direction:column;text-align:center;}
       .h-contatos{justify-content:center;}
-      .logo-wrap{margin-bottom:15px;}
-      .hero{min-height:400px;}
+      .hero{height:auto;padding:80px 0;}
+      .hero-in{padding:20px;}
       .hero-info h1{font-size:2rem;}
-      .hero-sub{font-size:.9rem;}
-      .chips{justify-content:center;}
-      .hero-btns{justify-content:center;}
-      .sec-titulo{font-size:1.5rem;}
+      .hero-sub{font-size:1rem;}
+      .chips{flex-direction:column;align-items:center;}
       .inc-grid{grid-template-columns:1fr;}
-      .timeline::before{left:20px;transform:translateX(0);}
-      .dia{flex-direction:column;align-items:center;}
-      .dia:nth-child(even){flex-direction:column;}
-      .dia-num{position:relative;left:auto;transform:translateX(0);margin-bottom:15px;}
-      .dia-corpo{width:100%;margin:0;}
-      .dia:nth-child(odd) .dia-corpo{margin-right:0;}
-      .dia:nth-child(even) .dia-corpo{margin-left:0;}
-      .dia-txt{padding:15px;}
-      .val-grid{flex-direction:column;align-items:center;}
-      .val-card{width:100%;max-width:300px;}
-      .caixa{padding:20px;}
-      .fab-area{bottom:15px;right:15px;}
-      .fab{width:50px;height:50px;font-size:1.2rem;}
-      .fab-label{display:none;} /* Esconde labels em mobile */
-      .footer-in{flex-direction:column;text-align:center;}
-      .footer-logo-wrap{margin-bottom:15px;}
-      .footer-links{flex-direction:column;align-items:center;}
+      .timeline{padding-left:20px;}
+      .timeline::before{left:10px;}
+      .dia-num{left:0;}
+      .dia-corpo{margin-left:20px;}
+      .val-card{width:100%;}
+      .fab-area{flex-direction:row;bottom:10px;right:10px;left:10px;justify-content:flex-end;}
+      .fab-label{display:none;}
+      .footer-info{text-align:center;}
+      .footer-links{justify-content:center;}
     }
   </style>
 </head>
 <body>
 
-  <div id="loading-skeleton" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; background:#f5f6fa;">
-    <i class="fas fa-plane-departure fa-spin" style="font-size:3rem; color:#1B3A6B; margin-bottom:20px;"></i>
-    <p style="font-size:1.2rem; color:#555;">Carregando seu orçamento...</p>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-wrap">
+        <img src="assets/images/logo.png" alt="Oficina de Turismo" class="logo-principal"/>
+        <div class="logo-divider"></div>
+        <img src="assets/images/logo-30-anos.png" alt="30 Anos" class="logo-30"/>
+      </div>
+      <div class="h-contatos">
+        <a href="tel:+5535988622943" class="h-link"><i class="fas fa-phone"></i> (35) 98862-2943</a>
+        <a href="https://wa.me/5535988622943" target="_blank" class="h-link"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" style="display:none;">
+    <section class="hero">
+      <div class="car-wrap">
+        <div id="car-track" class="car-track">
+          <!-- Imagens do carrossel serão carregadas aqui -->
+        </div>
+        <button id="car-prev" class="car-btn car-prev"><i class="fas fa-chevron-left"></i></button>
+        <button id="car-next" class="car-btn car-next"><i class="fas fa-chevron-right"></i></button>
+        <div id="car-dots" class="car-dots">
+          <!-- Dots do carrossel serão carregados aqui -->
+        </div>
+      </div>
+      <div class="hero-ov"></div>
+      <div class="hero-info">
+        <div class="hero-in fade-in">
+          <span id="hero-badge" class="badge">DESTINO</span>
+          <h1 id="hero-titulo">Título da Viagem</h1>
+          <p id="hero-subtitulo" class="hero-sub">Subtítulo ou destaque da viagem</p>
+          <div class="chips">
+            <span id="chip-periodo" class="chip"><i class="fas fa-calendar-alt"></i> Período</span>
+            <span id="chip-duracao" class="chip"><i class="fas fa-clock"></i> Duração</span>
+            <span id="chip-grupo" class="chip"><i class="fas fa-users"></i> Grupo</span>
+          </div>
+          <div class="hero-btns">
+            <a href="https://wa.me/5535988622943?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20viagem!" target="_blank" class="btn-wpp">
+              <i class="fab fa-whatsapp"></i> Falar com a Oficina
+            </a>
+            <button class="btn-pdf-h" onclick="gerarPDF()">
+              <i class="fas fa-file-pdf"></i> Baixar PDF
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-incluidos" class="fade-in">
+      <div class="container">
+        <h2 class="sec-titulo"><i class="fas fa-list-ul"></i> O que o pacote inclui</h2>
+        <div class="inc-grid">
+          <div class="inc-card sim">
+            <div class="inc-hd">
+              <i class="fas fa-check-circle"></i>
+              <h3>Incluído no Pacote</h3>
+            </div>
+            <ul id="lista-incluido">
+              <!-- Itens incluídos serão renderizados aqui -->
+            </ul>
+          </div>
+          <div class="inc-card nao">
+            <div class="inc-hd">
+              <i class="fas fa-times-circle"></i>
+              <h3>Não Incluído no Pacote</h3>
+            </div>
+            <ul id="lista-nao-incluido">
+              <!-- Itens não incluídos serão renderizados aqui -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-roteiro" class="fade-in">
+      <div class="container">
+        <h2 class="sec-titulo"><i class="fas fa-route"></i> Roteiro Detalhado</h2>
+        <div id="roteiro-timeline" class="timeline">
+          <!-- Roteiro será renderizado aqui -->
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-aereo" class="fade-in" style="display:none;">
+      <div class="container">
+        <h2 class="sec-titulo"><i class="fas fa-plane-departure"></i> Parte Aérea</h2>
+        <div id="aereo-info-container">
+          <!-- Informações de aéreo serão renderizadas aqui -->
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-aluguel-carro" class="fade-in" style="display:none;">
+      <div class="container">
+        <h2 class="sec-titulo"><i class="fas fa-car"></i> Aluguel de Carro</h2>
+        <div id="carro-info-container">
+          <!-- Informações de aluguel de carro serão renderizadas aqui -->
+        </div>
+      </div>
+    </section>
+
+    <section class="valores-bg fade-in">
+      <div class="container">
+        <h2 class="sec-titulo light"><i class="fas fa-dollar-sign"></i> Valores por Pessoa</h2>
+        <div id="valores-grid" class="val-grid">
+          <!-- Valores serão renderizados aqui -->
+        </div>
+        <div id="parcelamento-box" class="parc-box hide">
+          <i class="fas fa-credit-card"></i>
+          <p id="parcelamento-txt"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-condicoes" class="fade-in">
+      <div class="container">
+        <h2 class="sec-titulo"><i class="fas fa-file-contract"></i> Condições Gerais</h2>
+        <div id="condicoes-box" class="caixa borda-azul"></div>
+      </div>
+    </section>
+
+    <section id="sec-observacoes" class="fade-in">
+      <div class="container">
+        <h2 class="sec-titulo"><i class="fas fa-comment-dots"></i> Observações Importantes</h2>
+        <div id="observacoes-box" class="caixa borda-gold"></div>
+      </div>
+    </section>
+
+    <div class="rodape-orc">
+      <p>Orçamento gerado em <span id="data-geracao-orc"></span></p>
+    </div>
+  </main>
+
+  <div class="fab-area">
+    <button class="fab fab-wpp" onclick="envWppOrc()" title="Falar no WhatsApp">
+      <i class="fab fa-whatsapp"></i><span class="fab-label">WhatsApp</span>
+    </button>
+    <button class="fab fab-pdf" onclick="gerarPDF()" title="Baixar PDF">
+      <i class="fas fa-file-pdf"></i><span class="fab-label">Baixar PDF</span>
+    </button>
+    <button class="fab fab-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao Topo">
+      <i class="fas fa-arrow-up"></i><span class="fab-label">Topo</span>
+    </button>
   </div>
 
-  <div id="main-content" style="display:none;">
-    <header class="site-header">
-      <div class="header-inner">
-        <a href="#" class="logo-wrap">
-          <img src="assets/images/logo.png" alt="Oficina de Turismo" class="logo-principal"/>
-          <div class="logo-divider"></div>
-          <img src="assets/images/logo-30-anos.png" alt="30 Anos" class="logo-30"/>
-        </a>
-        <div class="h-contatos">
-          <a href="tel:+5535988622943" class="h-link"><i class="fas fa-phone"></i> (35) 98862-2943</a>
-          <a href="https://wa.me/5535988622943" target="_blank" class="h-link"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+  <footer class="site-footer">
+    <div class="footer-in">
+      <div class="footer-logo-wrap">
+        <img src="assets/images/logo.png" alt="Oficina de Turismo" class="footer-logo"/>
+        <div class="footer-div"></div>
+        <img src="assets/images/logo-30-anos.png" alt="30 Anos" class="footer-logo30"/>
+      </div>
+      <div class="footer-info">
+        <p class="footer-slogan">Oficina de Turismo — Sua viagem começa aqui!</p>
+        <div class="footer-links">
+          <a href="tel:+5535988622943"><i class="fas fa-phone"></i> (35) 98862-2943</a>
+          <a href="mailto:contato@oficinadeturismo.com.br"><i class="fas fa-envelope"></i> contato@oficinadeturismo.com.br</a>
+          <a href="https://www.instagram.com/oficinadeturismo" target="_blank" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
+          <a href="https://www.oficinatur.com.br" target="_blank" class="social-link"><i class="fas fa-globe"></i> Site</a>
         </div>
       </div>
-    </header>
-
-    <div id="val-banner" class="val-banner">
-      <span id="val-msg"></span>
     </div>
-
-    <main id="main-orc">
-      <section class="hero">
-        <div class="car-wrap">
-          <div id="car-track" class="car-track">
-            <!-- Imagens do carrossel aqui -->
-          </div>
-          <button id="car-prev" class="car-btn car-prev"><i class="fas fa-chevron-left"></i></button>
-          <button id="car-next" class="car-btn car-next"><i class="fas fa-chevron-right"></i></button>
-          <div id="car-dots" class="car-dots"></div>
-        </div>
-        <div class="hero-ov"></div>
-        <div class="hero-info">
-          <div class="hero-in">
-            <span id="hero-badge" class="badge"></span>
-            <h1 id="hero-titulo"></h1>
-            <p id="hero-subtitulo" class="hero-sub"></p>
-            <div class="chips">
-              <span id="chip-periodo" class="chip"><i class="fas fa-calendar-alt"></i> Período</span>
-              <span id="chip-duracao" class="chip"><i class="fas fa-clock"></i> Duração</span>
-              <span id="chip-grupo" class="chip"><i class="fas fa-users"></i> Grupo</span>
-            </div>
-            <div class="hero-btns">
-              <button class="btn-wpp" onclick="envWppOrc()"><i class="fab fa-whatsapp"></i> Falar no WhatsApp</button>
-              <button class="btn-pdf-h" onclick="gerarPDF()"><i class="fas fa-file-pdf"></i> Baixar PDF</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="sec-incluidos" class="fade-in">
-        <div class="container">
-          <h2 class="sec-titulo"><i class="fas fa-check-circle"></i> O que está incluído</h2>
-          <div class="inc-grid">
-            <div class="inc-card sim">
-              <div class="inc-hd">
-                <i class="fas fa-check-circle"></i>
-                <h3>Serviços Incluídos</h3>
-              </div>
-              <ul id="lista-incluido">
-                <!-- Itens incluídos aqui -->
-              </ul>
-            </div>
-            <div class="inc-card nao">
-              <div class="inc-hd">
-                <i class="fas fa-times-circle"></i>
-                <h3>Serviços Não Incluídos</h3>
-              </div>
-              <ul id="lista-nao-incluido">
-                <!-- Itens não incluídos aqui -->
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="sec-roteiro" class="fade-in">
-        <div class="container">
-          <h2 class="sec-titulo"><i class="fas fa-route"></i> Roteiro Dia a Dia</h2>
-          <div id="roteiro-timeline" class="timeline">
-            <!-- Roteiro será renderizado aqui -->
-          </div>
-        </div>
-      </section>
-
-      <section id="sec-valores" class="valores-bg fade-in">
-        <div class="container">
-          <h2 class="sec-titulo light"><i class="fas fa-dollar-sign"></i> Valores por Pessoa</h2>
-          <div id="valores-grid" class="val-grid">
-            <!-- Valores serão renderizados aqui -->
-          </div>
-          <div id="parcelamento-box" class="parc-box hide">
-            <i class="fas fa-credit-card"></i>
-            <p id="parcelamento-txt"></p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Nova Seção: Parte Aérea (Opcional) -->
-      <section id="sec-aereo" class="fade-in" style="display:none;">
-        <div class="container">
-          <h2 class="sec-titulo"><i class="fas fa-plane"></i> Parte Aérea</h2>
-          <div class="info-adicional-box">
-            <h3><i class="fas fa-info-circle"></i> Detalhes do Voo</h3>
-            <div id="aereo-cia-display" class="info-item" style="display:none;">
-              <strong>Companhia Aérea:</strong> <span></span>
-            </div>
-            <div id="aereo-num-voo-display" class="info-item" style="display:none;">
-              <strong>Número do Voo:</strong> <span></span>
-            </div>
-            <div id="aereo-origem-display" class="info-item" style="display:none;">
-              <strong>Local de Embarque:</strong> <span></span>
-            </div>
-            <div id="aereo-destino-display" class="info-item" style="display:none;">
-              <strong>Local de Chegada (com conexões):</strong> <span></span>
-            </div>
-            <div id="aereo-horarios-display" class="info-item" style="display:none;">
-              <strong>Horários (Partida/Chegada):</strong> <span></span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Nova Seção: Aluguel de Carro (Opcional) -->
-      <section id="sec-aluguel-carro" class="fade-in" style="display:none;">
-        <div class="container">
-          <h2 class="sec-titulo"><i class="fas fa-car"></i> Aluguel de Carro</h2>
-          <div class="info-adicional-box">
-            <h3><i class="fas fa-info-circle"></i> Detalhes do Aluguel</h3>
-            <div id="carro-retirada-display" class="info-item" style="display:none;">
-              <strong>Local de Retirada:</strong> <span></span>
-            </div>
-            <div id="carro-entrega-display" class="info-item" style="display:none;">
-              <strong>Local de Entrega:</strong> <span></span>
-            </div>
-            <div id="carro-info-adicional-display" class="info-item" style="display:none;">
-              <strong>Informações Adicionais:</strong> <span></span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="sec-condicoes" class="fade-in">
-        <div class="container">
-          <h2 class="sec-titulo"><i class="fas fa-file-contract"></i> Condições Gerais</h2>
-          <div id="condicoes-box" class="caixa borda-azul"></div>
-        </div>
-      </section>
-
-      <section id="sec-observacoes" class="fade-in">
-        <div class="container">
-          <h2 class="sec-titulo"><i class="fas fa-comment-dots"></i> Observações Importantes</h2>
-          <div id="observacoes-box" class="caixa borda-gold"></div>
-        </div>
-      </section>
-
-      <div class="rodape-orc">
-        <p>Orçamento gerado em <span id="data-geracao-orc"></span></p>
-      </div>
-    </main>
-
-    <div class="fab-area">
-      <button class="fab fab-wpp" onclick="envWppOrc()" title="Falar no WhatsApp">
-        <i class="fab fa-whatsapp"></i><span class="fab-label">WhatsApp</span>
-      </button>
-      <button class="fab fab-pdf" onclick="gerarPDF()" title="Baixar PDF">
-        <i class="fas fa-file-pdf"></i><span class="fab-label">Baixar PDF</span>
-      </button>
-      <button class="fab fab-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Voltar ao Topo">
-        <i class="fas fa-arrow-up"></i><span class="fab-label">Topo</span>
-      </button>
+    <div class="footer-copy">
+      &copy; 2024 Oficina de Turismo. Todos os direitos reservados.
     </div>
+  </footer>
 
-    <footer class="site-footer">
-      <div class="footer-in">
-        <div class="footer-logo-wrap">
-          <img src="assets/images/logo.png" alt="Oficina de Turismo" class="footer-logo"/>
-          <div class="footer-div"></div>
-          <img src="assets/images/logo-30-anos.png" alt="30 Anos" class="footer-logo30"/>
-        </div>
-        <div class="footer-info">
-          <p class="footer-slogan">Oficina de Turismo — Sua viagem começa aqui!</p>
-          <div class="footer-links">
-            <a href="tel:+5535988622943"><i class="fas fa-phone"></i> (35) 98862-2943</a>
-            <a href="mailto:contato@oficinadeturismo.com.br"><i class="fas fa-envelope"></i> contato@oficinadeturismo.com.br</a>
-            <a href="https://www.instagram.com/oficinadeturismo" target="_blank" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>
-            <a href="https://www.oficinatur.com.br" target="_blank" class="social-link"><i class="fas fa-globe"></i> Site</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-copy">
-        &copy; 2024 Oficina de Turismo. Todos os direitos reservados.
-      </div>
-    </footer>
+  <div id="load-overlay" class="load-ov">
+    <i class="fas fa-spinner fa-spin load-spinner"></i>
+    <span id="load-txt" class="load-txt">Gerando PDF...</span>
+    <div class="load-bar-wrap"><div id="load-bar" class="load-bar"></div></div>
+  </div>
 
-    <div id="load-overlay" class="load-ov">
-      <i class="fas fa-spinner fa-spin load-spinner"></i>
-      <span id="load-txt" class="load-txt">Gerando PDF...</span>
-      <div class="load-bar-wrap"><div id="load-bar" class="load-bar"></div></div>
-    </div>
+  <div id="loading-skeleton" class="loading-skeleton">
+    <i class="fas fa-plane-departure"></i>
+    <h2>Carregando Orçamento...</h2>
+    <p>Por favor, aguarde enquanto preparamos sua viagem.</p>
+  </div>
 
-    <div id="erro-box" class="erro-box" style="display:none;">
-      <i class="fas fa-exclamation-triangle"></i>
-      <h2>Orçamento não encontrado!</h2>
-      <p>O orçamento que você está procurando não existe ou foi removido.</p>
-      <a href="https://wa.me/5535988622943?text=Olá%2C%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20viagem!" target="_blank" class="btn-wa">
-        <i class="fab fa-whatsapp"></i> Falar com a Oficina de Turismo
-      </a>
-    </div>
+  <div id="erro-box" class="erro-box" style="display:none;">
+    <i class="fas fa-exclamation-triangle"></i>
+    <h2>Orçamento não encontrado!</h2>
+    <p>O orçamento que você está procurando não existe ou foi removido.</p>
+    <a href="https://wa.me/5535988622943?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20or%C3%A7amento%20de%20viagem!" target="_blank" class="btn-wa">
+      <i class="fab fa-whatsapp"></i> Falar com a Oficina de Turismo
+    </a>
   </div>
 
   <script>
@@ -643,32 +572,6 @@ function renderizarOrcamento(o) {
   // Carrossel de imagens
   initCarrossel(o.galeria || []);
 
-  // Validade do orçamento
-  const dataGeracao = new Date(o.dataGeracao);
-  const validadeDias = parseInt(o.validadeDias, 10);
-  const dataValidade = new Date(dataGeracao);
-  dataValidade.setDate(dataValidade.getDate() + validadeDias);
-  const hoje = new Date();
-  hoje.setHours(0,0,0,0); // Zera a hora para comparação
-
-  const valBanner = document.getElementById('val-banner');
-  const valMsg = document.getElementById('val-msg');
-
-  // Removendo a lógica de validade do banner, pois o usuário pediu para remover o contador
-  // O banner de validade será exibido apenas se o status for "expirado" ou "rascunho"
-  if (o.status === 'expirado') {
-    valBanner.classList.add('expirado');
-    valMsg.textContent = '❌ Este orçamento está expirado.';
-    valBanner.style.display = 'flex';
-  } else if (o.status === 'rascunho') {
-    valBanner.classList.add('urgente');
-    valMsg.textContent = '📝 Este é um rascunho de orçamento e pode ser alterado.';
-    valBanner.style.display = 'flex';
-  } else {
-    valBanner.style.display = 'none'; // Esconde o banner se não for rascunho ou expirado
-  }
-
-
   // Listas de incluídos e não incluídos
   renderizarLista('lista-incluido', o.incluido || []);
   renderizarLista('lista-nao-incluido', o.naoIncluido || []);
@@ -685,95 +588,58 @@ function renderizarOrcamento(o) {
     document.getElementById('parcelamento-box').classList.add('hide');
   }
 
-  // Parte Aérea (Opcional)
+  // Parte Aérea (Opcional e Dinâmica)
   const secAereo = document.getElementById('sec-aereo');
-  let hasAereoInfo = false;
+  const aereoInfoContainer = document.getElementById('aereo-info-container');
+  aereoInfoContainer.innerHTML = ''; // Limpa antes de renderizar
 
-  const aereoCiaDisplay = document.getElementById('aereo-cia-display');
-  if (o.aereoCia && o.aereoCia.trim() !== '') {
-    aereoCiaDisplay.querySelector('span').textContent = o.aereoCia;
-    aereoCiaDisplay.style.display = 'flex';
-    hasAereoInfo = true;
-  } else {
-    aereoCiaDisplay.style.display = 'none';
-  }
-
-  const aereoNumVooDisplay = document.getElementById('aereo-num-voo-display');
-  if (o.aereoNumVoo && o.aereoNumVoo.trim() !== '') {
-    aereoNumVooDisplay.querySelector('span').textContent = o.aereoNumVoo;
-    aereoNumVooDisplay.style.display = 'flex';
-    hasAereoInfo = true;
-  } else {
-    aereoNumVooDisplay.style.display = 'none';
-  }
-
-  const aereoOrigemDisplay = document.getElementById('aereo-origem-display');
-  if (o.aereoOrigem && o.aereoOrigem.trim() !== '') {
-    aereoOrigemDisplay.querySelector('span').textContent = o.aereoOrigem;
-    aereoOrigemDisplay.style.display = 'flex';
-    hasAereoInfo = true;
-  } else {
-    aereoOrigemDisplay.style.display = 'none';
-  }
-
-  const aereoDestinoDisplay = document.getElementById('aereo-destino-display');
-  if (o.aereoDestino && o.aereoDestino.trim() !== '') {
-    aereoDestinoDisplay.querySelector('span').textContent = o.aereoDestino;
-    aereoDestinoDisplay.style.display = 'flex';
-    hasAereoInfo = true;
-  } else {
-    aereoDestinoDisplay.style.display = 'none';
-  }
-
-  const aereoHorariosDisplay = document.getElementById('aereo-horarios-display');
-  if (o.aereoHorarios && o.aereoHorarios.trim() !== '') {
-    aereoHorariosDisplay.querySelector('span').textContent = o.aereoHorarios;
-    aereoHorariosDisplay.style.display = 'flex';
-    hasAereoInfo = true;
-  } else {
-    aereoHorariosDisplay.style.display = 'none';
-  }
-
-  if (hasAereoInfo) {
-    secAereo.style.display = 'block';
+  if (o.aereo && o.aereo.length > 0) {
+    o.aereo.forEach(voo => {
+      if (voo.cia || voo.numVoo || voo.origem || voo.destino || voo.horarios) {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('adicional-item');
+        let content = '';
+        if (voo.cia) content += `<p><strong>Companhia:</strong> <i class="fas fa-plane-departure"></i> <span>${voo.cia}</span></p>`;
+        if (voo.numVoo) content += `<p><strong>Voo:</strong> <i class="fas fa-ticket-alt"></i> <span>${voo.numVoo}</span></p>`;
+        if (voo.origem) content += `<p><strong>Embarque:</strong> <i class="fas fa-map-marker-alt"></i> <span>${voo.origem}</span></p>`;
+        if (voo.destino) content += `<p><strong>Chegada:</strong> <i class="fas fa-map-marker-alt"></i> <span>${voo.destino}</span></p>`;
+        if (voo.horarios) content += `<p><strong>Horários:</strong> <i class="fas fa-clock"></i> <span>${voo.horarios}</span></p>`;
+        itemDiv.innerHTML = content;
+        aereoInfoContainer.appendChild(itemDiv);
+      }
+    });
+    if (aereoInfoContainer.children.length > 0) {
+      secAereo.style.display = 'block';
+    } else {
+      secAereo.style.display = 'none';
+    }
   } else {
     secAereo.style.display = 'none';
   }
 
-
-  // Aluguel de Carro (Opcional)
+  // Aluguel de Carro (Opcional e Dinâmico)
   const secAluguelCarro = document.getElementById('sec-aluguel-carro');
-  let hasCarroInfo = false;
+  const carroInfoContainer = document.getElementById('carro-info-container');
+  carroInfoContainer.innerHTML = ''; // Limpa antes de renderizar
 
-  const carroRetiradaDisplay = document.getElementById('carro-retirada-display');
-  if (o.carroLocalRetirada && o.carroLocalRetirada.trim() !== '') {
-    carroRetiradaDisplay.querySelector('span').textContent = o.carroLocalRetirada;
-    carroRetiradaDisplay.style.display = 'flex';
-    hasCarroInfo = true;
-  } else {
-    carroRetiradaDisplay.style.display = 'none';
-  }
-
-  const carroEntregaDisplay = document.getElementById('carro-entrega-display');
-  if (o.carroLocalEntrega && o.carroLocalEntrega.trim() !== '') {
-    carroEntregaDisplay.querySelector('span').textContent = o.carroLocalEntrega;
-    carroEntregaDisplay.style.display = 'flex';
-    hasCarroInfo = true;
-  } else {
-    carroEntregaDisplay.style.display = 'none';
-  }
-
-  const carroInfoAdicionalDisplay = document.getElementById('carro-info-adicional-display');
-  if (o.carroInfoAdicional && o.carroInfoAdicional.trim() !== '') {
-    carroInfoAdicionalDisplay.querySelector('span').textContent = o.carroInfoAdicional;
-    carroInfoAdicionalDisplay.style.display = 'flex';
-    hasCarroInfo = true;
-  } else {
-    carroInfoAdicionalDisplay.style.display = 'none';
-  }
-
-  if (hasCarroInfo) {
-    secAluguelCarro.style.display = 'block';
+  if (o.carro && o.carro.length > 0) {
+    o.carro.forEach(aluguel => {
+      if (aluguel.localRetirada || aluguel.localEntrega || aluguel.infoAdicional) {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('adicional-item');
+        let content = '';
+        if (aluguel.localRetirada) content += `<p><strong>Retirada:</strong> <i class="fas fa-map-pin"></i> <span>${aluguel.localRetirada}</span></p>`;
+        if (aluguel.localEntrega) content += `<p><strong>Entrega:</strong> <i class="fas fa-map-pin"></i> <span>${aluguel.localEntrega}</span></p>`;
+        if (aluguel.infoAdicional) content += `<p><strong>Detalhes:</strong> <i class="fas fa-info-circle"></i> <span>${aluguel.infoAdicional}</span></p>`;
+        itemDiv.innerHTML = content;
+        carroInfoContainer.appendChild(itemDiv);
+      }
+    });
+    if (carroInfoContainer.children.length > 0) {
+      secAluguelCarro.style.display = 'block';
+    } else {
+      secAluguelCarro.style.display = 'none';
+    }
   } else {
     secAluguelCarro.style.display = 'none';
   }
@@ -784,7 +650,7 @@ function renderizarOrcamento(o) {
   document.getElementById('observacoes-box').innerHTML = (o.observacoes || 'Nenhuma observação importante.').replace(/\n/g, '<br>');
 
   // Data de geração no rodapé
-  document.getElementById('data-geracao-orc').textContent = formatarData(dataGeracao);
+  document.getElementById('data-geracao-orc').textContent = formatarData(o.dataGeracao);
 
   // Ativar animações de entrada ao rolar
   const observer = new IntersectionObserver((entries) => {
@@ -962,11 +828,9 @@ async function gerarPDF() {
   const overlay = document.getElementById('load-overlay');
   const barra   = document.getElementById('load-bar');
   const fabArea = document.querySelector('.fab-area');
-  const valBanner = document.getElementById('val-banner');
 
   overlay.classList.add('on');
   fabArea.style.display = 'none';
-  valBanner.style.display = 'none';
 
   // Garante que todas as animações estejam visíveis para o PDF
   document.querySelectorAll('.fade-in').forEach(el => el.classList.add('vis'));
@@ -976,7 +840,7 @@ async function gerarPDF() {
 
   try {
     const { jsPDF } = window.jspdf;
-    const el        = document.getElementById('main-orc');
+    const el        = document.getElementById('main-content'); // Alterado para main-content
 
     barra.style.width = '30%';
 
@@ -999,7 +863,7 @@ async function gerarPDF() {
 
         // Remove elementos desnecessários no PDF
         const toHide = clonedDoc.querySelectorAll(
-          '.fab-area, .load-ov, #val-banner, .car-btn, .car-dots, .hero-btns'
+          '.fab-area, .load-ov, .car-btn, .car-dots, .hero-btns'
         );
         toHide.forEach(el => el.style.display = 'none');
       }
@@ -1067,7 +931,6 @@ async function gerarPDF() {
   }
 
   fabArea.style.display = 'flex';
-  valBanner.style.display = '';
   overlay.classList.remove('on');
   barra.style.width = '0%'; // Reseta a barra
 }
